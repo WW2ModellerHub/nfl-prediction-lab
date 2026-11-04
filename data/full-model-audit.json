@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-04T20:52:12.015836+00:00",
+  "generatedAt": "2026-11-04T20:57:44.597921+00:00",
   "status": "production-pipeline-snapshot",
   "source": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-03T01:15:00+00:00",
     "sha256": "239ad19b914eeff0c44f7ca51ada1d137b90b7f7c2b56106fb02b40f1b4e7506",
-    "downloadedAt": "2026-11-04T20:52:12.010940+00:00",
+    "downloadedAt": "2026-11-04T20:57:44.593362+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
@@ -14,7 +14,7 @@
   "latestResultAt": "2026-11-03T01:15:00+00:00",
   "baseline": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-04T20:52:12.015836+00:00",
+    "asOf": "2026-11-04T20:57:44.597921+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -349,8 +349,8 @@
     "status": "unavailable",
     "loadedSeasons": [],
     "errors": [
-      "2025: ValueError: No timestamped injury entries parsed",
-      "2026: ValueError: No timestamped injury entries parsed"
+      "2025: ValueError: No parsed injury dates: sample=None; columns=['season', 'season_type', 'game_type', 'team', 'week', 'gsis_id']",
+      "2026: ValueError: No parsed injury dates: sample=None; columns=['season', 'season_type', 'game_type', 'team', 'week', 'gsis_id']"
     ],
     "source": "nflverse dated injuries_{season}.csv",
     "records": 0
