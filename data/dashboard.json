@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-04T21:46:37.110907+00:00",
+  "generatedAt": "2026-11-04T22:08:44.126144+00:00",
   "dataStatus": "ok",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
   "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
@@ -133,7 +133,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-04T21:46:31.183219+00:00",
+        "reportAsOf": "2026-11-04T22:08:38.861173+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -384,7 +384,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -841,7 +841,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -1153,6 +1153,16 @@
       "supplementalInjuryWatch": {
         "away": [
           {
+            "name": "Denzel Boston",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:58:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
             "name": "Quincy Williams",
             "position": "LINEBACKER",
             "status": "Questionable",
@@ -1179,7 +1189,7 @@
             "position": "WIDE RECEIVER",
             "status": "Injured Reserve",
             "injury": "",
-            "reportDate": "2026-11-04T16:18:00+00:00",
+            "reportDate": "2026-11-04T21:41:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -1189,7 +1199,37 @@
             "position": "RUNNING BACK",
             "status": "Injured Reserve",
             "injury": "",
-            "reportDate": "2026-11-02T17:20:00+00:00",
+            "reportDate": "2026-11-04T21:38:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Asim Richards",
+            "position": "OFFENSIVE TACKLE",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T22:03:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Martin Emerson Jr.",
+            "position": "CORNERBACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T22:03:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Alvin Kamara",
+            "position": "RUNNING BACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T22:02:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -1223,20 +1263,10 @@
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
-          },
-          {
-            "name": "CJ Donaldson",
-            "position": "RUNNING BACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-10-25T14:09:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -1568,6 +1598,26 @@
             "starterConfirmed": false
           },
           {
+            "name": "Tyler Smith",
+            "position": "GUARD",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:51:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "George Pickens",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:50:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
             "name": "Jake Ferguson",
             "position": "TIGHT END",
             "status": "Questionable",
@@ -1691,7 +1741,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -1995,6 +2045,16 @@
       "supplementalInjuryWatch": {
         "away": [
           {
+            "name": "Pat Bryant",
+            "position": "WIDE RECEIVER",
+            "status": "Injured Reserve",
+            "injury": "",
+            "reportDate": "2026-11-04T21:58:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
             "name": "RJ Harvey",
             "position": "RUNNING BACK",
             "status": "Injured Reserve",
@@ -2138,7 +2198,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -2646,7 +2706,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -2941,6 +3001,16 @@
       "supplementalInjuryWatch": {
         "away": [
           {
+            "name": "Jaylen Watson",
+            "position": "CORNERBACK",
+            "status": "Out",
+            "injury": "",
+            "reportDate": "2026-11-04T21:52:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
             "name": "Dean Connors",
             "position": "RUNNING BACK",
             "status": "Injured Reserve",
@@ -3029,16 +3099,6 @@
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
-          },
-          {
-            "name": "Jaylen Watson",
-            "position": "CORNERBACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-01T23:25:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false
           }
         ],
         "home": [
@@ -3114,7 +3174,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -3440,7 +3500,17 @@
             "position": "OFFENSIVE TACKLE",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-04T21:34:00+00:00",
+            "reportDate": "2026-11-04T22:04:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Cam Skattebo",
+            "position": "RUNNING BACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:31:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -3491,16 +3561,6 @@
             "status": "Questionable",
             "injury": "",
             "reportDate": "2026-11-04T21:23:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false
-          },
-          {
-            "name": "Cam Skattebo",
-            "position": "RUNNING BACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T18:45:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -3579,7 +3639,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -3894,6 +3954,36 @@
             "starterConfirmed": false
           },
           {
+            "name": "Mason Taylor",
+            "position": "TIGHT END",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:53:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Trevin Wallace",
+            "position": "LINEBACKER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:47:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Harrison Phillips",
+            "position": "DEFENSIVE TACKLE",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:46:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
             "name": "David Bailey",
             "position": "LINEBACKER",
             "status": "Questionable",
@@ -3956,21 +4046,11 @@
             "starterConfirmed": false
           },
           {
-            "name": "Nikko Remigio",
-            "position": "WIDE RECEIVER",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T21:34:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false
-          },
-          {
             "name": "Rashee Rice",
             "position": "WIDE RECEIVER",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-04T21:33:00+00:00",
+            "reportDate": "2026-11-04T21:47:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -3980,7 +4060,17 @@
             "position": "TIGHT END",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-04T21:33:00+00:00",
+            "reportDate": "2026-11-04T21:41:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Nikko Remigio",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:34:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -4007,7 +4097,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -4444,7 +4534,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -4818,6 +4908,16 @@
             "starterConfirmed": false
           },
           {
+            "name": "Christian McCaffrey",
+            "position": "RUNNING BACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:57:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
             "name": "Deebo Samuel Sr.",
             "position": "WIDE RECEIVER",
             "status": "Questionable",
@@ -4833,16 +4933,6 @@
             "status": "Questionable",
             "injury": "",
             "reportDate": "2026-11-04T20:53:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false
-          },
-          {
-            "name": "Christian McCaffrey",
-            "position": "RUNNING BACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T20:51:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -4899,7 +4989,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -5374,7 +5464,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -5688,6 +5778,36 @@
             "starterConfirmed": false
           },
           {
+            "name": "Keisean Nixon",
+            "position": "CORNERBACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T22:00:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Aaron Banks",
+            "position": "GUARD",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:59:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Josh Whyle",
+            "position": "TIGHT END",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:59:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
             "name": "Zaire Franklin",
             "position": "LINEBACKER",
             "status": "Questionable",
@@ -5740,6 +5860,56 @@
             "starterConfirmed": false
           },
           {
+            "name": "Dre'Mont Jones",
+            "position": "DEFENSIVE END",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:58:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Carlton Davis III",
+            "position": "CORNERBACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:56:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Morgan Moses",
+            "position": "OFFENSIVE TACKLE",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:56:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Christian Barmore",
+            "position": "DEFENSIVE TACKLE",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:55:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Kevin Byard",
+            "position": "SAFETY",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:55:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
             "name": "Hunter Henry",
             "position": "TIGHT END",
             "status": "Questionable",
@@ -5781,7 +5951,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -6169,7 +6339,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -6547,7 +6717,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -6937,7 +7107,17 @@
             "position": "OFFENSIVE TACKLE",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-04T21:34:00+00:00",
+            "reportDate": "2026-11-04T22:04:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Cam Skattebo",
+            "position": "RUNNING BACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:31:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -6993,16 +7173,6 @@
             "starterConfirmed": false
           },
           {
-            "name": "Cam Skattebo",
-            "position": "RUNNING BACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T18:45:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false
-          },
-          {
             "name": "Greg Newsome II",
             "position": "CORNERBACK",
             "status": "Questionable",
@@ -7014,7 +7184,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -7328,6 +7498,56 @@
             "starterConfirmed": false
           },
           {
+            "name": "Dre'Mont Jones",
+            "position": "DEFENSIVE END",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:58:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Carlton Davis III",
+            "position": "CORNERBACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:56:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Morgan Moses",
+            "position": "OFFENSIVE TACKLE",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:56:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Christian Barmore",
+            "position": "DEFENSIVE TACKLE",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:55:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Kevin Byard",
+            "position": "SAFETY",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:55:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
             "name": "Hunter Henry",
             "position": "TIGHT END",
             "status": "Questionable",
@@ -7481,7 +7701,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -7848,6 +8068,36 @@
             "starterConfirmed": false
           },
           {
+            "name": "Mason Taylor",
+            "position": "TIGHT END",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:53:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Trevin Wallace",
+            "position": "LINEBACKER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:47:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Harrison Phillips",
+            "position": "DEFENSIVE TACKLE",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:46:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
             "name": "David Bailey",
             "position": "LINEBACKER",
             "status": "Questionable",
@@ -7889,7 +8139,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -8307,7 +8557,7 @@
             "position": "WIDE RECEIVER",
             "status": "Injured Reserve",
             "injury": "",
-            "reportDate": "2026-11-04T16:18:00+00:00",
+            "reportDate": "2026-11-04T21:41:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -8317,7 +8567,37 @@
             "position": "RUNNING BACK",
             "status": "Injured Reserve",
             "injury": "",
-            "reportDate": "2026-11-02T17:20:00+00:00",
+            "reportDate": "2026-11-04T21:38:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Asim Richards",
+            "position": "OFFENSIVE TACKLE",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T22:03:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Martin Emerson Jr.",
+            "position": "CORNERBACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T22:03:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Alvin Kamara",
+            "position": "RUNNING BACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T22:02:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -8351,20 +8631,10 @@
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
-          },
-          {
-            "name": "CJ Donaldson",
-            "position": "RUNNING BACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-10-25T14:09:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -8720,6 +8990,16 @@
         ],
         "home": [
           {
+            "name": "Denzel Boston",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:58:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
             "name": "Quincy Williams",
             "position": "LINEBACKER",
             "status": "Questionable",
@@ -8741,7 +9021,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -9169,7 +9449,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -9493,21 +9773,11 @@
             "starterConfirmed": false
           },
           {
-            "name": "Nikko Remigio",
-            "position": "WIDE RECEIVER",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T21:34:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false
-          },
-          {
             "name": "Rashee Rice",
             "position": "WIDE RECEIVER",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-04T21:33:00+00:00",
+            "reportDate": "2026-11-04T21:47:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -9517,7 +9787,17 @@
             "position": "TIGHT END",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-04T21:33:00+00:00",
+            "reportDate": "2026-11-04T21:41:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Nikko Remigio",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:34:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -9626,7 +9906,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -10083,7 +10363,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -10437,6 +10717,36 @@
             "starterConfirmed": false
           },
           {
+            "name": "Keisean Nixon",
+            "position": "CORNERBACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T22:00:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Aaron Banks",
+            "position": "GUARD",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:59:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Josh Whyle",
+            "position": "TIGHT END",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:59:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
             "name": "Zaire Franklin",
             "position": "LINEBACKER",
             "status": "Questionable",
@@ -10478,7 +10788,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -10773,6 +11083,16 @@
       "supplementalInjuryWatch": {
         "away": [
           {
+            "name": "Jaylen Watson",
+            "position": "CORNERBACK",
+            "status": "Out",
+            "injury": "",
+            "reportDate": "2026-11-04T21:52:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
             "name": "Dean Connors",
             "position": "RUNNING BACK",
             "status": "Injured Reserve",
@@ -10861,16 +11181,6 @@
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
-          },
-          {
-            "name": "Jaylen Watson",
-            "position": "CORNERBACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-01T23:25:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false
           }
         ],
         "home": [
@@ -10956,7 +11266,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -11364,7 +11674,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -11706,6 +12016,16 @@
             "starterConfirmed": false
           },
           {
+            "name": "Christian McCaffrey",
+            "position": "RUNNING BACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:57:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
             "name": "Deebo Samuel Sr.",
             "position": "WIDE RECEIVER",
             "status": "Questionable",
@@ -11721,16 +12041,6 @@
             "status": "Questionable",
             "injury": "",
             "reportDate": "2026-11-04T20:53:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false
-          },
-          {
-            "name": "Christian McCaffrey",
-            "position": "RUNNING BACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T20:51:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -11808,6 +12118,26 @@
             "starterConfirmed": false
           },
           {
+            "name": "Tyler Smith",
+            "position": "GUARD",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:51:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "George Pickens",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:50:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
             "name": "Jake Ferguson",
             "position": "TIGHT END",
             "status": "Questionable",
@@ -11879,7 +12209,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -12297,7 +12627,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -12724,7 +13054,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -13147,7 +13477,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -13553,21 +13883,11 @@
             "starterConfirmed": false
           },
           {
-            "name": "Nikko Remigio",
-            "position": "WIDE RECEIVER",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T21:34:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false
-          },
-          {
             "name": "Rashee Rice",
             "position": "WIDE RECEIVER",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-04T21:33:00+00:00",
+            "reportDate": "2026-11-04T21:47:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -13577,7 +13897,17 @@
             "position": "TIGHT END",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-04T21:33:00+00:00",
+            "reportDate": "2026-11-04T21:41:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Nikko Remigio",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:34:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -13604,7 +13934,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -14059,7 +14389,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -14419,7 +14749,17 @@
             "position": "OFFENSIVE TACKLE",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-04T21:34:00+00:00",
+            "reportDate": "2026-11-04T22:04:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Cam Skattebo",
+            "position": "RUNNING BACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:31:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -14475,16 +14815,6 @@
             "starterConfirmed": false
           },
           {
-            "name": "Cam Skattebo",
-            "position": "RUNNING BACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T18:45:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false
-          },
-          {
             "name": "Greg Newsome II",
             "position": "CORNERBACK",
             "status": "Questionable",
@@ -14496,7 +14826,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -14944,7 +15274,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -15252,7 +15582,7 @@
             "position": "WIDE RECEIVER",
             "status": "Injured Reserve",
             "injury": "",
-            "reportDate": "2026-11-04T16:18:00+00:00",
+            "reportDate": "2026-11-04T21:41:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -15262,7 +15592,37 @@
             "position": "RUNNING BACK",
             "status": "Injured Reserve",
             "injury": "",
-            "reportDate": "2026-11-02T17:20:00+00:00",
+            "reportDate": "2026-11-04T21:38:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Asim Richards",
+            "position": "OFFENSIVE TACKLE",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T22:03:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Martin Emerson Jr.",
+            "position": "CORNERBACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T22:03:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Alvin Kamara",
+            "position": "RUNNING BACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T22:02:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -15293,16 +15653,6 @@
             "status": "Questionable",
             "injury": "",
             "reportDate": "2026-10-25T15:28:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false
-          },
-          {
-            "name": "CJ Donaldson",
-            "position": "RUNNING BACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-10-25T14:09:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -15361,7 +15711,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -15809,7 +16159,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -16225,6 +16575,26 @@
             "starterConfirmed": false
           },
           {
+            "name": "Tyler Smith",
+            "position": "GUARD",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:51:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "George Pickens",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:50:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
             "name": "Jake Ferguson",
             "position": "TIGHT END",
             "status": "Questionable",
@@ -16296,7 +16666,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -16611,6 +16981,36 @@
             "starterConfirmed": false
           },
           {
+            "name": "Mason Taylor",
+            "position": "TIGHT END",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:53:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Trevin Wallace",
+            "position": "LINEBACKER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:47:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
+            "name": "Harrison Phillips",
+            "position": "DEFENSIVE TACKLE",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-04T21:46:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
             "name": "David Bailey",
             "position": "LINEBACKER",
             "status": "Questionable",
@@ -16734,7 +17134,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -17070,6 +17470,16 @@
         ],
         "home": [
           {
+            "name": "Pat Bryant",
+            "position": "WIDE RECEIVER",
+            "status": "Injured Reserve",
+            "injury": "",
+            "reportDate": "2026-11-04T21:58:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
             "name": "RJ Harvey",
             "position": "RUNNING BACK",
             "status": "Injured Reserve",
@@ -17111,7 +17521,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -17519,7 +17929,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
+        "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     }
@@ -26634,7 +27044,7 @@
   },
   "historicalAudit": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-04T21:46:37.110907+00:00",
+    "asOf": "2026-11-04T22:08:44.126144+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -27371,7 +27781,7 @@
       "2025: ValueError: No timestamped report rows; undated historical records are not backdated"
     ],
     "source": "nflverse dated injuries_{season}.csv",
-    "asOf": "2026-11-04T21:46:31.183219+00:00",
+    "asOf": "2026-11-04T22:08:38.861173+00:00",
     "timestampBasis": "download-observation",
     "records": 2487
   },
@@ -27407,15 +27817,15 @@
   "additionalInjurySource": {
     "status": "loaded",
     "source": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
-    "retrievedAt": "2026-11-04T21:46:37.028046+00:00",
-    "reportCount": 209,
+    "retrievedAt": "2026-11-04T22:08:44.029136+00:00",
+    "reportCount": 226,
     "teamsCovered": 32,
     "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list.",
     "inspection": {
       "groups": 32,
       "items": 800,
       "dated": 800,
-      "latestDate": "2026-11-04T21:34:00+00:00",
+      "latestDate": "2026-11-04T22:04:00+00:00",
       "statusSamples": [
         "Active",
         "Doubtful",
@@ -27449,8 +27859,8 @@
   "dataProvenance": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-03T01:15:00+00:00",
-    "sha256": "87c993f1d73d912c848d48f20ce51469f52aa46ff27fb448aa37f0a7095c0919",
-    "downloadedAt": "2026-11-04T21:46:28.362507+00:00",
+    "sha256": "22e44bc8f25f249f5423c8ceea6eb7018891639a4da8463fe28a642c162a8514",
+    "downloadedAt": "2026-11-04T22:08:36.209320+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
