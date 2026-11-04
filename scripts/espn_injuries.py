@@ -46,7 +46,7 @@ def parse(payload,now=None):
             status=val(item.get('status'))
             if status.upper() not in RELEVANT:continue
             entry={'name':name,'position':val(athlete.get('position')).upper(),
-                   'status':status,'injury':val(item.get('type') or item.get('details')),
+                   'status':status,'injury':(lambda d: '' if d.upper() in RELEVANT else d)(val(item.get('details') or item.get('type'))),
                    'reportDate':stamp.isoformat(),'source':'ESPN media injury list',
                    'officialGameStatus':False,'starterConfirmed':False}
             key=(team,val(athlete.get('id')) or name.casefold())
