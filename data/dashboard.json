@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-04T20:42:29.907823+00:00",
+  "generatedAt": "2026-11-04T20:51:06.029426+00:00",
   "dataStatus": "ok",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
   "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
@@ -40,29 +40,45 @@
       "qbIntelligence": {
         "home": {
           "team": "BAL",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Lamar Jackson",
+          "playerId": "00-0034796",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0034796",
+            "name": "Lamar Jackson",
+            "game": "2026_08_BAL_BUF",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "JAX",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Trevor Lawrence",
+          "playerId": "00-0036971",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0036971",
+            "name": "Trevor Lawrence",
+            "game": "2026_08_IND_JAX",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -222,29 +238,45 @@
       "qbIntelligence": {
         "home": {
           "team": "ATL",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Michael Penix Jr.",
+          "playerId": "00-0039917",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039917",
+            "name": "Michael Penix Jr.",
+            "game": "2026_08_ATL_TB",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "CIN",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Joe Burrow",
+          "playerId": "00-0036442",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0036442",
+            "name": "Joe Burrow",
+            "game": "2026_08_TEN_CIN",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -413,29 +445,45 @@
       "qbIntelligence": {
         "home": {
           "team": "NO",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Tyler Shough",
+          "playerId": "00-0040743",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0040743",
+            "name": "Tyler Shough",
+            "game": "2026_07_PIT_NO",
+            "season": 2026,
+            "date": "2026-10-25T13:30:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "CLE",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Deshaun Watson",
+          "playerId": "00-0033537",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033537",
+            "name": "Deshaun Watson",
+            "game": "2026_08_CLE_PIT",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -612,29 +660,45 @@
       "qbIntelligence": {
         "home": {
           "team": "IND",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Daniel Jones",
+          "playerId": "00-0035710",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0035710",
+            "name": "Daniel Jones",
+            "game": "2026_08_IND_JAX",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "DAL",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Dak Prescott",
+          "playerId": "00-0033077",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033077",
+            "name": "Dak Prescott",
+            "game": "2026_08_ARI_DAL",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -811,29 +875,45 @@
       "qbIntelligence": {
         "home": {
           "team": "CAR",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Bryce Young",
+          "playerId": "00-0039150",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039150",
+            "name": "Bryce Young",
+            "game": "2026_08_CAR_GB",
+            "season": 2026,
+            "date": "2026-10-30T00:15:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "DEN",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Bo Nix",
+          "playerId": "00-0039732",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039732",
+            "name": "Bo Nix",
+            "game": "2026_08_KC_DEN",
+            "season": 2026,
+            "date": "2026-11-01T21:25:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -1002,29 +1082,45 @@
       "qbIntelligence": {
         "home": {
           "team": "MIA",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Malik Willis",
+          "playerId": "00-0038128",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0038128",
+            "name": "Malik Willis",
+            "game": "2026_08_NE_MIA",
+            "season": 2026,
+            "date": "2026-11-01T21:25:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "DET",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jared Goff",
+          "playerId": "00-0033106",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033106",
+            "name": "Jared Goff",
+            "game": "2026_08_MIN_DET",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -1184,29 +1280,45 @@
       "qbIntelligence": {
         "home": {
           "team": "WAS",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jayden Daniels",
+          "playerId": "00-0039910",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039910",
+            "name": "Jayden Daniels",
+            "game": "2026_08_PHI_WAS",
+            "season": 2026,
+            "date": "2026-11-02T01:20:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "LA",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Matthew Stafford",
+          "playerId": "00-0026498",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0026498",
+            "name": "Matthew Stafford",
+            "game": "2026_08_LAC_LA",
+            "season": 2026,
+            "date": "2026-11-01T21:05:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -1366,29 +1478,45 @@
       "qbIntelligence": {
         "home": {
           "team": "PHI",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Tanner McKee",
+          "playerId": "00-0038400",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0038400",
+            "name": "Tanner McKee",
+            "game": "2026_08_PHI_WAS",
+            "season": 2026,
+            "date": "2026-11-02T01:20:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "NYG",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "J.J. McCarthy",
+          "playerId": "00-0039923",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039923",
+            "name": "J.J. McCarthy",
+            "game": "2026_07_NYG_HOU",
+            "season": 2026,
+            "date": "2026-10-25T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -1565,29 +1693,45 @@
       "qbIntelligence": {
         "home": {
           "team": "KC",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Patrick Mahomes",
+          "playerId": "00-0033873",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033873",
+            "name": "Patrick Mahomes",
+            "game": "2026_08_KC_DEN",
+            "season": 2026,
+            "date": "2026-11-01T21:25:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "NYJ",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Geno Smith",
+          "playerId": "00-0030565",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0030565",
+            "name": "Geno Smith",
+            "game": "2026_08_LV_NYJ",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -1747,29 +1891,45 @@
       "qbIntelligence": {
         "home": {
           "team": "LAC",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Justin Herbert",
+          "playerId": "00-0036355",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0036355",
+            "name": "Justin Herbert",
+            "game": "2026_08_LAC_LA",
+            "season": 2026,
+            "date": "2026-11-01T21:05:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "HOU",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "C.J. Stroud",
+          "playerId": "00-0039163",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039163",
+            "name": "C.J. Stroud",
+            "game": "2026_07_NYG_HOU",
+            "season": 2026,
+            "date": "2026-10-25T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -1938,29 +2098,45 @@
       "qbIntelligence": {
         "home": {
           "team": "SF",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Brock Purdy",
+          "playerId": "00-0037834",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0037834",
+            "name": "Brock Purdy",
+            "game": "2026_07_SF_ATL",
+            "season": 2026,
+            "date": "2026-10-25T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "LV",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Kirk Cousins",
+          "playerId": "00-0029604",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0029604",
+            "name": "Kirk Cousins",
+            "game": "2026_08_LV_NYJ",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -2137,29 +2313,45 @@
       "qbIntelligence": {
         "home": {
           "team": "SEA",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Sam Darnold",
+          "playerId": "00-0034869",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0034869",
+            "name": "Sam Darnold",
+            "game": "2026_08_CHI_SEA",
+            "season": 2026,
+            "date": "2026-11-03T01:15:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "ARI",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jacoby Brissett",
+          "playerId": "00-0033119",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033119",
+            "name": "Jacoby Brissett",
+            "game": "2026_08_ARI_DAL",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -2336,29 +2528,45 @@
       "qbIntelligence": {
         "home": {
           "team": "NE",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Drake Maye",
+          "playerId": "00-0039851",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039851",
+            "name": "Drake Maye",
+            "game": "2026_08_NE_MIA",
+            "season": 2026,
+            "date": "2026-11-01T21:25:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "GB",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jordan Love",
+          "playerId": "00-0036264",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0036264",
+            "name": "Jordan Love",
+            "game": "2026_08_CAR_GB",
+            "season": 2026,
+            "date": "2026-10-30T00:15:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -2527,29 +2735,45 @@
       "qbIntelligence": {
         "home": {
           "team": "CHI",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Caleb Williams",
+          "playerId": "00-0039918",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039918",
+            "name": "Caleb Williams",
+            "game": "2026_08_CHI_SEA",
+            "season": 2026,
+            "date": "2026-11-03T01:15:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "TB",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Baker Mayfield",
+          "playerId": "00-0034855",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0034855",
+            "name": "Baker Mayfield",
+            "game": "2026_08_ATL_TB",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -2709,29 +2933,45 @@
       "qbIntelligence": {
         "home": {
           "team": "MIN",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Kyler Murray",
+          "playerId": "00-0035228",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0035228",
+            "name": "Kyler Murray",
+            "game": "2026_08_MIN_DET",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "BUF",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Josh Allen",
+          "playerId": "00-0034857",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0034857",
+            "name": "Josh Allen",
+            "game": "2026_08_BAL_BUF",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -2891,29 +3131,45 @@
       "qbIntelligence": {
         "home": {
           "team": "NYG",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "J.J. McCarthy",
+          "playerId": "00-0039923",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039923",
+            "name": "J.J. McCarthy",
+            "game": "2026_07_NYG_HOU",
+            "season": 2026,
+            "date": "2026-10-25T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "WAS",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jayden Daniels",
+          "playerId": "00-0039910",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039910",
+            "name": "Jayden Daniels",
+            "game": "2026_08_PHI_WAS",
+            "season": 2026,
+            "date": "2026-11-02T01:20:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -3082,29 +3338,45 @@
       "qbIntelligence": {
         "home": {
           "team": "DET",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jared Goff",
+          "playerId": "00-0033106",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033106",
+            "name": "Jared Goff",
+            "game": "2026_08_MIN_DET",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "NE",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Drake Maye",
+          "playerId": "00-0039851",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039851",
+            "name": "Drake Maye",
+            "game": "2026_08_NE_MIA",
+            "season": 2026,
+            "date": "2026-11-01T21:25:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -3273,29 +3545,45 @@
       "qbIntelligence": {
         "home": {
           "team": "NYJ",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Geno Smith",
+          "playerId": "00-0030565",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0030565",
+            "name": "Geno Smith",
+            "game": "2026_08_LV_NYJ",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "BUF",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Josh Allen",
+          "playerId": "00-0034857",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0034857",
+            "name": "Josh Allen",
+            "game": "2026_08_BAL_BUF",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -3455,29 +3743,45 @@
       "qbIntelligence": {
         "home": {
           "team": "NO",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Tyler Shough",
+          "playerId": "00-0040743",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0040743",
+            "name": "Tyler Shough",
+            "game": "2026_07_PIT_NO",
+            "season": 2026,
+            "date": "2026-10-25T13:30:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "CAR",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Bryce Young",
+          "playerId": "00-0039150",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039150",
+            "name": "Bryce Young",
+            "game": "2026_08_CAR_GB",
+            "season": 2026,
+            "date": "2026-10-30T00:15:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -3654,29 +3958,45 @@
       "qbIntelligence": {
         "home": {
           "team": "CLE",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Deshaun Watson",
+          "playerId": "00-0033537",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033537",
+            "name": "Deshaun Watson",
+            "game": "2026_08_CLE_PIT",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "HOU",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "C.J. Stroud",
+          "playerId": "00-0039163",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039163",
+            "name": "C.J. Stroud",
+            "game": "2026_07_NYG_HOU",
+            "season": 2026,
+            "date": "2026-10-25T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -3845,29 +4165,45 @@
       "qbIntelligence": {
         "home": {
           "team": "TEN",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Cam Ward",
+          "playerId": "00-0040676",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0040676",
+            "name": "Cam Ward",
+            "game": "2026_08_TEN_CIN",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "JAX",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Trevor Lawrence",
+          "playerId": "00-0036971",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0036971",
+            "name": "Trevor Lawrence",
+            "game": "2026_08_IND_JAX",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -4027,29 +4363,45 @@
       "qbIntelligence": {
         "home": {
           "team": "ATL",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Michael Penix Jr.",
+          "playerId": "00-0039917",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039917",
+            "name": "Michael Penix Jr.",
+            "game": "2026_08_ATL_TB",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "KC",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Patrick Mahomes",
+          "playerId": "00-0033873",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033873",
+            "name": "Patrick Mahomes",
+            "game": "2026_08_KC_DEN",
+            "season": 2026,
+            "date": "2026-11-01T21:25:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -4218,29 +4570,45 @@
       "qbIntelligence": {
         "home": {
           "team": "IND",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Daniel Jones",
+          "playerId": "00-0035710",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0035710",
+            "name": "Daniel Jones",
+            "game": "2026_08_IND_JAX",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "MIA",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Malik Willis",
+          "playerId": "00-0038128",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0038128",
+            "name": "Malik Willis",
+            "game": "2026_08_NE_MIA",
+            "season": 2026,
+            "date": "2026-11-01T21:25:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -4409,29 +4777,45 @@
       "qbIntelligence": {
         "home": {
           "team": "GB",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jordan Love",
+          "playerId": "00-0036264",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0036264",
+            "name": "Jordan Love",
+            "game": "2026_08_CAR_GB",
+            "season": 2026,
+            "date": "2026-10-30T00:15:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "MIN",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Kyler Murray",
+          "playerId": "00-0035228",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0035228",
+            "name": "Kyler Murray",
+            "game": "2026_08_MIN_DET",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -4608,29 +4992,45 @@
       "qbIntelligence": {
         "home": {
           "team": "ARI",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jacoby Brissett",
+          "playerId": "00-0033119",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033119",
+            "name": "Jacoby Brissett",
+            "game": "2026_08_ARI_DAL",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "LA",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Matthew Stafford",
+          "playerId": "00-0026498",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0026498",
+            "name": "Matthew Stafford",
+            "game": "2026_08_LAC_LA",
+            "season": 2026,
+            "date": "2026-11-01T21:05:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -4790,29 +5190,45 @@
       "qbIntelligence": {
         "home": {
           "team": "LV",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Kirk Cousins",
+          "playerId": "00-0029604",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0029604",
+            "name": "Kirk Cousins",
+            "game": "2026_08_LV_NYJ",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "SEA",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Sam Darnold",
+          "playerId": "00-0034869",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0034869",
+            "name": "Sam Darnold",
+            "game": "2026_08_CHI_SEA",
+            "season": 2026,
+            "date": "2026-11-03T01:15:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -4972,29 +5388,45 @@
       "qbIntelligence": {
         "home": {
           "team": "DAL",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Dak Prescott",
+          "playerId": "00-0033077",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033077",
+            "name": "Dak Prescott",
+            "game": "2026_08_ARI_DAL",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "SF",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Brock Purdy",
+          "playerId": "00-0037834",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0037834",
+            "name": "Brock Purdy",
+            "game": "2026_07_SF_ATL",
+            "season": 2026,
+            "date": "2026-10-25T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -5171,29 +5603,45 @@
       "qbIntelligence": {
         "home": {
           "team": "CIN",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Joe Burrow",
+          "playerId": "00-0036442",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0036442",
+            "name": "Joe Burrow",
+            "game": "2026_08_TEN_CIN",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "PIT",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Aaron Rodgers",
+          "playerId": "00-0023459",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0023459",
+            "name": "Aaron Rodgers",
+            "game": "2026_08_CLE_PIT",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -5353,29 +5801,45 @@
       "qbIntelligence": {
         "home": {
           "team": "BAL",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Lamar Jackson",
+          "playerId": "00-0034796",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0034796",
+            "name": "Lamar Jackson",
+            "game": "2026_08_BAL_BUF",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "LAC",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Justin Herbert",
+          "playerId": "00-0036355",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0036355",
+            "name": "Justin Herbert",
+            "game": "2026_08_LAC_LA",
+            "season": 2026,
+            "date": "2026-11-01T21:05:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -5544,29 +6008,45 @@
       "qbIntelligence": {
         "home": {
           "team": "HOU",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "C.J. Stroud",
+          "playerId": "00-0039163",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039163",
+            "name": "C.J. Stroud",
+            "game": "2026_07_NYG_HOU",
+            "season": 2026,
+            "date": "2026-10-25T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "IND",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Daniel Jones",
+          "playerId": "00-0035710",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0035710",
+            "name": "Daniel Jones",
+            "game": "2026_08_IND_JAX",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -5751,29 +6231,45 @@
       "qbIntelligence": {
         "home": {
           "team": "KC",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Patrick Mahomes",
+          "playerId": "00-0033873",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033873",
+            "name": "Patrick Mahomes",
+            "game": "2026_08_KC_DEN",
+            "season": 2026,
+            "date": "2026-11-01T21:25:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "ARI",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jacoby Brissett",
+          "playerId": "00-0033119",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033119",
+            "name": "Jacoby Brissett",
+            "game": "2026_08_ARI_DAL",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -5942,29 +6438,45 @@
       "qbIntelligence": {
         "home": {
           "team": "CAR",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Bryce Young",
+          "playerId": "00-0039150",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039150",
+            "name": "Bryce Young",
+            "game": "2026_08_CAR_GB",
+            "season": 2026,
+            "date": "2026-10-30T00:15:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "BAL",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Lamar Jackson",
+          "playerId": "00-0034796",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0034796",
+            "name": "Lamar Jackson",
+            "game": "2026_08_BAL_BUF",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -6141,29 +6653,45 @@
       "qbIntelligence": {
         "home": {
           "team": "NYG",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "J.J. McCarthy",
+          "playerId": "00-0039923",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039923",
+            "name": "J.J. McCarthy",
+            "game": "2026_07_NYG_HOU",
+            "season": 2026,
+            "date": "2026-10-25T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "JAX",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Trevor Lawrence",
+          "playerId": "00-0036971",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0036971",
+            "name": "Trevor Lawrence",
+            "game": "2026_08_IND_JAX",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -6332,29 +6860,45 @@
       "qbIntelligence": {
         "home": {
           "team": "BUF",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Josh Allen",
+          "playerId": "00-0034857",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0034857",
+            "name": "Josh Allen",
+            "game": "2026_08_BAL_BUF",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "MIA",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Malik Willis",
+          "playerId": "00-0038128",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0038128",
+            "name": "Malik Willis",
+            "game": "2026_08_NE_MIA",
+            "season": 2026,
+            "date": "2026-11-01T21:25:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -6514,29 +7058,45 @@
       "qbIntelligence": {
         "home": {
           "team": "CHI",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Caleb Williams",
+          "playerId": "00-0039918",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039918",
+            "name": "Caleb Williams",
+            "game": "2026_08_CHI_SEA",
+            "season": 2026,
+            "date": "2026-11-03T01:15:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "NO",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Tyler Shough",
+          "playerId": "00-0040743",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0040743",
+            "name": "Tyler Shough",
+            "game": "2026_07_PIT_NO",
+            "season": 2026,
+            "date": "2026-10-25T13:30:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -6705,29 +7265,45 @@
       "qbIntelligence": {
         "home": {
           "team": "DET",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jared Goff",
+          "playerId": "00-0033106",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033106",
+            "name": "Jared Goff",
+            "game": "2026_08_MIN_DET",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "TB",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Baker Mayfield",
+          "playerId": "00-0034855",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0034855",
+            "name": "Baker Mayfield",
+            "game": "2026_08_ATL_TB",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -6887,29 +7463,45 @@
       "qbIntelligence": {
         "home": {
           "team": "DAL",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Dak Prescott",
+          "playerId": "00-0033077",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033077",
+            "name": "Dak Prescott",
+            "game": "2026_08_ARI_DAL",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "TEN",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Cam Ward",
+          "playerId": "00-0040676",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0040676",
+            "name": "Cam Ward",
+            "game": "2026_08_TEN_CIN",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -7078,29 +7670,45 @@
       "qbIntelligence": {
         "home": {
           "team": "LAC",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Justin Herbert",
+          "playerId": "00-0036355",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0036355",
+            "name": "Justin Herbert",
+            "game": "2026_08_LAC_LA",
+            "season": 2026,
+            "date": "2026-11-01T21:05:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "NYJ",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Geno Smith",
+          "playerId": "00-0030565",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0030565",
+            "name": "Geno Smith",
+            "game": "2026_08_LV_NYJ",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -7260,29 +7868,45 @@
       "qbIntelligence": {
         "home": {
           "team": "DEN",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Bo Nix",
+          "playerId": "00-0039732",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039732",
+            "name": "Bo Nix",
+            "game": "2026_08_KC_DEN",
+            "season": 2026,
+            "date": "2026-11-01T21:25:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "LV",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Kirk Cousins",
+          "playerId": "00-0029604",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0029604",
+            "name": "Kirk Cousins",
+            "game": "2026_08_LV_NYJ",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -7451,29 +8075,45 @@
       "qbIntelligence": {
         "home": {
           "team": "PHI",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Tanner McKee",
+          "playerId": "00-0038400",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0038400",
+            "name": "Tanner McKee",
+            "game": "2026_08_PHI_WAS",
+            "season": 2026,
+            "date": "2026-11-02T01:20:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "PIT",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Aaron Rodgers",
+          "playerId": "00-0023459",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0023459",
+            "name": "Aaron Rodgers",
+            "game": "2026_08_CLE_PIT",
+            "season": 2026,
+            "date": "2026-11-01T18:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -7635,29 +8275,45 @@
       "qbIntelligence": {
         "home": {
           "team": "SEA",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Sam Darnold",
+          "playerId": "00-0034869",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0034869",
+            "name": "Sam Darnold",
+            "game": "2026_07_KC_SEA",
+            "season": 2026,
+            "date": "2026-10-26T00:20:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "CHI",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Caleb Williams",
+          "playerId": "00-0039918",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039918",
+            "name": "Caleb Williams",
+            "game": "2026_07_NE_CHI",
+            "season": 2026,
+            "date": "2026-10-23T00:15:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -7831,29 +8487,45 @@
       "qbIntelligence": {
         "home": {
           "team": "WAS",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jayden Daniels",
+          "playerId": "00-0039910",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039910",
+            "name": "Jayden Daniels",
+            "game": "2026_06_WAS_SF",
+            "season": 2026,
+            "date": "2026-10-20T00:15:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "PHI",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jalen Hurts",
+          "playerId": "00-0036389",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0036389",
+            "name": "Jalen Hurts",
+            "game": "2026_07_DAL_PHI",
+            "season": 2026,
+            "date": "2026-10-27T00:15:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -8027,29 +8699,45 @@
       "qbIntelligence": {
         "home": {
           "team": "MIA",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Malik Willis",
+          "playerId": "00-0038128",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0038128",
+            "name": "Malik Willis",
+            "game": "2026_07_MIA_NYJ",
+            "season": 2026,
+            "date": "2026-10-25T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "NE",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Drake Maye",
+          "playerId": "00-0039851",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039851",
+            "name": "Drake Maye",
+            "game": "2026_07_NE_CHI",
+            "season": 2026,
+            "date": "2026-10-23T00:15:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -8231,29 +8919,45 @@
       "qbIntelligence": {
         "home": {
           "team": "DEN",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Bo Nix",
+          "playerId": "00-0039732",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039732",
+            "name": "Bo Nix",
+            "game": "2026_07_DEN_ARI",
+            "season": 2026,
+            "date": "2026-10-25T20:05:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "KC",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Patrick Mahomes",
+          "playerId": "00-0033873",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033873",
+            "name": "Patrick Mahomes",
+            "game": "2026_07_KC_SEA",
+            "season": 2026,
+            "date": "2026-10-26T00:20:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -8427,29 +9131,45 @@
       "qbIntelligence": {
         "home": {
           "team": "LA",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Matthew Stafford",
+          "playerId": "00-0026498",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0026498",
+            "name": "Matthew Stafford",
+            "game": "2026_07_LA_LV",
+            "season": 2026,
+            "date": "2026-10-25T20:25:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "LAC",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Justin Herbert",
+          "playerId": "00-0036355",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0036355",
+            "name": "Justin Herbert",
+            "game": "2026_06_LAC_KC",
+            "season": 2026,
+            "date": "2026-10-18T20:25:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -8631,29 +9351,45 @@
       "qbIntelligence": {
         "home": {
           "team": "CIN",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Joe Burrow",
+          "playerId": "00-0036442",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0036442",
+            "name": "Joe Burrow",
+            "game": "2026_07_CIN_BAL",
+            "season": 2026,
+            "date": "2026-10-25T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "TEN",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Cam Ward",
+          "playerId": "00-0040676",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0040676",
+            "name": "Cam Ward",
+            "game": "2026_07_CLE_TEN",
+            "season": 2026,
+            "date": "2026-10-25T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -8818,29 +9554,45 @@
       "qbIntelligence": {
         "home": {
           "team": "DET",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jared Goff",
+          "playerId": "00-0033106",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033106",
+            "name": "Jared Goff",
+            "game": "2026_07_GB_DET",
+            "season": 2026,
+            "date": "2026-10-25T20:25:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "MIN",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Kyler Murray",
+          "playerId": "00-0035228",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0035228",
+            "name": "Kyler Murray",
+            "game": "2026_07_IND_MIN",
+            "season": 2026,
+            "date": "2026-10-25T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -9005,29 +9757,45 @@
       "qbIntelligence": {
         "home": {
           "team": "NYJ",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Geno Smith",
+          "playerId": "00-0030565",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0030565",
+            "name": "Geno Smith",
+            "game": "2026_07_MIA_NYJ",
+            "season": 2026,
+            "date": "2026-10-25T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "LV",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Kirk Cousins",
+          "playerId": "00-0029604",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0029604",
+            "name": "Kirk Cousins",
+            "game": "2026_07_LA_LV",
+            "season": 2026,
+            "date": "2026-10-25T20:25:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -9192,29 +9960,45 @@
       "qbIntelligence": {
         "home": {
           "team": "JAX",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Trevor Lawrence",
+          "playerId": "00-0036971",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0036971",
+            "name": "Trevor Lawrence",
+            "game": "2026_06_HOU_JAX",
+            "season": 2026,
+            "date": "2026-10-18T13:30:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "IND",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Daniel Jones",
+          "playerId": "00-0035710",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0035710",
+            "name": "Daniel Jones",
+            "game": "2026_07_IND_MIN",
+            "season": 2026,
+            "date": "2026-10-25T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -9396,29 +10180,45 @@
       "qbIntelligence": {
         "home": {
           "team": "PIT",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Aaron Rodgers",
+          "playerId": "00-0023459",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0023459",
+            "name": "Aaron Rodgers",
+            "game": "2026_07_PIT_NO",
+            "season": 2026,
+            "date": "2026-10-25T13:30:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "CLE",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Deshaun Watson",
+          "playerId": "00-0033537",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033537",
+            "name": "Deshaun Watson",
+            "game": "2026_07_CLE_TEN",
+            "season": 2026,
+            "date": "2026-10-25T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -9592,29 +10392,45 @@
       "qbIntelligence": {
         "home": {
           "team": "BUF",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Josh Allen",
+          "playerId": "00-0034857",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0034857",
+            "name": "Josh Allen",
+            "game": "2026_06_BUF_LV",
+            "season": 2026,
+            "date": "2026-10-18T20:25:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "BAL",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Tyler Huntley",
+          "playerId": "00-0035993",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0035993",
+            "name": "Tyler Huntley",
+            "game": "2026_07_CIN_BAL",
+            "season": 2026,
+            "date": "2026-10-25T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -9788,29 +10604,45 @@
       "qbIntelligence": {
         "home": {
           "team": "TB",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Baker Mayfield",
+          "playerId": "00-0034855",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0034855",
+            "name": "Baker Mayfield",
+            "game": "2026_07_TB_CAR",
+            "season": 2026,
+            "date": "2026-10-25T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "ATL",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Michael Penix Jr.",
+          "playerId": "00-0039917",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039917",
+            "name": "Michael Penix Jr.",
+            "game": "2026_07_SF_ATL",
+            "season": 2026,
+            "date": "2026-10-25T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -9975,29 +10807,45 @@
       "qbIntelligence": {
         "home": {
           "team": "DAL",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Dak Prescott",
+          "playerId": "00-0033077",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033077",
+            "name": "Dak Prescott",
+            "game": "2026_07_DAL_PHI",
+            "season": 2026,
+            "date": "2026-10-27T00:15:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "ARI",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jacoby Brissett",
+          "playerId": "00-0033119",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033119",
+            "name": "Jacoby Brissett",
+            "game": "2026_07_DEN_ARI",
+            "season": 2026,
+            "date": "2026-10-25T20:05:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -10162,29 +11010,45 @@
       "qbIntelligence": {
         "home": {
           "team": "GB",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jordan Love",
+          "playerId": "00-0036264",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0036264",
+            "name": "Jordan Love",
+            "game": "2026_07_GB_DET",
+            "season": 2026,
+            "date": "2026-10-25T20:25:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "CAR",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Bryce Young",
+          "playerId": "00-0039150",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039150",
+            "name": "Bryce Young",
+            "game": "2026_07_TB_CAR",
+            "season": 2026,
+            "date": "2026-10-25T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -10358,29 +11222,45 @@
       "qbIntelligence": {
         "home": {
           "team": "PHI",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Tanner McKee",
+          "playerId": "00-0038400",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0038400",
+            "name": "Tanner McKee",
+            "game": "2026_06_CAR_PHI",
+            "season": 2026,
+            "date": "2026-10-18T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "DAL",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Dak Prescott",
+          "playerId": "00-0033077",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033077",
+            "name": "Dak Prescott",
+            "game": "2026_06_DAL_GB",
+            "season": 2026,
+            "date": "2026-10-19T00:20:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -10554,29 +11434,45 @@
       "qbIntelligence": {
         "home": {
           "team": "SEA",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Drew Lock",
+          "playerId": "00-0035704",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0035704",
+            "name": "Drew Lock",
+            "game": "2026_06_SEA_DEN",
+            "season": 2026,
+            "date": "2026-10-16T00:15:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "KC",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Patrick Mahomes",
+          "playerId": "00-0033873",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033873",
+            "name": "Patrick Mahomes",
+            "game": "2026_06_LAC_KC",
+            "season": 2026,
+            "date": "2026-10-18T20:25:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -10750,29 +11646,45 @@
       "qbIntelligence": {
         "home": {
           "team": "LV",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Kirk Cousins",
+          "playerId": "00-0029604",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0029604",
+            "name": "Kirk Cousins",
+            "game": "2026_06_BUF_LV",
+            "season": 2026,
+            "date": "2026-10-18T20:25:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "LA",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Matthew Stafford",
+          "playerId": "00-0026498",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0026498",
+            "name": "Matthew Stafford",
+            "game": "2026_06_ARI_LA",
+            "season": 2026,
+            "date": "2026-10-18T20:05:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -10937,29 +11849,45 @@
       "qbIntelligence": {
         "home": {
           "team": "DET",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jared Goff",
+          "playerId": "00-0033106",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033106",
+            "name": "Jared Goff",
+            "game": "2026_05_DET_ARI",
+            "season": 2026,
+            "date": "2026-10-11T20:25:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "GB",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jordan Love",
+          "playerId": "00-0036264",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0036264",
+            "name": "Jordan Love",
+            "game": "2026_06_DAL_GB",
+            "season": 2026,
+            "date": "2026-10-19T00:20:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -11133,29 +12061,45 @@
       "qbIntelligence": {
         "home": {
           "team": "ARI",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jacoby Brissett",
+          "playerId": "00-0033119",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033119",
+            "name": "Jacoby Brissett",
+            "game": "2026_06_ARI_LA",
+            "season": 2026,
+            "date": "2026-10-18T20:05:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "DEN",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Bo Nix",
+          "playerId": "00-0039732",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039732",
+            "name": "Bo Nix",
+            "game": "2026_06_SEA_DEN",
+            "season": 2026,
+            "date": "2026-10-16T00:15:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -11329,29 +12273,45 @@
       "qbIntelligence": {
         "home": {
           "team": "CAR",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Bryce Young",
+          "playerId": "00-0039150",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039150",
+            "name": "Bryce Young",
+            "game": "2026_06_CAR_PHI",
+            "season": 2026,
+            "date": "2026-10-18T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "TB",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jalon Daniels",
+          "playerId": "00-0041251",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0041251",
+            "name": "Jalon Daniels",
+            "game": "2026_06_PIT_TB",
+            "season": 2026,
+            "date": "2026-10-18T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -11525,29 +12485,45 @@
       "qbIntelligence": {
         "home": {
           "team": "ATL",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Michael Penix Jr.",
+          "playerId": "00-0039917",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039917",
+            "name": "Michael Penix Jr.",
+            "game": "2026_06_CHI_ATL",
+            "season": 2026,
+            "date": "2026-10-18T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "SF",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Brock Purdy",
+          "playerId": "00-0037834",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0037834",
+            "name": "Brock Purdy",
+            "game": "2026_06_WAS_SF",
+            "season": 2026,
+            "date": "2026-10-20T00:15:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -11712,29 +12688,45 @@
       "qbIntelligence": {
         "home": {
           "team": "HOU",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "C.J. Stroud",
+          "playerId": "00-0039163",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039163",
+            "name": "C.J. Stroud",
+            "game": "2026_06_HOU_JAX",
+            "season": 2026,
+            "date": "2026-10-18T13:30:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "NYG",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jameis Winston",
+          "playerId": "00-0031503",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0031503",
+            "name": "Jameis Winston",
+            "game": "2026_06_NO_NYG",
+            "season": 2026,
+            "date": "2026-10-18T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -11899,29 +12891,45 @@
       "qbIntelligence": {
         "home": {
           "team": "NYJ",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Geno Smith",
+          "playerId": "00-0030565",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0030565",
+            "name": "Geno Smith",
+            "game": "2026_06_NYJ_NE",
+            "season": 2026,
+            "date": "2026-10-18T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "MIA",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Malik Willis",
+          "playerId": "00-0038128",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0038128",
+            "name": "Malik Willis",
+            "game": "2026_05_CIN_MIA",
+            "season": 2026,
+            "date": "2026-10-11T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -12095,29 +13103,45 @@
       "qbIntelligence": {
         "home": {
           "team": "MIN",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Kyler Murray",
+          "playerId": "00-0035228",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0035228",
+            "name": "Kyler Murray",
+            "game": "2026_05_MIN_NO",
+            "season": 2026,
+            "date": "2026-10-11T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "IND",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Daniel Jones",
+          "playerId": "00-0035710",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0035710",
+            "name": "Daniel Jones",
+            "game": "2026_06_TEN_IND",
+            "season": 2026,
+            "date": "2026-10-18T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -12291,29 +13315,45 @@
       "qbIntelligence": {
         "home": {
           "team": "TEN",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Cam Ward",
+          "playerId": "00-0040676",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0040676",
+            "name": "Cam Ward",
+            "game": "2026_06_TEN_IND",
+            "season": 2026,
+            "date": "2026-10-18T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "CLE",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Deshaun Watson",
+          "playerId": "00-0033537",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033537",
+            "name": "Deshaun Watson",
+            "game": "2026_06_BAL_CLE",
+            "season": 2026,
+            "date": "2026-10-18T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -12478,29 +13518,45 @@
       "qbIntelligence": {
         "home": {
           "team": "BAL",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Tyler Huntley",
+          "playerId": "00-0035993",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0035993",
+            "name": "Tyler Huntley",
+            "game": "2026_06_BAL_CLE",
+            "season": 2026,
+            "date": "2026-10-18T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "CIN",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Joe Burrow",
+          "playerId": "00-0036442",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0036442",
+            "name": "Joe Burrow",
+            "game": "2026_05_CIN_MIA",
+            "season": 2026,
+            "date": "2026-10-11T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -12682,29 +13738,45 @@
       "qbIntelligence": {
         "home": {
           "team": "NO",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Tyler Shough",
+          "playerId": "00-0040743",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0040743",
+            "name": "Tyler Shough",
+            "game": "2026_06_NO_NYG",
+            "season": 2026,
+            "date": "2026-10-18T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "PIT",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Aaron Rodgers",
+          "playerId": "00-0023459",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0023459",
+            "name": "Aaron Rodgers",
+            "game": "2026_06_PIT_TB",
+            "season": 2026,
+            "date": "2026-10-18T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -12886,29 +13958,45 @@
       "qbIntelligence": {
         "home": {
           "team": "CHI",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Caleb Williams",
+          "playerId": "00-0039918",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039918",
+            "name": "Caleb Williams",
+            "game": "2026_06_CHI_ATL",
+            "season": 2026,
+            "date": "2026-10-18T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "NE",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Drake Maye",
+          "playerId": "00-0039851",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039851",
+            "name": "Drake Maye",
+            "game": "2026_06_NYJ_NE",
+            "season": 2026,
+            "date": "2026-10-18T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -13073,29 +14161,45 @@
       "qbIntelligence": {
         "home": {
           "team": "SF",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Brock Purdy",
+          "playerId": "00-0037834",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0037834",
+            "name": "Brock Purdy",
+            "game": "2026_05_SF_SEA",
+            "season": 2026,
+            "date": "2026-10-11T20:25:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "WAS",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jayden Daniels",
+          "playerId": "00-0039910",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0039910",
+            "name": "Jayden Daniels",
+            "game": "2026_05_NYG_WAS",
+            "season": 2026,
+            "date": "2026-10-11T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -13260,29 +14364,45 @@
       "qbIntelligence": {
         "home": {
           "team": "GB",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Jordan Love",
+          "playerId": "00-0036264",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0036264",
+            "name": "Jordan Love",
+            "game": "2026_05_CHI_GB",
+            "season": 2026,
+            "date": "2026-10-11T17:00:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
         "away": {
           "team": "DAL",
-          "qb": null,
-          "playerId": null,
-          "basis": "unknown",
+          "qb": "Dak Prescott",
+          "playerId": "00-0033077",
+          "basis": "last_game_recorded_starter",
           "confirmedStarter": false,
-          "lastGameLeader": null,
+          "lastGameLeader": {
+            "id": "00-0033077",
+            "name": "Dak Prescott",
+            "game": "2026_05_TB_DAL",
+            "season": 2026,
+            "date": "2026-10-09T00:15:00+00:00",
+            "dropbacks": null,
+            "basis": "last_game_recorded_starter"
+          },
           "starterChangeWatch": false,
           "sample": null,
-          "label": "Unknown QB"
+          "label": "Last recorded game starter (not confirmed for this game)"
         },
-        "status": "unavailable",
+        "status": "observed",
         "probabilityWeight": 0,
-        "reason": "PBP quarterback history has not been received."
+        "reason": "Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage."
       },
       "playerImpact": {
         "status": "informational",
@@ -13503,7 +14623,7 @@
   },
   "historicalAudit": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-04T20:42:29.907823+00:00",
+    "asOf": "2026-11-04T20:51:06.029426+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -14215,9 +15335,9 @@
     "source": "nflverse play_by_play_{year}.parquet"
   },
   "qbSource": {
-    "status": "unavailable",
+    "status": "schedule-history-only",
     "games": 0,
-    "source": "Same nflverse PBP downloaded for tactical engine"
+    "source": "Previous recorded starting QB from completed nflverse schedule entries; no PBP statistics"
   },
   "injurySource": {
     "status": "unavailable",
@@ -14244,13 +15364,13 @@
     "No coverage scheme data (man/zone) connected",
     "Odds require manual entry",
     "Backtests use score histories; no historical market ROI claimed",
-    "Lightweight refresh: tactical, QB and injury feeds were deliberately not loaded"
+    "Lightweight refresh: new tactical, QB statistics and injury updates were not fetched; previous observations may be cached"
   ],
   "dataProvenance": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-03T01:15:00+00:00",
     "sha256": "239ad19b914eeff0c44f7ca51ada1d137b90b7f7c2b56106fb02b40f1b4e7506",
-    "downloadedAt": "2026-11-04T20:42:29.907197+00:00",
+    "downloadedAt": "2026-11-04T20:51:06.024948+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
