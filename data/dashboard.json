@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-04T21:19:21.840658+00:00",
+  "generatedAt": "2026-11-04T21:25:09.993351+00:00",
   "dataStatus": "ok",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
   "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
@@ -111,7 +111,7 @@
           "qbSampleDropbacks": 178,
           "qbChangeFlag": true,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -121,7 +121,7 @@
           "qbSampleDropbacks": 242,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -133,7 +133,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-04T21:19:16.329760+00:00",
+        "reportAsOf": "2026-11-04T21:25:05.901790+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -384,7 +384,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -490,7 +490,7 @@
           "qbSampleDropbacks": 227,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -500,7 +500,7 @@
           "qbSampleDropbacks": 323,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -841,7 +841,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -947,7 +947,7 @@
           "qbSampleDropbacks": 327,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -957,7 +957,7 @@
           "qbSampleDropbacks": 283,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -1236,7 +1236,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -1342,7 +1342,7 @@
           "qbSampleDropbacks": 289,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -1352,7 +1352,7 @@
           "qbSampleDropbacks": 316,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -1691,7 +1691,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -1797,7 +1797,7 @@
           "qbSampleDropbacks": 334,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -1807,7 +1807,7 @@
           "qbSampleDropbacks": 263,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -2138,7 +2138,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -2244,7 +2244,7 @@
           "qbSampleDropbacks": 227,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -2254,7 +2254,7 @@
           "qbSampleDropbacks": 308,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -2473,21 +2473,21 @@
             "starterConfirmed": false
           },
           {
-            "name": "Amen Ogbongbemiga",
-            "position": "LINEBACKER",
+            "name": "Amon-Ra St. Brown",
+            "position": "WIDE RECEIVER",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-04T21:02:00+00:00",
+            "reportDate": "2026-11-04T21:05:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
           },
           {
-            "name": "Amon-Ra St. Brown",
-            "position": "WIDE RECEIVER",
+            "name": "Amen Ogbongbemiga",
+            "position": "LINEBACKER",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-04T21:00:00+00:00",
+            "reportDate": "2026-11-04T21:02:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -2566,7 +2566,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -2672,7 +2672,7 @@
           "qbSampleDropbacks": 228,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -2682,7 +2682,7 @@
           "qbSampleDropbacks": 314,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -3034,7 +3034,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -3140,7 +3140,7 @@
           "qbSampleDropbacks": 170,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -3150,7 +3150,7 @@
           "qbSampleDropbacks": 197,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -3479,7 +3479,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -3585,7 +3585,7 @@
           "qbSampleDropbacks": 275,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -3595,7 +3595,7 @@
           "qbSampleDropbacks": 264,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -3877,7 +3877,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -3983,7 +3983,7 @@
           "qbSampleDropbacks": 270,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -3993,7 +3993,7 @@
           "qbSampleDropbacks": 309,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -4314,7 +4314,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -4420,7 +4420,7 @@
           "qbSampleDropbacks": 246,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -4430,7 +4430,7 @@
           "qbSampleDropbacks": 296,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -4769,7 +4769,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -4875,7 +4875,7 @@
           "qbSampleDropbacks": 267,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -4885,7 +4885,7 @@
           "qbSampleDropbacks": 34,
           "qbChangeFlag": true,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": false,
           "flaggedKeyAbsences": 0
         },
@@ -5244,7 +5244,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -5350,7 +5350,7 @@
           "qbSampleDropbacks": 250,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -5360,7 +5360,7 @@
           "qbSampleDropbacks": 327,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -5651,7 +5651,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -5757,7 +5757,7 @@
           "qbSampleDropbacks": 298,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -5767,7 +5767,7 @@
           "qbSampleDropbacks": 223,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -6039,7 +6039,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -6145,7 +6145,7 @@
           "qbSampleDropbacks": 250,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -6155,7 +6155,7 @@
           "qbSampleDropbacks": 264,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -6417,7 +6417,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -6523,7 +6523,7 @@
           "qbSampleDropbacks": 197,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -6533,7 +6533,7 @@
           "qbSampleDropbacks": 228,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -6864,7 +6864,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -6970,7 +6970,7 @@
           "qbSampleDropbacks": 308,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -6980,7 +6980,7 @@
           "qbSampleDropbacks": 250,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -7260,21 +7260,21 @@
             "starterConfirmed": false
           },
           {
-            "name": "Amen Ogbongbemiga",
-            "position": "LINEBACKER",
+            "name": "Amon-Ra St. Brown",
+            "position": "WIDE RECEIVER",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-04T21:02:00+00:00",
+            "reportDate": "2026-11-04T21:05:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
           },
           {
-            "name": "Amon-Ra St. Brown",
-            "position": "WIDE RECEIVER",
+            "name": "Amen Ogbongbemiga",
+            "position": "LINEBACKER",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-04T21:00:00+00:00",
+            "reportDate": "2026-11-04T21:02:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -7331,7 +7331,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -7437,7 +7437,7 @@
           "qbSampleDropbacks": 264,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -7447,7 +7447,7 @@
           "qbSampleDropbacks": 264,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -7739,7 +7739,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -7845,7 +7845,7 @@
           "qbSampleDropbacks": 327,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -7855,7 +7855,7 @@
           "qbSampleDropbacks": 334,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -8214,7 +8214,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -8320,7 +8320,7 @@
           "qbSampleDropbacks": 283,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -8330,7 +8330,7 @@
           "qbSampleDropbacks": 309,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -8591,7 +8591,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -8697,7 +8697,7 @@
           "qbSampleDropbacks": 263,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -8707,7 +8707,7 @@
           "qbSampleDropbacks": 242,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -9019,7 +9019,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -9125,7 +9125,7 @@
           "qbSampleDropbacks": 227,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -9135,7 +9135,7 @@
           "qbSampleDropbacks": 275,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -9446,7 +9446,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -9552,7 +9552,7 @@
           "qbSampleDropbacks": 289,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -9562,7 +9562,7 @@
           "qbSampleDropbacks": 227,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -9823,7 +9823,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -9929,7 +9929,7 @@
           "qbSampleDropbacks": 327,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -9939,7 +9939,7 @@
           "qbSampleDropbacks": 250,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -10218,7 +10218,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -10324,7 +10324,7 @@
           "qbSampleDropbacks": 34,
           "qbChangeFlag": true,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": false,
           "flaggedKeyAbsences": 0
         },
@@ -10334,7 +10334,7 @@
           "qbSampleDropbacks": 314,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -10696,7 +10696,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -10802,7 +10802,7 @@
           "qbSampleDropbacks": 296,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -10812,7 +10812,7 @@
           "qbSampleDropbacks": 267,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -11104,7 +11104,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -11210,7 +11210,7 @@
           "qbSampleDropbacks": 316,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -11220,7 +11220,7 @@
           "qbSampleDropbacks": 246,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -11619,7 +11619,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -11725,7 +11725,7 @@
           "qbSampleDropbacks": 323,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -11735,7 +11735,7 @@
           "qbSampleDropbacks": 308,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -12037,7 +12037,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -12143,7 +12143,7 @@
           "qbSampleDropbacks": 178,
           "qbChangeFlag": true,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -12153,7 +12153,7 @@
           "qbSampleDropbacks": 270,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -12464,7 +12464,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -12570,7 +12570,7 @@
           "qbSampleDropbacks": 309,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -12580,7 +12580,7 @@
           "qbSampleDropbacks": 289,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -12887,7 +12887,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -12993,7 +12993,7 @@
           "qbSampleDropbacks": 275,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -13003,7 +13003,7 @@
           "qbSampleDropbacks": 34,
           "qbChangeFlag": true,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": false,
           "flaggedKeyAbsences": 0
         },
@@ -13314,7 +13314,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -13420,7 +13420,7 @@
           "qbSampleDropbacks": 334,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -13430,7 +13430,7 @@
           "qbSampleDropbacks": 178,
           "qbChangeFlag": true,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -13769,7 +13769,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -13875,7 +13875,7 @@
           "qbSampleDropbacks": 197,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -13885,7 +13885,7 @@
           "qbSampleDropbacks": 242,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -14186,7 +14186,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -14292,7 +14292,7 @@
           "qbSampleDropbacks": 264,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -14302,7 +14302,7 @@
           "qbSampleDropbacks": 227,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -14554,7 +14554,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -14660,7 +14660,7 @@
           "qbSampleDropbacks": 298,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -14670,7 +14670,7 @@
           "qbSampleDropbacks": 327,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -14971,7 +14971,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -15077,7 +15077,7 @@
           "qbSampleDropbacks": 308,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -15087,7 +15087,7 @@
           "qbSampleDropbacks": 223,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -15348,21 +15348,21 @@
             "starterConfirmed": false
           },
           {
-            "name": "Amen Ogbongbemiga",
-            "position": "LINEBACKER",
+            "name": "Amon-Ra St. Brown",
+            "position": "WIDE RECEIVER",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-04T21:02:00+00:00",
+            "reportDate": "2026-11-04T21:05:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
           },
           {
-            "name": "Amon-Ra St. Brown",
-            "position": "WIDE RECEIVER",
+            "name": "Amen Ogbongbemiga",
+            "position": "LINEBACKER",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-04T21:00:00+00:00",
+            "reportDate": "2026-11-04T21:02:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
@@ -15419,7 +15419,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -15525,7 +15525,7 @@
           "qbSampleDropbacks": 316,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -15535,7 +15535,7 @@
           "qbSampleDropbacks": 263,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -15906,7 +15906,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -16012,7 +16012,7 @@
           "qbSampleDropbacks": 270,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -16022,7 +16022,7 @@
           "qbSampleDropbacks": 264,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -16344,7 +16344,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -16450,7 +16450,7 @@
           "qbSampleDropbacks": 263,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -16460,7 +16460,7 @@
           "qbSampleDropbacks": 296,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -16721,7 +16721,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -16827,7 +16827,7 @@
           "qbSampleDropbacks": 170,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -16837,7 +16837,7 @@
           "qbSampleDropbacks": 308,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-04T15:20:57+00:00",
-          "depthAgeDays": 0.2,
+          "depthAgeDays": 0.3,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -17129,7 +17129,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+        "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     }
@@ -26244,7 +26244,7 @@
   },
   "historicalAudit": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-04T21:19:21.840658+00:00",
+    "asOf": "2026-11-04T21:25:09.993351+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -26981,7 +26981,7 @@
       "2025: ValueError: No timestamped report rows; undated historical records are not backdated"
     ],
     "source": "nflverse dated injuries_{season}.csv",
-    "asOf": "2026-11-04T21:19:16.329760+00:00",
+    "asOf": "2026-11-04T21:25:05.901790+00:00",
     "timestampBasis": "download-observation",
     "records": 2487
   },
@@ -27017,7 +27017,7 @@
   "additionalInjurySource": {
     "status": "loaded",
     "source": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
-    "retrievedAt": "2026-11-04T21:19:21.746273+00:00",
+    "retrievedAt": "2026-11-04T21:25:09.934451+00:00",
     "reportCount": 196,
     "teamsCovered": 32,
     "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list.",
@@ -27025,7 +27025,7 @@
       "groups": 32,
       "items": 800,
       "dated": 800,
-      "latestDate": "2026-11-04T21:02:00+00:00",
+      "latestDate": "2026-11-04T21:05:00+00:00",
       "statusSamples": [
         "Active",
         "Doubtful",
@@ -27060,7 +27060,7 @@
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-03T01:15:00+00:00",
     "sha256": "83a52285fdf09910eec665fd9f73a9bb79a59da95c140cdf4508ab4dcc596764",
-    "downloadedAt": "2026-11-04T21:19:13.734955+00:00",
+    "downloadedAt": "2026-11-04T21:25:04.128544+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
