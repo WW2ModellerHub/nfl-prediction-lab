@@ -94,18 +94,32 @@ class QBEngine:
 
     def update(self,game):
         game_rows=self.by_game.get(game['id'],{})
-        for team in (game['home'],game['away']):
+        for side in ('home','away'):
+            team=game[side]
             qb_rows=list(game_rows.get(team,{}).values())
-            if not qb_rows:
-                self.last_leader.pop(team,None)
-                continue
             for rec in qb_rows:
                 if rec['dropbacks']>0:
                     self.history[rec['id']].append((game['kickoff'],game['season'],dict(rec)))
-            leader=max(qb_rows,key=lambda x:x.get('dropbacks',0))
-            if leader['dropbacks']>=5:
-                self.last_leader[team]={'id':leader['id'],'name':leader['name'],'game':game['id'],'season':game['season'],
-                                        'date':game['kickoff'].isoformat(),'dropbacks':leader['dropbacks']}
+            # The nflverse schedule records the starting QB for completed games.
+            # This is a last-game observation, not a forecast for next week.
+            recorded=clean_str(game.get(side+'_qb_name'))
+            recorded_id=clean_str(game.get(side+'_qb_id'))
+            leader=max(qb_rows,key=lambda x:x.get('dropbacks',0)) if qb_rows else None
+            if recorded:
+                if not recorded_id and leader and leader['name'].casefold()==recorded.casefold():
+                    recorded_id=leader['id']
+                self.last_leader[team]={
+                    'id':recorded_id or None,'name':recorded,'game':game['id'],
+                    'season':game['season'],'date':game['kickoff'].isoformat(),
+                    'dropbacks':next((v['dropbacks'] for v in qb_rows if v['id']==recorded_id),None),
+                    'basis':'last_game_recorded_starter'}
+            elif leader and leader['dropbacks']>=5:
+                self.last_leader[team]={
+                    'id':leader['id'],'name':leader['name'],'game':game['id'],
+                    'season':game['season'],'date':game['kickoff'].isoformat(),
+                    'dropbacks':leader['dropbacks'],'basis':'last_game_leading_passer'}
+            else:
+                self.last_leader.pop(team,None)
 
     def summary(self,player_id,game):
         # A player traded between teams may have previous history; retain it by ID.
@@ -139,19 +153,23 @@ class QBEngine:
             if observed and observed.get('season')!=game['season']:
                 observed=None
             projected=depth.get(team,{}).get('qb')
-            pid=projected['id'] if projected and projected.get('id') else observed['id'] if observed else None
+            pid=(projected.get('id') if projected and projected.get('id') else
+                 observed.get('id') if observed else None)
             s=self.summary(pid,game) if pid else None
             changed=bool(observed and projected and projected.get('id') and projected['id']!=observed['id'])
+            basis=('depth_chart_projection' if projected else
+                   observed.get('basis','last_game_leading_passer') if observed else 'unknown')
             result[side]={'team':team,'qb':projected['name'] if projected else observed['name'] if observed else None,
-                          'playerId':pid,'basis':'depth_chart_projection' if projected else 'last_game_leading_passer' if observed else 'unknown',
+                          'playerId':pid,'basis':basis,
                           'confirmedStarter':False,'lastGameLeader':observed,
                           'starterChangeWatch':changed,'sample':s,
-                          'label':('Depth-chart QB (unconfirmed for game)' if projected else
-                                   'Last-game leading passer (not a confirmed starter)' if observed else 'Unknown QB')}
-            if pid:exists=True
+                          'label':('Depth-chart QB (not a confirmed starter)' if projected else
+                                   'Last recorded game starter (not confirmed for this game)' if basis=='last_game_recorded_starter' else
+                                   'Last-game leading passer (not confirmed for this game)' if observed else 'No recent QB observation')}
+            if projected or observed:exists=True
         if exists:
             result['status']='observed'
-            result['reason']='Historical passer metrics and unconfirmed depth chart projections; not a player availability guarantee.'
+            result['reason']='Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage.'
         return result
 
 def read_injuries(text):
