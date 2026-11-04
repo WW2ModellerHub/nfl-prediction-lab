@@ -55,6 +55,8 @@ jobs:
           git add data/dashboard.json data/predictions-log.json data/full-model-audit.json
           git diff --cached --quiet || (git commit -m 'Refresh verified NFL forecast snapshot' && git push)
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v4
         with:
           path: '.'
