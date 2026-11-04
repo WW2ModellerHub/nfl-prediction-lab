@@ -127,7 +127,7 @@ class ArchiveTimelineTests(unittest.TestCase):
         fake_row={'season':2025,'week':1,'team':'BUF','id':'P1','name':'Test', 'position':'QB',
                   'reportStatus':'OUT','practiceStatus':'DNP','injury':'Hand','asOf':T}
         fake_depth={'asOf':T,'team':'BUF','id':'P1','name':'Test','position':'QB','rank':1}
-        def stub(season):
+        def stub(season, **kwargs):
             if season==2025:
                 return [fake_row],[fake_depth],{'injuries':{'status':'loaded','errors':[]},'depth':{'status':'loaded','errors':[]}}
             return [],[],{'injuries':{'status':'unavailable','errors':['404']},'depth':{'status':'unavailable','errors':['404']}}
