@@ -172,11 +172,20 @@ class QBEngine:
             result['reason']='Latest observed game starter or depth-chart projection; not a confirmed starter. Player metrics require play-by-play coverage.'
         return result
 
-def read_injuries(text):
+def read_injuries(text, observation_time=None, snapshot_mode=False):
+    """Use exact report times, or prospectively observe an undated weekly snapshot.
+
+    An archive with no record timestamps cannot be assigned to past kickoffs.
+    Only the current season is allowed to use the actual retrieval time.
+    """
     records=[]
     for r in csv.DictReader(io.StringIO(text)):
         ts=dt_value(r.get('date_modified'))
-        if ts is None:continue # non timestamped data cannot be point-in-time filtered
+        undated=ts is None
+        if undated:
+            if not snapshot_mode or observation_time is None:continue
+            ts=dt_value(observation_time)
+        if ts is None:continue
         try:season=int(r.get('season') or 0);week=int(r.get('week') or 0)
         except ValueError:continue
         if season<2009 or week<1:continue
@@ -189,7 +198,7 @@ def read_injuries(text):
                         'reportStatus':clean_str(r.get('report_status')),
                         'practiceStatus':clean_str(r.get('practice_status')),
                         'injury':clean_str(r.get('report_primary_injury') or r.get('practice_primary_injury')),
-                        'asOf':ts})
+                        'asOf':ts,'timestampBasis':'download-observation' if undated else 'row-updated'})
     return records
 
 def read_depth_rows(rows):
@@ -285,8 +294,10 @@ def injury_context(game,records,depth,as_of):
         result[side].sort(key=lambda x:(-x['severity'],not x['starterOnDepthChart'],x['position'],x['name']))
         result[side]=result[side][:25]
     result['reportAsOf']=max(r['asOf'] for r in latest.values()).isoformat()
-    result['status']='reported'
-    result['note']='Reports may change before kickoff. A depth-chart rank is an unconfirmed projection; no automated probability effect is applied.'
+    snapshot=any(r.get('timestampBasis')=='download-observation' for r in latest.values())
+    result['status']='snapshot-only' if snapshot else 'reported'
+    result['timestampBasis']='download-observation' if snapshot else 'row-updated'
+    result['note']=('Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.' if snapshot else 'Reports may change before kickoff. A depth-chart rank is an unconfirmed projection; no automated probability effect is applied.')
     return result
 
 def _download(url,limit=35_000_000):
@@ -296,19 +307,22 @@ def _download(url,limit=35_000_000):
         if len(body)>limit:raise ValueError('Upstream file exceeds size cap')
     return body
 
-def load_current_reports(season):
+def load_current_reports(season,snapshot_mode=False,observation_time=None):
     """Load injury CSV and new-format depth chart parquet, separately fault tolerant."""
     injuries=[];depth=[]
     meta={'injuries':{'status':'unavailable','season':season,'errors':[],'source':INJURIES_URL.format(season=season)},
           'depth':{'status':'unavailable','season':season,'errors':[],'source':DEPTH_URL.format(season=season)}}
     try:
         raw=_download(INJURIES_URL.format(season=season)).decode('utf-8-sig')
-        injuries=read_injuries(raw)
+        injuries=read_injuries(raw,observation_time=observation_time,snapshot_mode=snapshot_mode)
         if not injuries:
-            reader=csv.DictReader(io.StringIO(raw))
-            first=next(reader, {})
-            raise ValueError(f'Injury dates unavailable: date_col={"date_modified" in first}; date_sample={first.get("date_modified")!r}; fieldnames={list(first)!r}')
-        meta['injuries'].update(status='loaded',records=len(injuries),asOf=max(r['asOf'] for r in injuries).isoformat())
+            raise ValueError('No timestamped report rows; undated historical records are not backdated')
+        undated=any(x['timestampBasis']=='download-observation' for x in injuries)
+        meta['injuries'].update(
+            status='snapshot-only' if undated else 'loaded', records=len(injuries),
+            asOf=max(r['asOf'] for r in injuries).isoformat(),
+            timestampBasis='download-observation' if undated else 'row-updated',
+            note=('Undated weekly rows: downloaded now, not historically timestamped; not used in player model validation' if undated else 'Timestamped report rows'))
     except Exception as e:
         meta['injuries']['errors'].append(f'{type(e).__name__}: {str(e)[:450]}')
     try:
@@ -333,15 +347,24 @@ def load_historical_reports(current_season,first_season=2025):
     Failure to load any season marks it unavailable rather than imputing health.
     """
     all_injuries=[];all_depth=[]
-    meta={'injuries':{'status':'unavailable','loadedSeasons':[],'errors':[],
+    meta={'injuries':{'status':'unavailable','loadedSeasons':[],'snapshotSeasons':[],'errors':[],
                       'source':'nflverse dated injuries_{season}.csv'},
           'depth':{'status':'unavailable','loadedSeasons':[],'errors':[],
                    'source':'nflverse 2025+ timestamped depth_charts_{season}.parquet'}}
+    observed=datetime.now(timezone.utc)
     for season in range(max(2025,first_season),current_season+1):
-        injuries,depth,sub=load_current_reports(season)
+        # For undated sources, only this year's future games may see a
+        # snapshot first observed during the current refresh.
+        injuries,depth,sub=load_current_reports(
+            season,snapshot_mode=(season==current_season),observation_time=observed)
         if sub['injuries']['status']=='loaded':
             all_injuries.extend(injuries)
             meta['injuries']['loadedSeasons'].append(season)
+        elif sub['injuries']['status']=='snapshot-only':
+            all_injuries.extend(injuries)
+            meta['injuries']['snapshotSeasons'].append(season)
+            meta['injuries']['asOf']=sub['injuries'].get('asOf')
+            meta['injuries']['timestampBasis']='download-observation'
         else:
             meta['injuries']['errors'] += [f'{season}: {x}' for x in sub['injuries']['errors']]
         if sub['depth']['status']=='loaded':
@@ -353,5 +376,8 @@ def load_historical_reports(current_season,first_season=2025):
         count=len(all_injuries if key=='injuries' else all_depth)
         meta[key]['records']=count
         ok=meta[key]['loadedSeasons']
-        meta[key]['status']='loaded' if len(ok)==max(0,current_season-max(2025,first_season)+1) and ok else 'partial' if ok else 'unavailable'
+        meta[key]['status']=('loaded' if len(ok)==max(0,current_season-max(2025,first_season)+1) and ok
+                             else 'partial' if ok
+                             else 'snapshot-only' if key=='injuries' and meta[key].get('snapshotSeasons')
+                             else 'unavailable')
     return all_injuries,all_depth,meta
