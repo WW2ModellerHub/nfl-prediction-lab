@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-04T20:59:03.098369+00:00",
+  "generatedAt": "2026-11-04T21:05:55.651939+00:00",
   "dataStatus": "ok",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
   "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
@@ -36,7 +36,7 @@
       "model": "Elo + form (research overlays OFF)",
       "odds": null,
       "oddsStatus": "Manual odds only",
-      "injuryStatus": "No verified current report",
+      "injuryStatus": "Undated weekly report (informational only)",
       "qbIntelligence": {
         "home": {
           "team": "BAL",
@@ -133,10 +133,11 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": null,
-        "status": "unavailable",
+        "reportAsOf": "2026-11-04T21:05:50.787126+00:00",
+        "status": "snapshot-only",
         "probabilityWeight": 0,
-        "note": "No timestamp-verified injury reports available for this matchup and week."
+        "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
+        "timestampBasis": "download-observation"
       },
       "weatherStatus": "Not integrated",
       "simulation": [
@@ -20993,7 +20994,7 @@
   },
   "historicalAudit": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-04T20:59:03.098369+00:00",
+    "asOf": "2026-11-04T21:05:55.651939+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -21721,14 +21722,18 @@
     "source": "Same nflverse PBP downloaded for tactical engine"
   },
   "injurySource": {
-    "status": "unavailable",
+    "status": "snapshot-only",
     "loadedSeasons": [],
+    "snapshotSeasons": [
+      2026
+    ],
     "errors": [
-      "2025: ValueError: Injury dates unavailable: date_col=False; date_sample=None; fieldnames=['season', 'season_type', 'game_type', 'team', 'week', 'gsis_id', 'position', 'full_name', 'first_name', 'last_name', 'report_primary_injury', 'report_secondary_injury', 'report_status', 'practice_primary_injury', 'practice_secondary_injury', 'practice_status']",
-      "2026: ValueError: Injury dates unavailable: date_col=False; date_sample=None; fieldnames=['season', 'season_type', 'game_type', 'team', 'week', 'gsis_id', 'position', 'full_name', 'first_name', 'last_name', 'report_primary_injury', 'report_secondary_injury', 'report_status', 'practice_primary_injury', 'practice_secondary_injury', 'practice_status']"
+      "2025: ValueError: No timestamped report rows; undated historical records are not backdated"
     ],
     "source": "nflverse dated injuries_{season}.csv",
-    "records": 0
+    "asOf": "2026-11-04T21:05:50.787126+00:00",
+    "timestampBasis": "download-observation",
+    "records": 2487
   },
   "depthSource": {
     "status": "loaded",
@@ -21756,13 +21761,14 @@
     "Pass rush proxy is QB hits/sacks, NOT independently charted pressures",
     "No coverage scheme data (man/zone) connected",
     "Odds require manual entry",
-    "Backtests use score histories; no historical market ROI claimed"
+    "Backtests use score histories; no historical market ROI claimed",
+    "Current-season injury records have no individual report timestamps; displayed only as observed downloaded snapshots, not used for historical model fitting."
   ],
   "dataProvenance": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-03T01:15:00+00:00",
-    "sha256": "239ad19b914eeff0c44f7ca51ada1d137b90b7f7c2b56106fb02b40f1b4e7506",
-    "downloadedAt": "2026-11-04T20:59:03.091144+00:00",
+    "sha256": "8b7c5cda478c5b7da0f8a59b7909c244f6f245414461048b216ec2a712543565",
+    "downloadedAt": "2026-11-04T21:05:48.382668+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
