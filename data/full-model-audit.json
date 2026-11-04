@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-11-04T20:51:06.029426+00:00",
+  "generatedAt": "2026-11-04T20:52:12.015836+00:00",
   "status": "production-pipeline-snapshot",
   "source": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-03T01:15:00+00:00",
     "sha256": "239ad19b914eeff0c44f7ca51ada1d137b90b7f7c2b56106fb02b40f1b4e7506",
-    "downloadedAt": "2026-11-04T20:51:06.024948+00:00",
+    "downloadedAt": "2026-11-04T20:52:12.010940+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
   },
-  "mode": "schedules-only",
+  "mode": "full",
   "latestResultAt": "2026-11-03T01:15:00+00:00",
   "baseline": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-04T20:51:06.029426+00:00",
+    "asOf": "2026-11-04T20:52:12.015836+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -274,11 +274,19 @@
   "tacticalValidation": {
     "status": "OFF — incremental accuracy unproven",
     "enabled": false,
-    "trainedThroughSeason": null,
-    "seasons": [],
-    "evaluationGames": 0,
-    "brierGain": 0,
-    "improvingSeasons": 0,
+    "trainedThroughSeason": 2025,
+    "seasons": [
+      {
+        "season": 2025,
+        "games": 284,
+        "baselineBrier": 0.22431,
+        "adjustedBrier": 0.22426,
+        "brierGain": 5e-05
+      }
+    ],
+    "evaluationGames": 284,
+    "brierGain": 5e-05,
+    "improvingSeasons": 1,
     "coefficients": {
       "pass_matchup": 0,
       "rush_matchup": 0,
@@ -286,7 +294,7 @@
       "explosive_matchup": 0
     },
     "researchOnly": true,
-    "sampleSize": 0,
+    "sampleSize": 806,
     "notes": "Ablation uses prior-season data only. Evaluation years were used for selection, not an independent blind test."
   },
   "playerValidation": {
@@ -322,25 +330,40 @@
   },
   "chosenOverlay": "none",
   "tacticalSource": {
-    "status": "unavailable",
-    "seasons": [],
-    "errors": [
-      "Skipped optional play-by-play files in schedules-only mode"
+    "status": "loaded",
+    "seasons": [
+      2023,
+      2024,
+      2025,
+      2026
     ],
+    "errors": [],
     "source": "nflverse play_by_play_{year}.parquet"
   },
   "qbSource": {
-    "status": "schedule-history-only",
-    "games": 0,
-    "source": "Previous recorded starting QB from completed nflverse schedule entries; no PBP statistics"
+    "status": "loaded",
+    "games": 976,
+    "source": "Same nflverse PBP downloaded for tactical engine"
   },
   "injurySource": {
     "status": "unavailable",
-    "loadedSeasons": []
+    "loadedSeasons": [],
+    "errors": [
+      "2025: ValueError: No timestamped injury entries parsed",
+      "2026: ValueError: No timestamped injury entries parsed"
+    ],
+    "source": "nflverse dated injuries_{season}.csv",
+    "records": 0
   },
   "depthSource": {
-    "status": "unavailable",
-    "loadedSeasons": []
+    "status": "loaded",
+    "loadedSeasons": [
+      2025,
+      2026
+    ],
+    "errors": [],
+    "source": "nflverse 2025+ timestamped depth_charts_{season}.parquet",
+    "records": 1297719
   },
   "forwardPredictions": 42,
   "forwardPerformance": {
@@ -356,13 +379,12 @@
     "No automated player prop feed",
     "QB and injury effects are informational unless the player model passes completed-season validation",
     "No weather adjustments",
-    "Tactical PBP data: unavailable",
+    "Tactical PBP data: loaded",
     "No situational, tactical or player overlay activates without a completed-season validation gate",
     "Pass rush proxy is QB hits/sacks, NOT independently charted pressures",
     "No coverage scheme data (man/zone) connected",
     "Odds require manual entry",
-    "Backtests use score histories; no historical market ROI claimed",
-    "Lightweight refresh: new tactical, QB statistics and injury updates were not fetched; previous observations may be cached"
+    "Backtests use score histories; no historical market ROI claimed"
   ],
   "disclaimer": "Research validation is not a prospective betting edge. Only timestamped forward picks support forward performance."
 }
