@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-04T21:10:21.947128+00:00",
+  "generatedAt": "2026-11-04T21:11:45.427154+00:00",
   "dataStatus": "ok",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
   "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
@@ -36,7 +36,7 @@
       "model": "Elo + form (research overlays OFF)",
       "odds": null,
       "oddsStatus": "Manual odds only",
-      "injuryStatus": "Previous report cached; may be outdated",
+      "injuryStatus": "Undated weekly report (informational only)",
       "qbIntelligence": {
         "home": {
           "team": "BAL",
@@ -133,12 +133,11 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-04T21:09:38.537967+00:00",
-        "status": "snapshot-cached",
+        "reportAsOf": "2026-11-04T21:11:40.459207+00:00",
+        "status": "snapshot-only",
         "probabilityWeight": 0,
-        "note": "Cached from the previous full refresh, not a current injury check. Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
-        "timestampBasis": "download-observation",
-        "cachedFrom": "2026-11-04T21:09:42.719357+00:00"
+        "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
+        "timestampBasis": "download-observation"
       },
       "weatherStatus": "Not integrated",
       "simulation": [
@@ -303,7 +302,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -608,7 +607,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -921,7 +920,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -1234,7 +1233,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -1539,7 +1538,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -1835,7 +1834,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -2131,7 +2130,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -2444,7 +2443,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -2740,7 +2739,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -3045,7 +3044,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -3358,7 +3357,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -3671,7 +3670,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -3976,7 +3975,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -4272,7 +4271,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -4568,7 +4567,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -4873,7 +4872,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -5178,7 +5177,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -5474,7 +5473,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -5787,7 +5786,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -6092,7 +6091,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -6388,7 +6387,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -6693,7 +6692,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -6998,7 +6997,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -7311,7 +7310,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -7607,7 +7606,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -7903,7 +7902,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -8216,7 +8215,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -8512,7 +8511,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -8817,7 +8816,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -9138,7 +9137,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -9443,7 +9442,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -9756,7 +9755,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -10061,7 +10060,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -10357,7 +10356,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -10662,7 +10661,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -10958,7 +10957,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -11263,7 +11262,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -11559,7 +11558,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -11864,7 +11863,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     },
@@ -12160,7 +12159,7 @@
         "away": [],
         "home": [],
         "status": "empty",
-        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
         "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
       }
     }
@@ -21275,7 +21274,7 @@
   },
   "historicalAudit": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-04T21:10:21.947128+00:00",
+    "asOf": "2026-11-04T21:11:45.427154+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -22003,7 +22002,7 @@
     "source": "Same nflverse PBP downloaded for tactical engine"
   },
   "injurySource": {
-    "status": "cached",
+    "status": "snapshot-only",
     "loadedSeasons": [],
     "snapshotSeasons": [
       2026
@@ -22012,11 +22011,9 @@
       "2025: ValueError: No timestamped report rows; undated historical records are not backdated"
     ],
     "source": "nflverse dated injuries_{season}.csv",
-    "asOf": "2026-11-04T21:09:38.537967+00:00",
+    "asOf": "2026-11-04T21:11:40.459207+00:00",
     "timestampBasis": "download-observation",
-    "records": 2487,
-    "cachedFrom": "2026-11-04T21:09:42.719357+00:00",
-    "notes": "Cached previous verified full refresh; no new feed data fetched"
+    "records": 2487
   },
   "depthSource": {
     "status": "loaded",
@@ -22045,12 +22042,12 @@
     "No coverage scheme data (man/zone) connected",
     "Odds require manual entry",
     "Backtests use score histories; no historical market ROI claimed",
-    "QB/tactical/injury context cached from 2026-11-04T21:09:42.719357+00:00; player reports are not live and may have changed."
+    "Current-season injury records have no individual report timestamps; displayed only as observed downloaded snapshots, not used for historical model fitting."
   ],
   "additionalInjurySource": {
     "status": "empty",
     "source": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
-    "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+    "retrievedAt": "2026-11-04T21:11:45.352566+00:00",
     "reportCount": 0,
     "teamsCovered": 0,
     "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
@@ -22059,7 +22056,7 @@
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-03T01:15:00+00:00",
     "sha256": "8b7c5cda478c5b7da0f8a59b7909c244f6f245414461048b216ec2a712543565",
-    "downloadedAt": "2026-11-04T21:10:15.282704+00:00",
+    "downloadedAt": "2026-11-04T21:11:37.532578+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
