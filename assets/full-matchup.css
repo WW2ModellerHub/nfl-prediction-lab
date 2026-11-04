@@ -1,0 +1,30 @@
+.fm-report{padding:18px;border-radius:13px;background:linear-gradient(145deg,#172e39,#162637);border:1px solid #4a6672;margin:8px 0 22px}
+.fm-header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.fm-header h3{font-size:19px;letter-spacing:-.5px;margin:6px 0 0}
+.fm-verdict{font-size:13px;line-height:1.7;color:#e6f0ed;margin:14px 0}
+.fm-callout{border:1px solid #627951;background:#253d35;border-radius:9px;padding:13px;margin-bottom:12px}
+.fm-callout strong{font-size:12px;color:#dff4d1}
+.fm-callout p{font-size:11px;color:#bcd1c5;line-height:1.65;margin:5px 0 0}
+.fm-side-grid,.fm-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.fm-side-grid>div,.fm-two>div{background:#142738;border:1px solid #34495a;padding:13px;border-radius:9px;min-width:0}
+.fm-side-grid small{display:block;color:#b6d9e1;font-size:10px;margin-bottom:8px}
+.fm-side-grid strong{display:block;font-size:12px;line-height:1.5}
+.fm-side-grid p,.fm-two p,.fm-two li{font-size:10px;color:#aabfc9;line-height:1.65}
+.fm-two h4{font-size:11px;margin:3px 0 10px}.fm-two ul{margin:8px 0;padding-left:17px}
+.fm-compare{border:1px solid #354c5a;border-radius:10px;overflow:hidden;margin:12px 0}
+.fm-compare-row{display:grid;grid-template-columns:1.4fr .8fr .8fr;align-items:center;gap:8px;padding:11px 12px;border-bottom:1px solid #2e4253;font-size:11px}
+.fm-compare-row:last-child{border-bottom:0}.fm-row-label{color:#9eb5c1}
+.fm-compare-head{font-size:10px;font-weight:700;background:#243b49;color:#c6e1dd}
+.fm-factors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:12px}
+.fm-factors>div{border-radius:9px;background:#102535;border:1px solid #31495a;padding:12px;display:flex;flex-direction:column;gap:5px;min-width:0}
+.fm-factors b{font-size:10px}.fm-factors strong{font-size:12px;color:#d5ecd5}
+.fm-factors small{font-size:10px;line-height:1.5;color:#9cbbc8}
+.fm-data-line{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:10px;padding:6px 0;border-bottom:1px solid #304455}
+.fm-data-line:last-child{border-bottom:0}
+.fm-footnote{font-size:10px;color:#9db1be;line-height:1.55;margin:14px 0 0}
+@media(max-width:620px){
+ .fm-report{padding:12px}.fm-header h3{font-size:17px}
+ .fm-two,.fm-side-grid,.fm-factors{grid-template-columns:1fr}
+ .fm-compare-row{grid-template-columns:1.25fr .85fr .85fr;font-size:10px;gap:5px;padding:10px 7px}
+ .fm-factors{gap:7px}
+}
