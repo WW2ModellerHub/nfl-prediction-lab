@@ -77,7 +77,11 @@ def read_games(text):
                         # Closing spread is used ONLY to grade historical ATS; never for pregame modelling.
                         closing_spread=num(row.get('spread_line')),
                         home_moneyline=num(row.get('home_moneyline')),
-                        away_moneyline=num(row.get('away_moneyline'))))
+                        away_moneyline=num(row.get('away_moneyline')),
+                        home_qb_name=(row.get('home_qb_name') or '').strip(),
+                        away_qb_name=(row.get('away_qb_name') or '').strip(),
+                        home_qb_id=(row.get('home_qb_id') or '').strip(),
+                        away_qb_id=(row.get('away_qb_id') or '').strip()))
     return sorted(out,key=lambda g:(g['kickoff'],g['id']))
 
 # Situational factors are observable matchup signals. Their historical ATS rates
