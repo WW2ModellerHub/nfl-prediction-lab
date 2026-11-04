@@ -57,6 +57,10 @@ function playerFlags(g){
  for(const side of ['away','home']){
   const t=g[side],p=qb[side];
   if(p?.starterChangeWatch)notes.push(`${t}: projected QB differs from last game`);
+  const expectedName=String(p?.qb||'').trim().toLowerCase();
+  const media=(g.supplementalInjuryWatch?.[side]||[]);
+  const questionable=media.find(x=>expectedName && String(x.name||'').trim().toLowerCase()===expectedName && ['OUT','DOUBTFUL','QUESTIONABLE','INJURED RESERVE','IR','OUT FOR SEASON'].includes(String(x.status||'').toUpperCase()));
+  if(questionable)notes.push(`${t}: ESPN currently lists depth-chart QB ${questionable.name} as ${questionable.status}; this is NOT confirmed gameday status`);
   for(const z of inj[side]||[])if(z.position==='QB'&&['OUT','DOUBTFUL','QUESTIONABLE','INJURED RESERVE','IR','INACTIVE'].includes(String(z.status).toUpperCase()))notes.push(`${t}: ${z.name} (${z.status})`);
   const key=(inj[side]||[]).filter(z=>z.starterOnDepthChart && ['OUT','DOUBTFUL'].includes(String(z.status).toUpperCase())&&z.position!=='QB');
   if(key.length)notes.push(`${t}: ${key.length} projected starter(s) out/doubtful`);
