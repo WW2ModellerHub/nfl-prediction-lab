@@ -14,6 +14,7 @@ from model import read_games,generate
 from tactical import load_nflverse_pbp
 from qb_injuries import load_historical_reports
 from espn_injuries import load as load_espn_injuries
+from weather import enrich as enrich_weather
 
 SOURCES=(
     'https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv',
@@ -160,6 +161,10 @@ def update(schedules_only=False,schedules_file=None):
                 except (ValueError,TypeError):pass
     dashboard['additionalInjurySource']=supplemental_meta
     dashboard=preserve_recent_player_context(dashboard,old_dashboard,now)
+    # Independent, public area forecast only: never changes win percentages.
+    # Every fixture records the roof status, horizon and source availability.
+    dashboard['weatherSource']=enrich_weather(dashboard.get('nextGames',[]),now)
+
     if dashboard.get('injurySource',{}).get('status')=='snapshot-only':
         dashboard.setdefault('dataWarnings',[]).append('Current-season injury records have no individual report timestamps; displayed only as observed downloaded snapshots, not used for historical model fitting.')
     dashboard['source']=source['url'];dashboard['sourceUrl']=source['url'];dashboard['dataProvenance']=source
@@ -188,6 +193,8 @@ def update(schedules_only=False,schedules_file=None):
         'situationalValidation':dashboard.get('situationalValidation'),
         'tacticalValidation':dashboard.get('tacticalValidation'),
         'playerValidation':dashboard.get('playerValidation'),
+        'qbValidation':dashboard.get('qbValidation'),
+        'weatherSource':dashboard.get('weatherSource'),
         'chosenOverlay':dashboard.get('overlaySelection','none'),
         'tacticalSource':dashboard.get('tacticalSource'),
         'qbSource':dashboard.get('qbSource'),
