@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-04T21:08:05.547181+00:00",
+  "generatedAt": "2026-11-04T21:09:42.719357+00:00",
   "status": "production-pipeline-snapshot",
   "source": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-03T01:15:00+00:00",
     "sha256": "8b7c5cda478c5b7da0f8a59b7909c244f6f245414461048b216ec2a712543565",
-    "downloadedAt": "2026-11-04T21:07:57.388029+00:00",
+    "downloadedAt": "2026-11-04T21:09:36.216835+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
@@ -14,7 +14,7 @@
   "latestResultAt": "2026-11-03T01:15:00+00:00",
   "baseline": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-04T21:08:05.547181+00:00",
+    "asOf": "2026-11-04T21:09:42.719357+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -346,7 +346,7 @@
     "source": "Same nflverse PBP downloaded for tactical engine"
   },
   "injurySource": {
-    "status": "cached",
+    "status": "snapshot-only",
     "loadedSeasons": [],
     "snapshotSeasons": [
       2026
@@ -355,11 +355,9 @@
       "2025: ValueError: No timestamped report rows; undated historical records are not backdated"
     ],
     "source": "nflverse dated injuries_{season}.csv",
-    "asOf": "2026-11-04T21:05:50.787126+00:00",
+    "asOf": "2026-11-04T21:09:38.537967+00:00",
     "timestampBasis": "download-observation",
-    "records": 2487,
-    "cachedFrom": "2026-11-04T21:05:55.651939+00:00",
-    "notes": "Cached previous verified full refresh; no new feed data fetched"
+    "records": 2487
   },
   "depthSource": {
     "status": "loaded",
@@ -391,7 +389,7 @@
     "No coverage scheme data (man/zone) connected",
     "Odds require manual entry",
     "Backtests use score histories; no historical market ROI claimed",
-    "QB/tactical/injury context cached from 2026-11-04T21:05:55.651939+00:00; player reports are not live and may have changed."
+    "Current-season injury records have no individual report timestamps; displayed only as observed downloaded snapshots, not used for historical model fitting."
   ],
   "disclaimer": "Research validation is not a prospective betting edge. Only timestamped forward picks support forward performance."
 }
