@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-04T22:29:17.170443+00:00",
+  "generatedAt": "2026-11-04T22:33:28.923300+00:00",
   "status": "production-pipeline-snapshot",
   "source": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-03T01:15:00+00:00",
     "sha256": "f2dcdbcbe3c615f08f56608ff98491110ef25ad27e9e28251bfa04b56dcc2d9b",
-    "downloadedAt": "2026-11-04T22:29:11.853804+00:00",
+    "downloadedAt": "2026-11-04T22:33:21.775437+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
@@ -14,7 +14,7 @@
   "latestResultAt": "2026-11-03T01:15:00+00:00",
   "baseline": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-04T22:29:17.170443+00:00",
+    "asOf": "2026-11-04T22:33:28.923300+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -374,7 +374,7 @@
       "outside-forecast-range": 8
     },
     "errors": [],
-    "asOf": "2026-11-04T22:29:17.170443+00:00"
+    "asOf": "2026-11-04T22:33:28.923300+00:00"
   },
   "chosenOverlay": "none",
   "tacticalSource": {
@@ -403,7 +403,7 @@
       "2025: ValueError: No timestamped report rows; undated historical records are not backdated"
     ],
     "source": "nflverse dated injuries_{season}.csv",
-    "asOf": "2026-11-04T22:29:13.524975+00:00",
+    "asOf": "2026-11-04T22:33:23.873212+00:00",
     "timestampBasis": "download-observation",
     "records": 2487
   },
@@ -420,7 +420,7 @@
   "additionalInjurySource": {
     "status": "loaded",
     "source": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
-    "retrievedAt": "2026-11-04T22:29:17.107467+00:00",
+    "retrievedAt": "2026-11-04T22:33:28.853408+00:00",
     "reportCount": 233,
     "teamsCovered": 32,
     "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list.",
@@ -428,7 +428,7 @@
       "groups": 32,
       "items": 800,
       "dated": 800,
-      "latestDate": "2026-11-04T22:20:00+00:00",
+      "latestDate": "2026-11-04T22:24:00+00:00",
       "statusSamples": [
         "Active",
         "Doubtful",
@@ -519,6 +519,14 @@
       2016,
       2025
     ]
+  },
+  "shadowForwardPerformance": {
+    "recordedPicks": 40,
+    "gradedGames": 0,
+    "brier": null,
+    "accuracy": null,
+    "source": "Immutable pregame XGBoost challenger picks; ties and late/backfilled entries excluded",
+    "researchOnly": true
   },
   "forwardPredictions": 42,
   "forwardPerformance": {
