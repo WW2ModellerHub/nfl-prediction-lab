@@ -61,7 +61,10 @@ jobs:
               # A code change may land while the data job is running.
               # Rebase the generated snapshot on the actual remote HEAD.
               git fetch origin main
-              git rebase origin/main
+              # Generated dashboard snapshots can conflict when a source-code commit
+              # lands during an ongoing refresh. In this rebase, 'theirs' is this
+              # freshly generated snapshot; unrelated source changes are preserved.
+              git rebase -X theirs origin/main
               if git push origin HEAD:main; then
                 break
               fi
