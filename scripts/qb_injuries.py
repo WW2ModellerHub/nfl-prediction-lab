@@ -307,10 +307,10 @@ def load_current_reports(season):
         if not injuries:
             reader=csv.DictReader(io.StringIO(raw))
             first=next(reader, {})
-            raise ValueError(f'No parsed injury dates: sample={first.get("date_modified")!r}; columns={list(first)[:6]!r}')
+            raise ValueError(f'Injury dates unavailable: date_col={"date_modified" in first}; date_sample={first.get("date_modified")!r}; fieldnames={list(first)!r}')
         meta['injuries'].update(status='loaded',records=len(injuries),asOf=max(r['asOf'] for r in injuries).isoformat())
     except Exception as e:
-        meta['injuries']['errors'].append(f'{type(e).__name__}: {str(e)[:120]}')
+        meta['injuries']['errors'].append(f'{type(e).__name__}: {str(e)[:450]}')
     try:
         import polars as pl
         data=_download(DEPTH_URL.format(season=season),limit=90_000_000)
