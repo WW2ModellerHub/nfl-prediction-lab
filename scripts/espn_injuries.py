@@ -65,7 +65,21 @@ def load(now=None):
             raw=response.read(16_000_001)
         if len(raw)>16_000_000:raise ValueError('ESPN response exceeds maximum permitted size')
         fetched=datetime.now(timezone.utc)
-        teams=parse(json.loads(raw.decode('utf-8-sig')),fetched)
+        payload=json.loads(raw.decode('utf-8-sig'))
+        # Safe shape diagnostics for an unofficial, occasionally changing feed.
+        groups=payload.get('injuries',[]) if isinstance(payload,dict) else []
+        groups=groups if isinstance(groups,list) else []
+        items=[x for g in groups if isinstance(g,dict) for x in (g.get('injuries') or []) if isinstance(x,dict)]
+        dated=[dt_value(x.get('date') or x.get('lastUpdated')) for x in items]
+        dated=[x for x in dated if x]
+        meta['inspection']={
+            'groups':len(groups),'items':len(items),'dated':len(dated),
+            'latestDate':max(dated).isoformat() if dated else None,
+            'statusSamples':sorted({val(x.get('status')) for x in items if x.get('status')})[:20],
+            'topKeys':sorted(payload)[:20] if isinstance(payload,dict) else [],
+            'firstGroupKeys':sorted(groups[0])[:20] if groups and isinstance(groups[0],dict) else [],
+            'firstItemKeys':sorted(items[0])[:20] if items else []}
+        teams=parse(payload,fetched)
         n=sum(len(v) for v in teams.values())
         meta.update(status='loaded' if n else 'empty',retrievedAt=fetched.isoformat(),reportCount=n,teamsCovered=len(teams))
         if not n:meta['note']='No recent, dated injury observations passed validation; this does not mean all teams are healthy.'
