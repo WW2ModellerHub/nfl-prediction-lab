@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-04T21:25:50.587121+00:00",
+  "generatedAt": "2026-11-04T21:27:44.010778+00:00",
   "dataStatus": "ok",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
   "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
@@ -133,7 +133,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-04T21:25:44.261757+00:00",
+        "reportAsOf": "2026-11-04T21:27:38.360471+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -384,7 +384,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -841,7 +841,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -1236,7 +1236,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -1691,7 +1691,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -2138,7 +2138,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -2566,7 +2566,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -3034,7 +3034,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -3479,7 +3479,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -3877,7 +3877,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -4314,7 +4314,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -4769,7 +4769,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -5244,7 +5244,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -5651,7 +5651,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -6039,7 +6039,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -6417,7 +6417,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -6864,7 +6864,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -7331,7 +7331,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -7739,7 +7739,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -8214,7 +8214,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -8591,7 +8591,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -9019,7 +9019,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -9446,7 +9446,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -9823,7 +9823,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -10218,7 +10218,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -10696,7 +10696,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -11104,7 +11104,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -11619,7 +11619,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -12037,7 +12037,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -12464,7 +12464,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -12887,7 +12887,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -13314,7 +13314,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -13769,7 +13769,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -14186,7 +14186,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -14554,7 +14554,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -14971,7 +14971,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -15419,7 +15419,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -15906,7 +15906,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -16344,7 +16344,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -16721,7 +16721,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     },
@@ -17129,7 +17129,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+        "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       }
     }
@@ -26244,7 +26244,7 @@
   },
   "historicalAudit": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-04T21:25:50.587121+00:00",
+    "asOf": "2026-11-04T21:27:44.010778+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -26981,7 +26981,7 @@
       "2025: ValueError: No timestamped report rows; undated historical records are not backdated"
     ],
     "source": "nflverse dated injuries_{season}.csv",
-    "asOf": "2026-11-04T21:25:44.261757+00:00",
+    "asOf": "2026-11-04T21:27:38.360471+00:00",
     "timestampBasis": "download-observation",
     "records": 2487
   },
@@ -27017,7 +27017,7 @@
   "additionalInjurySource": {
     "status": "loaded",
     "source": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
-    "retrievedAt": "2026-11-04T21:25:50.499837+00:00",
+    "retrievedAt": "2026-11-04T21:27:43.918176+00:00",
     "reportCount": 196,
     "teamsCovered": 32,
     "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list.",
@@ -27060,7 +27060,7 @@
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-03T01:15:00+00:00",
     "sha256": "3dfa0e34d1666fc1d8b333bb83e64bb0a1944f04c8b84d0ac8bdda8bd621f0e9",
-    "downloadedAt": "2026-11-04T21:25:40.973126+00:00",
+    "downloadedAt": "2026-11-04T21:27:35.694999+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
