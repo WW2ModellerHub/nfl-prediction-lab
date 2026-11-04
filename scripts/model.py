@@ -267,6 +267,7 @@ def human_game(g,p,kind='upcoming'):
          'allowedHome':round(p['home_allowed'],1),'allowedAway':round(p['away_allowed'],1),
          'model':('Elo + form + validated '+p.get('overlay_type','research')+' overlay' if p.get('adjustment_active') else 'Elo + form (research overlays OFF)'),'odds':None,'oddsStatus':'Manual odds only',
          'injuryStatus':('Reported; no probability weight' if p.get('injuries',{}).get('status')=='reported'
+                         else 'Undated weekly report (informational only)' if p.get('injuries',{}).get('status')=='snapshot-only'
                          else 'No verified current report'),
          'qbIntelligence':p.get('quarterbacks',{'status':'unavailable'}),
          'playerImpact':p.get('player_impact',{'status':'informational','eligible':False,'reason':'Missing historical data'}),
