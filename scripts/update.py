@@ -106,6 +106,50 @@ def preserve_recent_player_context(dashboard, previous, now):
     return dashboard
 
 
+
+def record_shadow_predictions(dashboard,games,now,path=Path('data/shadow-predictions-log.json')):
+    """Archive each challenger probability before kickoff, never overwrite/backfill."""
+    try:
+        entries=json.loads(path.read_text()) if path.exists() else []
+        if not isinstance(entries,list):entries=[]
+    except (OSError,ValueError):entries=[]
+    seen={r.get('gameId') for r in entries if isinstance(r,dict)}
+    for item in dashboard.get('nextGames',[]):
+        shadow=item.get('shadowEnsemble') or {}
+        p=shadow.get('homeProbability')
+        if not shadow.get('researchOnly') or not isinstance(p,(float,int)):continue
+        try:kickoff=datetime.fromisoformat(item['kickoff'].replace('Z','+00:00'))
+        except (ValueError,KeyError,TypeError):continue
+        if kickoff.tzinfo is None or now>=kickoff or item.get('id') in seen or not 0<p<1:continue
+        entries.append({'gameId':item['id'],'kickoff':kickoff.isoformat(),
+            'recordedAt':now.isoformat(),'homeProbability':float(p),
+            'baselineHomeProbability':item.get('baselineHomeProbability',item.get('homeProbability')),
+            'model':'xgboost-shadow-research-v1','researchOnly':True})
+        seen.add(item['id'])
+    results={g['id']:g for g in games if g.get('home_score') is not None and
+             g.get('away_score') is not None and g['kickoff']<now}
+    scored=[]
+    for e in entries:
+        g=results.get(e.get('gameId'))
+        if not g or g['home_score']==g['away_score']:continue
+        try:
+            recorded=datetime.fromisoformat(e['recordedAt'].replace('Z','+00:00'))
+            kickoff=datetime.fromisoformat(e['kickoff'].replace('Z','+00:00'))
+        except (ValueError,TypeError,KeyError):continue
+        p=e.get('homeProbability')
+        if recorded.tzinfo is None or kickoff.tzinfo is None or not recorded<kickoff:continue
+        if not isinstance(p,(int,float)) or not 0<p<1:continue
+        scored.append((p,int(g['home_score']>g['away_score'])))
+    dashboard['shadowForwardPerformance']={
+        'recordedPicks':len(entries),'gradedGames':len(scored),
+        'brier':round(sum((p-y)**2 for p,y in scored)/len(scored),5) if scored else None,
+        'accuracy':round(sum(int((p>=.5)==bool(y)) for p,y in scored)/len(scored),4) if scored else None,
+        'source':'Immutable pregame XGBoost challenger picks; ties and late/backfilled entries excluded',
+        'researchOnly':True}
+    path.parent.mkdir(parents=True,exist_ok=True)
+    path.write_text(json.dumps(entries,ensure_ascii=False,indent=2)+'\n')
+    return entries
+
 def update(schedules_only=False,schedules_file=None):
     games,source=get_schedule(schedules_file)
     old_dashboard_path=Path('data/dashboard.json')
@@ -174,6 +218,7 @@ def update(schedules_only=False,schedules_file=None):
         snap_meta={'status':'cached','source':'Previous snap-count observation',
             'note':'Past snap participation carried forward, not a live player availability check'}
     dashboard['playerUsageSource']=snap_meta
+    record_shadow_predictions(dashboard,games,now)
     dashboard=preserve_recent_player_context(dashboard,old_dashboard,now)
     # Independent, public area forecast only: never changes win percentages.
     # Every fixture records the roof status, horizon and source availability.
@@ -217,6 +262,7 @@ def update(schedules_only=False,schedules_file=None):
         'additionalInjurySource':dashboard.get('additionalInjurySource'),
         'playerUsageSource':dashboard.get('playerUsageSource'),
         'challengerValidation':dashboard.get('challengerValidation'),
+        'shadowForwardPerformance':dashboard.get('shadowForwardPerformance'),
         'forwardPredictions':dashboard.get('forwardPredictions'),
         'forwardPerformance':dashboard.get('forwardPerformance'),
         'warnings':dashboard.get('dataWarnings',[]),
