@@ -9,9 +9,10 @@ on:
         options:
           - schedules-only
           - full
-        default: schedules-only
+        default: full
   schedule:
-    - cron: '19 8,13,19,23 * * *'
+    - cron: '19 7 * * *' # daily full player and injury refresh
+    - cron: '19 13,19,23 * * *' # lighter schedule-only refreshes
   push:
     branches: [main]
     paths-ignore:
@@ -42,7 +43,7 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Refresh NFL schedule and model audit
         env:
-          REFRESH_MODE: ${{ inputs.refresh_mode }}
+          REFRESH_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.refresh_mode || (github.event_name == 'schedule' && github.event.schedule == '19 13,19,23 * * *' && 'schedules-only') || 'full' }}
         run: |
           if [ "$REFRESH_MODE" = 'full' ]; then
             python scripts/update.py
