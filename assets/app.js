@@ -107,8 +107,9 @@ function fullMatchupCoverage(g){
  const injuryReady=['reported','snapshot-only','snapshot-cached','reported-cached'].includes(inj.status)||w.status==='loaded'||w.status==='cached';
  const restReady=s.home?.fullRestDays!=null&&s.away?.fullRestDays!=null;
  const tacticalReady=t.status==='ready';
- const counts=[true,qbReady,injuryReady,tacticalReady,restReady,Boolean(g.weather?.status==='loaded')];
- return {q,t,inj,s,w,qbReady,injuryReady,restReady,tacticalReady,counts,complete:counts.filter(Boolean).length,total:counts.length};
+ const weatherReady=['forecast','indoor','roof-unconfirmed'].includes(g.weather?.status);
+ const counts=[true,qbReady,injuryReady,tacticalReady,restReady,weatherReady];
+ return {q,t,inj,s,w,qbReady,injuryReady,restReady,tacticalReady,weatherReady,counts,complete:counts.filter(Boolean).length,total:counts.length};
 }
 function fullMatchupReport(g){
  const c=fullMatchupCoverage(g),{q,t,inj,s,w}=c;
@@ -132,13 +133,26 @@ function fullMatchupReport(g){
    {label:'QB-hit/sack matchup',v:tacticalText('QB-hit/sack matchup')},
    {label:'Explosive passing',v:tacticalText('Explosive pass opportunity')}
  ];
- const statusRows=[['Team strength / scoring',true,'IN FORECAST'],['QB identity & efficiency',c.qbReady,g.overlayType==='player'?'ADJUSTMENT ACTIVE':'CONTEXT ONLY'],['Player availability',c.injuryReady,g.overlayType==='player'?'ADJUSTMENT ACTIVE':'CONTEXT ONLY'],['Tactical EPA matchups',c.tacticalReady,g.overlayType==='tactical'?'ADJUSTMENT ACTIVE':'CONTEXT ONLY'],['Rest / overtime',c.restReady,g.overlayType==='situational'?'ADJUSTMENT ACTIVE':'CONTEXT ONLY'],['Stadium weather',false,'NOT CONNECTED']];
+ const statusRows=[['Team strength / scoring',true,'IN FORECAST'],
+ ['QB identity & efficiency',c.qbReady,['qb','player'].includes(g.overlayType)?'IN FORECAST':'RESEARCH ONLY'],
+ ['Player availability',c.injuryReady,g.overlayType==='player'?'IN FORECAST':'RESEARCH ONLY'],
+ ['Tactical EPA matchups',c.tacticalReady,g.overlayType==='tactical'?'IN FORECAST':'RESEARCH ONLY'],
+ ['Rest / overtime',c.restReady,g.overlayType==='situational'?'IN FORECAST':'RESEARCH ONLY'],
+ ['Venue-area weather',c.weatherReady,'CONTEXT ONLY']];
  const qbAlerts=playerFlags(g);
+ const weather=g.weather||{};
+ const weatherBlurb=weather.status==='indoor'?'Enclosed stadium: outside wind/rain not expected to affect on-field play.':
+ ['forecast','roof-unconfirmed'].includes(weather.status)?
+ [weather.temperatureC==null?'Temperature unknown':weather.temperatureC+'°C',
+ weather.windMph==null?'Wind unknown':weather.windMph+' mph wind',
+ weather.gustMph==null?'Gust unknown':weather.gustMph+' mph gusts',
+ weather.precipitationChancePct==null?'Precipitation chance unknown':weather.precipitationChancePct+'% precipitation chance'].join(' · '):
+ 'Kickoff forecast unavailable ('+(weather.status||'not loaded')+').';
  const tacticalEdges=(t.advantages||[]).filter(x=>x.strong);
  const reliability=c.complete===c.total?'Broad feed coverage':c.complete>=4?'Partial feed coverage':'Limited feed coverage';
  const verdict=`${g.homeProbability>=0.5?g.homeName:g.awayName} is the ${pct(Math.max(g.homeProbability,g.awayProbability))} baseline favourite. ${tacticalEdges.length?`${tacticalEdges.length} material tactical differential${tacticalEdges.length===1?' is':'s are'} flagged.`:'No large tactical differential is confirmed.'} ${qbAlerts.length?`${qbAlerts.length} player availability or QB watch alert${qbAlerts.length===1?' requires':'s require'} review.`:'Player availability is not independently verified.'}`;
  const row=(label,aValue,hValue)=>`<div class="fm-compare-row"><span class="fm-row-label">${escapeHTML(label)}</span><span>${escapeHTML(aValue)}</span><span>${escapeHTML(hValue)}</span></div>`;
- const status=statusRows.map(([name,available,impact])=>`<div class="fm-data-line"><span>${escapeHTML(name)}</span><span>${tag(available?impact:'MISSING',!available?'warn':impact==='IN FORECAST'?'lime':'')}</span></div>`).join('');
+ const status=statusRows.map(([name,available,impact])=>`<div class="fm-data-line"><span>${escapeHTML(name)}</span><span>${tag(available?impact:'UNAVAILABLE',!available?'warn':impact==='IN FORECAST'?'lime':'')}</span></div>`).join('');
  return `<section class="fm-report" aria-label="Complete matchup breakdown">
  <div class="fm-header"><div><div class="eyebrow">FULL MATCHUP DOSSIER · ${escapeHTML(reliability.toUpperCase())}</div><h3>What could decide this game?</h3></div>${tag(`${c.complete}/${c.total} data layers`,c.complete>=5?'lime':'warn')}</div>
  <p class="fm-verdict">${escapeHTML(verdict)}</p>
@@ -151,7 +165,9 @@ function fullMatchupReport(g){
  ${row('Recovery days',restText(a),restText(h))}
  ${row('Previous game OT',s.away?.previous?.overtime==null?'Unknown':s.away.previous.overtime?'Yes':'No',s.home?.previous?.overtime==null?'Unknown':s.home.previous.overtime?'Yes':'No')}
  </div>
+ <div class="note-box"><strong>VENUE WEATHER · ${escapeHTML(weather.stadium||g.stadium||'Unknown venue')}</strong><p>${escapeHTML(weatherBlurb)}</p><p class="source-meta">${escapeHTML(weather.note||'Near-kickoff weather remains uncertain until game day.')} · ${weather.retrievedAt?'Forecast retrieved '+escapeHTML(weather.retrievedAt):'No dated forecast'} · Approximate venue-area conditions, not on-site measurements. Never automatically changes the win percentage. <a href="https://open-meteo.com/en/docs" target="_blank" rel="noopener noreferrer">Open-Meteo source</a></p></div>
  <div class="fm-factors">${comparisons.map(({label,v})=>`<div><b>${escapeHTML(label)}</b><strong>${v?escapeHTML(v.favors==='Even'?'No clear edge':v.favors+' advantage'):'Data unavailable'}</strong><small>${v?`${v.edge>=0?'+':''}${number(v.edge,3)} ${escapeHTML(v.unit)} towards home · research only`:'Historic PBP sample insufficient'}</small></div>`).join('')}</div>
+ <div class="note-box"><strong>QB-only model test · ${escapeHTML(store.data?.qbValidation?.status||'Not run')}</strong><p>${store.data?.qbValidation?.evaluationGames||0} historical evaluation games · Brier gain ${number(store.data?.qbValidation?.brierGain,5)}. ${g.overlayType==='qb'?'Validated QB adjustment selected for this fixture.':g.qbResearch?.eligible?'Previous QB data is sufficient, but the adjustment is not active unless historical testing supports it.':'Insufficient pregame QB observations for a numeric adjustment.'}</p></div>
  <div class="fm-two"><div><h4>Situational and player warnings</h4>${(s.signals||[]).length?`<p>${(s.signals||[]).map(v=>escapeHTML(v.name+' · '+v.team)).join(' · ')}</p>`:'<p>No named situational trigger for this matchup.</p>'}${qbAlerts.length?`<ul>${qbAlerts.slice(0,5).map(v=>`<li>${escapeHTML(v)}</li>`).join('')}</ul>`:'<p>QB/injury status can change before kickoff; no full-health claim.</p>'}</div><div><h4>Model input audit</h4>${status}</div></div>
  <p class="fm-footnote">Injury summaries distinguish dated media watch from official game-week reports. Depth charts are unconfirmed starters. No historical accuracy is claimed for individual flags. For details see the QB, tactical and situational sections below.</p></section>`;
 }
