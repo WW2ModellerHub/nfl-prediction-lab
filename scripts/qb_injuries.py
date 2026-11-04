@@ -304,7 +304,10 @@ def load_current_reports(season):
     try:
         raw=_download(INJURIES_URL.format(season=season)).decode('utf-8-sig')
         injuries=read_injuries(raw)
-        if not injuries:raise ValueError('No timestamped injury entries parsed')
+        if not injuries:
+            reader=csv.DictReader(io.StringIO(raw))
+            first=next(reader, {})
+            raise ValueError(f'No parsed injury dates: sample={first.get("date_modified")!r}; columns={list(first)[:6]!r}')
         meta['injuries'].update(status='loaded',records=len(injuries),asOf=max(r['asOf'] for r in injuries).isoformat())
     except Exception as e:
         meta['injuries']['errors'].append(f'{type(e).__name__}: {str(e)[:120]}')
