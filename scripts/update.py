@@ -50,8 +50,64 @@ def get_schedule(local_path=None):
     raise RuntimeError('No verified NFL schedules source available: '+'; '.join(errors))
 
 
+def preserve_recent_player_context(dashboard, previous, now):
+    """Keep per-fixture, verified enrichment through a lightweight refresh.
+
+    Only the same not-yet-kicked-off fixture may reuse its earlier observations.
+    Never reuse odds, predicted probabilities, game outcomes or validation gates.
+    A 4-day max age and an explicit cached label avoid claiming fresh reports.
+    """
+    if not isinstance(previous,dict):return dashboard
+    from datetime import timedelta
+    try:
+        previous_time=datetime.fromisoformat(previous.get('generatedAt','').replace('Z','+00:00'))
+        if previous_time.tzinfo is None:previous_time=previous_time.replace(tzinfo=timezone.utc)
+    except (ValueError,TypeError):return dashboard
+    if previous_time>now or now-previous_time>timedelta(days=4):return dashboard
+    previous_games={g['id']:g for g in previous.get('nextGames',[]) if isinstance(g,dict) and g.get('id')}
+    preserved=set()
+    for game in dashboard.get('nextGames',[]):
+        old=previous_games.get(game.get('id'))
+        if not old or old.get('kickoff')!=game.get('kickoff'):continue
+        if dashboard.get('qbSource',{}).get('status')!='loaded':
+            old_qb=old.get('qbIntelligence') or {}
+            if (old_qb.get('status')=='observed' and
+                any((old_qb.get(side) or {}).get('sample') or
+                    (old_qb.get(side) or {}).get('basis')=='depth_chart_projection'
+                    for side in ('home','away'))):
+                game['qbIntelligence']={**old_qb,'cachedFrom':previous_time.isoformat()}
+                preserved.add('qb')
+        if dashboard.get('tacticalSource',{}).get('status') not in ('loaded','partial'):
+            old_tac=old.get('tactical') or {}
+            if old_tac.get('status') in ('ready','insufficient'):
+                game['tactical']={**old_tac,'cachedFrom':previous_time.isoformat()}
+                preserved.add('tactical')
+        if dashboard.get('injurySource',{}).get('status') not in ('loaded','partial'):
+            old_inj=old.get('injuryIntelligence') or {}
+            if old_inj.get('status')=='reported':
+                game['injuryIntelligence']={**old_inj,'status':'reported-cached',
+                    'note':'Cached from the previous full refresh, not a current injury check. '+old_inj.get('note',''),
+                    'cachedFrom':previous_time.isoformat()}
+                game['injuryStatus']='Previous report cached; may be outdated'
+                preserved.add('injuries')
+    key_to_meta={'qb':'qbSource','tactical':'tacticalSource','injuries':'injurySource'}
+    for key in preserved:
+        field=key_to_meta[key]
+        old_meta=previous.get(field) or {}
+        dashboard[field]={**old_meta,'status':'cached','cachedFrom':previous_time.isoformat(),
+            'notes':'Cached previous verified full refresh; no new feed data fetched'}
+    if preserved:
+        dashboard.setdefault('dataWarnings',[]).append(
+            'QB/tactical/injury context cached from '+previous_time.isoformat()+
+            '; player reports are not live and may have changed.')
+    return dashboard
+
+
 def update(schedules_only=False,schedules_file=None):
     games,source=get_schedule(schedules_file)
+    old_dashboard_path=Path('data/dashboard.json')
+    try:old_dashboard=json.loads(old_dashboard_path.read_text()) if old_dashboard_path.exists() else {}
+    except (OSError,ValueError):old_dashboard={}
     log_path=Path('data/predictions-log.json')
     log=json.loads(log_path.read_text()) if log_path.exists() else []
     now=datetime.now(timezone.utc)
@@ -63,12 +119,16 @@ def update(schedules_only=False,schedules_file=None):
         player_meta={'injuries':{'status':'unavailable','loadedSeasons':[]},
                      'depth':{'status':'unavailable','loadedSeasons':[]}}
     else:
-        pbp,loaded,errors=load_nflverse_pbp(range(max(2021,current-5),current+1),qb_sink=qb_plays)
+        pbp,loaded,errors=load_nflverse_pbp(range(max(2023,current-3),current+1),qb_sink=qb_plays)
         injuries,depth,player_meta=load_historical_reports(current)
     meta={'status':'loaded' if loaded and not errors else 'partial' if loaded else 'unavailable',
           'seasons':loaded,'errors':errors,'source':'nflverse play_by_play_{year}.parquet'}
     dashboard,log=generate(games,now,log,pbp,meta,qb_games=qb_plays,
                            injury_rows=injuries,depth_rows=depth,player_meta=player_meta)
+    if not qb_plays:
+        dashboard['qbSource']['status']='schedule-history-only'
+        dashboard['qbSource']['source']='Previous recorded starting QB from completed nflverse schedule entries; no PBP statistics'
+    dashboard=preserve_recent_player_context(dashboard,old_dashboard,now)
     dashboard['source']=source['url'];dashboard['sourceUrl']=source['url'];dashboard['dataProvenance']=source
     dashboard['refreshMode']='schedules-only' if schedules_only else 'full'
     latest=source.get('latestFinalAt')
@@ -80,7 +140,7 @@ def update(schedules_only=False,schedules_file=None):
         if (now.month>=9 or now.month<=1) and days>10:
             dashboard['dataWarnings'].append('Latest confirmed final score is over 10 days old; verify schedule-source freshness')
     if schedules_only:
-        dashboard['dataWarnings'].append('Lightweight refresh: tactical, QB and injury feeds were deliberately not loaded')
+        dashboard['dataWarnings'].append('Lightweight refresh: new tactical, QB statistics and injury updates were not fetched; previous observations may be cached')
     out=Path('data/dashboard.json');out.parent.mkdir(exist_ok=True)
     out.write_text(json.dumps(dashboard,ensure_ascii=False,indent=2)+'\n')
     # A machine-readable publication audit, separate from the frozen historical
