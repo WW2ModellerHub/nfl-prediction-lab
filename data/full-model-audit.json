@@ -1,9 +1,368 @@
 {
-  "status": "awaiting-first-verified-production-run",
+  "generatedAt": "2026-11-04T20:34:50.252044+00:00",
+  "status": "production-pipeline-snapshot",
+  "source": {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
+    "latestFinalAt": "2026-11-03T01:15:00+00:00",
+    "sha256": "b7843121abbe1d8d97c2768724e4c083648a23c8e1b424f266ef297e11efa4f9",
+    "downloadedAt": "2026-11-04T20:34:50.251570+00:00",
+    "parsedGames": 7548,
+    "status": "verified",
+    "previousSourceFailures": []
+  },
+  "mode": "schedules-only",
+  "latestResultAt": "2026-11-03T01:15:00+00:00",
+  "baseline": {
+    "status": "historical-score-audit",
+    "asOf": "2026-11-04T20:34:50.252044+00:00",
+    "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
+    "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
+    "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
+    "marketIsPregameSnapshot": false,
+    "clvAvailable": false,
+    "ukBookmakersCovered": false,
+    "overall": {
+      "completedGames": 691,
+      "ties": 2,
+      "baseline": {
+        "games": 689,
+        "accuracy": 0.6618,
+        "brier": 0.22174,
+        "logLoss": 0.63359
+      },
+      "market": {
+        "games": 689,
+        "accuracy": 0.6778,
+        "brier": 0.2096,
+        "logLoss": 0.60677
+      },
+      "baselineOnMarketMatchedGames": {
+        "games": 689,
+        "accuracy": 0.6618,
+        "brier": 0.22174,
+        "logLoss": 0.63359
+      },
+      "marketCoverage": 689,
+      "modelMinusMarketBrier": 0.01214,
+      "modelMinusMarketBrier95CI": [
+        0.00612,
+        0.01884
+      ]
+    },
+    "seasons": [
+      {
+        "season": 2024,
+        "completedGames": 285,
+        "ties": 0,
+        "baseline": {
+          "games": 285,
+          "accuracy": 0.6772,
+          "brier": 0.21561,
+          "logLoss": 0.62059
+        },
+        "market": {
+          "games": 285,
+          "accuracy": 0.7088,
+          "brier": 0.20097,
+          "logLoss": 0.58921
+        },
+        "baselineOnMarketMatchedGames": {
+          "games": 285,
+          "accuracy": 0.6772,
+          "brier": 0.21561,
+          "logLoss": 0.62059
+        },
+        "marketCoverage": 285,
+        "modelMinusMarketBrier": 0.01464,
+        "modelMinusMarketBrier95CI": [
+          0.00235,
+          0.02643
+        ]
+      },
+      {
+        "season": 2025,
+        "completedGames": 285,
+        "ties": 1,
+        "baseline": {
+          "games": 284,
+          "accuracy": 0.662,
+          "brier": 0.22431,
+          "logLoss": 0.63904
+        },
+        "market": {
+          "games": 284,
+          "accuracy": 0.6585,
+          "brier": 0.21091,
+          "logLoss": 0.60699
+        },
+        "baselineOnMarketMatchedGames": {
+          "games": 284,
+          "accuracy": 0.662,
+          "brier": 0.22431,
+          "logLoss": 0.63904
+        },
+        "marketCoverage": 284,
+        "modelMinusMarketBrier": 0.0134,
+        "modelMinusMarketBrier95CI": [
+          0.00596,
+          0.02142
+        ]
+      },
+      {
+        "season": 2026,
+        "completedGames": 121,
+        "ties": 1,
+        "baseline": {
+          "games": 120,
+          "accuracy": 0.625,
+          "brier": 0.23022,
+          "logLoss": 0.65155
+        },
+        "market": {
+          "games": 120,
+          "accuracy": 0.65,
+          "brier": 0.22702,
+          "logLoss": 0.64794
+        },
+        "baselineOnMarketMatchedGames": {
+          "games": 120,
+          "accuracy": 0.625,
+          "brier": 0.23022,
+          "logLoss": 0.65155
+        },
+        "marketCoverage": 120,
+        "modelMinusMarketBrier": 0.0032,
+        "modelMinusMarketBrier95CI": [
+          -0.01099,
+          0.0127
+        ]
+      }
+    ],
+    "notes": [
+      "Lower Brier score is better; a positive model-minus-market gap means the model performed worse.",
+      "Closing lines are retrospective benchmarks, never input features or proof of an actionable edge.",
+      "Season-week block bootstrap intervals account for some within-week correlation; they are approximate.",
+      "Historical reconstructions are not originally timestamped pregame forecasts.",
+      "Only original archived forward picks establish prospective performance."
+    ]
+  },
+  "situationalValidation": {
+    "status": "OFF — incremental value not established",
+    "enabled": false,
+    "trainedThroughSeason": 2025,
+    "evaluationYears": [
+      2023,
+      2024,
+      2025
+    ],
+    "selectionSample": 854,
+    "selectionBrierGain": -0.0004,
+    "selectionYearsPositive": 0,
+    "selectionYearsTested": 3,
+    "thresholds": {
+      "minGames": 350,
+      "minBrierGain": 0.001,
+      "minPositiveSeasons": 2
+    },
+    "seasons": [
+      {
+        "season": 2023,
+        "games": 285,
+        "baselineBrier": 0.23069,
+        "adjustedBrier": 0.23098,
+        "brierGain": -0.00029,
+        "coefficients": {
+          "empty_tank": 0.023247,
+          "thursday_road_ot": 0.0,
+          "blowout_bounce": -0.11874,
+          "nuclear_bounce": 0.034964,
+          "rest_edge": 0.04988,
+          "repeat_road": -0.065127
+        }
+      },
+      {
+        "season": 2024,
+        "games": 285,
+        "baselineBrier": 0.21562,
+        "adjustedBrier": 0.21608,
+        "brierGain": -0.00047,
+        "coefficients": {
+          "empty_tank": 0.035316,
+          "thursday_road_ot": 0.0,
+          "blowout_bounce": -0.097791,
+          "nuclear_bounce": 0.020123,
+          "rest_edge": 0.09038,
+          "repeat_road": -0.032423
+        }
+      },
+      {
+        "season": 2025,
+        "games": 284,
+        "baselineBrier": 0.22431,
+        "adjustedBrier": 0.22475,
+        "brierGain": -0.00044,
+        "coefficients": {
+          "empty_tank": 0.033875,
+          "thursday_road_ot": 0.0,
+          "blowout_bounce": -0.090902,
+          "nuclear_bounce": 0.002324,
+          "rest_edge": 0.070334,
+          "repeat_road": -0.034111
+        }
+      }
+    ],
+    "effects": [
+      {
+        "id": "empty_tank",
+        "observations": 213,
+        "logOddsEffect": 0.0657,
+        "approxPpAtEven": 1.64,
+        "applied": false
+      },
+      {
+        "id": "thursday_road_ot",
+        "observations": 10,
+        "logOddsEffect": 0.0,
+        "approxPpAtEven": 0.0,
+        "applied": false
+      },
+      {
+        "id": "blowout_bounce",
+        "observations": 104,
+        "logOddsEffect": -0.0544,
+        "approxPpAtEven": -1.36,
+        "applied": false
+      },
+      {
+        "id": "nuclear_bounce",
+        "observations": 53,
+        "logOddsEffect": -0.0057,
+        "approxPpAtEven": -0.14,
+        "applied": false
+      },
+      {
+        "id": "rest_edge",
+        "observations": 605,
+        "logOddsEffect": 0.0566,
+        "approxPpAtEven": 1.42,
+        "applied": false
+      },
+      {
+        "id": "repeat_road",
+        "observations": 802,
+        "logOddsEffect": -0.0317,
+        "approxPpAtEven": -0.79,
+        "applied": false
+      }
+    ],
+    "coefficients": {
+      "empty_tank": 0.0,
+      "thursday_road_ot": 0.0,
+      "blowout_bounce": 0.0,
+      "nuclear_bounce": 0.0,
+      "rest_edge": 0.0,
+      "repeat_road": 0.0
+    },
+    "notes": [
+      "Evaluation seasons are used to select the method; they are not an untouched final test.",
+      "Coefficients use only completed previous seasons; current-season final scores are excluded from adjustment training.",
+      "Signals are correlated and effects are penalised; coefficients are conditional associations, not causal effects.",
+      "Closing spread and odds are never used for model training.",
+      "A disabled gate means zero probability adjustment; situational flags remain visible."
+    ]
+  },
+  "tacticalValidation": {
+    "status": "OFF — incremental accuracy unproven",
+    "enabled": false,
+    "trainedThroughSeason": null,
+    "seasons": [],
+    "evaluationGames": 0,
+    "brierGain": 0,
+    "improvingSeasons": 0,
+    "coefficients": {
+      "pass_matchup": 0,
+      "rush_matchup": 0,
+      "hit_sack_matchup": 0,
+      "explosive_matchup": 0
+    },
+    "researchOnly": true,
+    "sampleSize": 0,
+    "notes": "Ablation uses prior-season data only. Evaluation years were used for selection, not an independent blind test."
+  },
+  "playerValidation": {
+    "enabled": false,
+    "status": "OFF — player impact unproven",
+    "sampleSize": 0,
+    "historicalSeasons": [],
+    "trainedThroughSeason": null,
+    "evaluationGames": 0,
+    "improvingSeasons": 0,
+    "brierGain": null,
+    "seasons": [],
+    "coefficients": {
+      "qb_epa_edge": 0.0,
+      "qb_change_edge": 0.0,
+      "qb_sack_edge": 0.0,
+      "key_reported_absences_edge": 0.0
+    },
+    "thresholds": {
+      "minTrain": 160,
+      "minEvaluationGames": 350,
+      "minPositiveSeasons": 2,
+      "minBrierGain": 0.001,
+      "minQBDropbacks": 80
+    },
+    "researchOnly": true,
+    "notes": [
+      "Strictly prior seasons are used in each evaluation; current-season results excluded from activation and coefficients.",
+      "Evaluation seasons decide whether to activate: selection is not an independent prospective blind test.",
+      "QB starter projections are dated depth-chart observations, not confirmed starters.",
+      "OUT/DOUBTFUL is a reported status, not verified gameday inactivity or a causal point deduction."
+    ]
+  },
   "chosenOverlay": "none",
+  "tacticalSource": {
+    "status": "unavailable",
+    "seasons": [],
+    "errors": [
+      "Skipped optional play-by-play files in schedules-only mode"
+    ],
+    "source": "nflverse play_by_play_{year}.parquet"
+  },
+  "qbSource": {
+    "status": "unavailable",
+    "games": 0,
+    "source": "Same nflverse PBP downloaded for tactical engine"
+  },
+  "injurySource": {
+    "status": "unavailable",
+    "loadedSeasons": []
+  },
+  "depthSource": {
+    "status": "unavailable",
+    "loadedSeasons": []
+  },
+  "forwardPredictions": 42,
+  "forwardPerformance": {
+    "count": 0,
+    "accuracy": null,
+    "brier": null,
+    "logLoss": null,
+    "calibration": [],
+    "recent": []
+  },
   "warnings": [
-    "No external NFL schedule download was possible within the local build environment.",
-    "Published frozen research evidence is in situational-research.json. This is not a production audit.",
-    "Tactical and player impact validation require actual timestamped datasets."
-  ]
+    "No verified live play-by-play feed",
+    "No automated player prop feed",
+    "QB and injury effects are informational unless the player model passes completed-season validation",
+    "No weather adjustments",
+    "Tactical PBP data: unavailable",
+    "No situational, tactical or player overlay activates without a completed-season validation gate",
+    "Pass rush proxy is QB hits/sacks, NOT independently charted pressures",
+    "No coverage scheme data (man/zone) connected",
+    "Odds require manual entry",
+    "Backtests use score histories; no historical market ROI claimed",
+    "Lightweight refresh: tactical, QB and injury feeds were deliberately not loaded"
+  ],
+  "disclaimer": "Research validation is not a prospective betting edge. Only timestamped forward picks support forward performance."
 }
