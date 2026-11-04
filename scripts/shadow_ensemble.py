@@ -92,6 +92,6 @@ def run(history,upcoming,current_season):
             result['status']='validated-research' if result['candidateQualifiedForFurtherResearch'] else 'research-only'
             return result,{r['id']:round(p,4) for r,p in zip(upcoming,predictions)}
         result['reason']='Too few completed prior-season games for model training'
-    except (TypeError,ValueError,RuntimeError) as exc:
+    except (ImportError,TypeError,ValueError,RuntimeError) as exc:
         result.update(status='unavailable',reason=type(exc).__name__+': '+str(exc)[:180])
     return result,{}
