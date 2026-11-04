@@ -84,8 +84,8 @@ def preserve_recent_player_context(dashboard, previous, now):
                 preserved.add('tactical')
         if dashboard.get('injurySource',{}).get('status') not in ('loaded','partial'):
             old_inj=old.get('injuryIntelligence') or {}
-            if old_inj.get('status')=='reported':
-                game['injuryIntelligence']={**old_inj,'status':'reported-cached',
+            if old_inj.get('status') in ('reported','snapshot-only'):
+                game['injuryIntelligence']={**old_inj,'status':'snapshot-cached' if old_inj.get('status')=='snapshot-only' else 'reported-cached',
                     'note':'Cached from the previous full refresh, not a current injury check. '+old_inj.get('note',''),
                     'cachedFrom':previous_time.isoformat()}
                 game['injuryStatus']='Previous report cached; may be outdated'
@@ -129,6 +129,8 @@ def update(schedules_only=False,schedules_file=None):
         dashboard['qbSource']['status']='schedule-history-only'
         dashboard['qbSource']['source']='Previous recorded starting QB from completed nflverse schedule entries; no PBP statistics'
     dashboard=preserve_recent_player_context(dashboard,old_dashboard,now)
+    if dashboard.get('injurySource',{}).get('status')=='snapshot-only':
+        dashboard.setdefault('dataWarnings',[]).append('Current-season injury records have no individual report timestamps; displayed only as observed downloaded snapshots, not used for historical model fitting.')
     dashboard['source']=source['url'];dashboard['sourceUrl']=source['url'];dashboard['dataProvenance']=source
     dashboard['refreshMode']='schedules-only' if schedules_only else 'full'
     latest=source.get('latestFinalAt')
