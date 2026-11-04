@@ -11,6 +11,7 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 from model import read_games,generate
+from player_usage import load_snap_counts,UsageHistory,enrich_upcoming
 from tactical import load_nflverse_pbp
 from qb_injuries import load_historical_reports
 from espn_injuries import load as load_espn_injuries
@@ -115,6 +116,8 @@ def update(schedules_only=False,schedules_file=None):
     now=datetime.now(timezone.utc)
     current=now.year if now.month>=3 else now.year-1
     qb_plays={}
+    snap_rows=[]
+    snap_meta={'status':'unavailable','source':'nflreadpy snap counts', 'note':'Not downloaded on lightweight refresh'}
     if schedules_only:
         pbp={};loaded=[];errors=['Skipped optional play-by-play files in schedules-only mode']
         injuries=[];depth=[]
@@ -123,6 +126,7 @@ def update(schedules_only=False,schedules_file=None):
     else:
         pbp,loaded,errors=load_nflverse_pbp(range(max(2023,current-3),current+1),qb_sink=qb_plays)
         injuries,depth,player_meta=load_historical_reports(current)
+        snap_rows,snap_meta=load_snap_counts(range(max(2025,current-1),current+1))
     supplemental, supplemental_meta = ({}, {'status':'unavailable','note':'Not fetched on lightweight runs'})
     if not schedules_only:
         supplemental,supplemental_meta=load_espn_injuries()
@@ -160,6 +164,16 @@ def update(schedules_only=False,schedules_file=None):
                         supplemental_meta={**old_dashboard.get('additionalInjurySource',{}),'status':'cached','retrievedAt':stamp.isoformat()}
                 except (ValueError,TypeError):pass
     dashboard['additionalInjurySource']=supplemental_meta
+    if snap_rows:
+        snap_meta['watchItemsEnriched']=enrich_upcoming(
+            dashboard.get('nextGames',[]),UsageHistory(snap_rows,games),now)
+    elif schedules_only and any(
+        item.get('recentUsage') for g in dashboard.get('nextGames',[])
+        for side in ('home','away')
+        for item in (g.get('supplementalInjuryWatch') or {}).get(side,[])):
+        snap_meta={'status':'cached','source':'Previous snap-count observation',
+            'note':'Past snap participation carried forward, not a live player availability check'}
+    dashboard['playerUsageSource']=snap_meta
     dashboard=preserve_recent_player_context(dashboard,old_dashboard,now)
     # Independent, public area forecast only: never changes win percentages.
     # Every fixture records the roof status, horizon and source availability.
@@ -201,6 +215,8 @@ def update(schedules_only=False,schedules_file=None):
         'injurySource':dashboard.get('injurySource'),
         'depthSource':dashboard.get('depthSource'),
         'additionalInjurySource':dashboard.get('additionalInjurySource'),
+        'playerUsageSource':dashboard.get('playerUsageSource'),
+        'challengerValidation':dashboard.get('challengerValidation'),
         'forwardPredictions':dashboard.get('forwardPredictions'),
         'forwardPerformance':dashboard.get('forwardPerformance'),
         'warnings':dashboard.get('dataWarnings',[]),

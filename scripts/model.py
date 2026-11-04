@@ -25,6 +25,7 @@ from player_validation import (FEATURES as PLAYER_FEATURES, snapshot as player_s
                                validate as validate_player, predict as predict_player)
 from tactical_validation import FEATURES as TACTICAL_FEATURES, validate as validate_tactical, predict as predict_tactical
 from audit import build_audit
+from shadow_ensemble import vector as challenger_vector,run as run_challenger
 from qb_validation import FEATURES as QB_FEATURES, snapshot as qb_snapshot, validate as validate_qb, predict as predict_qb
 
 TEAM_NAMES = {
@@ -337,6 +338,7 @@ def generate(games,now=None,previous_log=None,pbp_games=None,pbp_meta=None,
     tactical_rows=[]
     player_rows=[]
     qb_rows=[]
+    challenger_rows=[]
     all_backtests=[]; upcoming=[]; scored=[]; strategy_history=[]; situation_rows=[]
     # Same-kickoff games must be predicted as one batch. Otherwise, a 13:00
     # final would leak into another game's 13:00 pregame probability.
@@ -382,6 +384,10 @@ def generate(games,now=None,previous_log=None,pbp_games=None,pbp_meta=None,
                     tactical_rows.append({'season':game['season'],'p':p['home_probability'],
                                          'features':p['tactical']['features'],
                                          'y':1 if game['home_score']>game['away_score'] else 0})
+                if game['home_score']!=game['away_score']:
+                    challenger_rows.append({'id':game['id'],'season':game['season'],
+                        'p':p['home_probability'],'features':challenger_vector(game,p),
+                        'y':int(game['home_score']>game['away_score'])})
                 if p['qb_research']['eligible'] and game['home_score']!=game['away_score']:
                     qb_rows.append({'season':game['season'],'p':p['home_probability'],
                                     'features':p['qb_research']['features'],
@@ -403,6 +409,11 @@ def generate(games,now=None,previous_log=None,pbp_games=None,pbp_meta=None,
     tactical_validation=validate_tactical(tactical_rows,current)
     player_validation=validate_player(player_rows,current)
     qb_validation=validate_qb(qb_rows,current)
+    # XGBoost challenger: research only, never a live overlay or bet input.
+    shadow_upcoming=[{'id':g['id'],'p':p['home_probability'],
+                      'features':challenger_vector(g,p)} for g,p in upcoming]
+    challenger_validation,challenger_predictions=run_challenger(
+        challenger_rows,shadow_upcoming,current)
     # No stacking: individual overlays were compared with the SAME baseline,
     # not tested in combination. An ineligible player snapshot cannot activate
     # player impact for that specific fixture, even if the global gate passes.
@@ -449,6 +460,11 @@ def generate(games,now=None,previous_log=None,pbp_games=None,pbp_meta=None,
     candidates=[(g,p) for g,p in upcoming if g['kickoff']<=now+timedelta(days=21)]
     if not candidates: candidates=upcoming[:24]
     future=[human_game(g,p) for g,p in candidates[:40]]
+    for row in future:
+        if row['id'] in challenger_predictions:
+            row['shadowEnsemble']={'homeProbability':challenger_predictions[row['id']],
+                'researchOnly':True,'affectsForecast':False,
+                'status':'SHADOW — not a validated betting forecast'}
     log=list(previous_log or [])
     logged_ids={x.get('gameId') for x in log}
     for g,p in candidates:
@@ -503,6 +519,7 @@ def generate(games,now=None,previous_log=None,pbp_games=None,pbp_meta=None,
           'tacticalValidation':tactical_validation,
           'playerValidation':player_validation,
           'qbValidation':qb_validation,
+          'challengerValidation':challenger_validation,
           'tacticalSource':pbp_meta or {'status':'unavailable','seasons':[]},
           'qbSource':{'status':'loaded' if qb_games else 'unavailable',
                       'games':len(qb_games or {}),'source':'Same nflverse PBP downloaded for tactical engine'},

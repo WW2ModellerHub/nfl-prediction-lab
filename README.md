@@ -209,3 +209,10 @@ The downloaded source is required. In network-restricted environments, `python s
 **Limitations:** This release does **not** fetch UK bookmaker lines automatically and does **not** provide a live NFL feed. It does not estimate historical betting ROI from closing odds or apply unvalidated player effects. GitHub Pages is public, and browser-local bet records must be exported for backups. Source freshness depends on nflverse releases. The first production GitHub Actions run and parity check have not been performed in this environment due to blocked network access.
 
 
+
+
+## Research extensions (November 2026)
+- Optional **nflreadpy** (MIT code; nflverse/PFR snap datasets CC BY 4.0) supplies prior-game snap-share context for media injury-watch players. No absent player or starter assumption is made.
+- Optional **XGBoost** (Apache-2.0) trains a shadow multifeature challenger on strictly previous seasons, with 2024/25 out-of-time Brier comparisons. No closing odds or postgame data are used as inputs.
+- **Shadow model forecasts never replace the primary Elo/scoring probabilities** or historical recorded picks, even if the retrospective evaluation looks promising. They require separate prospective evaluation.
+- Missing optional sources are surfaced in data metadata, not zero-valued factual claims.
