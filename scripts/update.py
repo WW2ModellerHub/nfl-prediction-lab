@@ -121,6 +121,9 @@ def update(schedules_only=False,schedules_file=None):
     else:
         pbp,loaded,errors=load_nflverse_pbp(range(max(2023,current-3),current+1),qb_sink=qb_plays)
         injuries,depth,player_meta=load_historical_reports(current)
+    # Forecast timestamp must follow all source fetches. Otherwise a new undated
+    # injury snapshot appears to come from the future and is incorrectly rejected.
+    now=datetime.now(timezone.utc)
     meta={'status':'loaded' if loaded and not errors else 'partial' if loaded else 'unavailable',
           'seasons':loaded,'errors':errors,'source':'nflverse play_by_play_{year}.parquet'}
     dashboard,log=generate(games,now,log,pbp,meta,qb_games=qb_plays,
