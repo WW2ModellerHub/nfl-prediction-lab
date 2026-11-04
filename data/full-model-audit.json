@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-04T21:13:27.967158+00:00",
+  "generatedAt": "2026-11-04T21:15:03.996982+00:00",
   "status": "production-pipeline-snapshot",
   "source": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-03T01:15:00+00:00",
     "sha256": "8b7c5cda478c5b7da0f8a59b7909c244f6f245414461048b216ec2a712543565",
-    "downloadedAt": "2026-11-04T21:13:21.025535+00:00",
+    "downloadedAt": "2026-11-04T21:14:56.125372+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
@@ -14,7 +14,7 @@
   "latestResultAt": "2026-11-03T01:15:00+00:00",
   "baseline": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-04T21:13:27.967158+00:00",
+    "asOf": "2026-11-04T21:15:03.996982+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -355,7 +355,7 @@
       "2025: ValueError: No timestamped report rows; undated historical records are not backdated"
     ],
     "source": "nflverse dated injuries_{season}.csv",
-    "asOf": "2026-11-04T21:13:23.538057+00:00",
+    "asOf": "2026-11-04T21:14:58.908913+00:00",
     "timestampBasis": "download-observation",
     "records": 2487
   },
@@ -370,12 +370,12 @@
     "records": 1297719
   },
   "additionalInjurySource": {
-    "status": "empty",
+    "status": "loaded",
     "source": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
-    "retrievedAt": "2026-11-04T21:13:27.886920+00:00",
-    "reportCount": 0,
-    "teamsCovered": 0,
-    "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy.",
+    "retrievedAt": "2026-11-04T21:15:03.916345+00:00",
+    "reportCount": 196,
+    "teamsCovered": 32,
+    "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list.",
     "inspection": {
       "groups": 32,
       "items": 800,
