@@ -13,6 +13,7 @@ from pathlib import Path
 from model import read_games,generate
 from tactical import load_nflverse_pbp
 from qb_injuries import load_historical_reports
+from espn_injuries import load as load_espn_injuries
 
 SOURCES=(
     'https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv',
@@ -121,6 +122,9 @@ def update(schedules_only=False,schedules_file=None):
     else:
         pbp,loaded,errors=load_nflverse_pbp(range(max(2023,current-3),current+1),qb_sink=qb_plays)
         injuries,depth,player_meta=load_historical_reports(current)
+    supplemental, supplemental_meta = ({}, {'status':'unavailable','note':'Not fetched on lightweight runs'})
+    if not schedules_only:
+        supplemental,supplemental_meta=load_espn_injuries()
     # Forecast timestamp must follow all source fetches. Otherwise a new undated
     # injury snapshot appears to come from the future and is incorrectly rejected.
     now=datetime.now(timezone.utc)
@@ -131,6 +135,30 @@ def update(schedules_only=False,schedules_file=None):
     if not qb_plays:
         dashboard['qbSource']['status']='schedule-history-only'
         dashboard['qbSource']['source']='Previous recorded starting QB from completed nflverse schedule entries; no PBP statistics'
+    # Additional ESPN injury-watch items are informational, and apply only to
+    # future fixtures. They never become official status or training inputs.
+    if not schedules_only:
+        for g in dashboard.get('nextGames',[]):
+            g['supplementalInjuryWatch']={
+                'away':supplemental.get(g['away'],[])[:12],
+                'home':supplemental.get(g['home'],[])[:12],
+                'status':supplemental_meta['status'],
+                'retrievedAt':supplemental_meta.get('retrievedAt'),
+                'note':supplemental_meta.get('note','')}
+    else:
+        old_map={g['id']:g for g in old_dashboard.get('nextGames',[]) if isinstance(g,dict) and g.get('id')}
+        for g in dashboard.get('nextGames',[]):
+            old=old_map.get(g['id'])
+            prior=(old or {}).get('supplementalInjuryWatch') or {}
+            if old and old.get('kickoff')==g.get('kickoff') and prior.get('status') in ('loaded','cached'):
+                try:
+                    stamp=datetime.fromisoformat(prior.get('retrievedAt','').replace('Z','+00:00'))
+                    if stamp.tzinfo and (now-stamp).total_seconds()<48*3600 and now>=stamp:
+                        g['supplementalInjuryWatch']={**prior,'status':'cached',
+                            'note':'Older ESPN media injury list retained from a full refresh. Not a current injury check.'}
+                        supplemental_meta={**old_dashboard.get('additionalInjurySource',{}),'status':'cached','retrievedAt':stamp.isoformat()}
+                except (ValueError,TypeError):pass
+    dashboard['additionalInjurySource']=supplemental_meta
     dashboard=preserve_recent_player_context(dashboard,old_dashboard,now)
     if dashboard.get('injurySource',{}).get('status')=='snapshot-only':
         dashboard.setdefault('dataWarnings',[]).append('Current-season injury records have no individual report timestamps; displayed only as observed downloaded snapshots, not used for historical model fitting.')
@@ -165,6 +193,7 @@ def update(schedules_only=False,schedules_file=None):
         'qbSource':dashboard.get('qbSource'),
         'injurySource':dashboard.get('injurySource'),
         'depthSource':dashboard.get('depthSource'),
+        'additionalInjurySource':dashboard.get('additionalInjurySource'),
         'forwardPredictions':dashboard.get('forwardPredictions'),
         'forwardPerformance':dashboard.get('forwardPerformance'),
         'warnings':dashboard.get('dataWarnings',[]),
