@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-04T20:34:50.252044+00:00",
+  "generatedAt": "2026-11-04T20:35:43.199816+00:00",
   "status": "production-pipeline-snapshot",
   "source": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-03T01:15:00+00:00",
     "sha256": "b7843121abbe1d8d97c2768724e4c083648a23c8e1b424f266ef297e11efa4f9",
-    "downloadedAt": "2026-11-04T20:34:50.251570+00:00",
+    "downloadedAt": "2026-11-04T20:35:43.199087+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
@@ -14,7 +14,7 @@
   "latestResultAt": "2026-11-03T01:15:00+00:00",
   "baseline": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-04T20:34:50.252044+00:00",
+    "asOf": "2026-11-04T20:35:43.199816+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
