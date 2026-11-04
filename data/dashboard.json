@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-04T21:09:42.719357+00:00",
+  "generatedAt": "2026-11-04T21:10:21.947128+00:00",
   "dataStatus": "ok",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
   "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
@@ -36,7 +36,7 @@
       "model": "Elo + form (research overlays OFF)",
       "odds": null,
       "oddsStatus": "Manual odds only",
-      "injuryStatus": "Undated weekly report (informational only)",
+      "injuryStatus": "Previous report cached; may be outdated",
       "qbIntelligence": {
         "home": {
           "team": "BAL",
@@ -134,10 +134,11 @@
         "home": [],
         "away": [],
         "reportAsOf": "2026-11-04T21:09:38.537967+00:00",
-        "status": "snapshot-only",
+        "status": "snapshot-cached",
         "probabilityWeight": 0,
-        "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
-        "timestampBasis": "download-observation"
+        "note": "Cached from the previous full refresh, not a current injury check. Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
+        "timestampBasis": "download-observation",
+        "cachedFrom": "2026-11-04T21:09:42.719357+00:00"
       },
       "weatherStatus": "Not integrated",
       "simulation": [
@@ -297,7 +298,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_09_CIN_ATL",
@@ -595,7 +603,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_09_CLE_NO",
@@ -901,7 +916,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_09_DAL_IND",
@@ -1207,7 +1229,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_09_DEN_CAR",
@@ -1505,7 +1534,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_09_DET_MIA",
@@ -1794,7 +1830,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_09_LA_WAS",
@@ -2083,7 +2126,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_09_NYG_PHI",
@@ -2389,7 +2439,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_09_NYJ_KC",
@@ -2678,7 +2735,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_09_HOU_LAC",
@@ -2976,7 +3040,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_09_LV_SF",
@@ -3282,7 +3353,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_09_ARI_SEA",
@@ -3588,7 +3666,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_09_GB_NE",
@@ -3886,7 +3971,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_09_TB_CHI",
@@ -4175,7 +4267,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_09_BUF_MIN",
@@ -4464,7 +4563,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_10_WAS_NYG",
@@ -4762,7 +4868,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_10_NE_DET",
@@ -5060,7 +5173,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_10_BUF_NYJ",
@@ -5349,7 +5469,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_10_CAR_NO",
@@ -5655,7 +5782,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_10_HOU_CLE",
@@ -5953,7 +6087,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_10_JAX_TEN",
@@ -6242,7 +6383,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_10_KC_ATL",
@@ -6540,7 +6688,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_10_MIA_IND",
@@ -6838,7 +6993,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_10_MIN_GB",
@@ -7144,7 +7306,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_10_LA_ARI",
@@ -7433,7 +7602,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_10_SEA_LV",
@@ -7722,7 +7898,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_10_SF_DAL",
@@ -8028,7 +8211,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_10_PIT_CIN",
@@ -8317,7 +8507,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_10_LAC_BAL",
@@ -8615,7 +8812,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_11_IND_HOU",
@@ -8929,7 +9133,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_11_ARI_KC",
@@ -9227,7 +9438,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_11_BAL_CAR",
@@ -9533,7 +9751,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_11_JAX_NYG",
@@ -9831,7 +10056,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_11_MIA_BUF",
@@ -10120,7 +10352,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_11_NO_CHI",
@@ -10418,7 +10657,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_11_TB_DET",
@@ -10707,7 +10953,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_11_TEN_DAL",
@@ -11005,7 +11258,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_11_NYJ_LAC",
@@ -11294,7 +11554,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_11_LV_DEN",
@@ -11592,7 +11859,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     },
     {
       "id": "2026_11_PIT_PHI",
@@ -11881,7 +12155,14 @@
           "name": "Slower game",
           "text": "Fewer possessions would reduce scoring opportunities for both teams and produce a tighter distribution."
         }
-      ]
+      ],
+      "supplementalInjuryWatch": {
+        "away": [],
+        "home": [],
+        "status": "empty",
+        "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+        "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+      }
     }
   ],
   "recentResults": [
@@ -20994,7 +21275,7 @@
   },
   "historicalAudit": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-04T21:09:42.719357+00:00",
+    "asOf": "2026-11-04T21:10:21.947128+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -21722,7 +22003,7 @@
     "source": "Same nflverse PBP downloaded for tactical engine"
   },
   "injurySource": {
-    "status": "snapshot-only",
+    "status": "cached",
     "loadedSeasons": [],
     "snapshotSeasons": [
       2026
@@ -21733,7 +22014,9 @@
     "source": "nflverse dated injuries_{season}.csv",
     "asOf": "2026-11-04T21:09:38.537967+00:00",
     "timestampBasis": "download-observation",
-    "records": 2487
+    "records": 2487,
+    "cachedFrom": "2026-11-04T21:09:42.719357+00:00",
+    "notes": "Cached previous verified full refresh; no new feed data fetched"
   },
   "depthSource": {
     "status": "loaded",
@@ -21762,13 +22045,21 @@
     "No coverage scheme data (man/zone) connected",
     "Odds require manual entry",
     "Backtests use score histories; no historical market ROI claimed",
-    "Current-season injury records have no individual report timestamps; displayed only as observed downloaded snapshots, not used for historical model fitting."
+    "QB/tactical/injury context cached from 2026-11-04T21:09:42.719357+00:00; player reports are not live and may have changed."
   ],
+  "additionalInjurySource": {
+    "status": "empty",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+    "retrievedAt": "2026-11-04T21:10:21.891697+00:00",
+    "reportCount": 0,
+    "teamsCovered": 0,
+    "note": "No recent, dated injury observations passed validation; this does not mean all teams are healthy."
+  },
   "dataProvenance": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-03T01:15:00+00:00",
     "sha256": "8b7c5cda478c5b7da0f8a59b7909c244f6f245414461048b216ec2a712543565",
-    "downloadedAt": "2026-11-04T21:09:36.216835+00:00",
+    "downloadedAt": "2026-11-04T21:10:15.282704+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
