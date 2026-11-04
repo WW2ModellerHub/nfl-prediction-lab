@@ -83,7 +83,7 @@ def preserve_recent_player_context(dashboard, previous, now):
             if old_tac.get('status') in ('ready','insufficient'):
                 game['tactical']={**old_tac,'cachedFrom':previous_time.isoformat()}
                 preserved.add('tactical')
-        if dashboard.get('injurySource',{}).get('status') not in ('loaded','partial'):
+        if dashboard.get('injurySource',{}).get('status') not in ('loaded','partial','snapshot-only'):
             old_inj=old.get('injuryIntelligence') or {}
             if old_inj.get('status') in ('reported','snapshot-only'):
                 game['injuryIntelligence']={**old_inj,'status':'snapshot-cached' if old_inj.get('status')=='snapshot-only' else 'reported-cached',
