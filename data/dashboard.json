@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-04T20:57:44.597921+00:00",
+  "generatedAt": "2026-11-04T20:59:03.098369+00:00",
   "dataStatus": "ok",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
   "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
@@ -20993,7 +20993,7 @@
   },
   "historicalAudit": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-04T20:57:44.597921+00:00",
+    "asOf": "2026-11-04T20:59:03.098369+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -21724,8 +21724,8 @@
     "status": "unavailable",
     "loadedSeasons": [],
     "errors": [
-      "2025: ValueError: No parsed injury dates: sample=None; columns=['season', 'season_type', 'game_type', 'team', 'week', 'gsis_id']",
-      "2026: ValueError: No parsed injury dates: sample=None; columns=['season', 'season_type', 'game_type', 'team', 'week', 'gsis_id']"
+      "2025: ValueError: Injury dates unavailable: date_col=False; date_sample=None; fieldnames=['season', 'season_type', 'game_type', 'team', 'week', 'gsis_id', 'position', 'full_name', 'first_name', 'last_name', 'report_primary_injury', 'report_secondary_injury', 'report_status', 'practice_primary_injury', 'practice_secondary_injury', 'practice_status']",
+      "2026: ValueError: Injury dates unavailable: date_col=False; date_sample=None; fieldnames=['season', 'season_type', 'game_type', 'team', 'week', 'gsis_id', 'position', 'full_name', 'first_name', 'last_name', 'report_primary_injury', 'report_secondary_injury', 'report_status', 'practice_primary_injury', 'practice_secondary_injury', 'practice_status']"
     ],
     "source": "nflverse dated injuries_{season}.csv",
     "records": 0
@@ -21762,7 +21762,7 @@
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-03T01:15:00+00:00",
     "sha256": "239ad19b914eeff0c44f7ca51ada1d137b90b7f7c2b56106fb02b40f1b4e7506",
-    "downloadedAt": "2026-11-04T20:57:44.593362+00:00",
+    "downloadedAt": "2026-11-04T20:59:03.091144+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
