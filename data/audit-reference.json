@@ -1,0 +1,36 @@
+{
+  "status": "independent-provisional-snapshot",
+  "reference": true,
+  "asOf": "2026-11-03T21:20:00+00:00",
+  "source": "nflverse/nfldata, data/games.csv, master blob 3d3b829250f37cb01dcd33c9725a367e639f057b",
+  "sourceUrl": "https://github.com/nflverse/nfldata/blob/master/data/games.csv",
+  "method": "Independent JavaScript reproduction of the Python Elo + scoring-form formula from 2016 onwards, using chronological historical results; re-run full Python pipeline for final parity.",
+  "sample": "2024-2026 completed games through 3 Nov 2026; tied games excluded from two-way comparisons",
+  "model": "Historical Elo + scoring-form baseline only; research overlays not included",
+  "marketDefinition": "Retrospective closing American moneyline, converted to no-vig two-way probability",
+  "marketIsPregameSnapshot": false,
+  "clvAvailable": false,
+  "ukBookmakersCovered": false,
+  "overall": {
+    "completedGames": 690,
+    "ties": 2,
+    "baseline": {"games": 688, "accuracy": 0.664, "brier": 0.2214, "logLoss": 0.633},
+    "market": {"games": 688, "accuracy": 0.679, "brier": 0.2094, "logLoss": 0.6063},
+    "baselineOnMarketMatchedGames": {"games": 688, "accuracy": 0.664, "brier": 0.2214, "logLoss": 0.633},
+    "marketCoverage": 688,
+    "modelMinusMarketBrier": 0.0120,
+    "modelMinusMarketBrier95CI": null
+  },
+  "seasons": [
+    {"season": 2024, "completedGames": 285,"ties": 0,"baseline": {"games": 285,"accuracy": 0.677,"brier": 0.2156,"logLoss": 0.6206},"market": {"games": 285,"accuracy": 0.708,"brier": 0.2010,"logLoss": 0.5892},"marketCoverage": 285,"modelMinusMarketBrier": 0.0146},
+    {"season": 2025, "completedGames": 285,"ties": 1,"baseline": {"games": 284,"accuracy": 0.665,"brier": 0.2243,"logLoss": 0.6390},"market": {"games": 284,"accuracy": 0.661,"brier": 0.2109,"logLoss": 0.6070},"marketCoverage": 284,"modelMinusMarketBrier": 0.0134},
+    {"season": 2026, "completedGames": 120,"ties": 1,"baseline": {"games": 119,"accuracy": 0.630,"brier": 0.2285,"logLoss": 0.6480},"market": {"games": 119,"accuracy": 0.655,"brier": 0.2259,"logLoss": 0.6457},"marketCoverage": 119,"modelMinusMarketBrier": 0.0026}
+  ],
+  "notes": [
+    "Preliminary independent historical reconstruction. Live workflow must reproduce figures before treating it as the official Python audit.",
+    "Closing odds are historical retrospective benchmarks, not bettable UK prices at the time predictions were made.",
+    "The selected data source and results are pinned to the source blob as of 3 Nov 2026; reference figures do not automatically refresh.",
+    "No model profitability, point-in-time bookmaker ROI or closing-line value has been demonstrated.",
+    "The advanced tactical, situational, and player validation gates were not included in this independent reproduction."
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "status": "awaiting-first-verified-production-run",
+  "chosenOverlay": "none",
+  "warnings": [
+    "No external NFL schedule download was possible within the local build environment.",
+    "Published frozen research evidence is in situational-research.json. This is not a production audit.",
+    "Tactical and player impact validation require actual timestamped datasets."
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": null,
+  "dataStatus": "unavailable",
+  "source": "Awaiting first verified nflverse refresh",
+  "nextGames": [],
+  "recentResults": [],
+  "performance": {
+    "count": 0
+  },
+  "recentPerformance": {
+    "count": 0
+  },
+  "forwardPerformance": {
+    "count": 0
+  },
+  "powerRankings": [],
+  "situationalStats": [],
+  "situationalValidation": null,
+  "forwardPredictions": 0,
+  "dataWarnings": [
+    "Run python scripts/update.py or the GitHub Actions workflow to fetch genuine NFL schedules; no placeholder predictions are published"
+  ]
+}

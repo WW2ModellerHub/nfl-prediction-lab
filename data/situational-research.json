@@ -1,0 +1,185 @@
+{
+  "status": "independent-research-reconstruction",
+  "publishedDate": "2026-11-04",
+  "source": "nflverse/nfldata data/games.csv, pinned blob 3d3b829250f37cb01dcd33c9725a367e639f057b",
+  "sourceUrl": "https://github.com/nflverse/nfldata/blob/master/data/games.csv",
+  "latestObservedFinalDate": "2026-11-01",
+  "method": "Independent JavaScript reproduction of Elo+form baseline with pre-kickoff situational feature construction; a six-feature penalised logistic residual model (L2 penalty 12) trained on 2016-2023, assessed on 2024-2025 and observed 2026 games. Not the production Python validation code or a live feed.",
+  "trainYears": "2016\u20132023",
+  "selectionYears": "2024\u20132025",
+  "researchTestYear": "2026 partial",
+  "trainingGames": 2182,
+  "selectionGames": 569,
+  "holdoutGames": 688,
+  "gate": {
+    "enabled": false,
+    "reason": "No improvement on 2024 and 2025; pooled 2024\u201325 Brier worsens by 0.00081. This particular research model must not change win probabilities.",
+    "rule": "Both 2024 and 2025 Brier improve, pooled gain at least 0.001 and sample 350+"
+  },
+  "accuracyUnit": "Fraction of non-tied games predicted correctly",
+  "evaluation": {
+    "n": 688,
+    "baseline": {
+      "accuracy": 0.6642,
+      "brier": 0.22144,
+      "logLoss": 0.63295
+    },
+    "situational": {
+      "accuracy": 0.6555,
+      "brier": 0.22161,
+      "logLoss": 0.63331
+    },
+    "closingMarket": {
+      "accuracy": 0.6788,
+      "brier": 0.20939,
+      "logLoss": 0.60632
+    }
+  },
+  "selection": {
+    "n": 569,
+    "baselineBrier": 0.21995,
+    "situationalBrier": 0.22076,
+    "closingMarketBrier": 0.20593,
+    "situationalMinusBaselineBrier": 0.00081
+  },
+  "seasonResults": [
+    {
+      "season": 2024,
+      "n": 285,
+      "baselineAccuracy": 0.6772,
+      "baselineBrier": 0.21562,
+      "situationalAccuracy": 0.6702,
+      "situationalBrier": 0.21623,
+      "closingMarketBrier": 0.20097
+    },
+    {
+      "season": 2025,
+      "n": 284,
+      "baselineAccuracy": 0.6655,
+      "baselineBrier": 0.22431,
+      "situationalAccuracy": 0.6479,
+      "situationalBrier": 0.22529,
+      "closingMarketBrier": 0.21091
+    },
+    {
+      "season": 2026,
+      "n": 119,
+      "baselineAccuracy": 0.6303,
+      "baselineBrier": 0.22852,
+      "situationalAccuracy": 0.6387,
+      "situationalBrier": 0.22569,
+      "closingMarketBrier": 0.2259
+    }
+  ],
+  "strategySignals": [
+    {
+      "id": "empty_tank",
+      "name": "Empty Tank+",
+      "train": [
+        88,
+        82,
+        4
+      ],
+      "test": [
+        29,
+        22,
+        1
+      ],
+      "trainATSPct": 51.8,
+      "testATSPct": 56.9,
+      "coefficient": 0.05573
+    },
+    {
+      "id": "thursday_road_ot",
+      "name": "Thursday Road OT",
+      "train": [
+        5,
+        1,
+        0
+      ],
+      "test": [
+        3,
+        2,
+        0
+      ],
+      "trainATSPct": 83.3,
+      "testATSPct": 60.0,
+      "coefficient": 0.09703
+    },
+    {
+      "id": "blowout_bounce",
+      "name": "Blowout Bounce",
+      "train": [
+        31,
+        45,
+        1
+      ],
+      "test": [
+        21,
+        10,
+        0
+      ],
+      "trainATSPct": 40.8,
+      "testATSPct": 67.7,
+      "coefficient": -0.20781
+    },
+    {
+      "id": "nuclear_bounce",
+      "name": "Nuclear Bounce",
+      "train": [
+        26,
+        19,
+        2
+      ],
+      "test": [
+        2,
+        4,
+        1
+      ],
+      "trainATSPct": 57.8,
+      "testATSPct": 33.3,
+      "coefficient": 0.04599
+    },
+    {
+      "id": "rest_edge",
+      "name": "Rest Advantage",
+      "train": [
+        244,
+        224,
+        13
+      ],
+      "test": [
+        75,
+        75,
+        2
+      ],
+      "trainATSPct": 52.1,
+      "testATSPct": 50.0,
+      "coefficient": 0.1138
+    },
+    {
+      "id": "repeat_road",
+      "name": "Consecutive Road",
+      "train": [
+        304,
+        310,
+        17
+      ],
+      "test": [
+        111,
+        95,
+        2
+      ],
+      "trainATSPct": 49.5,
+      "testATSPct": 53.9,
+      "coefficient": -0.04015
+    }
+  ],
+  "outstanding": [
+    "Source does not have the latest completed November 2 result in this pinned snapshot; verify freshness on deployment.",
+    "Advanced tactical passing metrics require historical play-by-play and are not audited here.",
+    "Timestamped injury and depth-chart model could not be evaluated from schedules alone.",
+    "The research coefficient fit differs from the actual Python production gate; do not claim code parity.",
+    "No historical UK offered bookmaker odds, no wager return or closing-line value validated."
+  ]
+}

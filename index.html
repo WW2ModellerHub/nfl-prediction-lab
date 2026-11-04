@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a101a" />
+  <meta name="description" content="NFL Prediction Lab: transparent, evidence-led game forecasts, value comparisons and independent model tracking." />
+  <title>NFL Prediction Lab — Command Centre</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">◈</span><div><strong>NFL<span class="brand-accent">LAB</span></strong><small>PREDICTION INTELLIGENCE</small></div></div>
+      <div class="side-label">WORKSPACE</div>
+      <nav id="nav" aria-label="Dashboard navigation">
+        <button class="nav-link active" data-tab="overview"><span>◫</span> Command Centre</button>
+        <button class="nav-link" data-tab="matchups"><span>◇</span> Matchup Intelligence</button>
+        <button class="nav-link" data-tab="tactics"><span>⌖</span> Tactical Radar</button>
+        <button class="nav-link" data-tab="players"><span>♙</span> QB & Injury Radar</button>
+        <button class="nav-link" data-tab="impact"><span>⚑</span> Player Impact Lab</button>
+        <button class="nav-link" data-tab="radar"><span>◎</span> Upset & Value Radar</button>
+        <button class="nav-link" data-tab="performance"><span>▥</span> Performance Tracker</button>
+        <button class="nav-link" data-tab="audit"><span>◴</span> Market Reality Check</button>
+        <button class="nav-link" data-tab="evidence"><span>⌁</span> Situational Evidence</button>
+        <button class="nav-link" data-tab="models"><span>∿</span> Model Laboratory</button>
+        <button class="nav-link" data-tab="bets"><span>▤</span> My Bet Ledger</button>
+      </nav>
+      <div class="sidebar-bottom"><span class="live-dot"></span><span>RESEARCH VALIDATION v1.7</span><small>FREE / PERSONAL BUILD</small></div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar">
+        <div class="topbar-left"><button id="mobileMenu" class="mobile-menu" aria-label="Toggle navigation">☰</button><div class="breadcrumb">NFL PREDICTION LAB <span>/</span> <strong id="breadcrumb">COMMAND CENTRE</strong></div></div>
+        <div class="topbar-right"><span class="meta-chip" id="dataAge">AWAITING DATA</span><span class="avatar">NL</span></div>
+      </header>
+      <main class="main" id="content" tabindex="-1">
+        <section class="hero">
+          <div><div class="eyebrow"><span class="tiny-dot"></span> THE EDGE IS IN THE EVIDENCE</div><h1 id="pageTitle">Command Centre<span class="title-dot">.</span></h1><p id="pageIntro">Every matchup. Every probability. Every prediction accountable.</p></div>
+          <div class="hero-actions"><button class="btn btn-secondary" id="exportBtn">↓ Export ledger</button><button class="btn btn-primary" id="refreshBtn">↻ Refresh data</button></div>
+        </section>
+        <section id="appContent" aria-live="polite"></section>
+        <footer>DATA <a href="https://github.com/nflverse/nflverse-data" target="_blank" rel="noopener">nflverse</a> (CC BY 4.0) · Independent statistical research · Not a bookmaker · Past results do not guarantee future outcomes.<br/>QB and injury reports are dated observations, not confirmed gameday availability; player impact requires historic research validation. Live feeds, automated UK odds and player props are not connected. All local bets are stored only in this browser.</footer>
+      </main>
+    </div>
+  </div>
+  <dialog id="gameDialog" class="game-dialog"><div id="dialogContent"></div></dialog>
+  <dialog id="oddsDialog" class="small-dialog"><form method="dialog" id="oddsForm"><div id="oddsContent"></div></form></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

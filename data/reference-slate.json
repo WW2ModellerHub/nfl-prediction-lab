@@ -1,0 +1,17 @@
+[
+ {"id":"2026_09_JAX_BAL","day":"2026-11-05","time":"20:15","away":"JAX","home":"BAL","p":0.4702,"margin":-2.5,"total":45.9},
+ {"id":"2026_09_CIN_ATL","day":"2026-11-08","time":"09:30","away":"CIN","home":"ATL","p":0.4044,"margin":-3.0,"total":47.6},
+ {"id":"2026_09_CLE_NO","day":"2026-11-08","time":"13:00","away":"CLE","home":"NO","p":0.5308,"margin":2.0,"total":42.7},
+ {"id":"2026_09_DAL_IND","day":"2026-11-08","time":"13:00","away":"DAL","home":"IND","p":0.5176,"margin":-0.2,"total":48.9},
+ {"id":"2026_09_DEN_CAR","day":"2026-11-08","time":"13:00","away":"DEN","home":"CAR","p":0.3611,"margin":-2.4,"total":45.2},
+ {"id":"2026_09_DET_MIA","day":"2026-11-08","time":"13:00","away":"DET","home":"MIA","p":0.3701,"margin":-2.8,"total":46.7},
+ {"id":"2026_09_LA_WAS","day":"2026-11-08","time":"13:00","away":"LA","home":"WAS","p":0.4356,"margin":-1.1,"total":45.9},
+ {"id":"2026_09_NYG_PHI","day":"2026-11-08","time":"13:00","away":"NYG","home":"PHI","p":0.5933,"margin":0.8,"total":44.7},
+ {"id":"2026_09_NYJ_KC","day":"2026-11-08","time":"13:00","away":"NYJ","home":"KC","p":0.7659,"margin":7.0,"total":43.9},
+ {"id":"2026_09_HOU_LAC","day":"2026-11-08","time":"16:05","away":"HOU","home":"LAC","p":0.4653,"margin":-1.3,"total":42.5},
+ {"id":"2026_09_LV_SF","day":"2026-11-08","time":"16:05","away":"LV","home":"SF","p":0.7640,"margin":7.0,"total":50.2},
+ {"id":"2026_09_ARI_SEA","day":"2026-11-08","time":"16:25","away":"ARI","home":"SEA","p":0.8020,"margin":9.4,"total":46.1},
+ {"id":"2026_09_GB_NE","day":"2026-11-08","time":"16:25","away":"GB","home":"NE","p":0.6215,"margin":3.3,"total":43.0},
+ {"id":"2026_09_TB_CHI","day":"2026-11-08","time":"20:20","away":"TB","home":"CHI","p":0.6484,"margin":3.0,"total":43.1},
+ {"id":"2026_09_BUF_MIN","day":"2026-11-09","time":"20:15","away":"BUF","home":"MIN","p":0.5167,"margin":1.1,"total":44.0}
+]
