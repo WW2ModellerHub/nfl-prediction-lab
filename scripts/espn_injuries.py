@@ -8,6 +8,9 @@ import json
 import urllib.request
 from datetime import datetime,timedelta,timezone
 from qb_injuries import dt_value,normalized_team
+from model import TEAM_NAMES
+
+TEAM_NAME_TO_CODE={name.casefold():normalized_team(code) for code,name in TEAM_NAMES.items()}
 
 URL='https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries'
 MAX_AGE_DAYS=35
@@ -26,8 +29,11 @@ def parse(payload,now=None):
     for group in payload['injuries']:
         if not isinstance(group,dict):continue
         teaminfo=group.get('team') or {}
-        if not isinstance(teaminfo,dict):continue
-        team=normalized_team(val(teaminfo.get('abbreviation')))
+        if not isinstance(teaminfo,dict):teaminfo={}
+        team=normalized_team(val(teaminfo.get('abbreviation') or group.get('abbreviation')))
+        if not team:
+            fullname=val(group.get('displayName') or teaminfo.get('displayName'))
+            team=TEAM_NAME_TO_CODE.get(fullname.casefold(),'')
         if not team:continue
         for item in group.get('injuries',[]):
             if not isinstance(item,dict):continue
