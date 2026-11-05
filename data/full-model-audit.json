@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-11-05T20:19:25.914981+00:00",
+  "generatedAt": "2026-11-05T20:42:13.400591+00:00",
   "status": "production-pipeline-snapshot",
   "source": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-03T01:15:00+00:00",
-    "sha256": "66f7a71b12eeb8da8a5c332cfadb245da693aa66e2064fba734983dc41e68fd5",
-    "downloadedAt": "2026-11-05T20:19:17.391136+00:00",
+    "sha256": "afc82e4a01878643929d879f177b92c85b724a6b2149bafcb5ec746b7d50783e",
+    "downloadedAt": "2026-11-05T20:42:13.390063+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
   },
-  "mode": "full",
+  "mode": "schedules-only",
   "latestResultAt": "2026-11-03T01:15:00+00:00",
   "baseline": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-05T20:19:25.914981+00:00",
+    "asOf": "2026-11-05T20:42:13.400591+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -274,19 +274,11 @@
   "tacticalValidation": {
     "status": "OFF — incremental accuracy unproven",
     "enabled": false,
-    "trainedThroughSeason": 2025,
-    "seasons": [
-      {
-        "season": 2025,
-        "games": 284,
-        "baselineBrier": 0.22431,
-        "adjustedBrier": 0.22426,
-        "brierGain": 5e-05
-      }
-    ],
-    "evaluationGames": 284,
-    "brierGain": 5e-05,
-    "improvingSeasons": 1,
+    "trainedThroughSeason": null,
+    "seasons": [],
+    "evaluationGames": 0,
+    "brierGain": 0,
+    "improvingSeasons": 0,
     "coefficients": {
       "pass_matchup": 0,
       "rush_matchup": 0,
@@ -294,7 +286,7 @@
       "explosive_matchup": 0
     },
     "researchOnly": true,
-    "sampleSize": 806,
+    "sampleSize": 0,
     "notes": "Ablation uses prior-season data only. Evaluation years were used for selection, not an independent blind test."
   },
   "playerValidation": {
@@ -331,27 +323,12 @@
   "qbValidation": {
     "enabled": false,
     "status": "OFF — QB adjustment unproven",
-    "sampleSize": 696,
-    "trainedThroughSeason": 2025,
-    "evaluationGames": 493,
-    "improvingSeasons": 2,
-    "brierGain": 0.00016,
-    "seasons": [
-      {
-        "season": 2024,
-        "games": 240,
-        "baselineBrier": 0.21409,
-        "adjustedBrier": 0.21403,
-        "brierGain": 6e-05
-      },
-      {
-        "season": 2025,
-        "games": 253,
-        "baselineBrier": 0.22121,
-        "adjustedBrier": 0.22095,
-        "brierGain": 0.00025
-      }
-    ],
+    "sampleSize": 0,
+    "trainedThroughSeason": null,
+    "evaluationGames": 0,
+    "improvingSeasons": 0,
+    "brierGain": null,
+    "seasons": [],
     "coefficients": {
       "qb_epa_edge": 0.0,
       "qb_sack_edge": 0.0,
@@ -374,13 +351,13 @@
       "outside-forecast-range": 8
     },
     "errors": [
-      "NAS00: URLError: <urlopen error _ssl.c:994: The handshake operation timed out>"
+      "CLE00: URLError: <urlopen error _ssl.c:994: The handshake operation timed out>"
     ],
-    "asOf": "2026-11-05T20:19:25.914981+00:00"
+    "asOf": "2026-11-05T20:42:13.400591+00:00"
   },
   "chosenOverlay": "none",
   "tacticalSource": {
-    "status": "loaded",
+    "status": "cached",
     "seasons": [
       2023,
       2024,
@@ -388,15 +365,19 @@
       2026
     ],
     "errors": [],
-    "source": "nflverse play_by_play_{year}.parquet"
+    "source": "nflverse play_by_play_{year}.parquet",
+    "cachedFrom": "2026-11-05T20:19:25.914981+00:00",
+    "notes": "Cached previous verified full refresh; no new feed data fetched"
   },
   "qbSource": {
-    "status": "loaded",
+    "status": "cached",
     "games": 976,
-    "source": "Same nflverse PBP downloaded for tactical engine"
+    "source": "Same nflverse PBP downloaded for tactical engine",
+    "cachedFrom": "2026-11-05T20:19:25.914981+00:00",
+    "notes": "Cached previous verified full refresh; no new feed data fetched"
   },
   "injurySource": {
-    "status": "snapshot-only",
+    "status": "cached",
     "loadedSeasons": [],
     "snapshotSeasons": [
       2026
@@ -407,20 +388,16 @@
     "source": "nflverse dated injuries_{season}.csv",
     "asOf": "2026-11-05T20:19:20.085441+00:00",
     "timestampBasis": "download-observation",
-    "records": 2725
+    "records": 2725,
+    "cachedFrom": "2026-11-05T20:19:25.914981+00:00",
+    "notes": "Cached previous verified full refresh; no new feed data fetched"
   },
   "depthSource": {
-    "status": "loaded",
-    "loadedSeasons": [
-      2025,
-      2026
-    ],
-    "errors": [],
-    "source": "nflverse 2025+ timestamped depth_charts_{season}.parquet",
-    "records": 1302365
+    "status": "unavailable",
+    "loadedSeasons": []
   },
   "additionalInjurySource": {
-    "status": "loaded",
+    "status": "cached",
     "source": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
     "retrievedAt": "2026-11-05T20:19:25.835135+00:00",
     "reportCount": 264,
@@ -463,14 +440,9 @@
     }
   },
   "playerUsageSource": {
-    "status": "loaded",
-    "source": "nflverse/PFR snap counts via nflreadpy (attribution: CC BY 4.0)",
-    "seasons": [
-      2025,
-      2026
-    ],
-    "records": 37905,
-    "watchItemsEnriched": 612
+    "status": "cached",
+    "source": "Previous snap-count observation",
+    "note": "Past snap participation carried forward, not a live player availability check"
   },
   "challengerValidation": {
     "status": "validated-research",
@@ -497,26 +469,26 @@
         "season": 2024,
         "games": 285,
         "baselineBrier": 0.21562,
-        "challengerBrier": 0.21194,
-        "brierGain": 0.00368,
+        "challengerBrier": 0.21084,
+        "brierGain": 0.00478,
         "baselineAccuracy": 0.6772,
-        "challengerAccuracy": 0.6807
+        "challengerAccuracy": 0.6877
       },
       {
         "season": 2025,
         "games": 284,
         "baselineBrier": 0.22431,
-        "challengerBrier": 0.22128,
-        "brierGain": 0.00303,
+        "challengerBrier": 0.22166,
+        "brierGain": 0.00265,
         "baselineAccuracy": 0.6655,
-        "challengerAccuracy": 0.6444
+        "challengerAccuracy": 0.6408
       }
     ],
     "note": "Shadow forecasts never change published percentages or picks. Evaluated years are model-selection data, not an independent blind prospective test.",
     "evaluationGames": 569,
     "improvingSeasons": 2,
     "baselineBrier": 0.21996,
-    "challengerBrier": 0.2166,
+    "challengerBrier": 0.21624,
     "candidateQualifiedForFurtherResearch": true,
     "trainSeasons": [
       2016,
@@ -545,13 +517,14 @@
     "No automated player prop feed",
     "QB and injury effects are informational unless the player model passes completed-season validation",
     "No weather adjustments",
-    "Tactical PBP data: loaded",
+    "Tactical PBP data: unavailable",
     "No situational, tactical or player overlay activates without a completed-season validation gate",
     "Pass rush proxy is QB hits/sacks, NOT independently charted pressures",
     "No coverage scheme data (man/zone) connected",
     "Odds require manual entry",
     "Backtests use score histories; no historical market ROI claimed",
-    "Current-season injury records have no individual report timestamps; displayed only as observed downloaded snapshots, not used for historical model fitting."
+    "QB/tactical/injury context cached from 2026-11-05T20:19:25.914981+00:00; player reports are not live and may have changed.",
+    "Lightweight refresh: new tactical, QB statistics and injury updates were not fetched; previous observations may be cached"
   ],
   "disclaimer": "Research validation is not a prospective betting edge. Only timestamped forward picks support forward performance."
 }
