@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-05T20:12:46.067700+00:00",
+  "generatedAt": "2026-11-05T20:19:25.914981+00:00",
   "status": "production-pipeline-snapshot",
   "source": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-03T01:15:00+00:00",
     "sha256": "66f7a71b12eeb8da8a5c332cfadb245da693aa66e2064fba734983dc41e68fd5",
-    "downloadedAt": "2026-11-05T20:12:38.401745+00:00",
+    "downloadedAt": "2026-11-05T20:19:17.391136+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
@@ -14,7 +14,7 @@
   "latestResultAt": "2026-11-03T01:15:00+00:00",
   "baseline": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-05T20:12:46.067700+00:00",
+    "asOf": "2026-11-05T20:19:25.914981+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -361,19 +361,22 @@
     "note": "Pre-kickoff QB observations, completed-season model selection, never postgame QB starters. Gate requires >=2 improving years, 350 test games, >=.001 Brier improvement."
   },
   "weatherSource": {
-    "status": "loaded",
+    "status": "partial",
     "source": "https://api.open-meteo.com/v1/forecast",
     "scope": "Non-commercial venue-area forecast; no probability weight",
     "queriedVenues": 20,
     "statuses": {
-      "forecast": 17,
+      "forecast": 16,
       "roof-unconfirmed": 6,
       "indoor": 8,
+      "unavailable": 1,
       "venue-unmapped": 1,
       "outside-forecast-range": 8
     },
-    "errors": [],
-    "asOf": "2026-11-05T20:12:46.067700+00:00"
+    "errors": [
+      "NAS00: URLError: <urlopen error _ssl.c:994: The handshake operation timed out>"
+    ],
+    "asOf": "2026-11-05T20:19:25.914981+00:00"
   },
   "chosenOverlay": "none",
   "tacticalSource": {
@@ -402,7 +405,7 @@
       "2025: ValueError: No timestamped report rows; undated historical records are not backdated"
     ],
     "source": "nflverse dated injuries_{season}.csv",
-    "asOf": "2026-11-05T20:12:40.642145+00:00",
+    "asOf": "2026-11-05T20:19:20.085441+00:00",
     "timestampBasis": "download-observation",
     "records": 2725
   },
@@ -419,7 +422,7 @@
   "additionalInjurySource": {
     "status": "loaded",
     "source": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
-    "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
+    "retrievedAt": "2026-11-05T20:19:25.835135+00:00",
     "reportCount": 264,
     "teamsCovered": 32,
     "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list.",
