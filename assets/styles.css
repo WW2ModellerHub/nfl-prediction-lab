@@ -147,3 +147,5 @@
  .intel-summary-strip small{font-size:8px}
  .intel-subtle{display:block;margin:3px 0}
 }
+
+.accuracy-title{padding:18px;background:#172b3c;border:1px solid #4d6775;border-radius:12px;margin-bottom:16px}.accuracy-title h2{font-size:20px;margin:0 0 7px}.accuracy-title p,.accuracy-notes{font-size:11px;line-height:1.7;color:#b3c6d2}.accuracy-notes{padding-left:20px}.accuracy-title p{margin:0 0 10px}

@@ -1,3 +1,7 @@
+# v2.0 — Signal Accuracy Lab
+
+The new research tab tests passing, rushing, QB-hit/sack and explosive-play features plus all four combined on identical later-season historical games. Tests use only preceding seasons to fit residual logistic adjustments. It reports Brier, log-loss, accuracy, paired weekly uncertainty ranges and calibration. It does **not** modify production forecasts or prove betting profitability. Historical comparison years may have influenced model research, so this is not untouched blind validation. See `scripts/signal_accuracy.py` and `tests/test_signal_accuracy.py`.
+
 # Version 1.9 · Matchup Intelligence and Upset Routes
 
 The full matchup now shows evidence-led reasons for both the model favourite and underdog. It compares offensive performance with the specific opponent's historical defensive performance using pregame play-by-play (when loaded), outlines monitored QB and injury availability issues with dated sources, and shows underdog tactical/situational evidence in the Upset Radar. This layer NEVER alters published probabilities or invents player points. See `assets/matchup-intelligence.js` and `tests/intelligence-smoke.cjs`.

@@ -27,6 +27,7 @@ from tactical_validation import FEATURES as TACTICAL_FEATURES, validate as valid
 from audit import build_audit
 from shadow_ensemble import vector as challenger_vector,run as run_challenger
 from qb_validation import FEATURES as QB_FEATURES, snapshot as qb_snapshot, validate as validate_qb, predict as predict_qb
+from signal_accuracy import evaluate as accuracy_audit
 
 TEAM_NAMES = {
  'ARI':'Arizona Cardinals','ATL':'Atlanta Falcons','BAL':'Baltimore Ravens','BUF':'Buffalo Bills',
@@ -381,7 +382,7 @@ def generate(games,now=None,previous_log=None,pbp_games=None,pbp_meta=None,
                                            'features':feature_vector(p['situation']),
                                            'y':1 if game['home_score']>game['away_score'] else 0})
                 if p['tactical'].get('status')=='ready' and game['home_score']!=game['away_score']:
-                    tactical_rows.append({'season':game['season'],'p':p['home_probability'],
+                    tactical_rows.append({'season':game['season'],'week':game['week'],'p':p['home_probability'],
                                          'features':p['tactical']['features'],
                                          'y':1 if game['home_score']>game['away_score'] else 0})
                 if game['home_score']!=game['away_score']:
@@ -407,6 +408,9 @@ def generate(games,now=None,previous_log=None,pbp_games=None,pbp_meta=None,
     # Current-season scores are deliberately unavailable to the overlay trainer.
     validation=validate(situation_rows,current)
     tactical_validation=validate_tactical(tactical_rows,current)
+    signal_audit=accuracy_audit(tactical_rows,current)
+    signal_audit['generatedAt']=now.isoformat()
+    signal_audit['sourceStatus']=(pbp_meta or {}).get('status','unavailable')
     player_validation=validate_player(player_rows,current)
     qb_validation=validate_qb(qb_rows,current)
     # XGBoost challenger: research only, never a live overlay or bet input.
@@ -517,6 +521,7 @@ def generate(games,now=None,previous_log=None,pbp_games=None,pbp_meta=None,
           'forwardPredictions':len(log),'powerRankings':ranks,'situationalStats':summarize_signals(strategy_history),
           'situationalValidation':validation,
           'tacticalValidation':tactical_validation,
+          'signalAccuracyLab':signal_audit,
           'playerValidation':player_validation,
           'qbValidation':qb_validation,
           'challengerValidation':challenger_validation,

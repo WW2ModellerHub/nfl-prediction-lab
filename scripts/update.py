@@ -220,6 +220,15 @@ def update(schedules_only=False,schedules_file=None):
     dashboard['playerUsageSource']=snap_meta
     record_shadow_predictions(dashboard,games,now)
     dashboard=preserve_recent_player_context(dashboard,old_dashboard,now)
+    # Schedules-only refresh cannot recompute historical play-by-play accuracy.
+    if schedules_only:
+        old_lab=old_dashboard.get('signalAccuracyLab') or {}
+        if old_lab.get('evaluatedGames',0)>0 and not dashboard.get('signalAccuracyLab',{}).get('evaluatedGames'):
+            dashboard['signalAccuracyLab']={**old_lab,
+                'status':'cached historical research — not recalculated',
+                'cachedAt':now.isoformat(),
+                'notes':list(old_lab.get('notes') or [])+
+                    ['This historical research was retained from a previous full PBP refresh.']}
     # Independent, public area forecast only: never changes win percentages.
     # Every fixture records the roof status, horizon and source availability.
     dashboard['weatherSource']=enrich_weather(dashboard.get('nextGames',[]),now)
@@ -251,6 +260,7 @@ def update(schedules_only=False,schedules_file=None):
         'baseline':dashboard.get('historicalAudit'),
         'situationalValidation':dashboard.get('situationalValidation'),
         'tacticalValidation':dashboard.get('tacticalValidation'),
+        'signalAccuracyLab':dashboard.get('signalAccuracyLab'),
         'playerValidation':dashboard.get('playerValidation'),
         'qbValidation':dashboard.get('qbValidation'),
         'weatherSource':dashboard.get('weatherSource'),

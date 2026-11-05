@@ -1,3 +1,11 @@
+## v2.0 — 5 November 2026
+
+- Added research-only five-way historical matchup signal ablation, with season-forward training and matched Brier comparisons.
+- Added independent season-week block intervals, log-loss, accuracy and probability calibration bins.
+- All results research-only; new signals have zero live forecasting weight.
+- Schedule-only refreshes retain previous accuracy audit with explicit cached label; full refresh recalculates.
+- Added dashboard tab, model-registry entry, provenance and leakage regression tests.
+
 ## v1.9 — 5 November 2026 — Matchup Intelligence & Upset Routes
 
 - Added `assets/matchup-intelligence.js`, a reusable pure explainability engine that never modifies published win percentages.
