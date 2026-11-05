@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-05T16:58:53.103745+00:00",
+  "generatedAt": "2026-11-05T17:00:53.582021+00:00",
   "dataStatus": "ok",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
   "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
@@ -152,7 +152,7 @@
             "injury": "Knee",
             "starterOnDepthChart": true,
             "severity": 3,
-            "reportAsOf": "2026-11-05T16:58:47.454228+00:00"
+            "reportAsOf": "2026-11-05T17:00:45.129113+00:00"
           },
           {
             "name": "Lamar Jackson",
@@ -163,7 +163,7 @@
             "injury": "Thumb",
             "starterOnDepthChart": false,
             "severity": 3,
-            "reportAsOf": "2026-11-05T16:58:47.454228+00:00"
+            "reportAsOf": "2026-11-05T17:00:45.129113+00:00"
           },
           {
             "name": "Tyler Huntley",
@@ -174,7 +174,7 @@
             "injury": "Toe",
             "starterOnDepthChart": false,
             "severity": 3,
-            "reportAsOf": "2026-11-05T16:58:47.454228+00:00"
+            "reportAsOf": "2026-11-05T17:00:45.129113+00:00"
           },
           {
             "name": "Nate Wiggins",
@@ -185,7 +185,7 @@
             "injury": "Stinger",
             "starterOnDepthChart": true,
             "severity": 1,
-            "reportAsOf": "2026-11-05T16:58:47.454228+00:00"
+            "reportAsOf": "2026-11-05T17:00:45.129113+00:00"
           },
           {
             "name": "Adam Randall",
@@ -196,7 +196,7 @@
             "injury": "Neck",
             "starterOnDepthChart": false,
             "severity": 1,
-            "reportAsOf": "2026-11-05T16:58:47.454228+00:00"
+            "reportAsOf": "2026-11-05T17:00:45.129113+00:00"
           }
         ],
         "away": [
@@ -209,7 +209,7 @@
             "injury": "Rib",
             "starterOnDepthChart": true,
             "severity": 1,
-            "reportAsOf": "2026-11-05T16:58:47.454228+00:00"
+            "reportAsOf": "2026-11-05T17:00:45.129113+00:00"
           },
           {
             "name": "Bhayshul Tuten",
@@ -220,10 +220,10 @@
             "injury": "Ankle",
             "starterOnDepthChart": true,
             "severity": 1,
-            "reportAsOf": "2026-11-05T16:58:47.454228+00:00"
+            "reportAsOf": "2026-11-05T17:00:45.129113+00:00"
           }
         ],
-        "reportAsOf": "2026-11-05T16:58:47.454228+00:00",
+        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -554,7 +554,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -566,11 +566,11 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-06T01:00:00+00:00",
-        "temperatureC": 20.1,
-        "precipitationChancePct": 18.0,
-        "windMph": 3.1,
+        "temperatureC": 19.4,
+        "precipitationChancePct": 17.0,
+        "windMph": 2.1,
         "gustMph": 15.7,
         "snowfallCm": 0.0
       }
@@ -714,7 +714,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T16:58:47.454228+00:00",
+        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -1146,7 +1146,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -1158,7 +1158,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-08T14:00:00+00:00",
         "temperatureC": 16.4,
         "precipitationChancePct": 13.0,
@@ -1307,7 +1307,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T16:58:47.454228+00:00",
+        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -1799,7 +1799,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -1954,7 +1954,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T16:58:47.454228+00:00",
+        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -2428,7 +2428,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -2440,7 +2440,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-08T18:00:00+00:00",
         "temperatureC": 13.5,
         "precipitationChancePct": 0.0,
@@ -2589,7 +2589,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T16:58:47.454228+00:00",
+        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -3063,7 +3063,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -3075,7 +3075,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-08T18:00:00+00:00",
         "temperatureC": 17.4,
         "precipitationChancePct": 0.0,
@@ -3223,7 +3223,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T16:58:47.454228+00:00",
+        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -3780,7 +3780,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -3792,7 +3792,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-08T18:00:00+00:00",
         "temperatureC": 28.0,
         "precipitationChancePct": 10.0,
@@ -3940,7 +3940,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T16:58:47.454228+00:00",
+        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -4497,7 +4497,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -4509,7 +4509,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-08T18:00:00+00:00",
         "temperatureC": 16.1,
         "precipitationChancePct": 0.0,
@@ -4653,7 +4653,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T16:58:47.454228+00:00",
+        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -5171,7 +5171,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -5183,7 +5183,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-08T18:00:00+00:00",
         "temperatureC": 14.9,
         "precipitationChancePct": 1.0,
@@ -5331,7 +5331,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T16:58:47.454228+00:00",
+        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -5806,7 +5806,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -5818,7 +5818,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-08T18:00:00+00:00",
         "temperatureC": 16.7,
         "precipitationChancePct": 0.0,
@@ -5966,7 +5966,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T16:58:47.454228+00:00",
+        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -6458,7 +6458,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -6613,7 +6613,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T16:58:47.454228+00:00",
+        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -7097,7 +7097,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -7109,7 +7109,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-08T21:00:00+00:00",
         "temperatureC": 22.6,
         "precipitationChancePct": 0.0,
@@ -7253,7 +7253,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T16:58:47.454228+00:00",
+        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -7799,7 +7799,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -7811,7 +7811,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-08T21:00:00+00:00",
         "temperatureC": 13.6,
         "precipitationChancePct": 14.0,
@@ -7959,7 +7959,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T16:58:47.454228+00:00",
+        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -8505,7 +8505,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -8517,7 +8517,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-08T21:00:00+00:00",
         "temperatureC": 8.6,
         "precipitationChancePct": 3.0,
@@ -8665,7 +8665,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T16:58:47.454228+00:00",
+        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -9068,7 +9068,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -9080,7 +9080,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-09T01:00:00+00:00",
         "temperatureC": 12.4,
         "precipitationChancePct": 0.0,
@@ -9558,7 +9558,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -10214,7 +10214,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -10226,7 +10226,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-13T01:00:00+00:00",
         "temperatureC": 4.9,
         "precipitationChancePct": 11.0,
@@ -10948,7 +10948,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -11551,7 +11551,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -11563,7 +11563,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-15T18:00:00+00:00",
         "temperatureC": 11.0,
         "precipitationChancePct": 5.0,
@@ -12221,7 +12221,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -12831,7 +12831,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -13396,7 +13396,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -13408,7 +13408,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-15T18:00:00+00:00",
         "temperatureC": 12.3,
         "precipitationChancePct": 4.0,
@@ -13988,7 +13988,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -14000,7 +14000,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-15T18:00:00+00:00",
         "temperatureC": 13.7,
         "precipitationChancePct": 4.0,
@@ -14606,7 +14606,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -14618,7 +14618,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-15T18:00:00+00:00",
         "temperatureC": 10.6,
         "precipitationChancePct": 5.0,
@@ -15176,7 +15176,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -15188,7 +15188,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-15T18:00:00+00:00",
         "temperatureC": 10.5,
         "precipitationChancePct": 2.0,
@@ -15871,7 +15871,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -16490,7 +16490,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -17236,7 +17236,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -17248,7 +17248,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-15T21:00:00+00:00",
         "temperatureC": 12.3,
         "precipitationChancePct": 8.0,
@@ -17789,7 +17789,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -17801,7 +17801,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-16T01:00:00+00:00",
         "temperatureC": 6.2,
         "precipitationChancePct": 6.0,
@@ -18411,7 +18411,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -18423,7 +18423,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-17T01:00:00+00:00",
         "temperatureC": 10.7,
         "precipitationChancePct": 3.0,
@@ -18963,7 +18963,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -18975,7 +18975,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T16:58:53.103745+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
         "forecastFor": "2026-11-20T01:00:00+00:00",
         "temperatureC": 22.2,
         "precipitationChancePct": 34.0,
@@ -19585,7 +19585,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -20191,7 +20191,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -20747,7 +20747,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -21368,7 +21368,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -21970,7 +21970,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -22591,7 +22591,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -23291,7 +23291,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -23992,7 +23992,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -24530,7 +24530,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -25127,7 +25127,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -34704,7 +34704,7 @@
   },
   "historicalAudit": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-05T16:58:53.103745+00:00",
+    "asOf": "2026-11-05T17:00:53.582021+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -35524,7 +35524,7 @@
       "2025: ValueError: No timestamped report rows; undated historical records are not backdated"
     ],
     "source": "nflverse dated injuries_{season}.csv",
-    "asOf": "2026-11-05T16:58:47.454228+00:00",
+    "asOf": "2026-11-05T17:00:45.129113+00:00",
     "timestampBasis": "download-observation",
     "records": 2725
   },
@@ -35560,7 +35560,7 @@
   "additionalInjurySource": {
     "status": "loaded",
     "source": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
-    "retrievedAt": "2026-11-05T16:58:53.024719+00:00",
+    "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
     "reportCount": 265,
     "teamsCovered": 32,
     "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list.",
@@ -35634,13 +35634,13 @@
     "errors": [
       "CLE00: URLError: <urlopen error _ssl.c:994: The handshake operation timed out>"
     ],
-    "asOf": "2026-11-05T16:58:53.103745+00:00"
+    "asOf": "2026-11-05T17:00:53.582021+00:00"
   },
   "dataProvenance": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-03T01:15:00+00:00",
     "sha256": "c8b5be71e93c96d9b52765d7edf64a50120270d3b5216df094d2e7a28212404c",
-    "downloadedAt": "2026-11-05T16:58:44.709030+00:00",
+    "downloadedAt": "2026-11-05T17:00:41.378690+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
