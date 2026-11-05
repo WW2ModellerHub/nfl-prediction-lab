@@ -1,3 +1,12 @@
+## v1.8 — 5 November 2026 — Full Matchup navigation
+
+- Fixture rows now open a dedicated, mobile-friendly full matchup page rather than relying on a modal.
+- Bookmarkable direct links use `#game=<fixture-id>`; browser Back/Forward and tab links return to the correct dashboard view.
+- Matchup pages include win probabilities, simulated margin assumptions, QB and injury evidence, tactical and situational details, source coverage, model gates, scenarios, and manual odds comparison.
+- Added adjacent-fixture navigation, a copy-link control and an optional legacy modal.
+- Missing or expired fixture IDs return a clear explanation rather than a blank page.
+- Existing historical model gating and prediction values remain unchanged; no unsupported player or injury adjustments are introduced.
+
 ## v1.7 — 4 November 2026
 
 - Added independent NFL historical situational signal audit against a pinned genuine nflverse schedule archive.

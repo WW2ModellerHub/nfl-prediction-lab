@@ -1,4 +1,4 @@
-/* Regression test: every rendered fixture must open its matchup dossier. */
+/* Regression test: every rendered fixture opens a shareable, full matchup page. */
 const fs=require('node:fs');
 const path=require('node:path');
 const vm=require('node:vm');
@@ -6,12 +6,13 @@ const assert=require('node:assert/strict');
 const source=fs.readFileSync(path.join(__dirname,'..','assets','app.js'),'utf8');
 const marker="window.addEventListener('DOMContentLoaded',start);";
 assert(source.includes(marker),'Dashboard startup signature changed');
-const code=source.replace(marker,'window.__SMOKE__={setData:d=>{store.data=d},handleClick,openGame};'+marker);
-const box={innerHTML:''};
-const dialog={opened:false,showModal(){this.opened=true},close(){this.opened=false}};
-const document={getElementById:id=>id==='dialogContent'?box:id==='gameDialog'?dialog:{}};
-const window={addEventListener(){}};
-vm.runInNewContext(code,{window,document,console,Date,Math,JSON,URL,Intl},{filename:'app.js',timeout:3000});
+const code=source.replace(marker,'window.__SMOKE__={setData:d=>{store.data=d},handleClick,openGamePage,syncRoute,render,openGame};'+marker);
+const elements={};
+const el=id=>elements[id]||(elements[id]={innerHTML:'',textContent:'',setAttribute(){},classList:{add(){},remove(){},toggle(){}},close(){},showModal(){this.opened=true}});
+const document={getElementById:el,querySelectorAll:()=>[],querySelector:()=>el('sidebar')};
+const window={location:{hash:'',href:'https://example.org/lab/'},scrollTo(){},addEventListener(){}};
+const localStorage={getItem(){return null},setItem(){}};
+vm.runInNewContext(code,{window,document,localStorage,console,Date,Math,JSON,URL,Intl,navigator:{},setTimeout,clearTimeout},{filename:'app.js',timeout:5000});
 const game={id:'test_fixture',week:9,kickoff:'2026-11-06T01:15:00Z',
  away:'JAX',home:'BAL',awayName:'Jacksonville Jaguars',homeName:'Baltimore Ravens',
  model:'Elo and form',confidence:'Low',homeProbability:.47,awayProbability:.53,
@@ -22,14 +23,19 @@ const game={id:'test_fixture',week:9,kickoff:'2026-11-06T01:15:00Z',
  tactical:{status:'unavailable',reason:'Pending feed',advantages:[]},
  qbIntelligence:{status:'observed',home:{qb:'Quarterback H',label:'Unconfirmed'},away:{qb:'Quarterback A',label:'Unconfirmed'}},
  injuryIntelligence:{status:'unavailable',home:[],away:[]}};
-window.__SMOKE__.setData({nextGames:[game]});
+window.__SMOKE__.setData({nextGames:[game],generatedAt:'2026-11-05T18:00:00Z'});
 window.__SMOKE__.handleClick({target:{closest:()=>({dataset:{open:game.id}})}});
-assert(dialog.opened,'Fixture click failed to open modal');
-assert.match(box.innerHTML,/FULL MATCHUP DOSSIER/i,'Dossier did not render');
-assert.match(box.innerHTML,/QUARTERBACK/i,'Player section was lost');
-dialog.opened=false;box.innerHTML='';
+assert.equal(window.location.hash,'#game=test_fixture','Fixture URL not updated');
+assert.match(el('appContent').innerHTML,/FULL MATCHUP DOSSIER/i,'Dossier not rendered in page');
+assert.match(el('appContent').innerHTML,/Quarterbacks, practice and injuries/i);
+assert.match(el('appContent').innerHTML,/Copy matchup link/i);
+window.location.hash='#game=test_fixture';window.__SMOKE__.syncRoute();
+assert.match(el('appContent').innerHTML,/Jacksonville Jaguars/);
 window.__SMOKE__.setData({nextGames:[{...game,situation:null,tactical:null,qbIntelligence:null,injuryIntelligence:null}]});
+window.__SMOKE__.syncRoute();
+assert.match(el('appContent').innerHTML,/FULL MATCHUP DOSSIER/i,'Missing source inputs broke page');
+window.location.hash='#game=unknown';window.__SMOKE__.syncRoute();
+assert.match(el('appContent').innerHTML,/no longer on this slate/i,'Stale URL should be explained');
 window.__SMOKE__.openGame(game.id);
-assert(dialog.opened,'Fixture with missing feeds failed to open');
-assert.match(box.innerHTML,/FULL MATCHUP DOSSIER/i);
-console.log('PASS: fixture opens, complete dossier appears, missing feeds are safe');
+assert.match(el('dialogContent').innerHTML,/FULL MATCHUP DOSSIER/i,'Legacy modal still available');
+console.log('PASS: mobile-friendly matchup page, deep link, source fallback and optional modal');

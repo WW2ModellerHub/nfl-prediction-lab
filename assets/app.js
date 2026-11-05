@@ -12,7 +12,7 @@ const money=n=>'£'+Number(n||0).toLocaleString('en-GB',{minimumFractionDigits:2
 const date=s=>s?new Date(s).toLocaleString('en-GB',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit',timeZone:'Europe/London'}):'Unknown';
 function save(key,v){try{localStorage.setItem('nfl-lab-'+key,JSON.stringify(v));return true}catch{toast('Local storage unavailable.');return false}}
 function load(key,fallback){try{return JSON.parse(localStorage.getItem('nfl-lab-'+key))??fallback}catch{return fallback}}
-let store={data:null,auditReference:window.NFL_LAB_AUDIT_REFERENCE||null,researchEvidence:window.NFL_LAB_RESEARCH_EVIDENCE||null,tab:'overview',odds:load('odds',{}),bets:load('bets',[]),query:'',week:'All',busy:false};
+let store={data:null,auditReference:window.NFL_LAB_AUDIT_REFERENCE||null,researchEvidence:window.NFL_LAB_RESEARCH_EVIDENCE||null,tab:'overview',odds:load('odds',{}),bets:load('bets',[]),query:'',week:'All',busy:false,activeGameId:null};
 let timer;
 function toast(message){const el=byId('toast');el.textContent=message;el.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>el.classList.remove('show'),2900)}
 function initials(team){return `<span class="team-bubble" style="border-color:${TEAM_COLORS[team]||'#456'}88;background:${TEAM_COLORS[team]||'#203447'}30">${escapeHTML(team)}</span>`}
@@ -353,11 +353,97 @@ function bets(){const b=store.bets||[];const totalStake=b.filter(x=>x.result==='
  panel('Add personal bet',`<div class="panel-body"><form id="betForm"><div class="form-row"><label><span class="field-label">Fixture</span><select class="select" id="betGame" required>${g.length?g.map(x=>`<option value="${escapeHTML(x.id)}">${escapeHTML(x.away)} @ ${escapeHTML(x.home)} · ${date(x.kickoff)}</option>`).join(''):'<option value="manual">Other / manual fixture</option>'}</select></label><label><span class="field-label">Selection</span><input id="betPick" class="input" required maxlength="80" placeholder="e.g. BUF moneyline"/></label></div><div class="form-row three"><label><span class="field-label">Bookmaker</span><input id="betBook" class="input" maxlength="50" placeholder="e.g. Sky Bet"/></label><label><span class="field-label">Decimal odds</span><input id="betOdds" class="input" inputmode="decimal" type="number" step="0.01" min="1.01" max="1000" required placeholder="2.10" /></label><label><span class="field-label">Stake (£)</span><input id="betStake" class="input" inputmode="decimal" type="number" step="0.01" min="0.01" max="100000" required placeholder="5.00" /></label></div><button type="submit" class="btn btn-primary">+ Record bet</button><p class="help-line">Records stay in browser storage. Export backups regularly. No financial transactions are placed.</p></form></div>`,'Manual actual-bet ledger; not automatically treated as a model pick')+
  panel('Bet ledger',`<div class="table-wrap">${b.length?`<table class="data-table"><thead><tr><th>Pick</th><th>Matchup</th><th>Bookmaker</th><th>Odds</th><th>Stake</th><th>Result</th><th></th></tr></thead><tbody>${rows}</tbody></table>`:empty('No bets entered','Add your first bet using the form above. This ledger is independent of the prediction backtest.')}</div>`,'Settlement is manual; ROI reflects only entered bets')+
  `<div class="inline-cta"><button class="btn" data-import="bets">↑ Import ledger backup</button><button class="btn" data-export="bets">↓ Export backup</button><input type="file" id="importFile" accept="application/json" hidden/></div>`}
-function render(){const t=store.tab;const d=store.data;byId('pageTitle').innerHTML=escapeHTML(TABS[t][0])+'<span class="title-dot">.</span>';byId('pageIntro').textContent=TABS[t][1];byId('breadcrumb').textContent=TABS[t][0].toUpperCase();byId('dataAge').textContent=latest();
- document.querySelectorAll('[data-tab]').forEach(btn=>{btn.classList.toggle('active',btn.dataset.tab===t);btn.setAttribute('aria-current',btn.dataset.tab===t?'page':'false')});
- byId('appContent').innerHTML=(!d?'<div class="loading"><span>◈</span><p>Loading prediction dataset...</p></div>':t==='overview'?overview():t==='matchups'?matchups():t==='tactics'?tacticalRadar():t==='players'?playerRadar():t==='impact'?playerImpactLab():t==='radar'?radar():t==='performance'?perf():t==='audit'?marketAudit():t==='evidence'?researchEvidenceLab():t==='models'?models():bets());
+function fullMatchupPage(g){
+ const slate=games(), index=slate.findIndex(x=>x.id===g.id);
+ const prev=slate[index-1],next=slate[index+1];
+ const o=valueFor(g);
+ const simulations=Array.isArray(g.simulation)?g.simulation:[];
+ const scenarios=Array.isArray(g.scenarios)?g.scenarios:[];
+ const sourceDate=store.data?.generatedAt?date(store.data.generatedAt):'No verified refresh timestamp';
+ return `<div class="matchup-page">
+ <div class="matchup-actions"><button class="btn btn-secondary" data-back-matchups="1">← All fixtures</button><button class="btn btn-secondary" data-share-game="${escapeHTML(g.id)}">Copy matchup link</button><button class="btn btn-primary" data-full-game="${escapeHTML(g.id)}">Open classic analysis ↗</button></div>
+ <section class="matchup-hero" aria-label="Game forecast summary">
+  <div class="eyebrow">WEEK ${escapeHTML(g.week??'—')} · ${escapeHTML(date(g.kickoff))} · PRE-GAME RESEARCH</div>
+  <h2>${escapeHTML(g.awayName||g.away)} <span class="muted">@</span> ${escapeHTML(g.homeName||g.home)}</h2>
+  <div class="matchup-headline-grid">
+   <div><span class="matchup-small">AWAY WIN</span><strong>${pct(g.awayProbability)}</strong><small>${escapeHTML(g.away)}</small></div>
+   <div><span class="matchup-small">PROJECTED SCORE</span><strong>${g.predAway==null||g.predHome==null?'—':`${Math.round(g.predAway)}–${Math.round(g.predHome)}`}</strong><small>Expected total ${number(g.predTotal,1)} points</small></div>
+   <div><span class="matchup-small">HOME WIN</span><strong>${pct(g.homeProbability)}</strong><small>${escapeHTML(g.home)}</small></div>
+  </div>
+  <div class="matchup-prob-track"><div style="width:${Math.max(0,Math.min(100,100*Number(g.homeProbability||0)))}%"></div></div>
+  <p class="matchup-provenance">${escapeHTML(g.model||'Baseline forecast')} · ${escapeHTML(g.confidence||'Unrated')} confidence classification · Dataset refreshed ${escapeHTML(sourceDate)}. Historical backtests do not guarantee betting value.</p>
+ </section>
+ ${fullMatchupReport(g)}
+ <div class="matchup-detail-grid">
+  <section class="matchup-panel matchup-wide"><h3>Quarterbacks, practice and injuries</h3><p class="matchup-sub">Dated observations, not confirmed starters or inactive lists.</p>${playerDetails(g)}</section>
+  <section class="matchup-panel matchup-wide"><h3>Player impact model audit</h3>${impactDetail(g)}</section>
+  <section class="matchup-panel matchup-wide"><h3>Pass, rush and pressure matchup</h3>${tacticalDetails(g)}</section>
+  <section class="matchup-panel"><h3>Recovery, travel and overtime</h3>${signalDetails(g)}</section>
+  <section class="matchup-panel"><h3>Forecast assumptions</h3><div class="stat-pair"><span>Baseline home win</span><strong>${pct(g.baselineHomeProbability??g.homeProbability)}</strong></div><div class="stat-pair"><span>Published home win</span><strong>${pct(g.homeProbability)}</strong></div><div class="stat-pair"><span>Selected adjustment</span><strong>${escapeHTML(g.adjustmentActive?g.overlayType||'validated overlay':'none')}</strong></div><p class="source-meta">Only historically approved model inputs influence the displayed percentage. Other warnings are informational and not silently converted into point adjustments.</p></section>
+  <section class="matchup-panel matchup-wide"><h3>Winning-margin simulation</h3>${simulations.length?barChart(simulations):'<p class="instruction">Simulation sample unavailable for this fixture.</p>'}<p class="source-meta">Illustrative distribution based on model assumptions; not drive-by-drive simulation or an independently verified market forecast.</p></section>
+  <section class="matchup-panel matchup-wide"><h3>Alternative game scripts</h3>${scenarios.length?`<div class="scenarios">${scenarios.map(s=>`<div class="scenario"><strong>${escapeHTML(s.name)}</strong><p>${escapeHTML(s.text)}</p></div>`).join('')}</div>`:'<p class="instruction">No game scripts have been produced for this fixture.</p>'}</section>
+  <section class="matchup-panel matchup-wide"><h3>Bookmaker comparison</h3><p>${o?`${escapeHTML(o.book||'Manually entered market')}: ${escapeHTML(o.side)} at ${o.price.toFixed(2)} decimal odds · implied break-even ${pct(o.breakeven)} · model EV ${o.ev>=0?'+':''}${pct(o.ev)}.`:'No bookmaker price entered for this fixture. Prices are manual; no live odds feed is connected.'}</p><button class="btn btn-primary" data-odds="${escapeHTML(g.id)}">${o?'Edit market odds':'Enter decimal odds'}</button></section>
+ </div>
+ <div class="matchup-pagination">${prev?`<button class="btn" data-open="${escapeHTML(prev.id)}">← ${escapeHTML(prev.away)} @ ${escapeHTML(prev.home)}</button>`:'<span></span>'}${next?`<button class="btn" data-open="${escapeHTML(next.id)}">${escapeHTML(next.away)} @ ${escapeHTML(next.home)} →</button>`:'<span></span>'}</div>
+ </div>`;
 }
-function navigate(tab){if(!TABS[tab])return;store.tab=tab;store.query='';byId('mobileMenu').setAttribute('aria-expanded','false');$('.sidebar').classList.remove('open');render();window.scrollTo({top:0,behavior:'smooth'});}
+
+function openGamePage(id){
+ const g=games().find(x=>String(x.id)===String(id));
+ if(!g)return;
+ store.activeGameId=String(g.id);
+ store.tab='matchups';
+ const hash='#game='+encodeURIComponent(g.id);
+ if(window.location&&window.location.hash!==hash)window.location.hash=hash;
+ render();
+ if(window.scrollTo)window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function syncRoute(){
+ const hash=String(window.location?.hash||'');
+ if(hash.startsWith('#game=')){
+  let id=null;
+  try{id=decodeURIComponent(hash.slice(6))}catch{}
+  store.activeGameId=id;
+  store.tab='matchups';
+ }else{
+  store.activeGameId=null;
+  if(hash.startsWith('#tab=')){
+   const tab=hash.slice(5);
+   if(TABS[tab])store.tab=tab;
+  }
+ }
+ render();
+}
+
+function shareGameLink(id){
+ const link=window.location.href.split('#')[0]+'#game='+encodeURIComponent(id);
+ if(navigator.clipboard?.writeText)navigator.clipboard.writeText(link).then(()=>toast('Shareable matchup link copied')).catch(()=>window.prompt('Copy matchup URL',link));
+ else window.prompt('Copy matchup URL',link);
+}
+
+function render(){
+ const t=store.tab,d=store.data,selected=store.activeGameId?games().find(g=>String(g.id)===String(store.activeGameId)):null;
+ byId('pageTitle').innerHTML=(selected?escapeHTML(selected.away+' @ '+selected.home):escapeHTML(TABS[t][0]))+'<span class="title-dot">.</span>';
+ byId('pageIntro').textContent=selected?'Detailed pregame intelligence, evidence and uncertainty for this fixture.':TABS[t][1];
+ byId('breadcrumb').textContent=selected?'FULL MATCHUP':TABS[t][0].toUpperCase();
+ byId('dataAge').textContent=latest();
+ document.querySelectorAll('[data-tab]').forEach(btn=>{btn.classList.toggle('active',btn.dataset.tab===t);btn.setAttribute('aria-current',btn.dataset.tab===t?'page':'false')});
+ byId('appContent').innerHTML=!d?'<div class="loading"><span>◈</span><p>Loading prediction dataset...</p></div>'
+ :store.activeGameId?(selected?warnBanner()+fullMatchupPage(selected):warnBanner()+empty('Matchup no longer on this slate','The fixture may have already kicked off or moved out of the published forecast window.')+'<div class="matchup-actions"><button class="btn btn-primary" data-back-matchups="1">View upcoming fixtures</button></div>')
+ :t==='overview'?overview():t==='matchups'?matchups():t==='tactics'?tacticalRadar():t==='players'?playerRadar():t==='impact'?playerImpactLab():t==='radar'?radar():t==='performance'?perf():t==='audit'?marketAudit():t==='evidence'?researchEvidenceLab():t==='models'?models():bets();
+}
+
+function navigate(tab){
+ if(!TABS[tab])return;
+ store.tab=tab;store.activeGameId=null;store.query='';
+ byId('mobileMenu').setAttribute('aria-expanded','false');
+ $('.sidebar').classList.remove('open');
+ const hash='#tab='+tab;
+ if(window.location&&window.location.hash!==hash)window.location.hash=hash;
+ render();
+ if(window.scrollTo)window.scrollTo({top:0,behavior:'smooth'});
+}
 function barChart(sim){const max=Math.max(1,...sim.map(x=>x.share));return `<div class="p-bars">${sim.map(x=>`<div class="p-bar" style="--val:${Math.max(1,Math.round(x.share/max*100))}%"><div class="bar-caption">${number(x.share,1)}%</div><div class="bar" style="height:${Math.max(1,Math.round(x.share/max*100))}%"></div><label>${escapeHTML(x.bucket)}</label></div>`).join('')}</div><div class="p-chart-space"></div>`}
 function openGame(id){const g=games().find(x=>x.id===id);if(!g)return;const pHome=g.homeProbability;const o=valueFor(g);
  const html=`<div class="dialog-header"><div><div class="eyebrow" style="font-size:9px">WEEK ${g.week} · ${date(g.kickoff).toUpperCase()}</div><h2 class="modal-title">${escapeHTML(g.awayName)} <span class="muted">@</span> ${escapeHTML(g.homeName)}</h2><div class="modal-sub">${escapeHTML(g.model)} · Pregame research model · ${tag(g.confidence+' favourite confidence',g.confidence==='High'?'lime':'')}</div></div><button class="close" data-close="gameDialog" aria-label="Close matchup">×</button></div><div class="dialog-content"><div class="detail-prob"><div class="detail-stat"><b>${pct(g.awayProbability)}</b><span>${escapeHTML(g.away)} wins</span></div><div class="detail-stat"><b>${Math.round(g.predAway)}–${Math.round(g.predHome)}</b><span>Projected score</span></div><div class="detail-stat"><b>${pct(pHome)}</b><span>${escapeHTML(g.home)} wins</span></div></div><div class="prob-track" style="margin-bottom:21px;height:11px"><div class="prob-fill" style="width:${pHome*100}%"></div></div><div class="form-row"><div class="lab-card"><h3>Expected total</h3><div class="model-readout">${number(g.predTotal,1)}</div><p>Combined projected points</p></div><div class="lab-card"><h3>Home margin</h3><div class="model-readout">${g.predMargin>0?'+':''}${number(g.predMargin,1)}</div><p>Positive values favour home</p></div></div><div class="divider"></div>${fullMatchupReport(g)}${g.shadowEnsemble?`<div class="note-box"><b>Experimental XGBoost challenger (NOT used for picks):</b> ${pct(g.shadowEnsemble.homeProbability)} home win. Team, QB, rest and tactical inputs where available. Baseline primary probability is unchanged. Research validation: ${escapeHTML(store.data?.challengerValidation?.status||"unavailable")}.</div>`:""}<div class="divider"></div><h3 class="mini-title">SIMULATION · WINNING MARGIN DISTRIBUTION</h3>${barChart(g.simulation||[])}<p class="source-meta">2,500 deterministic samples from assumed normal score/margin distributions. This is not a drive-by-drive simulator.</p><div class="divider"></div><h3 class="mini-title">MODEL INTELLIGENCE</h3><div class="form-row"><div class="data-item"><b>${escapeHTML(g.home)} Elo</b><p>${g.eloHome} · scoring form ${g.formHome} PPG · allowed ${g.allowedHome}</p></div><div class="data-item"><b>${escapeHTML(g.away)} Elo</b><p>${g.eloAway} · scoring form ${g.formAway} PPG · allowed ${g.allowedAway}</p></div></div><div class="note-box">Injury reports: ${escapeHTML(g.injuryStatus)}. Weather adjustments: ${escapeHTML(g.weatherStatus)}. No confirmed gameday inactives, automated player props or live tactical data.</div><div class="divider"></div><h3 class="mini-title">QUARTERBACK & INJURY INTELLIGENCE</h3>${playerDetails(g)}<div class="divider"></div><h3 class="mini-title">PLAYER IMPACT VALIDATION</h3>${impactDetail(g)}<div class="divider"></div><h3 class="mini-title">TACTICAL MATCHUP INTELLIGENCE</h3>${tacticalDetails(g)}<div class="model-adjustment"><strong>TACTICAL ADJUSTMENT: ${g.overlayType==='tactical'?'ENABLED':'OFF'}</strong><p>Only a model passing the completed-season selection rule may influence win percentages. Tactical probability difference: ${(100*(g.tacticalProbabilityDelta||0))>=0?'+':''}${number(100*(g.tacticalProbabilityDelta||0),2)} percentage points. Never inferred from descriptive mismatches alone.</p></div><div class="divider"></div><h3 class="mini-title">SITUATIONAL MATCHUP INTELLIGENCE</h3><div class="model-adjustment"><strong>${g.overlayType==='situational'?'SITUATIONAL ADJUSTMENT ENABLED':'SITUATIONAL ADJUSTMENT OFF'}</strong><p>Baseline home win: ${pct(g.baselineHomeProbability??g.homeProbability)} · Final model: ${pct(g.homeProbability)} · Difference: ${(100*(g.situationalProbabilityDelta||0))>=0?'+':''}${number(100*(g.situationalProbabilityDelta||0),2)} percentage points. ${g.overlayType==='situational'?'Selected from prior completed-season validation. Score forecast and histogram remain baseline assumptions.':'No situational probability effect is applied.'}</p></div>${signalDetails(g)}<div class="divider"></div><h3 class="mini-title">ALTERNATIVE GAME SCRIPTS</h3><div class="scenarios">${(g.scenarios||[]).map(x=>`<div class="scenario"><strong>${escapeHTML(x.name)}</strong><p>${escapeHTML(x.text)}</p></div>`).join('')}</div><div class="divider"></div><h3 class="mini-title">BOOKMAKER CHECK</h3><p class="instruction">${o?`Your ${escapeHTML(o.book)} price of ${o.price.toFixed(2)} for ${escapeHTML(o.side)} implies ${pct(o.breakeven)} break-even; our model implies ${pct(o.p)} (${o.ev>=0?'+':''}${pct(o.ev)} raw expected return).`:'No bookmaker odds are stored for this fixture.'}</p><div class="inline-cta"><button class="btn btn-primary" data-odds="${escapeHTML(g.id)}">${o?'Edit':'Enter'} bookmaker odds →</button><button class="btn btn-secondary" data-close="gameDialog">Close</button></div></div>`;
@@ -366,11 +452,14 @@ function oddsDialog(gameId){const g=games().find(x=>x.id===gameId);if(!g)return;
 function downloadJson(filename,obj){const blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
 function exportLedger(){downloadJson('nfl-lab-personal-ledger.json',{exportedAt:new Date().toISOString(),format:'nfl-lab-ledger-v1',bets:store.bets,odds:store.odds});toast('Local ledger exported')}
 async function refresh(){if(store.busy)return;if(window.NFL_LAB_EMBEDDED_DATA){store.data=window.NFL_LAB_EMBEDDED_DATA;render();return;}store.busy=true;byId('dataAge').textContent='CHECKING DATA';try{try{const ar=await fetch('data/audit-reference.json?ts='+Date.now(),{cache:'no-store'});if(ar.ok)store.auditReference=await ar.json()}catch{}try{const er=await fetch('data/situational-research.json?ts='+Date.now(),{cache:'no-store'});if(er.ok)store.researchEvidence=await er.json()}catch{}const res=await fetch('data/dashboard.json?ts='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status);const d=await res.json();if(!Array.isArray(d.nextGames))throw Error('Unsupported dataset');store.data=d;render();toast(d.generatedAt?'Forecast data loaded':'Waiting for the first published NFL data run')}catch(e){store.data={dataStatus:'unavailable',nextGames:[],recentResults:[],performance:{count:0}};render();toast('Could not load dashboard data. Use a local web server or GitHub Pages.')}finally{store.busy=false}}
-function handleClick(e){const btn=e.target.closest('[data-model-filter],[data-tab],[data-nav],[data-open],[data-odds],[data-close],[data-clear-odds],[data-deletebet],[data-export],[data-import],[data-export-audit],[data-export-evidence]');if(!btn)return;
+function handleClick(e){const btn=e.target.closest('[data-model-filter],[data-tab],[data-nav],[data-open],[data-full-game],[data-back-matchups],[data-share-game],[data-odds],[data-close],[data-clear-odds],[data-deletebet],[data-export],[data-import],[data-export-audit],[data-export-evidence]');if(!btn)return;
  if(btn.dataset.modelFilter){store.modelFilter=btn.dataset.modelFilter;render();return;}
  if(btn.dataset.tab)navigate(btn.dataset.tab);
  if(btn.dataset.nav)navigate(btn.dataset.nav);
- if(btn.dataset.open)openGame(btn.dataset.open);
+ if(btn.dataset.open)openGamePage(btn.dataset.open);
+  if(btn.dataset.fullGame)openGame(btn.dataset.fullGame);
+  if(btn.dataset.backMatchups)navigate('matchups');
+  if(btn.dataset.shareGame)shareGameLink(btn.dataset.shareGame);
  if(btn.dataset.odds){byId('gameDialog').close();oddsDialog(btn.dataset.odds)}
  if(btn.dataset.close)byId(btn.dataset.close).close();
  if(btn.dataset.clearOdds){delete store.odds[btn.dataset.clearOdds];save('odds',store.odds);byId('oddsDialog').close();render();toast('Bookmaker price cleared')}
@@ -398,6 +487,7 @@ function start(){byId('nav').addEventListener('click',handleClick);byId('appCont
  byId('mobileMenu').addEventListener('click',()=>{const open=$('.sidebar').classList.toggle('open');byId('mobileMenu').setAttribute('aria-expanded',String(open))});
  byId('appContent').addEventListener('change',e=>{if(e.target.id==='importFile')importFile(e)});
  window.addEventListener('keydown',e=>{if(e.key==='Escape')$('.sidebar').classList.remove('open')});
- render();refresh();}
+  window.addEventListener('hashchange',syncRoute);
+ syncRoute();refresh();}
 window.addEventListener('DOMContentLoaded',start);
 })();
