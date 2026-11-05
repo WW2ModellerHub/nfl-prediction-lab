@@ -1242,5 +1242,51 @@
     "baselineHomeProbability": 0.61154,
     "adjustmentActive": false,
     "situationalProbabilityDelta": 0
+  },
+  {
+    "gameId": "2026_12_CHI_DET",
+    "recordedAt": "2026-11-05T20:12:46.067700+00:00",
+    "kickoff": "2026-11-26T18:00:00+00:00",
+    "home": "DET",
+    "away": "CHI",
+    "homeProbability": 0.57037,
+    "predMargin": 1.79,
+    "predTotal": 47.89,
+    "situationalSignals": [
+      "repeat_road"
+    ],
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "tacticalProbabilityDelta": 0,
+    "playerProbabilityDelta": 0,
+    "qbProbabilityDelta": 0,
+    "qbResearch": {
+      "eligible": true,
+      "features": [
+        0.02400000000000002,
+        -0.008,
+        0
+      ],
+      "status": "eligible",
+      "reason": "Prior-game QB observations available",
+      "source": "Recorded prior starter or dated pregame depth chart, not game-day confirmation"
+    },
+    "qbObserved": {
+      "home": "00-0033106",
+      "away": "00-0039918"
+    },
+    "injuryReportAsOf": null,
+    "qbInjuryProbabilityWeight": 0,
+    "playerFeatures": null,
+    "playerImpactStatus": "informational",
+    "tacticalFeatures": [
+      0.6953085816735836,
+      -0.18348682344274206,
+      -0.015165106187041075,
+      -0.28596940866344717
+    ],
+    "baselineHomeProbability": 0.57037,
+    "adjustmentActive": false,
+    "situationalProbabilityDelta": 0
   }
 ]

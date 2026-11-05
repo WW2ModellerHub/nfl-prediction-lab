@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-05T17:00:53.582021+00:00",
+  "generatedAt": "2026-11-05T20:12:46.067700+00:00",
   "dataStatus": "ok",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
   "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
@@ -114,7 +114,7 @@
           "qbSampleDropbacks": 24,
           "qbChangeFlag": true,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": false,
           "flaggedKeyAbsences": 0
         },
@@ -124,7 +124,7 @@
           "qbSampleDropbacks": 242,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -152,7 +152,7 @@
             "injury": "Knee",
             "starterOnDepthChart": true,
             "severity": 3,
-            "reportAsOf": "2026-11-05T17:00:45.129113+00:00"
+            "reportAsOf": "2026-11-05T20:12:40.642145+00:00"
           },
           {
             "name": "Lamar Jackson",
@@ -163,7 +163,7 @@
             "injury": "Thumb",
             "starterOnDepthChart": false,
             "severity": 3,
-            "reportAsOf": "2026-11-05T17:00:45.129113+00:00"
+            "reportAsOf": "2026-11-05T20:12:40.642145+00:00"
           },
           {
             "name": "Tyler Huntley",
@@ -174,7 +174,7 @@
             "injury": "Toe",
             "starterOnDepthChart": false,
             "severity": 3,
-            "reportAsOf": "2026-11-05T17:00:45.129113+00:00"
+            "reportAsOf": "2026-11-05T20:12:40.642145+00:00"
           },
           {
             "name": "Nate Wiggins",
@@ -185,7 +185,7 @@
             "injury": "Stinger",
             "starterOnDepthChart": true,
             "severity": 1,
-            "reportAsOf": "2026-11-05T17:00:45.129113+00:00"
+            "reportAsOf": "2026-11-05T20:12:40.642145+00:00"
           },
           {
             "name": "Adam Randall",
@@ -196,7 +196,7 @@
             "injury": "Neck",
             "starterOnDepthChart": false,
             "severity": 1,
-            "reportAsOf": "2026-11-05T17:00:45.129113+00:00"
+            "reportAsOf": "2026-11-05T20:12:40.642145+00:00"
           }
         ],
         "away": [
@@ -209,7 +209,7 @@
             "injury": "Rib",
             "starterOnDepthChart": true,
             "severity": 1,
-            "reportAsOf": "2026-11-05T17:00:45.129113+00:00"
+            "reportAsOf": "2026-11-05T20:12:40.642145+00:00"
           },
           {
             "name": "Bhayshul Tuten",
@@ -220,10 +220,10 @@
             "injury": "Ankle",
             "starterOnDepthChart": true,
             "severity": 1,
-            "reportAsOf": "2026-11-05T17:00:45.129113+00:00"
+            "reportAsOf": "2026-11-05T20:12:40.642145+00:00"
           }
         ],
-        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
+        "reportAsOf": "2026-11-05T20:12:40.642145+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -554,7 +554,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -566,12 +566,12 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-06T01:00:00+00:00",
-        "temperatureC": 19.4,
-        "precipitationChancePct": 17.0,
-        "windMph": 2.1,
-        "gustMph": 15.7,
+        "temperatureC": 19.5,
+        "precipitationChancePct": 28.0,
+        "windMph": 4.0,
+        "gustMph": 8.5,
         "snowfallCm": 0.0
       }
     },
@@ -680,7 +680,7 @@
           "qbSampleDropbacks": 227,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -690,7 +690,7 @@
           "qbSampleDropbacks": 323,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -714,7 +714,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
+        "reportAsOf": "2026-11-05T20:12:40.642145+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -987,24 +987,6 @@
             }
           },
           {
-            "name": "DJ Turner II",
-            "position": "CORNERBACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-03T00:47:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.0,
-              "defensePct": 0.887,
-              "lastGame": "2026-11-01T18:00:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
             "name": "Cedric Johnson",
             "position": "DEFENSIVE END",
             "status": "Questionable",
@@ -1146,7 +1128,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -1158,7 +1140,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-08T14:00:00+00:00",
         "temperatureC": 16.4,
         "precipitationChancePct": 13.0,
@@ -1273,7 +1255,7 @@
           "qbSampleDropbacks": 327,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -1283,7 +1265,7 @@
           "qbSampleDropbacks": 283,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -1307,7 +1289,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
+        "reportAsOf": "2026-11-05T20:12:40.642145+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -1502,7 +1484,7 @@
             "position": "QUARTERBACK",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-04T22:36:00+00:00",
+            "reportDate": "2026-11-05T18:10:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false,
@@ -1510,6 +1492,24 @@
               "games": 3,
               "offensePct": 0.98,
               "defensePct": 0.0,
+              "lastGame": "2026-11-01T18:00:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
+            "name": "Carson Schwesinger",
+            "position": "LINEBACKER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T17:04:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.0,
+              "defensePct": 1.0,
               "lastGame": "2026-11-01T18:00:00+00:00",
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
@@ -1528,24 +1528,6 @@
               "games": 3,
               "offensePct": 0.873,
               "defensePct": 0.0,
-              "lastGame": "2026-11-01T18:00:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "Carson Schwesinger",
-            "position": "LINEBACKER",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T22:09:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.0,
-              "defensePct": 1.0,
               "lastGame": "2026-11-01T18:00:00+00:00",
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
@@ -1799,7 +1781,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -1920,7 +1902,7 @@
           "qbSampleDropbacks": 289,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -1930,7 +1912,7 @@
           "qbSampleDropbacks": 316,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -1954,7 +1936,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
+        "reportAsOf": "2026-11-05T20:12:40.642145+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -2428,7 +2410,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -2440,12 +2422,12 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-08T18:00:00+00:00",
-        "temperatureC": 13.5,
+        "temperatureC": 13.9,
         "precipitationChancePct": 0.0,
-        "windMph": 6.0,
-        "gustMph": 9.2,
+        "windMph": 8.3,
+        "gustMph": 13.2,
         "snowfallCm": 0.0,
         "note": "Roof status unconfirmed; only conditional outdoor forecast"
       }
@@ -2555,7 +2537,7 @@
           "qbSampleDropbacks": 334,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -2565,7 +2547,7 @@
           "qbSampleDropbacks": 263,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -2589,7 +2571,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
+        "reportAsOf": "2026-11-05T20:12:40.642145+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -3063,7 +3045,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -3075,7 +3057,7 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-08T18:00:00+00:00",
         "temperatureC": 17.4,
         "precipitationChancePct": 0.0,
@@ -3189,7 +3171,7 @@
           "qbSampleDropbacks": 227,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -3199,7 +3181,7 @@
           "qbSampleDropbacks": 308,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -3223,7 +3205,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
+        "reportAsOf": "2026-11-05T20:12:40.642145+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -3599,6 +3581,24 @@
             "starterConfirmed": false
           },
           {
+            "name": "Jaylen Wright",
+            "position": "RUNNING BACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T19:16:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.127,
+              "defensePct": 0.0,
+              "lastGame": "2026-11-01T21:25:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
             "name": "Kadyn Proctor",
             "position": "OFFENSIVE TACKLE",
             "status": "Questionable",
@@ -3759,28 +3759,10 @@
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
             }
-          },
-          {
-            "name": "Jaylen Wright",
-            "position": "RUNNING BACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T21:29:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.127,
-              "defensePct": 0.0,
-              "lastGame": "2026-11-01T21:25:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -3792,12 +3774,12 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-08T18:00:00+00:00",
-        "temperatureC": 28.0,
+        "temperatureC": 28.8,
         "precipitationChancePct": 10.0,
-        "windMph": 11.2,
-        "gustMph": 9.6,
+        "windMph": 9.6,
+        "gustMph": 8.3,
         "snowfallCm": 0.0
       }
     },
@@ -3906,7 +3888,7 @@
           "qbSampleDropbacks": 228,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -3916,7 +3898,7 @@
           "qbSampleDropbacks": 314,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -3940,7 +3922,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
+        "reportAsOf": "2026-11-05T20:12:40.642145+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -4204,24 +4186,6 @@
             }
           },
           {
-            "name": "Davante Adams",
-            "position": "WIDE RECEIVER",
-            "status": "Injured Reserve",
-            "injury": "",
-            "reportDate": "2026-10-28T20:59:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.807,
-              "defensePct": 0.0,
-              "lastGame": "2026-10-18T20:05:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
             "name": "Trent McDuffie",
             "position": "CORNERBACK",
             "status": "Questionable",
@@ -4317,6 +4281,24 @@
               "offensePct": 0.0,
               "defensePct": 0.0,
               "lastGame": "2026-10-25T20:25:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
+            "name": "Grant Stuard",
+            "position": "LINEBACKER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-02T23:46:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.0,
+              "defensePct": 0.0,
+              "lastGame": "2026-11-01T21:05:00+00:00",
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
             }
@@ -4497,7 +4479,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -4509,12 +4491,12 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-08T18:00:00+00:00",
-        "temperatureC": 16.1,
+        "temperatureC": 16.0,
         "precipitationChancePct": 0.0,
-        "windMph": 13.5,
-        "gustMph": 19.0,
+        "windMph": 12.6,
+        "gustMph": 17.7,
         "snowfallCm": 0.0
       }
     },
@@ -4623,7 +4605,7 @@
           "qbSampleDropbacks": 24,
           "qbChangeFlag": true,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": false,
           "flaggedKeyAbsences": 0
         },
@@ -4633,7 +4615,7 @@
           "qbSampleDropbacks": 197,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -4653,7 +4635,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
+        "reportAsOf": "2026-11-05T20:12:40.642145+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -4866,7 +4848,25 @@
             "position": "OFFENSIVE TACKLE",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-05T16:51:00+00:00",
+            "reportDate": "2026-11-05T20:01:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.83,
+              "defensePct": 0.0,
+              "lastGame": "2026-10-25T17:00:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
+            "name": "Malik Nabers",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T18:44:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false,
@@ -4884,7 +4884,7 @@
             "position": "RUNNING BACK",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-04T21:31:00+00:00",
+            "reportDate": "2026-11-05T18:43:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false,
@@ -4990,6 +4990,60 @@
         ],
         "home": [
           {
+            "name": "Dontayvion Wicks",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T19:33:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.793,
+              "defensePct": 0.0,
+              "lastGame": "2026-10-18T17:00:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
+            "name": "DeVonta Smith",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T19:29:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.847,
+              "defensePct": 0.0,
+              "lastGame": "2026-10-18T17:00:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
+            "name": "Saquon Barkley",
+            "position": "RUNNING BACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T19:27:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.18,
+              "defensePct": 0.0,
+              "lastGame": "2026-11-02T01:20:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
             "name": "Jihaad Campbell",
             "position": "LINEBACKER",
             "status": "Questionable",
@@ -5019,60 +5073,6 @@
             "recentUsage": {
               "games": 3,
               "offensePct": 0.0,
-              "defensePct": 0.0,
-              "lastGame": "2026-11-02T01:20:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "Dontayvion Wicks",
-            "position": "WIDE RECEIVER",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T23:29:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.793,
-              "defensePct": 0.0,
-              "lastGame": "2026-10-18T17:00:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "DeVonta Smith",
-            "position": "WIDE RECEIVER",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T23:25:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.847,
-              "defensePct": 0.0,
-              "lastGame": "2026-10-18T17:00:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "Saquon Barkley",
-            "position": "RUNNING BACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T23:20:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.18,
               "defensePct": 0.0,
               "lastGame": "2026-11-02T01:20:00+00:00",
               "basis": "previous recorded snap counts only",
@@ -5171,7 +5171,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -5183,12 +5183,12 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-08T18:00:00+00:00",
-        "temperatureC": 14.9,
+        "temperatureC": 15.6,
         "precipitationChancePct": 1.0,
-        "windMph": 13.6,
-        "gustMph": 19.7,
+        "windMph": 14.1,
+        "gustMph": 19.9,
         "snowfallCm": 0.0
       }
     },
@@ -5297,7 +5297,7 @@
           "qbSampleDropbacks": 275,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -5307,7 +5307,7 @@
           "qbSampleDropbacks": 264,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -5331,7 +5331,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
+        "reportAsOf": "2026-11-05T20:12:40.642145+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -5551,6 +5551,42 @@
             }
           },
           {
+            "name": "Garrett Wilson",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T18:03:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.88,
+              "defensePct": 0.0,
+              "lastGame": "2026-11-01T18:00:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
+            "name": "Breece Hall",
+            "position": "RUNNING BACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T18:02:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.57,
+              "defensePct": 0.0,
+              "lastGame": "2026-09-27T17:00:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
             "name": "Joseph Ossai",
             "position": "DEFENSIVE END",
             "status": "Questionable",
@@ -5636,42 +5672,6 @@
               "offensePct": 0.0,
               "defensePct": 0.917,
               "lastGame": "2026-10-25T17:00:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "Breece Hall",
-            "position": "RUNNING BACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T17:36:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.57,
-              "defensePct": 0.0,
-              "lastGame": "2026-09-27T17:00:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "Garrett Wilson",
-            "position": "WIDE RECEIVER",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T17:25:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.88,
-              "defensePct": 0.0,
-              "lastGame": "2026-11-01T18:00:00+00:00",
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
             }
@@ -5806,7 +5806,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -5818,12 +5818,12 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-08T18:00:00+00:00",
-        "temperatureC": 16.7,
+        "temperatureC": 17.6,
         "precipitationChancePct": 0.0,
-        "windMph": 7.8,
-        "gustMph": 10.7,
+        "windMph": 8.4,
+        "gustMph": 11.4,
         "snowfallCm": 0.0
       }
     },
@@ -5932,7 +5932,7 @@
           "qbSampleDropbacks": 270,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -5942,7 +5942,7 @@
           "qbSampleDropbacks": 309,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -5966,7 +5966,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
+        "reportAsOf": "2026-11-05T20:12:40.642145+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -6458,7 +6458,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -6579,7 +6579,7 @@
           "qbSampleDropbacks": 246,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -6589,7 +6589,7 @@
           "qbSampleDropbacks": 296,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -6613,7 +6613,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
+        "reportAsOf": "2026-11-05T20:12:40.642145+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -6896,6 +6896,16 @@
         ],
         "home": [
           {
+            "name": "Brandon Aiyuk",
+            "position": "WIDE RECEIVER",
+            "status": "Out",
+            "injury": "",
+            "reportDate": "2026-11-05T19:09:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
             "name": "Nate Hobbs",
             "position": "CORNERBACK",
             "status": "Injured Reserve",
@@ -6922,16 +6932,6 @@
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
             }
-          },
-          {
-            "name": "Brandon Aiyuk",
-            "position": "WIDE RECEIVER",
-            "status": "Out",
-            "injury": "",
-            "reportDate": "2026-11-04T14:25:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false
           },
           {
             "name": "De'Zhaun Stribling",
@@ -7097,7 +7097,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -7109,11 +7109,11 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-08T21:00:00+00:00",
-        "temperatureC": 22.6,
+        "temperatureC": 22.0,
         "precipitationChancePct": 0.0,
-        "windMph": 5.5,
+        "windMph": 5.1,
         "gustMph": 5.8,
         "snowfallCm": 0.0
       }
@@ -7223,7 +7223,7 @@
           "qbSampleDropbacks": 267,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -7233,7 +7233,7 @@
           "qbSampleDropbacks": 34,
           "qbChangeFlag": true,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": false,
           "flaggedKeyAbsences": 0
         },
@@ -7253,7 +7253,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
+        "reportAsOf": "2026-11-05T20:12:40.642145+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -7799,7 +7799,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -7811,11 +7811,11 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-08T21:00:00+00:00",
-        "temperatureC": 13.6,
+        "temperatureC": 13.0,
         "precipitationChancePct": 14.0,
-        "windMph": 3.0,
+        "windMph": 9.4,
         "gustMph": 9.4,
         "snowfallCm": 0.0
       }
@@ -7925,7 +7925,7 @@
           "qbSampleDropbacks": 250,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -7935,7 +7935,7 @@
           "qbSampleDropbacks": 327,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -7959,7 +7959,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
+        "reportAsOf": "2026-11-05T20:12:40.642145+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -8178,6 +8178,24 @@
             }
           },
           {
+            "name": "Christian Watson",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T18:10:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.727,
+              "defensePct": 0.0,
+              "lastGame": "2026-10-30T00:15:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
             "name": "Keisean Nixon",
             "position": "CORNERBACK",
             "status": "Questionable",
@@ -8190,24 +8208,6 @@
               "games": 3,
               "offensePct": 0.0,
               "defensePct": 0.993,
-              "lastGame": "2026-10-30T00:15:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "Christian Watson",
-            "position": "WIDE RECEIVER",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T22:09:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.727,
-              "defensePct": 0.0,
               "lastGame": "2026-10-30T00:15:00+00:00",
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
@@ -8342,6 +8342,60 @@
             }
           },
           {
+            "name": "TreVeyon Henderson",
+            "position": "RUNNING BACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T19:38:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.213,
+              "defensePct": 0.0,
+              "lastGame": "2026-10-23T00:15:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
+            "name": "Hunter Henry",
+            "position": "TIGHT END",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T19:37:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.55,
+              "defensePct": 0.0,
+              "lastGame": "2026-11-01T21:25:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
+            "name": "A.J. Brown",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T19:32:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.703,
+              "defensePct": 0.0,
+              "lastGame": "2026-10-23T00:15:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
             "name": "Dre'Mont Jones",
             "position": "DEFENSIVE END",
             "status": "Questionable",
@@ -8432,60 +8486,6 @@
             }
           },
           {
-            "name": "Hunter Henry",
-            "position": "TIGHT END",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T19:41:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.55,
-              "defensePct": 0.0,
-              "lastGame": "2026-11-01T21:25:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "TreVeyon Henderson",
-            "position": "RUNNING BACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T18:21:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.213,
-              "defensePct": 0.0,
-              "lastGame": "2026-10-23T00:15:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "A.J. Brown",
-            "position": "WIDE RECEIVER",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T18:13:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.703,
-              "defensePct": 0.0,
-              "lastGame": "2026-10-23T00:15:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
             "name": "Gabe Jacas",
             "position": "LINEBACKER",
             "status": "Questionable",
@@ -8505,7 +8505,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -8517,11 +8517,11 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-08T21:00:00+00:00",
-        "temperatureC": 8.6,
+        "temperatureC": 9.5,
         "precipitationChancePct": 3.0,
-        "windMph": 7.4,
+        "windMph": 12.2,
         "gustMph": 18.6,
         "snowfallCm": 0.0
       }
@@ -8631,7 +8631,7 @@
           "qbSampleDropbacks": 298,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -8641,7 +8641,7 @@
           "qbSampleDropbacks": 223,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -8665,7 +8665,7 @@
       "injuryIntelligence": {
         "home": [],
         "away": [],
-        "reportAsOf": "2026-11-05T17:00:45.129113+00:00",
+        "reportAsOf": "2026-11-05T20:12:40.642145+00:00",
         "status": "snapshot-only",
         "probabilityWeight": 0,
         "note": "Source records lack individual modification times. Observed by this dashboard at retrieval time; reports may be stale. Never used for historical player-impact fitting or automatic probability changes.",
@@ -8893,6 +8893,24 @@
             }
           },
           {
+            "name": "Emeka Egbuka",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T17:04:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.897,
+              "defensePct": 0.0,
+              "lastGame": "2026-10-18T17:00:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
             "name": "Tykee Smith",
             "position": "SAFETY",
             "status": "Questionable",
@@ -8919,27 +8937,27 @@
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
-          },
+          }
+        ],
+        "home": [
           {
-            "name": "Emeka Egbuka",
-            "position": "WIDE RECEIVER",
-            "status": "Questionable",
+            "name": "Zavier Scott",
+            "position": "RUNNING BACK",
+            "status": "Injured Reserve",
             "injury": "",
-            "reportDate": "2026-11-04T17:17:00+00:00",
+            "reportDate": "2026-11-05T18:54:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false,
             "recentUsage": {
               "games": 3,
-              "offensePct": 0.897,
+              "offensePct": 0.0,
               "defensePct": 0.0,
-              "lastGame": "2026-10-18T17:00:00+00:00",
+              "lastGame": "2026-11-03T01:15:00+00:00",
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
             }
-          }
-        ],
-        "home": [
+          },
           {
             "name": "Kentavius Street",
             "position": "DEFENSIVE TACKLE",
@@ -8990,24 +9008,6 @@
               "offensePct": 0.0,
               "defensePct": 0.657,
               "lastGame": "2026-10-23T00:15:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "Zavier Scott",
-            "position": "RUNNING BACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-05T02:28:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.0,
-              "defensePct": 0.0,
-              "lastGame": "2026-11-03T01:15:00+00:00",
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
             }
@@ -9068,7 +9068,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -9080,12 +9080,12 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-09T01:00:00+00:00",
-        "temperatureC": 12.4,
+        "temperatureC": 13.2,
         "precipitationChancePct": 0.0,
-        "windMph": 9.1,
-        "gustMph": 24.4,
+        "windMph": 9.5,
+        "gustMph": 25.3,
         "snowfallCm": 0.0
       }
     },
@@ -9194,7 +9194,7 @@
           "qbSampleDropbacks": 250,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -9204,7 +9204,7 @@
           "qbSampleDropbacks": 264,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -9419,6 +9419,24 @@
             }
           },
           {
+            "name": "DJ Moore",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T18:49:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.563,
+              "defensePct": 0.0,
+              "lastGame": "2026-11-01T18:00:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
             "name": "Dee Alford",
             "position": "CORNERBACK",
             "status": "Questionable",
@@ -9473,24 +9491,6 @@
             }
           },
           {
-            "name": "DJ Moore",
-            "position": "WIDE RECEIVER",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-01T22:13:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.563,
-              "defensePct": 0.0,
-              "lastGame": "2026-11-01T18:00:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
             "name": "Joshua Palmer",
             "position": "WIDE RECEIVER",
             "status": "Questionable",
@@ -9503,6 +9503,24 @@
         ],
         "home": [
           {
+            "name": "Kyler Murray",
+            "position": "QUARTERBACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T18:36:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 1.0,
+              "defensePct": 0.0,
+              "lastGame": "2026-11-01T18:00:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
             "name": "Christian Darrisaw",
             "position": "OFFENSIVE TACKLE",
             "status": "Questionable",
@@ -9514,24 +9532,6 @@
             "recentUsage": {
               "games": 3,
               "offensePct": 0.847,
-              "defensePct": 0.0,
-              "lastGame": "2026-11-01T18:00:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "Kyler Murray",
-            "position": "QUARTERBACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-02T19:57:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 1.0,
               "defensePct": 0.0,
               "lastGame": "2026-11-01T18:00:00+00:00",
               "basis": "previous recorded snap counts only",
@@ -9558,7 +9558,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -9679,7 +9679,7 @@
           "qbSampleDropbacks": 197,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -9689,7 +9689,7 @@
           "qbSampleDropbacks": 228,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -10091,7 +10091,25 @@
             "position": "OFFENSIVE TACKLE",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-05T16:51:00+00:00",
+            "reportDate": "2026-11-05T20:01:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.83,
+              "defensePct": 0.0,
+              "lastGame": "2026-10-25T17:00:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
+            "name": "Malik Nabers",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T18:44:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false,
@@ -10109,7 +10127,7 @@
             "position": "RUNNING BACK",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-04T21:31:00+00:00",
+            "reportDate": "2026-11-05T18:43:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false,
@@ -10214,7 +10232,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -10226,12 +10244,12 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-13T01:00:00+00:00",
-        "temperatureC": 4.9,
+        "temperatureC": 8.6,
         "precipitationChancePct": 11.0,
-        "windMph": 11.3,
-        "gustMph": 17.0,
+        "windMph": 8.1,
+        "gustMph": 9.8,
         "snowfallCm": 0.0,
         "note": "Long-range forecast; check near kickoff"
       }
@@ -10341,7 +10359,7 @@
           "qbSampleDropbacks": 308,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -10351,7 +10369,7 @@
           "qbSampleDropbacks": 250,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -10593,6 +10611,60 @@
             }
           },
           {
+            "name": "TreVeyon Henderson",
+            "position": "RUNNING BACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T19:38:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.213,
+              "defensePct": 0.0,
+              "lastGame": "2026-10-23T00:15:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
+            "name": "Hunter Henry",
+            "position": "TIGHT END",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T19:37:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.55,
+              "defensePct": 0.0,
+              "lastGame": "2026-11-01T21:25:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
+            "name": "A.J. Brown",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T19:32:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.703,
+              "defensePct": 0.0,
+              "lastGame": "2026-10-23T00:15:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
             "name": "Dre'Mont Jones",
             "position": "DEFENSIVE END",
             "status": "Questionable",
@@ -10678,60 +10750,6 @@
               "offensePct": 0.0,
               "defensePct": 0.98,
               "lastGame": "2026-11-01T21:25:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "Hunter Henry",
-            "position": "TIGHT END",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T19:41:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.55,
-              "defensePct": 0.0,
-              "lastGame": "2026-11-01T21:25:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "TreVeyon Henderson",
-            "position": "RUNNING BACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T18:21:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.213,
-              "defensePct": 0.0,
-              "lastGame": "2026-10-23T00:15:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "A.J. Brown",
-            "position": "WIDE RECEIVER",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T18:13:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.703,
-              "defensePct": 0.0,
-              "lastGame": "2026-10-23T00:15:00+00:00",
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
             }
@@ -10948,7 +10966,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -11069,7 +11087,7 @@
           "qbSampleDropbacks": 264,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -11079,7 +11097,7 @@
           "qbSampleDropbacks": 264,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -11294,6 +11312,24 @@
             }
           },
           {
+            "name": "DJ Moore",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T18:49:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.563,
+              "defensePct": 0.0,
+              "lastGame": "2026-11-01T18:00:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
             "name": "Dee Alford",
             "position": "CORNERBACK",
             "status": "Questionable",
@@ -11343,24 +11379,6 @@
               "offensePct": 0.75,
               "defensePct": 0.0,
               "lastGame": "2026-10-18T20:25:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "DJ Moore",
-            "position": "WIDE RECEIVER",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-01T22:13:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.563,
-              "defensePct": 0.0,
-              "lastGame": "2026-11-01T18:00:00+00:00",
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
             }
@@ -11419,6 +11437,42 @@
               "offensePct": 0.0,
               "defensePct": 0.487,
               "lastGame": "2026-10-25T17:00:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
+            "name": "Garrett Wilson",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T18:03:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.88,
+              "defensePct": 0.0,
+              "lastGame": "2026-11-01T18:00:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
+            "name": "Breece Hall",
+            "position": "RUNNING BACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T18:02:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.57,
+              "defensePct": 0.0,
+              "lastGame": "2026-09-27T17:00:00+00:00",
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
             }
@@ -11512,46 +11566,10 @@
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
             }
-          },
-          {
-            "name": "Breece Hall",
-            "position": "RUNNING BACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T17:36:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.57,
-              "defensePct": 0.0,
-              "lastGame": "2026-09-27T17:00:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "Garrett Wilson",
-            "position": "WIDE RECEIVER",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T17:25:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.88,
-              "defensePct": 0.0,
-              "lastGame": "2026-11-01T18:00:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -11563,12 +11581,12 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-15T18:00:00+00:00",
-        "temperatureC": 11.0,
+        "temperatureC": 7.5,
         "precipitationChancePct": 5.0,
-        "windMph": 8.6,
-        "gustMph": 11.9,
+        "windMph": 14.0,
+        "gustMph": 19.7,
         "snowfallCm": 0.0,
         "note": "Long-range forecast; check near kickoff"
       }
@@ -11678,7 +11696,7 @@
           "qbSampleDropbacks": 327,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -11688,7 +11706,7 @@
           "qbSampleDropbacks": 334,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -12221,7 +12239,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -12342,7 +12360,7 @@
           "qbSampleDropbacks": 283,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -12352,7 +12370,7 @@
           "qbSampleDropbacks": 309,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -12381,7 +12399,7 @@
         "probabilityWeight": 0,
         "note": "No timestamp-verified injury reports available for this matchup and week."
       },
-      "weatherStatus": "Weather unavailable (no probability weight)",
+      "weatherStatus": "Weather forecast (no probability weight)",
       "simulation": [
         {
           "bucket": "Away 21+",
@@ -12672,7 +12690,7 @@
             "position": "QUARTERBACK",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-04T22:36:00+00:00",
+            "reportDate": "2026-11-05T18:10:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false,
@@ -12680,6 +12698,24 @@
               "games": 3,
               "offensePct": 0.98,
               "defensePct": 0.0,
+              "lastGame": "2026-11-01T18:00:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
+            "name": "Carson Schwesinger",
+            "position": "LINEBACKER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T17:04:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.0,
+              "defensePct": 1.0,
               "lastGame": "2026-11-01T18:00:00+00:00",
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
@@ -12698,24 +12734,6 @@
               "games": 3,
               "offensePct": 0.873,
               "defensePct": 0.0,
-              "lastGame": "2026-11-01T18:00:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "Carson Schwesinger",
-            "position": "LINEBACKER",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T22:09:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.0,
-              "defensePct": 1.0,
               "lastGame": "2026-11-01T18:00:00+00:00",
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
@@ -12831,11 +12849,11 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
-        "status": "unavailable",
+        "status": "forecast",
         "stadium": "Huntington Bank Field",
         "stadiumId": "CLE00",
         "roof": "outdoors",
@@ -12843,8 +12861,14 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": null,
-        "note": "No kickoff-hour forecast returned"
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
+        "forecastFor": "2026-11-15T18:00:00+00:00",
+        "temperatureC": 5.2,
+        "precipitationChancePct": 3.0,
+        "windMph": 7.5,
+        "gustMph": 9.6,
+        "snowfallCm": 0.0,
+        "note": "Long-range forecast; check near kickoff"
       }
     },
     {
@@ -12952,7 +12976,7 @@
           "qbSampleDropbacks": 263,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -12962,7 +12986,7 @@
           "qbSampleDropbacks": 242,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -13396,7 +13420,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -13408,12 +13432,12 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-15T18:00:00+00:00",
-        "temperatureC": 12.3,
+        "temperatureC": 12.7,
         "precipitationChancePct": 4.0,
-        "windMph": 3.0,
-        "gustMph": 4.5,
+        "windMph": 3.6,
+        "gustMph": 6.5,
         "snowfallCm": 0.0,
         "note": "Long-range forecast; check near kickoff"
       }
@@ -13523,7 +13547,7 @@
           "qbSampleDropbacks": 227,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -13533,7 +13557,7 @@
           "qbSampleDropbacks": 275,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -13988,7 +14012,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -14000,12 +14024,12 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-15T18:00:00+00:00",
-        "temperatureC": 13.7,
+        "temperatureC": 12.9,
         "precipitationChancePct": 4.0,
-        "windMph": 5.0,
-        "gustMph": 6.3,
+        "windMph": 7.9,
+        "gustMph": 10.7,
         "snowfallCm": 0.0,
         "note": "Roof status unconfirmed; only conditional outdoor forecast"
       }
@@ -14115,7 +14139,7 @@
           "qbSampleDropbacks": 289,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -14125,7 +14149,7 @@
           "qbSampleDropbacks": 227,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -14341,6 +14365,24 @@
             "starterConfirmed": false
           },
           {
+            "name": "Jaylen Wright",
+            "position": "RUNNING BACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T19:16:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.127,
+              "defensePct": 0.0,
+              "lastGame": "2026-11-01T21:25:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
             "name": "Kadyn Proctor",
             "position": "OFFENSIVE TACKLE",
             "status": "Questionable",
@@ -14501,24 +14543,6 @@
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
             }
-          },
-          {
-            "name": "Jaylen Wright",
-            "position": "RUNNING BACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T21:29:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.127,
-              "defensePct": 0.0,
-              "lastGame": "2026-11-01T21:25:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
           }
         ],
         "home": [
@@ -14606,7 +14630,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -14618,12 +14642,12 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-15T18:00:00+00:00",
-        "temperatureC": 10.6,
+        "temperatureC": 7.3,
         "precipitationChancePct": 5.0,
-        "windMph": 5.4,
-        "gustMph": 7.6,
+        "windMph": 4.8,
+        "gustMph": 6.9,
         "snowfallCm": 0.0,
         "note": "Roof status unconfirmed; only conditional outdoor forecast"
       }
@@ -14733,7 +14757,7 @@
           "qbSampleDropbacks": 327,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -14743,7 +14767,7 @@
           "qbSampleDropbacks": 250,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -14957,6 +14981,24 @@
       "supplementalInjuryWatch": {
         "away": [
           {
+            "name": "Kyler Murray",
+            "position": "QUARTERBACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T18:36:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 1.0,
+              "defensePct": 0.0,
+              "lastGame": "2026-11-01T18:00:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
             "name": "Christian Darrisaw",
             "position": "OFFENSIVE TACKLE",
             "status": "Questionable",
@@ -14968,24 +15010,6 @@
             "recentUsage": {
               "games": 3,
               "offensePct": 0.847,
-              "defensePct": 0.0,
-              "lastGame": "2026-11-01T18:00:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "Kyler Murray",
-            "position": "QUARTERBACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-02T19:57:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 1.0,
               "defensePct": 0.0,
               "lastGame": "2026-11-01T18:00:00+00:00",
               "basis": "previous recorded snap counts only",
@@ -15049,6 +15073,24 @@
             }
           },
           {
+            "name": "Christian Watson",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T18:10:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.727,
+              "defensePct": 0.0,
+              "lastGame": "2026-10-30T00:15:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
             "name": "Keisean Nixon",
             "position": "CORNERBACK",
             "status": "Questionable",
@@ -15061,24 +15103,6 @@
               "games": 3,
               "offensePct": 0.0,
               "defensePct": 0.993,
-              "lastGame": "2026-10-30T00:15:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "Christian Watson",
-            "position": "WIDE RECEIVER",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T22:09:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.727,
-              "defensePct": 0.0,
               "lastGame": "2026-10-30T00:15:00+00:00",
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
@@ -15176,7 +15200,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -15188,11 +15212,11 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-15T18:00:00+00:00",
-        "temperatureC": 10.5,
+        "temperatureC": 6.4,
         "precipitationChancePct": 2.0,
-        "windMph": 11.0,
+        "windMph": 3.0,
         "gustMph": 15.2,
         "snowfallCm": 0.0,
         "note": "Long-range forecast; check near kickoff"
@@ -15303,7 +15327,7 @@
           "qbSampleDropbacks": 34,
           "qbChangeFlag": true,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": false,
           "flaggedKeyAbsences": 0
         },
@@ -15313,7 +15337,7 @@
           "qbSampleDropbacks": 314,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -15596,24 +15620,6 @@
             }
           },
           {
-            "name": "Davante Adams",
-            "position": "WIDE RECEIVER",
-            "status": "Injured Reserve",
-            "injury": "",
-            "reportDate": "2026-10-28T20:59:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.807,
-              "defensePct": 0.0,
-              "lastGame": "2026-10-18T20:05:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
             "name": "Trent McDuffie",
             "position": "CORNERBACK",
             "status": "Questionable",
@@ -15709,6 +15715,24 @@
               "offensePct": 0.0,
               "defensePct": 0.0,
               "lastGame": "2026-10-25T20:25:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
+            "name": "Grant Stuard",
+            "position": "LINEBACKER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-02T23:46:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.0,
+              "defensePct": 0.0,
+              "lastGame": "2026-11-01T21:05:00+00:00",
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
             }
@@ -15871,7 +15895,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -15992,7 +16016,7 @@
           "qbSampleDropbacks": 296,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -16002,7 +16026,7 @@
           "qbSampleDropbacks": 267,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -16490,7 +16514,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -16611,7 +16635,7 @@
           "qbSampleDropbacks": 316,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -16621,7 +16645,7 @@
           "qbSampleDropbacks": 246,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -16835,6 +16859,16 @@
       "supplementalInjuryWatch": {
         "away": [
           {
+            "name": "Brandon Aiyuk",
+            "position": "WIDE RECEIVER",
+            "status": "Out",
+            "injury": "",
+            "reportDate": "2026-11-05T19:09:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false
+          },
+          {
             "name": "Nate Hobbs",
             "position": "CORNERBACK",
             "status": "Injured Reserve",
@@ -16861,16 +16895,6 @@
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
             }
-          },
-          {
-            "name": "Brandon Aiyuk",
-            "position": "WIDE RECEIVER",
-            "status": "Out",
-            "injury": "",
-            "reportDate": "2026-11-04T14:25:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false
           },
           {
             "name": "De'Zhaun Stribling",
@@ -17236,7 +17260,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -17248,12 +17272,12 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-15T21:00:00+00:00",
-        "temperatureC": 12.3,
+        "temperatureC": 25.9,
         "precipitationChancePct": 8.0,
-        "windMph": 4.5,
-        "gustMph": 3.8,
+        "windMph": 6.0,
+        "gustMph": 8.9,
         "snowfallCm": 0.0,
         "note": "Roof status unconfirmed; only conditional outdoor forecast"
       }
@@ -17363,7 +17387,7 @@
           "qbSampleDropbacks": 323,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -17373,7 +17397,7 @@
           "qbSampleDropbacks": 308,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -17752,24 +17776,6 @@
             }
           },
           {
-            "name": "DJ Turner II",
-            "position": "CORNERBACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-03T00:47:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.0,
-              "defensePct": 0.887,
-              "lastGame": "2026-11-01T18:00:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
             "name": "Cedric Johnson",
             "position": "DEFENSIVE END",
             "status": "Questionable",
@@ -17789,7 +17795,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -17801,12 +17807,12 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-16T01:00:00+00:00",
-        "temperatureC": 6.2,
+        "temperatureC": 4.8,
         "precipitationChancePct": 6.0,
-        "windMph": 2.5,
-        "gustMph": 2.0,
+        "windMph": 2.9,
+        "gustMph": 2.5,
         "snowfallCm": 0.0,
         "note": "Long-range forecast; check near kickoff"
       }
@@ -17916,7 +17922,7 @@
           "qbSampleDropbacks": 24,
           "qbChangeFlag": true,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": false,
           "flaggedKeyAbsences": 0
         },
@@ -17926,7 +17932,7 @@
           "qbSampleDropbacks": 270,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -18411,7 +18417,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -18423,11 +18429,11 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-17T01:00:00+00:00",
-        "temperatureC": 10.7,
-        "precipitationChancePct": 3.0,
-        "windMph": 3.3,
+        "temperatureC": 5.7,
+        "precipitationChancePct": 1.0,
+        "windMph": 9.7,
         "gustMph": 6.7,
         "snowfallCm": 0.0,
         "note": "Long-range forecast; check near kickoff"
@@ -18538,7 +18544,7 @@
           "qbSampleDropbacks": 309,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -18548,7 +18554,7 @@
           "qbSampleDropbacks": 289,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -18963,7 +18969,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -18975,12 +18981,12 @@
         "sourceUrl": "https://open-meteo.com/en/docs",
         "probabilityWeight": 0,
         "locationBasis": "Approximate stadium area, not a stadium sensor",
-        "retrievedAt": "2026-11-05T17:00:53.582021+00:00",
+        "retrievedAt": "2026-11-05T20:12:46.067700+00:00",
         "forecastFor": "2026-11-20T01:00:00+00:00",
-        "temperatureC": 22.2,
-        "precipitationChancePct": 34.0,
-        "windMph": 8.3,
-        "gustMph": 18.3,
+        "temperatureC": 22.6,
+        "precipitationChancePct": 32.0,
+        "windMph": 7.1,
+        "gustMph": 14.1,
         "snowfallCm": 0.0,
         "note": "Roof status unconfirmed; only conditional outdoor forecast"
       }
@@ -19090,7 +19096,7 @@
           "qbSampleDropbacks": 275,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -19100,7 +19106,7 @@
           "qbSampleDropbacks": 34,
           "qbChangeFlag": true,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": false,
           "flaggedKeyAbsences": 0
         },
@@ -19585,7 +19591,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -19706,7 +19712,7 @@
           "qbSampleDropbacks": 334,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -19716,7 +19722,7 @@
           "qbSampleDropbacks": 24,
           "qbChangeFlag": true,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": false,
           "flaggedKeyAbsences": 0
         },
@@ -20191,7 +20197,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -20312,7 +20318,7 @@
           "qbSampleDropbacks": 197,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -20322,7 +20328,7 @@
           "qbSampleDropbacks": 242,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -20624,7 +20630,25 @@
             "position": "OFFENSIVE TACKLE",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-05T16:51:00+00:00",
+            "reportDate": "2026-11-05T20:01:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.83,
+              "defensePct": 0.0,
+              "lastGame": "2026-10-25T17:00:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
+            "name": "Malik Nabers",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T18:44:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false,
@@ -20642,7 +20666,7 @@
             "position": "RUNNING BACK",
             "status": "Questionable",
             "injury": "",
-            "reportDate": "2026-11-04T21:31:00+00:00",
+            "reportDate": "2026-11-05T18:43:00+00:00",
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false,
@@ -20747,7 +20771,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -20868,7 +20892,7 @@
           "qbSampleDropbacks": 264,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -20878,7 +20902,7 @@
           "qbSampleDropbacks": 227,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -21085,6 +21109,24 @@
             "starterConfirmed": false
           },
           {
+            "name": "Jaylen Wright",
+            "position": "RUNNING BACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T19:16:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.127,
+              "defensePct": 0.0,
+              "lastGame": "2026-11-01T21:25:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
             "name": "Kadyn Proctor",
             "position": "OFFENSIVE TACKLE",
             "status": "Questionable",
@@ -21245,24 +21287,6 @@
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
             }
-          },
-          {
-            "name": "Jaylen Wright",
-            "position": "RUNNING BACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T21:29:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.127,
-              "defensePct": 0.0,
-              "lastGame": "2026-11-01T21:25:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
           }
         ],
         "home": [
@@ -21280,6 +21304,24 @@
               "offensePct": 0.0,
               "defensePct": 0.067,
               "lastGame": "2026-09-18T00:15:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
+            "name": "DJ Moore",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T18:49:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.563,
+              "defensePct": 0.0,
+              "lastGame": "2026-11-01T18:00:00+00:00",
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
             }
@@ -21339,24 +21381,6 @@
             }
           },
           {
-            "name": "DJ Moore",
-            "position": "WIDE RECEIVER",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-01T22:13:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.563,
-              "defensePct": 0.0,
-              "lastGame": "2026-11-01T18:00:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
             "name": "Joshua Palmer",
             "position": "WIDE RECEIVER",
             "status": "Questionable",
@@ -21368,7 +21392,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -21489,7 +21513,7 @@
           "qbSampleDropbacks": 298,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -21499,7 +21523,7 @@
           "qbSampleDropbacks": 327,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -21843,6 +21867,24 @@
         ],
         "home": [
           {
+            "name": "Zavier Scott",
+            "position": "RUNNING BACK",
+            "status": "Injured Reserve",
+            "injury": "",
+            "reportDate": "2026-11-05T18:54:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.0,
+              "defensePct": 0.0,
+              "lastGame": "2026-11-03T01:15:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
             "name": "Kentavius Street",
             "position": "DEFENSIVE TACKLE",
             "status": "Injured Reserve",
@@ -21892,24 +21934,6 @@
               "offensePct": 0.0,
               "defensePct": 0.657,
               "lastGame": "2026-10-23T00:15:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "Zavier Scott",
-            "position": "RUNNING BACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-05T02:28:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.0,
-              "defensePct": 0.0,
-              "lastGame": "2026-11-03T01:15:00+00:00",
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
             }
@@ -21970,7 +21994,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -22091,7 +22115,7 @@
           "qbSampleDropbacks": 308,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -22101,7 +22125,7 @@
           "qbSampleDropbacks": 223,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -22352,6 +22376,24 @@
             }
           },
           {
+            "name": "Emeka Egbuka",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T17:04:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.897,
+              "defensePct": 0.0,
+              "lastGame": "2026-10-18T17:00:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
             "name": "Tykee Smith",
             "position": "SAFETY",
             "status": "Questionable",
@@ -22378,24 +22420,6 @@
             "source": "ESPN media injury list",
             "officialGameStatus": false,
             "starterConfirmed": false
-          },
-          {
-            "name": "Emeka Egbuka",
-            "position": "WIDE RECEIVER",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T17:17:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.897,
-              "defensePct": 0.0,
-              "lastGame": "2026-10-18T17:00:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
           }
         ],
         "home": [
@@ -22591,7 +22615,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -22712,7 +22736,7 @@
           "qbSampleDropbacks": 316,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -22722,7 +22746,7 @@
           "qbSampleDropbacks": 263,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -23291,7 +23315,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -23412,7 +23436,7 @@
           "qbSampleDropbacks": 270,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -23422,7 +23446,7 @@
           "qbSampleDropbacks": 264,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -23665,6 +23689,42 @@
             }
           },
           {
+            "name": "Garrett Wilson",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T18:03:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.88,
+              "defensePct": 0.0,
+              "lastGame": "2026-11-01T18:00:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
+            "name": "Breece Hall",
+            "position": "RUNNING BACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T18:02:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.57,
+              "defensePct": 0.0,
+              "lastGame": "2026-09-27T17:00:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
             "name": "Joseph Ossai",
             "position": "DEFENSIVE END",
             "status": "Questionable",
@@ -23750,42 +23810,6 @@
               "offensePct": 0.0,
               "defensePct": 0.917,
               "lastGame": "2026-10-25T17:00:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "Breece Hall",
-            "position": "RUNNING BACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T17:36:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.57,
-              "defensePct": 0.0,
-              "lastGame": "2026-09-27T17:00:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "Garrett Wilson",
-            "position": "WIDE RECEIVER",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T17:25:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.88,
-              "defensePct": 0.0,
-              "lastGame": "2026-11-01T18:00:00+00:00",
               "basis": "previous recorded snap counts only",
               "availabilityConfirmed": false
             }
@@ -23992,7 +24016,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -24113,7 +24137,7 @@
           "qbSampleDropbacks": 263,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -24123,7 +24147,7 @@
           "qbSampleDropbacks": 296,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -24530,7 +24554,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -24651,7 +24675,7 @@
           "qbSampleDropbacks": 24,
           "qbChangeFlag": true,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": false,
           "flaggedKeyAbsences": 0
         },
@@ -24661,7 +24685,7 @@
           "qbSampleDropbacks": 308,
           "qbChangeFlag": false,
           "depthAsOf": "2026-11-05T15:23:13+00:00",
-          "depthAgeDays": 0.1,
+          "depthAgeDays": 0.2,
           "verifiedQBHistory": true,
           "flaggedKeyAbsences": 0
         },
@@ -24946,6 +24970,60 @@
         ],
         "home": [
           {
+            "name": "Dontayvion Wicks",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T19:33:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.793,
+              "defensePct": 0.0,
+              "lastGame": "2026-10-18T17:00:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
+            "name": "DeVonta Smith",
+            "position": "WIDE RECEIVER",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T19:29:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.847,
+              "defensePct": 0.0,
+              "lastGame": "2026-10-18T17:00:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
+            "name": "Saquon Barkley",
+            "position": "RUNNING BACK",
+            "status": "Questionable",
+            "injury": "",
+            "reportDate": "2026-11-05T19:27:00+00:00",
+            "source": "ESPN media injury list",
+            "officialGameStatus": false,
+            "starterConfirmed": false,
+            "recentUsage": {
+              "games": 3,
+              "offensePct": 0.18,
+              "defensePct": 0.0,
+              "lastGame": "2026-11-02T01:20:00+00:00",
+              "basis": "previous recorded snap counts only",
+              "availabilityConfirmed": false
+            }
+          },
+          {
             "name": "Jihaad Campbell",
             "position": "LINEBACKER",
             "status": "Questionable",
@@ -24975,60 +25053,6 @@
             "recentUsage": {
               "games": 3,
               "offensePct": 0.0,
-              "defensePct": 0.0,
-              "lastGame": "2026-11-02T01:20:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "Dontayvion Wicks",
-            "position": "WIDE RECEIVER",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T23:29:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.793,
-              "defensePct": 0.0,
-              "lastGame": "2026-10-18T17:00:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "DeVonta Smith",
-            "position": "WIDE RECEIVER",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T23:25:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.847,
-              "defensePct": 0.0,
-              "lastGame": "2026-10-18T17:00:00+00:00",
-              "basis": "previous recorded snap counts only",
-              "availabilityConfirmed": false
-            }
-          },
-          {
-            "name": "Saquon Barkley",
-            "position": "RUNNING BACK",
-            "status": "Questionable",
-            "injury": "",
-            "reportDate": "2026-11-04T23:20:00+00:00",
-            "source": "ESPN media injury list",
-            "officialGameStatus": false,
-            "starterConfirmed": false,
-            "recentUsage": {
-              "games": 3,
-              "offensePct": 0.18,
               "defensePct": 0.0,
               "lastGame": "2026-11-02T01:20:00+00:00",
               "basis": "previous recorded snap counts only",
@@ -25127,7 +25151,7 @@
           }
         ],
         "status": "loaded",
-        "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
+        "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
         "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list."
       },
       "weather": {
@@ -34704,7 +34728,7 @@
   },
   "historicalAudit": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-05T17:00:53.582021+00:00",
+    "asOf": "2026-11-05T20:12:46.067700+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -34914,7 +34938,7 @@
     "recent": []
   },
   "forwardResults": [],
-  "forwardPredictions": 43,
+  "forwardPredictions": 44,
   "powerRankings": [
     {
       "team": "BUF",
@@ -35524,7 +35548,7 @@
       "2025: ValueError: No timestamped report rows; undated historical records are not backdated"
     ],
     "source": "nflverse dated injuries_{season}.csv",
-    "asOf": "2026-11-05T17:00:45.129113+00:00",
+    "asOf": "2026-11-05T20:12:40.642145+00:00",
     "timestampBasis": "download-observation",
     "records": 2725
   },
@@ -35560,15 +35584,15 @@
   "additionalInjurySource": {
     "status": "loaded",
     "source": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
-    "retrievedAt": "2026-11-05T17:00:53.456646+00:00",
-    "reportCount": 265,
+    "retrievedAt": "2026-11-05T20:12:45.991078+00:00",
+    "reportCount": 264,
     "teamsCovered": 32,
     "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list.",
     "inspection": {
       "groups": 32,
       "items": 800,
       "dated": 800,
-      "latestDate": "2026-11-05T16:51:00+00:00",
+      "latestDate": "2026-11-05T20:01:00+00:00",
       "statusSamples": [
         "Active",
         "Doubtful",
@@ -35608,7 +35632,7 @@
       2026
     ],
     "records": 37905,
-    "watchItemsEnriched": 611
+    "watchItemsEnriched": 612
   },
   "shadowForwardPerformance": {
     "recordedPicks": 40,
@@ -35619,32 +35643,29 @@
     "researchOnly": true
   },
   "weatherSource": {
-    "status": "partial",
+    "status": "loaded",
     "source": "https://api.open-meteo.com/v1/forecast",
     "scope": "Non-commercial venue-area forecast; no probability weight",
     "queriedVenues": 20,
     "statuses": {
-      "forecast": 16,
+      "forecast": 17,
       "roof-unconfirmed": 6,
       "indoor": 8,
-      "unavailable": 1,
       "venue-unmapped": 1,
       "outside-forecast-range": 8
     },
-    "errors": [
-      "CLE00: URLError: <urlopen error _ssl.c:994: The handshake operation timed out>"
-    ],
-    "asOf": "2026-11-05T17:00:53.582021+00:00"
+    "errors": [],
+    "asOf": "2026-11-05T20:12:46.067700+00:00"
   },
   "dataProvenance": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-03T01:15:00+00:00",
-    "sha256": "c8b5be71e93c96d9b52765d7edf64a50120270d3b5216df094d2e7a28212404c",
-    "downloadedAt": "2026-11-05T17:00:41.378690+00:00",
+    "sha256": "66f7a71b12eeb8da8a5c332cfadb245da693aa66e2064fba734983dc41e68fd5",
+    "downloadedAt": "2026-11-05T20:12:38.401745+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
   },
   "refreshMode": "full",
-  "sourceLagDays": 2.7
+  "sourceLagDays": 2.8
 }
