@@ -411,6 +411,8 @@ def generate(games,now=None,previous_log=None,pbp_games=None,pbp_meta=None,
     signal_audit=accuracy_audit(tactical_rows,current)
     signal_audit['generatedAt']=now.isoformat()
     signal_audit['sourceStatus']=(pbp_meta or {}).get('status','unavailable')
+    signal_audit['requestedSeasons']=(pbp_meta or {}).get('requestedSeasons',[])
+    signal_audit['loadedSeasons']=(pbp_meta or {}).get('seasons',[])
     player_validation=validate_player(player_rows,current)
     qb_validation=validate_qb(qb_rows,current)
     # XGBoost challenger: research only, never a live overlay or bet input.
@@ -426,7 +428,7 @@ def generate(games,now=None,previous_log=None,pbp_games=None,pbp_meta=None,
     player_gain=player_validation.get('brierGain') or 0
     qb_gain=qb_validation.get('brierGain') or 0
     eligible_gates=[(gain,key) for gain,key,on in ((situ_gain,'situational',validation['enabled']),
-                    (tact_gain,'tactical',tactical_validation['enabled']),
+                    (tact_gain,'tactical',False),  # Backfill alone cannot enable an unverified research overlay.
                     (player_gain,'player',player_validation['enabled']),
                     (qb_gain,'qb',qb_validation['enabled'])) if on]
     chosen=max(eligible_gates,key=lambda x:x[0])[1] if eligible_gates else 'none' 
@@ -520,7 +522,10 @@ def generate(games,now=None,previous_log=None,pbp_games=None,pbp_meta=None,
           'forwardPerformance':performance(forward),'forwardResults':forward[-50:][::-1],
           'forwardPredictions':len(log),'powerRankings':ranks,'situationalStats':summarize_signals(strategy_history),
           'situationalValidation':validation,
-          'tacticalValidation':tactical_validation,
+          'tacticalValidation':{**tactical_validation,
+              'enabled':False,'status':'RESEARCH — selection results are not prospective approval',
+              'coefficients':{key:0 for key in tactical_validation.get('coefficients',{})},
+              'wouldPassHistoricalScreen':bool(tactical_validation.get('enabled'))},
           'signalAccuracyLab':signal_audit,
           'playerValidation':player_validation,
           'qbValidation':qb_validation,

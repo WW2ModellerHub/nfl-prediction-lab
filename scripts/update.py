@@ -150,6 +150,15 @@ def record_shadow_predictions(dashboard,games,now,path=Path('data/shadow-predict
     path.write_text(json.dumps(entries,ensure_ascii=False,indent=2)+'\n')
     return entries
 
+PBP_BACKFILL_SEASONS=8
+PBP_FIRST_SUPPORTED_SEASON=2019
+
+def pbp_history_seasons(current_season):
+    """Bound full PBP research to eight available years, never future seasons."""
+    start=max(PBP_FIRST_SUPPORTED_SEASON,current_season-PBP_BACKFILL_SEASONS+1)
+    return range(start,current_season+1)
+
+
 def update(schedules_only=False,schedules_file=None):
     games,source=get_schedule(schedules_file)
     old_dashboard_path=Path('data/dashboard.json')
@@ -168,7 +177,7 @@ def update(schedules_only=False,schedules_file=None):
         player_meta={'injuries':{'status':'unavailable','loadedSeasons':[]},
                      'depth':{'status':'unavailable','loadedSeasons':[]}}
     else:
-        pbp,loaded,errors=load_nflverse_pbp(range(max(2023,current-3),current+1),qb_sink=qb_plays)
+        pbp,loaded,errors=load_nflverse_pbp(pbp_history_seasons(current),qb_sink=qb_plays)
         injuries,depth,player_meta=load_historical_reports(current)
         snap_rows,snap_meta=load_snap_counts(range(max(2025,current-1),current+1))
     supplemental, supplemental_meta = ({}, {'status':'unavailable','note':'Not fetched on lightweight runs'})
@@ -178,7 +187,7 @@ def update(schedules_only=False,schedules_file=None):
     # injury snapshot appears to come from the future and is incorrectly rejected.
     now=datetime.now(timezone.utc)
     meta={'status':'loaded' if loaded and not errors else 'partial' if loaded else 'unavailable',
-          'seasons':loaded,'errors':errors,'source':'nflverse play_by_play_{year}.parquet'}
+          'seasons':loaded,'errors':errors,'requestedSeasons':list(pbp_history_seasons(current)) if not schedules_only else [],'source':'nflverse play_by_play_{year}.parquet'}
     dashboard,log=generate(games,now,log,pbp,meta,qb_games=qb_plays,
                            injury_rows=injuries,depth_rows=depth,player_meta=player_meta)
     if not qb_plays:

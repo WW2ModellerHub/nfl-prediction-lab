@@ -143,6 +143,56 @@ def _calibration(games,field):
     return result
 
 
+def _locked_period_check(evaluated):
+    """Simulated chronological selection, never production promotion.
+
+    Select one feature using <=2023 walk-forward evaluations, then inspect the
+    same pregame models on >=2024 data without re-selecting the feature.
+    Candidate coefficients ARE re-fit at each successive season, from earlier
+    games only. The study was not preregistered and is NOT blind.
+    """
+    selection=[r for r in evaluated if r["season"]<=2023]
+    reserved=[r for r in evaluated if r["season"]>=2024]
+    old_years=sorted({r["season"] for r in selection})
+    later_years=sorted({r["season"] for r in reserved})
+    report={"status":"insufficient chronological coverage",
+            "selectionThroughSeason":2023,"holdoutFromSeason":2024,
+            "featureChoiceFrozen":True,"coefficientsReestimatedAnnually":True,
+            "researchOnly":True,"productionWeight":0,
+            "selectionGames":len(selection),"selectionSeasons":old_years,
+            "holdoutGames":len(reserved),"holdoutSeasons":later_years,
+            "selectedKey":None,"selectedName":None,
+            "selectionBrierGain":None,"holdout":None,
+            "note":"Retrospective date-split check; 2024+ outcomes were already considered in earlier project research, so not an untouched blind experiment."}
+    if len(selection)<150 or len(old_years)<2 or len(reserved)<100:
+        return report
+    gains={key:mean((r["p"]-r["y"])**2-(r[key]-r["y"])**2 for r in selection)
+           for key,_,_ in CANDIDATES}
+    best=max(gains,key=gains.get)
+    selected=best if gains[best]>0 else "p"
+    report.update(status="historical simulated feature lock completed",
+                  selectedKey=selected,
+                  selectedName=next((name for key,name,_ in CANDIDATES if key==selected),
+                                    "Baseline (no additional signals)"),
+                  selectionBrierGain=round(gains[best] if selected!="p" else 0,6),
+                  selectionCandidateGains={key:round(x,6) for key,x in gains.items()})
+    base=_metrics(reserved,"p")
+    candidate=_metrics(reserved,selected)
+    diff=mean((r["p"]-r["y"])**2-(r[selected]-r["y"])**2 for r in reserved)
+    per_year=[]
+    for year in later_years:
+        cohort=[r for r in reserved if r["season"]==year]
+        bp=_metrics(cohort,"p");cp=_metrics(cohort,selected)
+        per_year.append({"season":year,"games":len(cohort),
+                         "baselineBrier":bp["brier"],"selectedBrier":cp["brier"],
+                         "brierGain":round(bp["brier"]-cp["brier"],6)})
+    report["holdout"]={"games":len(reserved),"baseline":base,"selected":candidate,
+                       "brierGain":round(diff,6),"brierGain95CI":_weekly_ci(reserved,selected),
+                       "seasons":per_year,
+                       "improvingSeasons":sum(s["brierGain"]>0 for s in per_year)}
+    return report
+
+
 def evaluate(rows,current_season):
     """Always compare candidates on exactly the same paired, pregame cohort.
 
@@ -168,6 +218,7 @@ def evaluate(rows,current_season):
                 "productionWeight":0,"forecastChanged":False,
                 "inputGames":len(clean),"evaluatedGames":0,"evaluatedSeasons":[],
                 "baseline":None,"candidates":[],"calibration":{},
+                "lockedHoldout":_locked_period_check([]),
                 "note":"Needs ≥350 earlier-season eligible games and ≥80 eligible games in a later completed evaluation season. Incomplete play-by-play is never imputed."}
     seasons=sorted({r["season"] for r in evaluated})
     base=_metrics(evaluated,"p")
@@ -199,11 +250,13 @@ def evaluate(rows,current_season):
             "trainedThroughSeason":max((s for s in years if s<current_season),default=None),
             "inputGames":len(clean),"evaluatedGames":len(evaluated),
             "evaluatedSeasons":seasons,"baseline":base,"candidates":candidates,
+            "lockedHoldout":_locked_period_check(evaluated),
             "calibration":{"baseline":_calibration(evaluated,"p"),
                            "combined":_calibration(evaluated,"combined")},
             "notes":["Historical season-forward evaluation uses only preceding seasons to train each held-out season.",
                      "The same games are used for every candidate and baseline, making paired Brier differences comparable.",
                      "The 95% week-block bootstrap intervals are exploratory, unadjusted for five comparisons or model selection.",
+                     "The pre-2024 feature-selection check is simulated retrospectively, NOT genuine untouched prospective evidence.",
                      "Historical testing, including the newest seasons, is not untouched blind prospective validation.",
                      "A qualified candidate is research-only; live forecasts, markets and player availability weights are unchanged.",
                      "Coverage requires nflverse play-by-play from completed earlier games; schedules-only refreshes cannot recompute this audit."]}

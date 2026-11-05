@@ -76,5 +76,35 @@ class AccuracyLabTests(unittest.TestCase):
         self.assertTrue(all(0 <= x['brier'] <= 1 for x in report['candidates']))
 
 
+
+    def test_historical_pbp_window_is_bounded(self):
+        from update import pbp_history_seasons
+        self.assertEqual(list(pbp_history_seasons(2026)),list(range(2019,2027)))
+        self.assertEqual(list(pbp_history_seasons(2028)),list(range(2021,2029)))
+        self.assertEqual(list(pbp_history_seasons(2019)),[2019])
+
+    def test_temporal_feature_selection_frozen_through_2023(self):
+        rows=example_rows(seasons=(2019,2020,2021,2022,2023,2024,2025))
+        before=evaluate(rows,2026)
+        changed=copy.deepcopy(rows)
+        for item in changed:
+            if item["season"]>=2024:
+                item["y"]=1-item["y"]
+        after=evaluate(changed,2026)
+        a=before["lockedHoldout"];b=after["lockedHoldout"]
+        self.assertEqual(a["status"],"historical simulated feature lock completed")
+        self.assertGreater(a["selectionGames"],150)
+        self.assertEqual(a["selectedKey"],b["selectedKey"])
+        self.assertEqual(a["selectionCandidateGains"],b["selectionCandidateGains"])
+        self.assertEqual(a["productionWeight"],0)
+        self.assertTrue(a["featureChoiceFrozen"])
+        self.assertTrue(a["researchOnly"])
+        self.assertEqual(a["holdout"]["games"],b["holdout"]["games"])
+
+    def test_temporal_check_needs_earlier_evaluation_history(self):
+        report=evaluate(example_rows(seasons=(2023,2024,2025)),2026)
+        self.assertIsNone(report["lockedHoldout"]["selectedKey"])
+        self.assertNotEqual(report["lockedHoldout"]["status"],"historical simulated feature lock completed")
+
 if __name__=='__main__':
     unittest.main()

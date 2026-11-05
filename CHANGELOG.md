@@ -1,3 +1,11 @@
+## v2.1 — 5 November 2026 — Multi-season play-by-play accuracy research
+
+- Expand full-refresh NFL play-by-play source coverage to eight seasons (2019–2026 for the current season).
+- Add a simulated historical feature-selection lock: select a tactical variable using only seasons through 2023, then check the selected method against separate 2024+ historical outcomes.
+- Show full matched Brier scores, season splits, paired week-block uncertainty ranges and precise year coverage; missing data stays missing.
+- The additional historical data cannot automatically activate a tactical probability overlay. All new research remains informational until genuinely prospective testing supports adoption.
+- Extend regression tests for retrospective selection integrity and source-window boundaries.
+
 ## v2.0 — 5 November 2026
 
 - Added research-only five-way historical matchup signal ablation, with season-forward training and matched Brier comparisons.

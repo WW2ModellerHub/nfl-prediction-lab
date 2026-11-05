@@ -1,3 +1,7 @@
+# Version 2.1 · Multi-season tactical accuracy research
+
+Full data refreshes now request an eight-year nflverse play-by-play history, 2019–2026 for the current season. The Signal Accuracy Lab can therefore test more completed years, subject to actual source success. It also runs a simulated temporal selection test: choose one tactical variable from pre-2024 historical tests, then examine 2024+ historical outcomes while holding feature identity fixed. Coefficients re-fit from preceding seasons. The historical 2024+ games have already been studied by this project, so the feature-lock test is **not an untouched or preregistered blind study**. No candidate receives an automatic probability weight.
+
 # v2.0 — Signal Accuracy Lab
 
 The new research tab tests passing, rushing, QB-hit/sack and explosive-play features plus all four combined on identical later-season historical games. Tests use only preceding seasons to fit residual logistic adjustments. It reports Brier, log-loss, accuracy, paired weekly uncertainty ranges and calibration. It does **not** modify production forecasts or prove betting profitability. Historical comparison years may have influenced model research, so this is not untouched blind validation. See `scripts/signal_accuracy.py` and `tests/test_signal_accuracy.py`.
