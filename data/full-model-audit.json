@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-05T21:10:09.351842+00:00",
+  "generatedAt": "2026-11-05T21:29:02.475947+00:00",
   "status": "production-pipeline-snapshot",
   "source": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-03T01:15:00+00:00",
-    "sha256": "363648e1aaa080809482349cfbe7954310750e8c50e7214ea87b20ce3c5b2f3d",
-    "downloadedAt": "2026-11-05T21:10:00.702124+00:00",
+    "sha256": "c716ad27ef4aabf18a0895313d4b0119387d3128e77107364090bd40e1599bd4",
+    "downloadedAt": "2026-11-05T21:28:50.367370+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
@@ -14,7 +14,7 @@
   "latestResultAt": "2026-11-03T01:15:00+00:00",
   "baseline": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-05T21:10:09.351842+00:00",
+    "asOf": "2026-11-05T21:29:02.475947+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -272,21 +272,49 @@
     ]
   },
   "tacticalValidation": {
-    "status": "OFF — incremental accuracy unproven",
+    "status": "RESEARCH — selection results are not prospective approval",
     "enabled": false,
     "trainedThroughSeason": 2025,
     "seasons": [
       {
+        "season": 2021,
+        "games": 284,
+        "baselineBrier": 0.23064,
+        "adjustedBrier": 0.23054,
+        "brierGain": 9e-05
+      },
+      {
+        "season": 2022,
+        "games": 282,
+        "baselineBrier": 0.22631,
+        "adjustedBrier": 0.22369,
+        "brierGain": 0.00262
+      },
+      {
+        "season": 2023,
+        "games": 285,
+        "baselineBrier": 0.23069,
+        "adjustedBrier": 0.23106,
+        "brierGain": -0.00037
+      },
+      {
+        "season": 2024,
+        "games": 285,
+        "baselineBrier": 0.21562,
+        "adjustedBrier": 0.21368,
+        "brierGain": 0.00193
+      },
+      {
         "season": 2025,
         "games": 284,
         "baselineBrier": 0.22431,
-        "adjustedBrier": 0.22426,
-        "brierGain": 5e-05
+        "adjustedBrier": 0.2242,
+        "brierGain": 0.00011
       }
     ],
-    "evaluationGames": 284,
-    "brierGain": 5e-05,
-    "improvingSeasons": 1,
+    "evaluationGames": 854,
+    "brierGain": 0.00056,
+    "improvingSeasons": 2,
     "coefficients": {
       "pass_matchup": 0,
       "rush_matchup": 0,
@@ -294,8 +322,9 @@
       "explosive_matchup": 0
     },
     "researchOnly": true,
-    "sampleSize": 806,
-    "notes": "Ablation uses prior-season data only. Evaluation years were used for selection, not an independent blind test."
+    "sampleSize": 1907,
+    "notes": "Ablation uses prior-season data only. Evaluation years were used for selection, not an independent blind test.",
+    "wouldPassHistoricalScreen": false
   },
   "signalAccuracyLab": {
     "status": "historical season-forward research",
@@ -303,16 +332,20 @@
     "productionWeight": 0,
     "forecastChanged": false,
     "trainedThroughSeason": 2025,
-    "inputGames": 806,
-    "evaluatedGames": 284,
+    "inputGames": 1907,
+    "evaluatedGames": 1420,
     "evaluatedSeasons": [
+      2021,
+      2022,
+      2023,
+      2024,
       2025
     ],
     "baseline": {
-      "games": 284,
-      "brier": 0.224308,
-      "logLoss": 0.639041,
-      "accuracy": 0.6655
+      "games": 1420,
+      "brier": 0.225507,
+      "logLoss": 0.641856,
+      "accuracy": 0.6359
     },
     "candidates": [
       {
@@ -321,22 +354,50 @@
         "features": [
           "pass_matchup"
         ],
-        "games": 284,
-        "brier": 0.22454,
-        "logLoss": 0.639371,
-        "accuracy": 0.6514,
-        "brierGain": -0.000232,
+        "games": 1420,
+        "brier": 0.225031,
+        "logLoss": 0.640648,
+        "accuracy": 0.6254,
+        "brierGain": 0.000476,
         "brierGain95CI": [
-          -0.001648,
-          0.001117
+          -0.000445,
+          0.001509
         ],
         "seasons": [
+          {
+            "season": 2021,
+            "games": 284,
+            "baselineBrier": 0.230638,
+            "candidateBrier": 0.230537,
+            "brierGain": 0.000101
+          },
+          {
+            "season": 2022,
+            "games": 282,
+            "baselineBrier": 0.226306,
+            "candidateBrier": 0.224641,
+            "brierGain": 0.001665
+          },
+          {
+            "season": 2023,
+            "games": 285,
+            "baselineBrier": 0.23069,
+            "candidateBrier": 0.231639,
+            "brierGain": -0.000949
+          },
+          {
+            "season": 2024,
+            "games": 285,
+            "baselineBrier": 0.215615,
+            "candidateBrier": 0.21326,
+            "brierGain": 0.002355
+          },
           {
             "season": 2025,
             "games": 284,
             "baselineBrier": 0.224308,
-            "candidateBrier": 0.22454,
-            "brierGain": -0.000232
+            "candidateBrier": 0.225096,
+            "brierGain": -0.000788
           }
         ],
         "warrantsForwardResearch": false,
@@ -348,22 +409,50 @@
         "features": [
           "rush_matchup"
         ],
-        "games": 284,
-        "brier": 0.224279,
-        "logLoss": 0.638986,
-        "accuracy": 0.662,
-        "brierGain": 2.9e-05,
+        "games": 1420,
+        "brier": 0.225582,
+        "logLoss": 0.642041,
+        "accuracy": 0.6345,
+        "brierGain": -7.5e-05,
         "brierGain95CI": [
-          -3e-06,
-          6.4e-05
+          -0.000348,
+          0.000183
         ],
         "seasons": [
+          {
+            "season": 2021,
+            "games": 284,
+            "baselineBrier": 0.230638,
+            "candidateBrier": 0.230812,
+            "brierGain": -0.000174
+          },
+          {
+            "season": 2022,
+            "games": 282,
+            "baselineBrier": 0.226306,
+            "candidateBrier": 0.225976,
+            "brierGain": 0.00033
+          },
+          {
+            "season": 2023,
+            "games": 285,
+            "baselineBrier": 0.23069,
+            "candidateBrier": 0.230496,
+            "brierGain": 0.000194
+          },
+          {
+            "season": 2024,
+            "games": 285,
+            "baselineBrier": 0.215615,
+            "candidateBrier": 0.215809,
+            "brierGain": -0.000194
+          },
           {
             "season": 2025,
             "games": 284,
             "baselineBrier": 0.224308,
-            "candidateBrier": 0.224279,
-            "brierGain": 2.9e-05
+            "candidateBrier": 0.224837,
+            "brierGain": -0.000529
           }
         ],
         "warrantsForwardResearch": false,
@@ -375,22 +464,50 @@
         "features": [
           "hit_sack_matchup"
         ],
-        "games": 284,
-        "brier": 0.224335,
-        "logLoss": 0.6391,
-        "accuracy": 0.6655,
-        "brierGain": -2.7e-05,
+        "games": 1420,
+        "brier": 0.225129,
+        "logLoss": 0.64103,
+        "accuracy": 0.6366,
+        "brierGain": 0.000378,
         "brierGain95CI": [
-          -5.4e-05,
-          -6e-06
+          -1.2e-05,
+          0.000791
         ],
         "seasons": [
+          {
+            "season": 2021,
+            "games": 284,
+            "baselineBrier": 0.230638,
+            "candidateBrier": 0.230559,
+            "brierGain": 7.9e-05
+          },
+          {
+            "season": 2022,
+            "games": 282,
+            "baselineBrier": 0.226306,
+            "candidateBrier": 0.225565,
+            "brierGain": 0.000741
+          },
+          {
+            "season": 2023,
+            "games": 285,
+            "baselineBrier": 0.23069,
+            "candidateBrier": 0.230264,
+            "brierGain": 0.000426
+          },
+          {
+            "season": 2024,
+            "games": 285,
+            "baselineBrier": 0.215615,
+            "candidateBrier": 0.215911,
+            "brierGain": -0.000296
+          },
           {
             "season": 2025,
             "games": 284,
             "baselineBrier": 0.224308,
-            "candidateBrier": 0.224335,
-            "brierGain": -2.7e-05
+            "candidateBrier": 0.223362,
+            "brierGain": 0.000946
           }
         ],
         "warrantsForwardResearch": false,
@@ -402,22 +519,50 @@
         "features": [
           "explosive_matchup"
         ],
-        "games": 284,
-        "brier": 0.224014,
-        "logLoss": 0.638394,
-        "accuracy": 0.6655,
-        "brierGain": 0.000294,
+        "games": 1420,
+        "brier": 0.225338,
+        "logLoss": 0.641468,
+        "accuracy": 0.6366,
+        "brierGain": 0.000169,
         "brierGain95CI": [
-          5.5e-05,
-          0.000509
+          4.6e-05,
+          0.000313
         ],
         "seasons": [
+          {
+            "season": 2021,
+            "games": 284,
+            "baselineBrier": 0.230638,
+            "candidateBrier": 0.230555,
+            "brierGain": 8.3e-05
+          },
+          {
+            "season": 2022,
+            "games": 282,
+            "baselineBrier": 0.226306,
+            "candidateBrier": 0.226349,
+            "brierGain": -4.3e-05
+          },
+          {
+            "season": 2023,
+            "games": 285,
+            "baselineBrier": 0.23069,
+            "candidateBrier": 0.230603,
+            "brierGain": 8.7e-05
+          },
+          {
+            "season": 2024,
+            "games": 285,
+            "baselineBrier": 0.215615,
+            "candidateBrier": 0.215372,
+            "brierGain": 0.000243
+          },
           {
             "season": 2025,
             "games": 284,
             "baselineBrier": 0.224308,
-            "candidateBrier": 0.224014,
-            "brierGain": 0.000294
+            "candidateBrier": 0.223834,
+            "brierGain": 0.000474
           }
         ],
         "warrantsForwardResearch": false,
@@ -432,28 +577,124 @@
           "hit_sack_matchup",
           "explosive_matchup"
         ],
-        "games": 284,
-        "brier": 0.224257,
-        "logLoss": 0.638762,
-        "accuracy": 0.6514,
-        "brierGain": 5.1e-05,
+        "games": 1420,
+        "brier": 0.224632,
+        "logLoss": 0.639777,
+        "accuracy": 0.6268,
+        "brierGain": 0.000875,
         "brierGain95CI": [
-          -0.001337,
-          0.001463
+          -0.000169,
+          0.001842
         ],
         "seasons": [
+          {
+            "season": 2021,
+            "games": 284,
+            "baselineBrier": 0.230638,
+            "candidateBrier": 0.230543,
+            "brierGain": 9.5e-05
+          },
+          {
+            "season": 2022,
+            "games": 282,
+            "baselineBrier": 0.226306,
+            "candidateBrier": 0.223688,
+            "brierGain": 0.002618
+          },
+          {
+            "season": 2023,
+            "games": 285,
+            "baselineBrier": 0.23069,
+            "candidateBrier": 0.231056,
+            "brierGain": -0.000366
+          },
+          {
+            "season": 2024,
+            "games": 285,
+            "baselineBrier": 0.215615,
+            "candidateBrier": 0.213684,
+            "brierGain": 0.001931
+          },
           {
             "season": 2025,
             "games": 284,
             "baselineBrier": 0.224308,
-            "candidateBrier": 0.224257,
-            "brierGain": 5.1e-05
+            "candidateBrier": 0.224197,
+            "brierGain": 0.000111
           }
         ],
         "warrantsForwardResearch": false,
         "affectsForecast": false
       }
     ],
+    "lockedHoldout": {
+      "status": "historical simulated feature lock completed",
+      "selectionThroughSeason": 2023,
+      "holdoutFromSeason": 2024,
+      "featureChoiceFrozen": true,
+      "coefficientsReestimatedAnnually": true,
+      "researchOnly": true,
+      "productionWeight": 0,
+      "selectionGames": 851,
+      "selectionSeasons": [
+        2021,
+        2022,
+        2023
+      ],
+      "holdoutGames": 569,
+      "holdoutSeasons": [
+        2024,
+        2025
+      ],
+      "selectedKey": "combined",
+      "selectedName": "All four together",
+      "selectionBrierGain": 0.000777,
+      "holdout": {
+        "games": 569,
+        "baseline": {
+          "games": 569,
+          "brier": 0.219954,
+          "logLoss": 0.629801,
+          "accuracy": 0.6714
+        },
+        "selected": {
+          "games": 569,
+          "brier": 0.218932,
+          "logLoss": 0.627375,
+          "accuracy": 0.6573
+        },
+        "brierGain": 0.001022,
+        "brierGain95CI": [
+          -0.001061,
+          0.002981
+        ],
+        "seasons": [
+          {
+            "season": 2024,
+            "games": 285,
+            "baselineBrier": 0.215615,
+            "selectedBrier": 0.213684,
+            "brierGain": 0.001931
+          },
+          {
+            "season": 2025,
+            "games": 284,
+            "baselineBrier": 0.224308,
+            "selectedBrier": 0.224197,
+            "brierGain": 0.000111
+          }
+        ],
+        "improvingSeasons": 2
+      },
+      "note": "Retrospective date-split check; 2024+ outcomes were already considered in earlier project research, so not an untouched blind experiment.",
+      "selectionCandidateGains": {
+        "passing": 0.000268,
+        "rushing": 0.000116,
+        "pressure": 0.000415,
+        "explosives": 4.3e-05,
+        "combined": 0.000777
+      }
+    },
     "calibration": {
       "baseline": [
         {
@@ -464,59 +705,59 @@
         },
         {
           "band": "20–40%",
-          "games": 39,
-          "meanForecast": 0.3389,
-          "actualHomeWinRate": 0.3333
+          "games": 146,
+          "meanForecast": 0.34,
+          "actualHomeWinRate": 0.3699
         },
         {
           "band": "40–60%",
-          "games": 123,
-          "meanForecast": 0.5116,
-          "actualHomeWinRate": 0.439
+          "games": 673,
+          "meanForecast": 0.5123,
+          "actualHomeWinRate": 0.4279
         },
         {
           "band": "60–80%",
-          "games": 111,
-          "meanForecast": 0.6782,
-          "actualHomeWinRate": 0.6667
+          "games": 568,
+          "meanForecast": 0.6804,
+          "actualHomeWinRate": 0.7113
         },
         {
           "band": "80–100%",
-          "games": 11,
-          "meanForecast": 0.8191,
-          "actualHomeWinRate": 1
+          "games": 33,
+          "meanForecast": 0.8277,
+          "actualHomeWinRate": 0.9091
         }
       ],
       "combined": [
         {
           "band": "0–20%",
-          "games": 0,
-          "meanForecast": null,
-          "actualHomeWinRate": null
+          "games": 2,
+          "meanForecast": 0.1884,
+          "actualHomeWinRate": 0.5
         },
         {
           "band": "20–40%",
-          "games": 40,
-          "meanForecast": 0.3375,
-          "actualHomeWinRate": 0.325
+          "games": 156,
+          "meanForecast": 0.3328,
+          "actualHomeWinRate": 0.3526
         },
         {
           "band": "40–60%",
-          "games": 123,
-          "meanForecast": 0.5106,
-          "actualHomeWinRate": 0.4309
+          "games": 656,
+          "meanForecast": 0.5087,
+          "actualHomeWinRate": 0.4299
         },
         {
           "band": "60–80%",
-          "games": 108,
-          "meanForecast": 0.6788,
-          "actualHomeWinRate": 0.6759
+          "games": 565,
+          "meanForecast": 0.6848,
+          "actualHomeWinRate": 0.7097
         },
         {
           "band": "80–100%",
-          "games": 13,
-          "meanForecast": 0.819,
-          "actualHomeWinRate": 1
+          "games": 41,
+          "meanForecast": 0.8328,
+          "actualHomeWinRate": 0.9024
         }
       ]
     },
@@ -524,12 +765,33 @@
       "Historical season-forward evaluation uses only preceding seasons to train each held-out season.",
       "The same games are used for every candidate and baseline, making paired Brier differences comparable.",
       "The 95% week-block bootstrap intervals are exploratory, unadjusted for five comparisons or model selection.",
+      "The pre-2024 feature-selection check is simulated retrospectively, NOT genuine untouched prospective evidence.",
       "Historical testing, including the newest seasons, is not untouched blind prospective validation.",
       "A qualified candidate is research-only; live forecasts, markets and player availability weights are unchanged.",
       "Coverage requires nflverse play-by-play from completed earlier games; schedules-only refreshes cannot recompute this audit."
     ],
-    "generatedAt": "2026-11-05T21:10:09.351842+00:00",
-    "sourceStatus": "loaded"
+    "generatedAt": "2026-11-05T21:29:02.475947+00:00",
+    "sourceStatus": "loaded",
+    "requestedSeasons": [
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "loadedSeasons": [
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ]
   },
   "playerValidation": {
     "enabled": false,
@@ -565,25 +827,53 @@
   "qbValidation": {
     "enabled": false,
     "status": "OFF — QB adjustment unproven",
-    "sampleSize": 696,
+    "sampleSize": 1628,
     "trainedThroughSeason": 2025,
-    "evaluationGames": 493,
-    "improvingSeasons": 2,
-    "brierGain": 0.00016,
+    "evaluationGames": 732,
+    "improvingSeasons": 3,
+    "brierGain": 0.00054,
     "seasons": [
+      {
+        "season": 2020,
+        "games": 229,
+        "baselineBrier": 0.22437,
+        "adjustedBrier": 0.22427,
+        "brierGain": 9e-05
+      },
+      {
+        "season": 2021,
+        "games": 243,
+        "baselineBrier": 0.23,
+        "adjustedBrier": 0.22976,
+        "brierGain": 0.00024
+      },
+      {
+        "season": 2022,
+        "games": 237,
+        "baselineBrier": 0.22628,
+        "adjustedBrier": 0.2257,
+        "brierGain": 0.00058
+      },
+      {
+        "season": 2023,
+        "games": 239,
+        "baselineBrier": 0.22587,
+        "adjustedBrier": 0.22585,
+        "brierGain": 2e-05
+      },
       {
         "season": 2024,
         "games": 240,
         "baselineBrier": 0.21409,
-        "adjustedBrier": 0.21403,
-        "brierGain": 6e-05
+        "adjustedBrier": 0.21327,
+        "brierGain": 0.00082
       },
       {
         "season": 2025,
         "games": 253,
         "baselineBrier": 0.22121,
-        "adjustedBrier": 0.22095,
-        "brierGain": 0.00025
+        "adjustedBrier": 0.22044,
+        "brierGain": 0.00077
       }
     ],
     "coefficients": {
@@ -600,33 +890,47 @@
     "scope": "Non-commercial venue-area forecast; no probability weight",
     "queriedVenues": 20,
     "statuses": {
-      "forecast": 16,
+      "forecast": 15,
       "roof-unconfirmed": 6,
       "indoor": 8,
-      "unavailable": 1,
+      "unavailable": 2,
       "venue-unmapped": 1,
       "outside-forecast-range": 8
     },
     "errors": [
-      "CLE00: URLError: <urlopen error _ssl.c:994: The handshake operation timed out>"
+      "NYC01: URLError: <urlopen error _ssl.c:994: The handshake operation timed out>"
     ],
-    "asOf": "2026-11-05T21:10:09.351842+00:00"
+    "asOf": "2026-11-05T21:29:02.475947+00:00"
   },
   "chosenOverlay": "none",
   "tacticalSource": {
     "status": "loaded",
     "seasons": [
+      2019,
+      2020,
+      2021,
+      2022,
       2023,
       2024,
       2025,
       2026
     ],
     "errors": [],
+    "requestedSeasons": [
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ],
     "source": "nflverse play_by_play_{year}.parquet"
   },
   "qbSource": {
     "status": "loaded",
-    "games": 976,
+    "games": 2081,
     "source": "Same nflverse PBP downloaded for tactical engine"
   },
   "injurySource": {
@@ -639,7 +943,7 @@
       "2025: ValueError: No timestamped report rows; undated historical records are not backdated"
     ],
     "source": "nflverse dated injuries_{season}.csv",
-    "asOf": "2026-11-05T21:10:03.323456+00:00",
+    "asOf": "2026-11-05T21:28:56.384877+00:00",
     "timestampBasis": "download-observation",
     "records": 2725
   },
@@ -656,15 +960,15 @@
   "additionalInjurySource": {
     "status": "loaded",
     "source": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
-    "retrievedAt": "2026-11-05T21:10:09.268679+00:00",
-    "reportCount": 263,
+    "retrievedAt": "2026-11-05T21:29:02.398579+00:00",
+    "reportCount": 264,
     "teamsCovered": 32,
     "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list.",
     "inspection": {
       "groups": 32,
       "items": 800,
       "dated": 800,
-      "latestDate": "2026-11-05T21:02:00+00:00",
+      "latestDate": "2026-11-05T21:23:00+00:00",
       "statusSamples": [
         "Active",
         "Doubtful",
@@ -704,7 +1008,7 @@
       2026
     ],
     "records": 37905,
-    "watchItemsEnriched": 612
+    "watchItemsEnriched": 613
   },
   "challengerValidation": {
     "status": "validated-research",
@@ -731,26 +1035,26 @@
         "season": 2024,
         "games": 285,
         "baselineBrier": 0.21562,
-        "challengerBrier": 0.21194,
-        "brierGain": 0.00368,
+        "challengerBrier": 0.21161,
+        "brierGain": 0.00401,
         "baselineAccuracy": 0.6772,
-        "challengerAccuracy": 0.6807
+        "challengerAccuracy": 0.6877
       },
       {
         "season": 2025,
         "games": 284,
         "baselineBrier": 0.22431,
-        "challengerBrier": 0.22128,
-        "brierGain": 0.00303,
+        "challengerBrier": 0.22015,
+        "brierGain": 0.00416,
         "baselineAccuracy": 0.6655,
-        "challengerAccuracy": 0.6444
+        "challengerAccuracy": 0.6373
       }
     ],
     "note": "Shadow forecasts never change published percentages or picks. Evaluated years are model-selection data, not an independent blind prospective test.",
     "evaluationGames": 569,
     "improvingSeasons": 2,
     "baselineBrier": 0.21996,
-    "challengerBrier": 0.2166,
+    "challengerBrier": 0.21587,
     "candidateQualifiedForFurtherResearch": true,
     "trainSeasons": [
       2016,
