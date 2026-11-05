@@ -1,3 +1,13 @@
+## v1.9 — 5 November 2026 — Matchup Intelligence & Upset Routes
+
+- Added `assets/matchup-intelligence.js`, a reusable pure explainability engine that never modifies published win percentages.
+- Added side-by-side cases for the model favourite and underdog, including evidence-backed tactical, pregame situational and unverified injury-watch considerations.
+- Added scoring form vs points conceded, pass EPA vs pass EPA allowed, rush EPA vs rush allowed, explosive-pass rate and hit/sack proxies; original values and sample provenance are shown without asserting head-to-head play-calling or player-v-player coverage.
+- New player availability comparison shows dated OUT/DOUBTFUL/IR and QUESTIONABLE reports, projected depth-chart-starter flags, data source and cached status; no fabricated player points or confirmed inactive claims.
+- Improved Upset Radar with actual observed underdog matchup reasons (and explicit no-evidence fallbacks), distinct from model win chance and betting value.
+- Added dedicated fail-open tests for missing data, misleading injury statuses, and no forecast mutation.
+- Preserved model selection gates, Elo inputs and immutable forecast history.
+
 ## v1.8 — 5 November 2026 — Full Matchup navigation
 
 - Fixture rows now open a dedicated, mobile-friendly full matchup page rather than relying on a modal.

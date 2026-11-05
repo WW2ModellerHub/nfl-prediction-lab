@@ -12,6 +12,7 @@ const el=id=>elements[id]||(elements[id]={innerHTML:'',textContent:'',setAttribu
 const document={getElementById:el,querySelectorAll:()=>[],querySelector:()=>el('sidebar')};
 const window={location:{hash:'',href:'https://example.org/lab/'},scrollTo(){},addEventListener(){}};
 const localStorage={getItem(){return null},setItem(){}};
+window.NFLMatchupIntelligence=require(path.join(__dirname,'..','assets','matchup-intelligence.js'));
 vm.runInNewContext(code,{window,document,localStorage,console,Date,Math,JSON,URL,Intl,navigator:{},setTimeout,clearTimeout},{filename:'app.js',timeout:5000});
 const game={id:'test_fixture',week:9,kickoff:'2026-11-06T01:15:00Z',
  away:'JAX',home:'BAL',awayName:'Jacksonville Jaguars',homeName:'Baltimore Ravens',
@@ -29,6 +30,8 @@ assert.equal(window.location.hash,'#game=test_fixture','Fixture URL not updated'
 assert.match(el('appContent').innerHTML,/FULL MATCHUP DOSSIER/i,'Dossier not rendered in page');
 assert.match(el('appContent').innerHTML,/Quarterbacks, practice and injuries/i);
 assert.match(el('appContent').innerHTML,/Copy matchup link/i);
+assert.match(el('appContent').innerHTML,/Why each team could win/i);
+assert.match(el('appContent').innerHTML,/Player availability exposure/i);
 window.location.hash='#game=test_fixture';window.__SMOKE__.syncRoute();
 assert.match(el('appContent').innerHTML,/Jacksonville Jaguars/);
 window.__SMOKE__.setData({nextGames:[{...game,situation:null,tactical:null,qbIntelligence:null,injuryIntelligence:null}]});

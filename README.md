@@ -1,3 +1,7 @@
+# Version 1.9 · Matchup Intelligence and Upset Routes
+
+The full matchup now shows evidence-led reasons for both the model favourite and underdog. It compares offensive performance with the specific opponent's historical defensive performance using pregame play-by-play (when loaded), outlines monitored QB and injury availability issues with dated sources, and shows underdog tactical/situational evidence in the Upset Radar. This layer NEVER alters published probabilities or invents player points. See `assets/matchup-intelligence.js` and `tests/intelligence-smoke.cjs`.
+
 # Version 1.7 · Real historical situational evidence
 
 Version 1.7 adds a separate **Situational Evidence** dashboard tab, with a frozen audit of 688 non-tied games from 2024 through the latest available final in a pinned nflverse `games.csv` revision. The independent reconstructed research model trained on 2016–2023, was checked on 2024–2025, and had a partial 2026 holdout. **The situational model failed the validation gate and is disabled.**

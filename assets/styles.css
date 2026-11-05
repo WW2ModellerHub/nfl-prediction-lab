@@ -87,3 +87,63 @@
  .matchup-panel{padding:12px}
  .matchup-pagination .btn{flex:1;min-width:0;white-space:normal}
 }
+
+
+/* v1.9: explainable matchup evidence; categorical descriptions, never ad hoc win adjustments */
+.intel-section{background:linear-gradient(150deg,#142b37,#122032);border:1px solid #497181;border-radius:15px;padding:20px;margin:0 0 17px;color:#e9f5f5}
+.intel-title{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:0 0 14px}
+.intel-title h3{font-size:22px;letter-spacing:-.5px;margin:6px 0 6px}
+.intel-title p,.intel-evidence-caption{font-size:11px;color:#a9c4cc;line-height:1.65;margin:4px 0}
+.intel-summary-strip{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:9px;margin:13px 0}
+.intel-summary-strip>div{border-radius:10px;padding:12px;background:#1e394a;border:1px solid #41606d;display:flex;flex-direction:column;gap:5px}
+.intel-summary-strip small{color:#a5bdc7;font-size:9px;letter-spacing:.8px}
+.intel-summary-strip b{font-size:17px;color:#e7f6dc}
+.intel-summary-strip span{font-size:10px;color:#bbced6}
+.intel-cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.intel-argument{background:#16293a;border:1px solid #385567;border-radius:10px;padding:14px;min-width:0}
+.intel-argument h4{font-size:14px;margin:0 0 9px}
+.intel-argument ol{padding-left:19px;margin:0}
+.intel-argument li{font-size:11px;line-height:1.5;margin-bottom:12px}
+.intel-argument li:last-child{margin-bottom:0}
+.intel-argument li strong{font-size:12px;color:#e2efd9}
+.intel-argument li p{font-size:11px;color:#c3d7de;margin:4px 0}
+.intel-argument li small{display:block;font-size:10px;color:#92b2c0;line-height:1.5}
+.intel-takeaway{background:#213b43;border-left:3px solid #99c8a5;border-radius:6px;padding:13px;color:#d9ece7;font-size:12px;line-height:1.6;margin:12px 0}
+.intel-subsection{margin:18px 0 0}
+.intel-subsection h4{margin:0 0 10px;font-size:14px}
+.intel-subtle{font-size:10px;color:#9bb5c4;font-weight:400;margin-left:6px}
+.intel-factor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.intel-factor{background:#172c3e;border:1px solid #365061;border-radius:9px;padding:12px;min-width:0}
+.intel-factor-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.intel-factor-heading strong{font-size:11px}
+.intel-factor p{font-size:11px;line-height:1.65;color:#d6e8e5;margin:8px 0}
+.intel-factor-meta{font-size:10px;color:#95b1c0;line-height:1.6}
+.intel-availability-grid,.intel-qb-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.intel-availability,.intel-qb{background:#172d3d;border:1px solid #395363;border-radius:9px;padding:12px;min-width:0}
+.intel-availability header{display:flex;align-items:center;gap:7px;justify-content:space-between;flex-wrap:wrap;font-size:12px}
+.intel-availability-counts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin:12px 0}
+.intel-availability-counts>div{background:#203e4c;border-radius:7px;padding:8px 5px;display:flex;flex-direction:column;gap:5px}
+.intel-availability-counts b{font-size:20px;color:#f0f4ed}
+.intel-availability-counts span{font-size:9px;color:#b7ced7;line-height:1.35}
+.intel-availability ul{list-style:none;margin:0;padding:0}
+.intel-availability li{display:flex;align-items:flex-start;flex-direction:column;border-bottom:1px solid #355060;gap:3px;padding:6px 0}
+.intel-availability li b{font-size:11px}
+.intel-availability li span{font-size:10px;color:#c2d3d9}
+.intel-qb{display:flex;flex-direction:column;gap:6px}
+.intel-qb strong{font-size:12px}
+.intel-qb span{font-size:11px;line-height:1.5;color:#b9cfdd}
+.intel-coverage{display:flex;gap:7px;flex-wrap:wrap}
+.intel-coverage span{font-size:10px;padding:6px 9px;border-radius:7px;background:#253a49;border:1px solid #466274}
+.intel-coverage .intel-coverage-on{color:#d7eecb}
+.intel-coverage .intel-coverage-off{color:#e7bb98}
+.intel-upset-hint{color:#cdecc3!important;max-width:360px;white-space:normal;line-height:1.5}
+@media(max-width:700px){
+ .intel-section{padding:12px}
+ .intel-title h3{font-size:20px}
+ .intel-cases,.intel-factor-grid,.intel-availability-grid,.intel-qb-grid{grid-template-columns:minmax(0,1fr)}
+ .intel-summary-strip{gap:5px}
+ .intel-summary-strip>div{padding:9px 6px}
+ .intel-summary-strip b{font-size:14px}
+ .intel-summary-strip small{font-size:8px}
+ .intel-subtle{display:block;margin:3px 0}
+}
