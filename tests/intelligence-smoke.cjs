@@ -27,7 +27,7 @@ const snapshot=JSON.stringify(raw);
 const report=intelligence.analyze(raw);
 assert.equal(report.favourite,'BAL');
 assert.equal(report.underdog,'JAX');
-assert.equal(report.underdogProbability,.32);
+assert.ok(Math.abs(report.underdogProbability-.32)<1e-12,'Probability should be numerically equal within floating-point precision');
 assert.equal(report.upsetContextCount,1);
 assert.equal(report.forUnderdog[0].title,'Rest advantage');
 assert.equal(report.forFavourite.some(x=>x.title==='Passing offence against pass defence'),true);
