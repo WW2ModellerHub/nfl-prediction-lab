@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-06T11:49:11.524094+00:00",
+  "generatedAt": "2026-11-06T12:28:35.730392+00:00",
   "status": "production-pipeline-snapshot",
   "source": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-06T01:15:00+00:00",
-    "sha256": "05f99ac4ee2093e629221db34ab08e528a62258bca489b44bda860dc55b2f5ee",
-    "downloadedAt": "2026-11-06T11:49:02.140037+00:00",
+    "sha256": "5eb23d226ac264f421bad5d1cc08cc3f5b4cb7a1245c8ad3aafe843479c0a3f8",
+    "downloadedAt": "2026-11-06T12:28:26.100807+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
@@ -14,7 +14,7 @@
   "latestResultAt": "2026-11-06T01:15:00+00:00",
   "baseline": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-06T11:49:11.524094+00:00",
+    "asOf": "2026-11-06T12:28:35.730392+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -770,7 +770,7 @@
       "A qualified candidate is research-only; live forecasts, markets and player availability weights are unchanged.",
       "Coverage requires nflverse play-by-play from completed earlier games; schedules-only refreshes cannot recompute this audit."
     ],
-    "generatedAt": "2026-11-06T11:49:11.524094+00:00",
+    "generatedAt": "2026-11-06T12:28:35.730392+00:00",
     "sourceStatus": "loaded",
     "requestedSeasons": [
       2019,
@@ -890,6 +890,42 @@
     "researchOnly": true,
     "note": "Pre-kickoff QB observations, completed-season model selection, never postgame QB starters. Gate requires >=2 improving years, 350 test games, >=.001 Brier improvement."
   },
+  "qbReplacementResearch": {
+    "status": "research-only; independent QB injury validation unavailable",
+    "researchOnly": true,
+    "productionApproved": false,
+    "eligibleProjectedChangeGames": 47,
+    "baselineBrier": 0.220496,
+    "conditionalScenarioBrier": 0.196788,
+    "brierGain": 0.023708,
+    "seasons": [
+      {
+        "season": 2025,
+        "games": 47,
+        "baselineBrier": 0.220496,
+        "projectedScenarioBrier": 0.196788,
+        "brierGain": 0.023708
+      }
+    ],
+    "notes": [
+      "Historical timestamped depth charts are only sourced from 2025 onward.",
+      "Pregame projected QB change is not a verified starter injury or actual replacement.",
+      "Historical projection-change screen uses pregame evidence only, never the current-game actual starter.",
+      "Current-season results do not enter this historical comparison.",
+      "Projected dropbacks × shrunken prior EPA and log-odds mapping are unvalidated assumptions."
+    ],
+    "firstStartPriorSource": "As-of completed prior first starts with previously recorded starter IDs"
+  },
+  "qbReplacementSource": {
+    "status": "full-source-review",
+    "counts": {
+      "statisticalQB": 31,
+      "replacementQB": 0,
+      "otherInjuries": 0,
+      "conditionalQBScenarios": 2
+    },
+    "notes": "Projected QB change alone never confirms an absence or triggers the full replacement-point adjustment. Conditional scenarios are unvalidated; dated media reporting required for activation."
+  },
   "weatherSource": {
     "status": "partial",
     "source": "https://api.open-meteo.com/v1/forecast",
@@ -899,14 +935,14 @@
       "roof-unconfirmed": 5,
       "indoor": 8,
       "forecast": 16,
-      "venue-unmapped": 1,
       "unavailable": 1,
+      "venue-unmapped": 1,
       "outside-forecast-range": 9
     },
     "errors": [
-      "HOU00: URLError: <urlopen error _ssl.c:994: The handshake operation timed out>"
+      "ATL97: URLError: <urlopen error _ssl.c:994: The handshake operation timed out>"
     ],
-    "asOf": "2026-11-06T11:49:11.524094+00:00"
+    "asOf": "2026-11-06T12:28:35.730392+00:00"
   },
   "chosenOverlay": "none",
   "tacticalSource": {
@@ -949,7 +985,7 @@
       "2025: ValueError: No timestamped report rows; undated historical records are not backdated"
     ],
     "source": "nflverse dated injuries_{season}.csv",
-    "asOf": "2026-11-06T11:49:06.737946+00:00",
+    "asOf": "2026-11-06T12:28:31.035409+00:00",
     "timestampBasis": "download-observation",
     "records": 2799
   },
@@ -966,7 +1002,7 @@
   "additionalInjurySource": {
     "status": "loaded",
     "source": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
-    "retrievedAt": "2026-11-06T11:49:11.469127+00:00",
+    "retrievedAt": "2026-11-06T12:28:35.677297+00:00",
     "reportCount": 268,
     "teamsCovered": 32,
     "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list.",
@@ -974,7 +1010,7 @@
       "groups": 32,
       "items": 800,
       "dated": 800,
-      "latestDate": "2026-11-06T11:01:00+00:00",
+      "latestDate": "2026-11-06T12:01:00+00:00",
       "statusSamples": [
         "Active",
         "Doubtful",
@@ -1013,7 +1049,7 @@
       2025,
       2026
     ],
-    "records": 37905,
+    "records": 37998,
     "watchItemsEnriched": 616
   },
   "challengerValidation": {
@@ -1076,7 +1112,7 @@
     "researchOnly": true
   },
   "forecastRevisionSummary": {
-    "savedRevisions": 206,
+    "savedRevisions": 246,
     "gamesTracked": 46,
     "completedCompared": 1,
     "originalBrier": 0.221097,
