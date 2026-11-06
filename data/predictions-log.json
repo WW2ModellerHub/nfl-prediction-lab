@@ -1376,5 +1376,49 @@
     "baselineHomeProbability": 0.68403,
     "adjustmentActive": false,
     "situationalProbabilityDelta": 0
+  },
+  {
+    "gameId": "2026_12_DEN_PIT",
+    "recordedAt": "2026-11-06T22:50:13.675483+00:00",
+    "kickoff": "2026-11-27T20:00:00+00:00",
+    "home": "PIT",
+    "away": "DEN",
+    "homeProbability": 0.5105,
+    "predMargin": 1.6,
+    "predTotal": 41.49,
+    "situationalSignals": [],
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "tacticalProbabilityDelta": 0,
+    "playerProbabilityDelta": 0,
+    "qbProbabilityDelta": 0,
+    "qbResearch": {
+      "eligible": true,
+      "features": [
+        -0.11399999999999999,
+        -0.039999999999999994,
+        0
+      ],
+      "status": "eligible",
+      "reason": "Prior-game QB observations available",
+      "source": "Recorded prior starter or dated pregame depth chart, not game-day confirmation"
+    },
+    "qbObserved": {
+      "home": "00-0023459",
+      "away": "00-0039732"
+    },
+    "injuryReportAsOf": null,
+    "qbInjuryProbabilityWeight": 0,
+    "playerFeatures": null,
+    "playerImpactStatus": "informational",
+    "tacticalFeatures": [
+      -0.05312564343242713,
+      0.2659570338655651,
+      -0.7349215196646306,
+      -0.11195375355150991
+    ],
+    "baselineHomeProbability": 0.5105,
+    "adjustmentActive": false,
+    "situationalProbabilityDelta": 0
   }
 ]
