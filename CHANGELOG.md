@@ -1,3 +1,12 @@
+## v2.5.1 — 6 November 2026 — Explain missing QB replacement evidence
+
+- Replaced the oversized blanket “Conditional / Monitor Only” mobile card with a compact, accurate status for no change, missing data, reported QB OUT with unconfirmed replacement, or a supported conditional scenario.
+- Added side-by-side per-team evidence diagnostics: previous QB, projected QB, depth-chart timestamp, reported QB injury status, previous dropbacks and exactly which eligibility checks failed.
+- The dashboard no longer presents an unactivated “0.0 percentage points” as if the QB replacement module calculated a player value.
+- Missing replacement projections are distinguished from evidence of no change; a real outgoing QB OUT report with an unknown replacement is flagged explicitly instead of buried as “no eligible QB”.
+- Original published probabilities remain unchanged; full source verification and uncertainty safeguards are preserved.
+- Added Python gate tests and JavaScript render regressions for the missing-projection and no-applied-effect states.
+
 ## v2.5 — 6 November 2026 — NFL QB Replacement Value Lab
 
 - Replace the fixed-points-only QB absence estimate with a separate bounded, roster-specific replacement model that uses the outgoing starter's **completed prior-game EPA**, a dated QB replacement projection and the empirically observed EPA of quarterbacks making their first prior-data-light starts.

@@ -32,6 +32,24 @@ assert.match(el('appContent').innerHTML,/Quarterbacks, practice and injuries/i);
 assert.match(el('appContent').innerHTML,/Copy matchup link/i);
 assert.match(el('appContent').innerHTML,/Why each team could win/i);
 assert.match(el('appContent').innerHTML,/Player availability exposure/i);
+
+assert.match(el('appContent').innerHTML,/QB Replacement/i);
+assert.match(el('appContent').innerHTML,/No separate QB replacement percentage has been applied/i);
+assert.doesNotMatch(el('appContent').innerHTML,/Published home win change from replacement alone/i);
+window.__SMOKE__.setData({nextGames:[{...game,qbReplacement:{
+ status:'reported-absence-unpriced',affectsPrediction:false,
+ coverageStatus:'reported-absence-unpriced',
+ coverageSummary:'Outgoing quarterback OUT but replacement projection is missing',
+ teamChecks:[{team:'BAL',side:'home',lastRecordedQB:'Star QB',
+   lastRecordedAt:'2026-11-01T00:00:00Z',projectedQB:null,
+   injuryReportStatus:'OUT',depthChartAsOf:null,outgoingPriorDropbacks:300,
+   missingReasons:['No dated replacement-QB projection available'],
+   injuryFeedStatus:'loaded'}],scenarios:[]}}]});
+window.__SMOKE__.openGame(game.id);
+assert.match(el('dialogContent').innerHTML,/REPORTED OUT.*REPLACEMENT UNKNOWN/i);
+assert.match(el('dialogContent').innerHTML,/No dated replacement-QB projection available/i);
+assert.doesNotMatch(el('dialogContent').innerHTML,/0\.0 percentage points/i);
+
 window.location.hash='#game=test_fixture';window.__SMOKE__.syncRoute();
 assert.match(el('appContent').innerHTML,/Jacksonville Jaguars/);
 window.__SMOKE__.setData({nextGames:[{...game,situation:null,tactical:null,qbIntelligence:null,injuryIntelligence:null}]});

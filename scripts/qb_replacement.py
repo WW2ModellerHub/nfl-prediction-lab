@@ -79,6 +79,71 @@ def _report_status(items,former,now,kickoff):
             status=str(r.get("status") or "").upper().strip()
     return status,latest
 
+def _diagnose_team(game,side,now,kick):
+    """Explain which source gate stopped a QB replacement from being priced."""
+    team=game.get(side) or side
+    info=((game.get("qbIntelligence") or {}).get(side) or {})
+    media=game.get("supplementalInjuryWatch") or {}
+    chart=((game.get("personnelDepthChart") or {}).get(side) or {})
+    old=info.get("lastGameLeader") or {}
+    previous=old.get("name")
+    projected=info.get("qb") if info.get("basis")=="depth_chart_projection" else None
+    depth_time=_time(chart.get("asOf"))
+    old_time=_time(old.get("date"))
+    depth_fresh=bool(depth_time and timedelta(0)<=now-depth_time<=timedelta(days=MAX_CHART_DAYS))
+    old_fresh=bool(old_time and timedelta(0)<=now-old_time<=timedelta(days=MAX_PREVIOUS_STARTER_DAYS)
+                   and old.get("season")==game.get("season"))
+    changed=bool(previous and projected and _name(previous)!=_name(projected))
+    status,reported=_report_status(media.get(side) or [],previous,now,kick) if (
+        previous and media.get("status")=="loaded") else (None,None)
+    prev=info.get("previousQBsample") or {}
+    prior_n=prev.get("dropbacks") if isinstance(prev.get("dropbacks"),(float,int)) else 0
+    new=info.get("sample") or {}
+    new_n=new.get("dropbacks") if isinstance(new.get("dropbacks"),(float,int)) else 0
+    issues=[]
+    if not previous:issues.append("Previous starting QB not recorded")
+    elif not old_fresh:issues.append("Previous starting QB observation is stale")
+    if not projected:issues.append("No dated replacement-QB projection available")
+    elif not depth_fresh:issues.append("QB depth-chart projection is stale or undated")
+    if changed and old_fresh and depth_fresh and prior_n<MIN_PRIOR_STARTER_DROPBACKS:
+        issues.append("Outgoing QB has insufficient previous dropbacks")
+    if changed and old_fresh and depth_fresh and status not in OUT|DOUBTFUL:
+        issues.append("No matching fresh OUT/DOUBTFUL report for outgoing QB")
+    if status in OUT|DOUBTFUL and not (changed and depth_fresh):
+        issues.append("Outgoing QB absence reported but replacement not identified")
+    if not issues and not changed:issues.append("Projected QB matches last recorded QB")
+    if changed and old_fresh and depth_fresh and prior_n>=MIN_PRIOR_STARTER_DROPBACKS:
+        state="reported-replacement" if status in OUT|DOUBTFUL else "projection-only"
+    elif status in OUT|DOUBTFUL:
+        state="reported-absence-unpriced"
+    elif not previous or not projected or not old_fresh or not depth_fresh:
+        state="missing-data"
+    else:state="no-change"
+    return {"side":side,"team":team,"state":state,
+        "lastRecordedQB":previous,"lastRecordedAt":old_time.isoformat() if old_time else None,
+        "projectedQB":projected,"depthChartAsOf":depth_time.isoformat() if depth_time else None,
+        "depthChartFresh":depth_fresh,"previousQBFresh":old_fresh,
+        "differentQBProjected":changed,"outgoingPriorDropbacks":prior_n,
+        "replacementPriorDropbacks":new_n,"injuryReportStatus":status,
+        "injuryReportAsOf":reported.isoformat() if reported else None,
+        "injuryFeedStatus":media.get("status","unavailable"),"missingReasons":issues}
+
+def _diagnose(game,now,kick):
+    checks=[_diagnose_team(game,side,now,kick) for side in ("home","away")]
+    if any(t["state"]=="reported-absence-unpriced" for t in checks):
+        coverage="reported-absence-unpriced"
+        summary="An outgoing QB absence was reported, but a verified replacement or usable previous QB data is missing."
+    elif any(t["state"] in ("projection-only","reported-replacement") for t in checks):
+        coverage="qb-change-evidence"
+        summary="A different quarterback is projected; a fresh matching absence report is required to apply a replacement penalty."
+    elif any(t["state"]=="missing-data" for t in checks):
+        coverage="missing-data"
+        summary="The QB history or depth-chart evidence is incomplete. No replacement value is inferred."
+    else:
+        coverage="no-change"
+        summary="The available projected quarterbacks match the last recorded starters; no replacement adjustment is warranted."
+    return {"teamChecks":checks,"coverageStatus":coverage,"coverageSummary":summary}
+
 def evaluate(game,now,include_projection_scenario=True):
     """Return evidence, risk ranges, and a conditional estimate for each side.
 
@@ -103,6 +168,8 @@ def evaluate(game,now,include_projection_scenario=True):
     if kick-now>timedelta(days=MAX_HORIZON_DAYS):
         return {**empty,"status":"future-week-monitor",
                 "reason":"Long-horizon depth projections are not reliable enough for replacement scenarios"}
+    diagnostics=_diagnose(game,now,kick)
+    empty.update(diagnostics)
     qb=game.get("qbIntelligence") or {}
     media=game.get("supplementalInjuryWatch") or {}
     charts=game.get("personnelDepthChart") or {}
@@ -111,7 +178,7 @@ def evaluate(game,now,include_projection_scenario=True):
     if (first.get("status")!="observed" or not _finite(first_epa) or
         first.get("starts",0)<MIN_FIRST_START_OBSERVATIONS):
         return {**empty,"status":"insufficient-empirical-first-starts",
-                "reason":"Need at least 20 already completed first starts to estimate a rookie/unknown QB prior",
+                "reason":"Insufficient empirical first-start history; "+diagnostics["coverageSummary"],
                 "observations":first.get("starts",0)}
     scenarios=[];factors=[];warnings=[];team_pts={"home":0.,"away":0.}
     for side in ("home","away"):
@@ -178,9 +245,12 @@ def evaluate(game,now,include_projection_scenario=True):
                      str(after.get("dropbacks"))+" previous replacement QB dropbacks"),
                 "assumption":"Empirical pregame EPA gap × expected dropbacks; log-odds conversion unvalidated"})
     if not scenarios:
-        return {**empty,"status":"no-documented-replacement",
-                "reason":"No eligible previous established QB versus fresh different projected replacement",
-                "firstStartPopulation":first}
+        quality=diagnostics["coverageStatus"]
+        status=("reported-absence-unpriced" if quality=="reported-absence-unpriced" else
+                "missing-data" if quality=="missing-data" else
+                "no-change" if quality=="no-change" else "qb-change-not-eligible")
+        return {**empty,"status":status,
+                "reason":diagnostics["coverageSummary"],"firstStartPopulation":first}
     points=max(-MAX_POINTS,min(MAX_POINTS,team_pts["away"]-team_pts["home"]))
     applied=any(x.get("mode")=="reported-absence" for x in scenarios) and abs(points)>.001
     conditional=[]

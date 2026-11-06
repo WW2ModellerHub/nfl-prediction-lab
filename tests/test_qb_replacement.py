@@ -126,4 +126,50 @@ class QBReplacementTests(unittest.TestCase):
         self.assertEqual(engine.first_start_prior(future)['starts'],1)
         self.assertAlmostEqual(engine.first_start_history[0]['epaPerDropback'],-.2)
 
+
+    def test_reports_missing_replacement_for_recorded_out_qb(self):
+        g=matchup()
+        g['qbIntelligence']['home']['basis']='unknown'
+        g['qbIntelligence']['home']['qb']=None
+        result=evaluate(g,NOW)
+        self.assertFalse(result['affectsPrediction'])
+        self.assertEqual(result['status'],'reported-absence-unpriced')
+        self.assertEqual(result['coverageStatus'],'reported-absence-unpriced')
+        home=next(t for t in result['teamChecks'] if t['side']=='home')
+        self.assertEqual(home['lastRecordedQB'],'Star QB')
+        self.assertEqual(home['injuryReportStatus'],'OUT')
+        self.assertIsNone(home['projectedQB'])
+        self.assertTrue(any('replacement' in x.lower() for x in home['missingReasons']))
+
+    def test_unverified_projection_identifies_missing_report_not_zero_value(self):
+        g=matchup()
+        g['supplementalInjuryWatch']['home']=[]
+        result=evaluate(g,NOW)
+        self.assertFalse(result['affectsPrediction'])
+        self.assertEqual(result['coverageStatus'],'qb-change-evidence')
+        home=next(t for t in result['teamChecks'] if t['side']=='home')
+        self.assertEqual(home['state'],'projection-only')
+        self.assertTrue(home['differentQBProjected'])
+        self.assertTrue(any('OUT/DOUBTFUL' in s for s in home['missingReasons']))
+        self.assertEqual(result['scenarios'][0]['mode'],'scenario-only')
+
+    def test_no_change_is_reported_for_specific_team_and_missing_others(self):
+        g=matchup()
+        g['qbIntelligence']['home']['qb']='Star QB'
+        result=evaluate(g,NOW)
+        home=next(t for t in result['teamChecks'] if t['side']=='home')
+        away=next(t for t in result['teamChecks'] if t['side']=='away')
+        self.assertEqual(home['state'],'no-change')
+        self.assertEqual(away['state'],'missing-data')
+        self.assertFalse(result['affectsPrediction'])
+        self.assertEqual(result['coverageStatus'],'missing-data')
+
+    def test_missing_first_start_reference_still_exposes_qb_evidence(self):
+        g=matchup()
+        g['qbIntelligence']['firstStartPrior']['starts']=0
+        r=evaluate(g,NOW)
+        self.assertEqual(r['status'],'insufficient-empirical-first-starts')
+        self.assertEqual(len(r['teamChecks']),2)
+        self.assertFalse(r['affectsPrediction'])
+
 if __name__=='__main__':unittest.main()

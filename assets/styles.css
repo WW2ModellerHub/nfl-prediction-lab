@@ -158,3 +158,19 @@
 
 /* v2.5 empirical QB replacement and availability provenance */
 .qb-replace-panel{background:linear-gradient(140deg,#152c36,#1b2a42);border:1px solid #5a647a}.qb-replace-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.qb-replace-head h3{margin:0 0 8px}.qb-replace-card{background:#223849;padding:13px;border:1px solid #4d6576;border-radius:9px;margin:12px 0}.qb-replace-head strong{font-size:12px}.qb-replace-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:12px}.qb-replace-grid>div{display:flex;flex-direction:column;gap:5px;background:#152d3f;border-radius:7px;padding:10px}.qb-replace-grid small{font-size:9px;color:#b4c8d5}.qb-replace-grid b{font-size:17px;color:#f2f5ec}@media(max-width:700px){.qb-replace-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.qb-replace-grid b{font-size:14px}}
+
+/* v2.5.1: concise mobile QB replacement coverage and diagnostic drill-down */
+.qb-replace-compact{padding:16px 18px}
+.qb-replace-compact .qb-replace-head h3{font-size:17px;margin:0}
+.qb-replace-summary{font-size:13px;line-height:1.6;color:#c0d3dc;margin:9px 0}
+.qb-replace-small{font-size:12px;line-height:1.6;color:#b3c5d0;margin:8px 0 12px}
+.qb-evidence-details{border-top:1px solid #395365;padding:10px 0 0;margin:12px 0 0}
+.qb-evidence-details summary{cursor:pointer;color:#c5dae5;font-weight:600;font-size:12px;line-height:1.5}
+.qb-evidence-details summary span{color:#91b2bf;font-size:11px;font-weight:400;margin-left:8px}
+.qb-evidence-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0}
+.qb-evidence-team{background:#1c3342;border:1px solid #415b68;border-radius:9px;padding:12px;min-width:0}
+.qb-evidence-team>strong{display:block;font-size:12px;margin-bottom:9px}
+.qb-evidence-pair{display:flex;gap:8px;justify-content:space-between;align-items:baseline;padding:5px 0;font-size:11px}
+.qb-evidence-pair span{color:#a9c2cd}.qb-evidence-pair b{font-size:11px;text-align:right;overflow-wrap:anywhere}
+.qb-evidence-missing{font-size:11px;line-height:1.65;color:#ecc3a5}.qb-evidence-ok{font-size:11px;color:#afdeb7}
+@media(max-width:680px){.qb-evidence-grid{grid-template-columns:1fr}.qb-replace-compact{padding:12px}.qb-evidence-details{padding-top:8px}}

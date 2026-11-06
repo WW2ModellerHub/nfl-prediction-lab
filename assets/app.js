@@ -428,18 +428,57 @@ function intelligencePanel(g){
 }
 
 function qbReplacementDetail(g){
- const r=g.qbReplacement||{},scenarios=Array.isArray(r.scenarios)?r.scenarios:[],prior=r.firstStartPopulation||{};
- const show=scenarios.map(x=>{
- const stronger=x.fullAbsencePoints>0?'potential downgrade':x.fullAbsencePoints<0?'potential upgrade':'neutral change';
- return `<div class="qb-replace-card"><div class="qb-replace-head"><strong>${escapeHTML(x.team)} · ${escapeHTML(x.outgoingQB)} → ${escapeHTML(x.replacementQB)}</strong>${tag(x.mode==='reported-absence'?'FRESH REPORT: '+x.reportStatus:'PROJECTED ONLY',x.mode==='reported-absence'?'warn':'')}</div>
- <div class="qb-replace-grid"><div><small>Outgoing QB adjusted prior EPA / DB</small><b>${statEPA(x.outgoingExpectedEPA)}</b></div><div><small>Replacement projected EPA / DB</small><b>${statEPA(x.replacementExpectedEPA)}</b></div><div><small>Conditional points difference</small><b>${number(x.fullAbsencePoints,1)} pts</b></div><div><small>Conditional ${escapeHTML(g.home)} win</small><b>${pct(x.conditionalHomeProbability)}</b></div></div>
- <p class="source-meta">${escapeHTML(x.outgoingQB)} has ${escapeHTML(x.oldQBdropbacks)} previous dropbacks; ${escapeHTML(x.replacementQB)} has ${escapeHTML(x.replacementQBdropbacks)}. ${x.firstStartObservations?`Unknown/inexperienced QB prior uses ${escapeHTML(x.firstStartObservations)} earlier completed first starts (average EPA ${statEPA(x.firstStartPriorEPA)}).`:''} An estimated ${escapeHTML(x.projectedDropbacks)} dropbacks produce a ${escapeHTML(stronger)}. This is a conditional scenario, not proof of the starter.</p>
- <p class="source-meta">Illustrative probability sensitivity: ${pct(x.illustrativeLow)}–${pct(x.illustrativeHigh)} for ${escapeHTML(g.home)} (NOT a calibrated confidence interval). Projected depth chart ${escapeHTML(date(x.projectedDepthAsOf))}; injury report ${x.reportAsOf?escapeHTML(date(x.reportAsOf)):'not verified'}.</p></div>`;
+ const r=g.qbReplacement||{},scenarios=Array.isArray(r.scenarios)?r.scenarios:[],checks=Array.isArray(r.teamChecks)?r.teamChecks:[],active=!!r.affectsPrediction;
+ const coverage=r.coverageStatus||'unknown',reason=r.coverageSummary||r.reason||'The data source has not supplied a verified QB replacement estimate.';
+ const checkRows=checks.map(c=>{
+   const issues=Array.isArray(c.missingReasons)?c.missingReasons:[];
+   const status=c.injuryReportStatus||(
+      c.injuryFeedStatus==='loaded'?'No matching OUT/DOUBTFUL report':'Media injury feed unavailable or cached');
+   return `<div class="qb-evidence-team">
+    <strong>${escapeHTML(c.team||c.side)}</strong>
+    <div class="qb-evidence-pair"><span>Previous QB</span><b>${escapeHTML(c.lastRecordedQB||'Not recorded')}</b></div>
+    <div class="qb-evidence-pair"><span>Projected QB</span><b>${escapeHTML(c.projectedQB||'Not verified')}</b></div>
+    <div class="qb-evidence-pair"><span>Outgoing QB injury</span><b>${escapeHTML(status)}</b></div>
+    <div class="qb-evidence-pair"><span>Prior QB dropbacks</span><b>${number(c.outgoingPriorDropbacks,0)}</b></div>
+    ${issues.length?`<p class="qb-evidence-missing">${issues.map(x=>escapeHTML(x)).join(' · ')}</p>`:`<p class="qb-evidence-ok">Available projected QB inputs checked</p>`}
+    <p class="source-meta">Previous game observation: ${c.lastRecordedAt?escapeHTML(date(c.lastRecordedAt)):'missing'} · Depth chart: ${c.depthChartAsOf?escapeHTML(date(c.depthChartAsOf)):'missing'}</p>
+   </div>`;
  }).join('');
- return `<section class="matchup-panel matchup-wide qb-replace-panel"><div class="qb-replace-head"><h3>QB Replacement Value Lab</h3>${tag(r.affectsPrediction?'REPORTED ABSENCE · PROVISIONAL':'CONDITIONAL / MONITOR ONLY',r.affectsPrediction?'warn':'')}</div><p class="matchup-sub">How much does the offence change when an established QB is replaced? The Lab learns a reference EPA distribution from earlier completed first starts, not a fixed 2.5-point deduction.</p>
- ${show||`<p class="instruction">${escapeHTML(r.reason||'No current source-verified projected replacement for this fixture.')}</p>`}
- <div class="stat-pair"><span>Published home win change from replacement alone</span><strong>${r.homeDelta==null?'—':(r.homeDelta>0?'+':'')+number(r.homeDelta*100,1)+' percentage points'}</strong></div>
- <p class="source-meta"><b>Safeguard:</b> No QB replacement penalty without both a recent, dated projected replacement AND a matching fresh OUT/DOUBTFUL report for the outgoing QB. Questionable or projected-only changes are scenarios, not assumed absences. The point and log-odds conversion still requires real prospective calibration.</p></section>`;
+ const details=`<details class="qb-evidence-details"><summary>What QB evidence was checked? <span>View both teams</span></summary>
+  ${checks.length?`<div class="qb-evidence-grid">${checkRows}</div>`:'<p class="instruction">The full source refresh has not populated a QB evidence checklist for this matchup yet.</p>'}
+  <p class="source-meta">The depth chart is a projection, not confirmation of a starting QB. Media reports must be recent and specifically match the outgoing QB. Missing evidence is never treated as a healthy roster.</p>
+  </details>`;
+ const noScenario=!scenarios.length;
+ const label=noScenario?(coverage==='missing-data'?'QB DATA INCOMPLETE':coverage==='reported-absence-unpriced'?'REPORTED OUT · REPLACEMENT UNKNOWN':coverage==='no-change'?'NO QB CHANGE DETECTED':'NO VERIFIED REPLACEMENT'):active?'REPORTED ABSENCE · PROVISIONAL':'PROJECTED SWITCH · SCENARIO ONLY';
+ const note=noScenario?(coverage==='no-change'?'No replacement adjustment needed.':coverage==='missing-data'?'Cannot calculate replacement value from the available sources.':'Replacement effect not supported by the available evidence.'):'',
+       narrative=noScenario?(reason):'The estimated effect uses historical QB efficiency and prior completed first starts. It is not proof of who will start.';
+ if(noScenario){
+  return `<section class="matchup-panel matchup-wide qb-replace-panel qb-replace-compact" aria-label="QB replacement evidence">
+    <div class="qb-replace-head"><h3>QB Replacement</h3>${tag(label,coverage==='reported-absence-unpriced'?'warn':'')}</div>
+    <p class="qb-replace-summary">${escapeHTML(narrative)}</p>
+    <p class="qb-replace-small">${escapeHTML(note)} <b>No separate QB replacement percentage has been applied.</b> Other QB-efficiency adjustments may still appear in the overall forecast above.</p>
+    ${details}</section>`;
+ }
+ const show=scenarios.map(x=>{
+  const better=x.fullAbsencePoints>0?'possible downgrade':x.fullAbsencePoints<0?'possible upgrade':'neutral';
+  return `<div class="qb-replace-card"><div class="qb-replace-head"><strong>${escapeHTML(x.team)} · ${escapeHTML(x.outgoingQB)} → ${escapeHTML(x.replacementQB)}</strong>${tag(x.mode==='reported-absence'?'FRESH OUT/DOUBTFUL REPORT':'PROJECTED ONLY',x.mode==='reported-absence'?'warn':'')}</div>
+  <div class="qb-replace-grid">
+  <div><small>Outgoing prior EPA/dropback</small><b>${statEPA(x.outgoingExpectedEPA)}</b></div>
+  <div><small>Replacement EPA/dropback</small><b>${statEPA(x.replacementExpectedEPA)}</b></div>
+  <div><small>Conditional team scoring effect</small><b>${number(x.fullAbsencePoints,1)} pts</b></div>
+  <div><small>If replacement starts · ${escapeHTML(g.home)} wins</small><b>${pct(x.conditionalHomeProbability)}</b></div></div>
+  <p class="source-meta">${escapeHTML(x.outgoingQB)}: ${number(x.oldQBdropbacks,0)} prior dropbacks · ${escapeHTML(x.replacementQB)}: ${number(x.replacementQBdropbacks,0)} prior dropbacks. ${x.firstStartObservations?`Inexperienced replacement reference: ${number(x.firstStartObservations,0)} earlier first starts.`:''} This is a ${escapeHTML(better)} estimate, not a confirmed starter or a calibrated injury impact.</p>
+  <p class="source-meta">Illustrative scenario sensitivity for ${escapeHTML(g.home)}: ${pct(x.illustrativeLow)}–${pct(x.illustrativeHigh)} (not a statistical confidence interval).</p></div>`;
+ }).join('');
+ return `<section class="matchup-panel matchup-wide qb-replace-panel" aria-label="QB replacement evidence">
+  <div class="qb-replace-head"><h3>QB Replacement</h3>${tag(label,active?'warn':'')}</div>
+  <p class="qb-replace-summary">${escapeHTML(narrative)}</p>
+  ${show}
+  ${active?`<div class="stat-pair"><span>Replacement adjustment applied to ${escapeHTML(g.home)} win probability</span><strong>${r.homeDelta>0?'+':''}${number(r.homeDelta*100,1)} percentage points</strong></div>`:
+  `<p class="qb-replace-small"><b>Conditional scenario only — the published win probability has not been changed by this QB replacement estimate.</b> No verified matching absence was available.</p>`}
+  ${details}
+  <details class="qb-evidence-details"><summary>Model safeguards and limitations</summary><p class="source-meta">A reported OUT/DOUBTFUL outgoing QB, an independently dated replacement projection and adequate prior performance history are required for an applied effect. Questionable is not treated as OUT. NFL first-start distributions and the EPA-to-points conversion are research assumptions; the model is not independently prospectively calibrated.</p></details>
+ </section>`;
 }
 function replacementAudit(){
  const d=store.data||{},research=d.qbReplacementResearch||{},src=d.qbReplacementSource||{},cs=(d.nextGames||[]).filter(g=>(g.qbReplacement?.scenarios||[]).length);
