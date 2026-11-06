@@ -155,6 +155,7 @@ class QBReplacementTests(unittest.TestCase):
 
     def test_no_change_is_reported_for_specific_team_and_missing_others(self):
         g=matchup()
+        g['supplementalInjuryWatch']['home']=[]
         g['qbIntelligence']['home']['qb']='Star QB'
         result=evaluate(g,NOW)
         home=next(t for t in result['teamChecks'] if t['side']=='home')
@@ -163,6 +164,16 @@ class QBReplacementTests(unittest.TestCase):
         self.assertEqual(away['state'],'missing-data')
         self.assertFalse(result['affectsPrediction'])
         self.assertEqual(result['coverageStatus'],'missing-data')
+
+    def test_out_report_with_same_projected_qb_is_unpriced_contradiction(self):
+        g=matchup()
+        g['qbIntelligence']['home']['qb']='Star QB'
+        result=evaluate(g,NOW)
+        home=next(x for x in result['teamChecks'] if x['side']=='home')
+        self.assertEqual(home['state'],'reported-absence-unpriced')
+        self.assertEqual(result['coverageStatus'],'reported-absence-unpriced')
+        self.assertFalse(result['affectsPrediction'])
+        self.assertTrue(any('replacement' in x.lower() for x in home['missingReasons']))
 
     def test_missing_first_start_reference_still_exposes_qb_evidence(self):
         g=matchup()
