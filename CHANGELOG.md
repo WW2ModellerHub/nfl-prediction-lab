@@ -1,3 +1,11 @@
+## v2.7 — 6 November 2026 — Established QB and multiple-absence chain
+
+- Derive a team's **established current-season starter** from previous completed nflverse schedule starting-QB records (minimum two verified starts and a unique leader), even if the latest game's starter was another QB. A tie or too few starts stays unknown; this is a historic participation inference, NOT an official QB1 designation.
+- Show the hierarchy of observed current-season starters, number of verified starts, prior EPA/dropbacks and last appearance; never use the future game's actual starting QB to predict itself.
+- Display in the matchup QB panel the chain **established QB → last-game starter → projected QB**, with independently dated injury designations for the two previously used QBs. A QB1 out report is not incorrectly attributed to QB2.
+- If the established QB missed the previous game, reflect his existing absence as context without a fresh QB1 penalty; only a verified, separately reported absence of last game's QB can activate a **last-game QB to next projected QB** replacement scenario. Never add two full QB penalties or treat a projected starter as confirmed.
+- Preserve original immutable forecast snapshots, source timestamps and the historical research-only status of QB replacement magnitudes. New tests cover established starter missing multiple games, ties, simultaneous QB absences, continued backup, and missing second-absence evidence.
+
 ## v2.6.2 — 6 November 2026 — Actual ESPN 2026 depthchart format support
 
 - Live 2026 ESPN depth endpoint returns `depthchart` singular (confirmed via response-key inspection), while outdated public examples show `depthCharts` plural.

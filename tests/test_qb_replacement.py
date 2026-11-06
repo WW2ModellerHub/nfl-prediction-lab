@@ -195,4 +195,103 @@ class QBReplacementTests(unittest.TestCase):
         self.assertTrue(any("conflict" in x for x in result["warnings"]))
 
 
+    def test_team_primary_survives_two_backup_starts(self):
+        engine=QBEngine()
+        def completed(i,qb,pid):
+            return {'id':'g'+str(i),'home':'BAL','away':'JAX','season':2026,
+                'kickoff':NOW-timedelta(days=(14-i)),'home_qb_name':qb,
+                'home_qb_id':pid,'away_qb_name':'','away_qb_id':''}
+        for i in range(1,7):engine.update(completed(i,'Franchise QB','primary'))
+        for i in range(7,9):engine.update(completed(i,'Backup QB','backup'))
+        future={'id':'upcoming','home':'BAL','away':'JAX','season':2026,
+                'kickoff':NOW+timedelta(days=1)}
+        qb=engine.matchup(future)
+        room=qb['home']['starterHierarchy']
+        self.assertEqual(qb['home']['lastGameLeader']['name'],'Backup QB')
+        self.assertEqual(room['status'],'observed-primary')
+        self.assertEqual(qb['home']['primaryStarter']['name'],'Franchise QB')
+        self.assertEqual(qb['home']['primaryStarter']['verifiedStarts'],6)
+        self.assertFalse(qb['home']['lastGameIsPrimary'])
+        self.assertEqual(qb['home']['lastGameLeader']['basis'],'last_game_recorded_starter')
+        self.assertEqual(room['countedStarts'],8)
+
+    def test_tied_starts_or_not_enough_starts_cannot_invent_primary(self):
+        engine=QBEngine()
+        def observed(i,pid):
+            return {'id':'u'+str(i),'home':'BAL','away':'JAX','season':2026,
+                'kickoff':NOW-timedelta(days=10-i),'home_qb_name':pid,
+                'home_qb_id':pid,'away_qb_name':'','away_qb_id':''}
+        engine.update(observed(1,'A'))
+        target={'id':'future','home':'BAL','away':'JAX','season':2026,
+                'kickoff':NOW+timedelta(days=1)}
+        self.assertIsNone(engine.matchup(target)['home']['primaryStarter'])
+        engine.update(observed(2,'B'))
+        self.assertEqual(engine.matchup(target)['home']['starterHierarchy']['status'],
+                         'tied-observed-starters')
+        self.assertIsNone(engine.matchup(target)['home']['primaryStarter'])
+
+    def test_double_qb_absence_uses_backup_to_third_string_once(self):
+        g=matchup()
+        g['qbIntelligence']['home']['lastGameLeader']={
+            'name':'Backup QB','id':'backup','date':(NOW-timedelta(days=6)).isoformat(),
+            'season':2026,'basis':'last_game_recorded_starter'}
+        g['qbIntelligence']['home']['primaryStarter']={
+            'name':'Franchise QB','id':'star','verifiedStarts':6,
+            'lastStartAt':(NOW-timedelta(days=20)).isoformat()}
+        g['qbIntelligence']['home']['previousQBsample']={
+            'dropbacks':160,'games':4,'epaPerDropback':.02}
+        g['qbIntelligence']['home']['qb']='Third QB'
+        g['supplementalInjuryWatch']['home']=[
+            item('Out',name='Franchise QB'),
+            item('Out',name='Backup QB')]
+        r=evaluate(g,NOW)
+        self.assertTrue(r['affectsPrediction'])
+        self.assertEqual(len(r['factors']),1)
+        self.assertTrue(r['factors'][0]['bothPreviousQBsReportedUnavailable'])
+        self.assertEqual(r['scenarios'][0]['establishedQB'],'Franchise QB')
+        self.assertEqual(r['scenarios'][0]['lastGameQB'],'Backup QB')
+        self.assertTrue(r['scenarios'][0]['twoQBAbsencesReported'])
+        self.assertEqual(r['scenarios'][0]['replacementReferencePolicy'],
+            'Apply ONLY last-game starter to projected replacement; never add original established-starter penalty twice')
+        self.assertAlmostEqual(r['scenarios'][0]['fullAbsencePoints'],7.212,places=2)
+        self.assertLess(r['homeProbability'],.53)
+        self.assertGreater(r['homeProbability'],.29) # not a second elite-QB subtraction
+
+    def test_prior_starter_out_but_backup_continuing_has_no_new_penalty(self):
+        g=matchup()
+        g['qbIntelligence']['home']['lastGameLeader']={
+            'name':'Backup QB','id':'backup','date':(NOW-timedelta(days=6)).isoformat(),
+            'season':2026,'basis':'last_game_recorded_starter'}
+        g['qbIntelligence']['home']['primaryStarter']={
+            'name':'Franchise QB','id':'franchise','verifiedStarts':6,
+            'lastStartAt':(NOW-timedelta(days=20)).isoformat()}
+        g['qbIntelligence']['home']['qb']='Backup QB'
+        g['supplementalInjuryWatch']['home']=[item('Out',name='Franchise QB')]
+        r=evaluate(g,NOW)
+        self.assertFalse(r['affectsPrediction'])
+        self.assertEqual(r['homeProbability'],.53)
+        check=next(c for c in r['teamChecks'] if c['side']=='home')
+        self.assertTrue(check['alreadyMissingFromLastGame'])
+        self.assertEqual(check['establishedQBStatus'],'OUT')
+        self.assertFalse(check['doubleAbsenceReported'])
+        self.assertEqual(check['state'],'established-absence-in-baseline')
+        self.assertTrue(any('do not deduct' in reason for reason in check['missingReasons']))
+
+    def test_primary_status_does_not_equal_new_backup_status(self):
+        g=matchup()
+        g['qbIntelligence']['home']['lastGameLeader']={
+            'name':'Backup QB','id':'backup','date':(NOW-timedelta(days=6)).isoformat(),
+            'season':2026,'basis':'last_game_recorded_starter'}
+        g['qbIntelligence']['home']['primaryStarter']={
+            'name':'Franchise QB','verifiedStarts':7}
+        g['qbIntelligence']['home']['previousQBsample']={
+            'dropbacks':160,'games':4,'epaPerDropback':.02}
+        g['qbIntelligence']['home']['qb']='Third QB'
+        g['supplementalInjuryWatch']['home']=[item('Out',name='Franchise QB')]
+        r=evaluate(g,NOW)
+        self.assertFalse(r['affectsPrediction'])
+        self.assertFalse(r['scenarios'][0]['twoQBAbsencesReported'])
+        self.assertEqual(r['scenarios'][0]['reportStatus'],'unverified projected switch')
+
+
 if __name__=='__main__':unittest.main()

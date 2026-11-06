@@ -66,6 +66,22 @@ assert.match(el('appContent').innerHTML,/PROJECTIONS AGREE/i);
 assert.match(el('appContent').innerHTML,/ESPN roster QBs \(not starters\)/i);
 assert.match(el('appContent').innerHTML,/Dated QB injuries/i);
 
+window.__SMOKE__.setData({nextGames:[{...game,qbReplacement:{
+ status:'established-absence-already-reflected',affectsPrediction:false,
+ coverageStatus:'established-qb-already-absent',
+ coverageSummary:'Primary starter did not start last week; prior absence already in form.',
+ teamChecks:[{team:'BAL',side:'home',establishedQB:'Franchise Q',
+ establishedStarts:6,establishedQBStatus:'OUT',lastRecordedQB:'Backup Q',
+ injuryReportStatus:null,projectedQB:'Backup Q',
+ alreadyMissingFromLastGame:true,doubleAbsenceReported:false,
+ missingReasons:['Do not deduct original QB twice']}],scenarios:[]}}]});
+window.__SMOKE__.syncRoute();
+assert.match(el('appContent').innerHTML,/ESTABLISHED QB ALREADY ABSENT/i);
+assert.match(el('appContent').innerHTML,/Franchise Q/i);
+assert.match(el('appContent').innerHTML,/Backup Q/i);
+assert.match(el('appContent').innerHTML,/no second deduction/i);
+
+
 assert.doesNotMatch(el('appContent').innerHTML,/0\.0 percentage points/i);
 
 window.location.hash='#game=test_fixture';window.__SMOKE__.syncRoute();

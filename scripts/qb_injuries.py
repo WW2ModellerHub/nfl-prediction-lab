@@ -91,6 +91,9 @@ class QBEngine:
         self.by_game=by_game or {}
         self.history=defaultdict(list)
         self.last_leader={}
+        # Only the QB named by a COMPLETED schedule as starting, never
+        # a pregame guess or the leading passer from an ambiguous game.
+        self.team_verified_starts=defaultdict(list)
         self.first_start_history=[]
         self.seen_verified_starters=set()
 
@@ -123,6 +126,11 @@ class QBEngine:
             recorded=clean_str(game.get(side+'_qb_name'))
             recorded_id=clean_str(game.get(side+'_qb_id'))
             leader=max(qb_rows,key=lambda x:x.get('dropbacks',0)) if qb_rows else None
+            if recorded and recorded_id:
+                self.team_verified_starts[team].append({
+                    'id':recorded_id,'name':recorded,'season':game['season'],
+                    'date':game['kickoff'].isoformat(),'gameId':game['id'],
+                    'basis':'completed-schedule-verified-starter'})
             if recorded:
                 if not recorded_id and leader and leader['name'].casefold()==recorded.casefold():
                     recorded_id=leader['id']
@@ -180,6 +188,41 @@ class QBEngine:
                 'source':'Past completed verified first starts with <80 prior dropbacks',
                 'lastCompletedSeason':max(r['season'] for r in prior)}
 
+    def starter_hierarchy(self,team,game):
+        """Established team QB by earlier verified starts, NOT last week's passer.
+
+        The previous match's starter can be QB2 if QB1 has missed multiple
+        games. Require a unique leader with at least TWO verified current-
+        season starts; a tie or limited data means the QB1 identity is unknown.
+        These are observed playing-time ranks, never official depth positions.
+        """
+        entries=[x for x in self.team_verified_starts.get(team,[])
+                 if x['season']==game['season'] and
+                 datetime.fromisoformat(x['date'])<game['kickoff']]
+        by_id={}
+        for x in entries:
+            key=x['id']
+            if not key:continue
+            rec=by_id.setdefault(key,{'id':key,'name':x['name'],
+                 'verifiedStarts':0,'lastStartAt':x['date'],
+                 'source':'Completed nflverse schedule, current season only'})
+            rec['verifiedStarts']+=1
+            if x['date']>=rec['lastStartAt']:
+                rec['lastStartAt']=x['date'];rec['name']=x['name']
+        candidates=sorted(by_id.values(),key=lambda x:(-x['verifiedStarts'],-datetime.fromisoformat(x['lastStartAt']).timestamp(),x['id']))
+        for v in candidates:
+            v['sample']=self.summary(v['id'],game)
+        top=candidates[0] if candidates else None
+        runner=candidates[1] if len(candidates)>1 else None
+        primary=(top if top and top['verifiedStarts']>=2 and
+                 (not runner or top['verifiedStarts']>runner['verifiedStarts']) else None)
+        return {'status':'observed-primary' if primary else
+                        'tied-observed-starters' if top and runner and top['verifiedStarts']==runner['verifiedStarts'] else
+                        'insufficient-verified-starts',
+                'primary':primary,'starters':candidates[:6],
+                'countedStarts':len(entries),'basis':'only previous completed games in same season',
+                'explanation':'Most previous verified starts, not a medical or coaching confirmation'}
+
     def matchup(self,game,depth=None):
         depth=depth or {}
         result={'home':None,'away':None,'status':'unavailable','probabilityWeight':0,
@@ -189,6 +232,8 @@ class QBEngine:
         result['firstStartPrior']=replacement_prior
         for side in ('home','away'):
             team=game[side]
+            hierarchy=self.starter_hierarchy(team,game)
+            primary=hierarchy['primary']
             observed=self.last_leader.get(team)
             # An old-season leading passer is not evidence of this week's starter.
             if observed and observed.get('season')!=game['season']:
@@ -205,6 +250,11 @@ class QBEngine:
                           'confirmedStarter':False,'lastGameLeader':observed,
                           'starterChangeWatch':changed,'sample':s,
                           'previousQBsample':self.summary(observed['id'],game) if observed and observed.get('id') else None,
+                          'primaryStarter':primary,
+                          'primaryQBsample':primary.get('sample') if primary else None,
+                          'starterHierarchy':hierarchy,
+                          'lastGameIsPrimary':bool(primary and observed and
+                                primary['id']==observed.get('id')),
                           'replacementPrior':replacement_prior,
                           'projectedQBId':projected.get('id') if projected else None,
                           'label':('Depth-chart QB (not a confirmed starter)' if projected else
