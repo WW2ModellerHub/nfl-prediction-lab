@@ -429,6 +429,16 @@ function intelligencePanel(g){
 
 function qbReplacementDetail(g){
  const r=g.qbReplacement||{},scenarios=Array.isArray(r.scenarios)?r.scenarios:[],checks=Array.isArray(r.teamChecks)?r.teamChecks:[],active=!!r.affectsPrediction;
+ const feed=g.qbSourceEvidence||{};
+ const extra=Array.isArray(['home','away'])?['home','away'].map(side=>{
+   const e=feed[side]||{};
+   return `<div class="qb-evidence-provider"><b>${escapeHTML(e.team||side)}</b>
+   <div><span>nflverse</span><strong>${escapeHTML(e.nflverseProjectedQB||'Not available')}</strong></div>
+   <div><span>ESPN depth chart</span><strong>${escapeHTML(e.espnProjectedQB||e.espnDepthStatus||'Unavailable')}</strong></div>
+   <div><span>Comparison</span><strong>${e.sourceConflict?'SOURCES DISAGREE':e.sourcesAgree?'PROJECTIONS AGREE':escapeHTML(e.evidenceStatus||'Not checked')}</strong></div>
+   <small>ESPN observed: ${e.espnObservedAt?escapeHTML(date(e.espnObservedAt)):'unavailable'} · Injury feed: ${escapeHTML(e.espnInjuryStatus||'unavailable')}</small>
+   </div>`;
+ }).join(''):'';
  const coverage=r.coverageStatus||'unknown',reason=r.coverageSummary||r.reason||'The data source has not supplied a verified QB replacement estimate.';
  const checkRows=checks.map(c=>{
    const issues=Array.isArray(c.missingReasons)?c.missingReasons:[];
@@ -445,12 +455,13 @@ function qbReplacementDetail(g){
    </div>`;
  }).join('');
  const details=`<details class="qb-evidence-details"><summary>What QB evidence was checked? <span>View both teams</span></summary>
+  ${feed.status?`<div class="qb-evidence-provider-grid">${extra}</div>`:''}
   ${checks.length?`<div class="qb-evidence-grid">${checkRows}</div>`:'<p class="instruction">The full source refresh has not populated a QB evidence checklist for this matchup yet.</p>'}
   <p class="source-meta">The depth chart is a projection, not confirmation of a starting QB. Media reports must be recent and specifically match the outgoing QB. Missing evidence is never treated as a healthy roster.</p>
   </details>`;
  const noScenario=!scenarios.length;
- const label=noScenario?(coverage==='missing-data'?'QB DATA INCOMPLETE':coverage==='reported-absence-unpriced'?'REPORTED OUT · REPLACEMENT UNKNOWN':coverage==='no-change'?'NO QB CHANGE DETECTED':'NO VERIFIED REPLACEMENT'):active?'REPORTED ABSENCE · PROVISIONAL':'PROJECTED SWITCH · SCENARIO ONLY';
- const note=noScenario?(coverage==='no-change'?'No replacement adjustment needed.':coverage==='missing-data'?'Cannot calculate replacement value from the available sources.':'Replacement effect not supported by the available evidence.'):'',
+ const label=noScenario?(coverage==='conflicting-sources'?'SOURCES DISAGREE':coverage==='missing-data'?'QB DATA INCOMPLETE':coverage==='reported-absence-unpriced'?'REPORTED OUT · REPLACEMENT UNKNOWN':coverage==='no-change'?'NO QB CHANGE DETECTED':'NO VERIFIED REPLACEMENT'):active?'REPORTED ABSENCE · PROVISIONAL':'PROJECTED SWITCH · SCENARIO ONLY';
+ const note=noScenario?(coverage==='no-change'?'No replacement adjustment needed.':coverage==='conflicting-sources'?'Conflicting projected starters require human verification.':coverage==='missing-data'?'Cannot calculate replacement value from the available sources.':'Replacement effect not supported by the available evidence.'):'',
        narrative=noScenario?(reason):'The estimated effect uses historical QB efficiency and prior completed first starts. It is not proof of who will start.';
  if(noScenario){
   return `<section class="matchup-panel matchup-wide qb-replace-panel qb-replace-compact" aria-label="QB replacement evidence">

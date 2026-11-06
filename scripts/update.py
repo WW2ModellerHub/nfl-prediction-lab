@@ -19,6 +19,7 @@ from forecast_revisions import revisions as save_forecast_revisions
 from model import simulate as forecast_simulate
 from qb_injuries import load_historical_reports
 from espn_injuries import load as load_espn_injuries
+from qb_evidence import gather as gather_qb_sources, attach as attach_qb_sources
 from weather import enrich as enrich_weather
 
 SOURCES=(
@@ -76,7 +77,10 @@ def preserve_recent_player_context(dashboard, previous, now):
     for game in dashboard.get('nextGames',[]):
         old=previous_games.get(game.get('id'))
         if not old or old.get('kickoff')!=game.get('kickoff'):continue
-        if dashboard.get('qbSource',{}).get('status')!='loaded':
+        # QB data has already been primed and updated with this run's new
+        # ESPN source observation; never replace it with an older snapshot.
+        if (dashboard.get('qbSource',{}).get('status')!='loaded' and
+            not game.get('qbSourceEvidence')):
             old_qb=old.get('qbIntelligence') or {}
             if (old_qb.get('status')=='observed' and
                 any((old_qb.get(side) or {}).get('sample') or
@@ -180,7 +184,7 @@ def apply_personnel_forecasts(dashboard,old_dashboard,now,source_mode,games):
         baseline=float(row['homeProbability'])
         row['qbReplacement']={'status':'unavailable','affectsPrediction':False,'scenarios':[],
                               'reason':'No refreshed play-by-play / injury information'}
-        if source_mode=='full':
+        if source_mode in ('full','evidence'):
             q=qb_efficiency_preview(row,dashboard.get('qbValidation'))
             qb_p=q['homeProbability'] if q.get('affectsPrediction') else baseline
             replacement=assess_replacement({**row,'homeProbability':qb_p},now)
@@ -272,10 +276,44 @@ def apply_personnel_forecasts(dashboard,old_dashboard,now,source_mode,games):
                 "Estimated QB replacement and injury effects are research assumptions, "
                 "not certified player availability or calibrated prediction improvement.")
     dashboard['qbReplacementSource']={
-        'status':'full-source-review' if source_mode=='full' else 'cached-or-unavailable',
+        'status':'fresh-secondary-source-review' if source_mode=='evidence' else
+                 'full-source-review' if source_mode=='full' else 'cached-or-unavailable',
         'counts':active_counts,
         'notes':'Projected QB change alone never confirms an absence or triggers the full replacement-point adjustment. Conditional scenarios are unvalidated; dated media reporting required for activation.'}
     return dashboard
+
+def prime_cached_qb_history(dashboard,previous,now):
+    """Reuse up-to-36h PBP QB history for lighter ESPN source-only refreshes.
+
+    Unlike injuries, QB history is immutable until games finish. A fetched
+    ESPN depthchart or injury list is then attached separately; a prior
+    provisional probability is NEVER reused. Expiration cannot be extended
+    by repeated lightweight refreshes.
+    """
+    from datetime import timedelta
+    if not isinstance(previous,dict):return 0
+    old_games={g.get("id"):g for g in previous.get("nextGames",[])
+               if isinstance(g,dict)}
+    copied=0
+    for game in dashboard.get("nextGames",[]):
+        prior=old_games.get(game.get("id"))
+        if not prior or game.get("kickoff")!=prior.get("kickoff"):continue
+        at=prior.get("qbHistoryAsOf")
+        try:stamp=datetime.fromisoformat(str(at).replace("Z","+00:00"))
+        except (ValueError,TypeError):continue
+        if not stamp.tzinfo or stamp>now or now-stamp>timedelta(hours=36):continue
+        qb=prior.get("qbIntelligence") or {}
+        if qb.get("status")!="observed":continue
+        # Only prior completed games and point-in-time model features are used.
+        game["qbIntelligence"]=json.loads(json.dumps(qb))
+        game["qbHistoryAsOf"]=stamp.isoformat()
+        game["personnelDepthChart"]=json.loads(json.dumps(prior.get("personnelDepthChart") or {}))
+        game["qbResearch"]=json.loads(json.dumps(prior.get("qbResearch") or {}))
+        copied+=1
+    if copied and isinstance(previous.get("qbValidation"),dict):
+        dashboard["qbValidation"]=previous["qbValidation"]
+    return copied
+
 
 def update(schedules_only=False,schedules_file=None):
     games,source=get_schedule(schedules_file)
@@ -299,9 +337,8 @@ def update(schedules_only=False,schedules_file=None):
         pbp,loaded,errors=load_nflverse_pbp(pbp_history_seasons(current),qb_sink=qb_plays)
         injuries,depth,player_meta=load_historical_reports(current)
         snap_rows,snap_meta=load_snap_counts(range(max(2025,current-1),current+1))
-    supplemental, supplemental_meta = ({}, {'status':'unavailable','note':'Not fetched on lightweight runs'})
-    if not schedules_only:
-        supplemental,supplemental_meta=load_espn_injuries()
+    # ESPN media reports are cheap enough to check on both full and lightweight runs.
+    supplemental,supplemental_meta=load_espn_injuries()
     # Forecast timestamp must follow all source fetches. Otherwise a new undated
     # injury snapshot appears to come from the future and is incorrectly rejected.
     now=datetime.now(timezone.utc)
@@ -314,7 +351,7 @@ def update(schedules_only=False,schedules_file=None):
         dashboard['qbSource']['source']='Previous recorded starting QB from completed nflverse schedule entries; no PBP statistics'
     # Additional ESPN injury-watch items are informational, and apply only to
     # future fixtures. They never become official status or training inputs.
-    if not schedules_only:
+    if not schedules_only or supplemental_meta.get('status') in ('loaded','empty'):
         for g in dashboard.get('nextGames',[]):
             g['supplementalInjuryWatch']={
                 'away':supplemental.get(g['away'],[])[:12],
@@ -336,6 +373,28 @@ def update(schedules_only=False,schedules_file=None):
                         supplemental_meta={**old_dashboard.get('additionalInjurySource',{}),'status':'cached','retrievedAt':stamp.isoformat()}
                 except (ValueError,TypeError):pass
     dashboard['additionalInjurySource']=supplemental_meta
+
+    # The secondary ESPN sources are OBSERVATIONS, not actual NFL starters.
+    # They are retrieved after the main historical model run. Update the
+    # publication timestamp only AFTER both media and chart feeds complete,
+    # so an archived first pick cannot predate evidence used for that pick.
+    if schedules_only:
+        reused=prime_cached_qb_history(dashboard,old_dashboard,now)
+    else:
+        reused=0
+        if qb_plays:
+            for g in dashboard.get('nextGames',[]):g['qbHistoryAsOf']=now.isoformat()
+    second,second_meta=gather_qb_sources(dashboard.get('nextGames',[]),datetime.now(timezone.utc))
+    now=datetime.now(timezone.utc)
+    dashboard['generatedAt']=now.isoformat()
+    for g in dashboard.get('nextGames',[]):
+        attach_qb_sources(g,second,second_meta,now)
+    dashboard['qbEvidenceSource']={**second_meta,
+        'historicalQBReusedOnLightweight':reused,
+        'nflverseDepthSource':dashboard.get('depthSource',{}).get('source'),
+        'mediaSource':supplemental_meta.get('source'),
+        'notes':second_meta.get('notes','')+
+            ' Already completed historical QB plays may be reused for up to 36h. ESPN feed access may fail; missing sources are not imputed.'}
     if snap_rows:
         snap_meta['watchItemsEnriched']=enrich_upcoming(
             dashboard.get('nextGames',[]),UsageHistory(snap_rows,games),now)
@@ -346,13 +405,17 @@ def update(schedules_only=False,schedules_file=None):
         snap_meta={'status':'cached','source':'Previous snap-count observation',
             'note':'Past snap participation carried forward, not a live player availability check'}
     dashboard['playerUsageSource']=snap_meta
+    # A lightweight refresh can re-evaluate NEW dated reports against earlier
+    # completed QB history. The experimental adjustment is still labelled
+    # provisional and a missing history prevents statistical QB repricing.
     dashboard=apply_personnel_forecasts(dashboard,old_dashboard,now,
-                                       'schedules-only' if schedules_only else 'full',games)
+                                       'evidence' if schedules_only else 'full',games)
     # The first published forecast is immutable; new fixture entries must
     # match the final publish-time model, not the earlier unadjusted stage.
     current_rows={row['id']:row for row in dashboard.get('nextGames',[])}
     for item in log:
         if item.get('gameId') in previous_first_ids:continue
+        item['recordedAt']=now.isoformat()  # first public forecast follows evidence retrieval
         row=current_rows.get(item.get('gameId'))
         if not row:continue
         item['homeProbability']=round(row['homeProbability'],5)
@@ -412,6 +475,7 @@ def update(schedules_only=False,schedules_file=None):
         'qbValidation':dashboard.get('qbValidation'),
         'qbReplacementResearch':dashboard.get('qbReplacementResearch'),
         'qbReplacementSource':dashboard.get('qbReplacementSource'),
+        'qbEvidenceSource':dashboard.get('qbEvidenceSource'),
         'weatherSource':dashboard.get('weatherSource'),
         'chosenOverlay':dashboard.get('overlaySelection','none'),
         'tacticalSource':dashboard.get('tacticalSource'),

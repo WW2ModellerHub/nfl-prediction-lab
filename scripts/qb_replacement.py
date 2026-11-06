@@ -111,8 +111,12 @@ def _diagnose_team(game,side,now,kick):
         issues.append("No matching fresh OUT/DOUBTFUL report for outgoing QB")
     if status in OUT|DOUBTFUL and not (changed and depth_fresh):
         issues.append("Outgoing QB absence reported but replacement not identified")
+    source_conflict=bool((((game.get("qbSourceEvidence") or {}).get(side)) or {}).get("sourceConflict"))
+    if source_conflict:issues.insert(0,"ESPN and nflverse disagree about projected QB; automatic replacement estimate withheld")
     if not issues and not changed:issues.append("Projected QB matches last recorded QB")
-    if changed and old_fresh and depth_fresh and prior_n>=MIN_PRIOR_STARTER_DROPBACKS:
+    if source_conflict:
+        state="conflicting-sources"
+    elif changed and old_fresh and depth_fresh and prior_n>=MIN_PRIOR_STARTER_DROPBACKS:
         state="reported-replacement" if status in OUT|DOUBTFUL else "projection-only"
     elif status in OUT|DOUBTFUL:
         state="reported-absence-unpriced"
@@ -123,14 +127,17 @@ def _diagnose_team(game,side,now,kick):
         "lastRecordedQB":previous,"lastRecordedAt":old_time.isoformat() if old_time else None,
         "projectedQB":projected,"depthChartAsOf":depth_time.isoformat() if depth_time else None,
         "depthChartFresh":depth_fresh,"previousQBFresh":old_fresh,
-        "differentQBProjected":changed,"outgoingPriorDropbacks":prior_n,
+        "differentQBProjected":changed,"sourceConflict":source_conflict,"outgoingPriorDropbacks":prior_n,
         "replacementPriorDropbacks":new_n,"injuryReportStatus":status,
         "injuryReportAsOf":reported.isoformat() if reported else None,
         "injuryFeedStatus":media.get("status","unavailable"),"missingReasons":issues}
 
 def _diagnose(game,now,kick):
     checks=[_diagnose_team(game,side,now,kick) for side in ("home","away")]
-    if any(t["state"]=="reported-absence-unpriced" for t in checks):
+    if any(t["state"]=="conflicting-sources" for t in checks):
+        coverage="conflicting-sources"
+        summary="ESPN and nflverse list different projected quarterbacks. The QB replacement effect is withheld until the contradiction is resolved."
+    elif any(t["state"]=="reported-absence-unpriced" for t in checks):
         coverage="reported-absence-unpriced"
         summary="An outgoing QB absence was reported, but a verified replacement or usable previous QB data is missing."
     elif any(t["state"] in ("projection-only","reported-replacement") for t in checks):
@@ -212,7 +219,10 @@ def evaluate(game,now,include_projection_scenario=True):
             status,reported_at=_report_status(media.get(side) or [],prev_name,now,kick)
         else:
             status,reported_at=None,None
-        used=status in OUT or status in DOUBTFUL
+        conflict=bool((((game.get("qbSourceEvidence") or {}).get(side)) or {}).get("sourceConflict"))
+        used=(status in OUT or status in DOUBTFUL) and not conflict
+        if conflict:
+            warnings.append(str(team)+": ESPN/nflverse projected QB conflict; no automatic replacement points")
         certainty=1. if status in OUT else .5 if status in DOUBTFUL else 0.
         if status in OTHER_UNCERTAIN:
             warnings.append(str(team)+": QB questionable; no replacement adjustment without out/doubtful designation")
@@ -246,7 +256,8 @@ def evaluate(game,now,include_projection_scenario=True):
                 "assumption":"Empirical pregame EPA gap × expected dropbacks; log-odds conversion unvalidated"})
     if not scenarios:
         quality=diagnostics["coverageStatus"]
-        status=("reported-absence-unpriced" if quality=="reported-absence-unpriced" else
+        status=("conflicting-sources" if quality=="conflicting-sources" else
+                "reported-absence-unpriced" if quality=="reported-absence-unpriced" else
                 "missing-data" if quality=="missing-data" else
                 "no-change" if quality=="no-change" else "qb-change-not-eligible")
         return {**empty,"status":status,

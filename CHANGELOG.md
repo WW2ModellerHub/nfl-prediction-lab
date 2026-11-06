@@ -1,3 +1,14 @@
+## v2.6 — 6 November 2026 — Automated independent QB evidence collection
+
+- Fetch fresh ESPN team-specific projected QB rank-1 depth charts and dated team-specific injury reports for **teams playing within seven days**, on each scheduled full and lightweight refresh. ESPN endpoints are unofficial best-effort sources; fetch failure remains visible.
+- Cross-check ESPN against the primary timestamped nflverse QB depth chart, displaying both projected identities, source observation time, agreement/conflict and missing evidence. Do not treat either as a confirmed starting quarterback.
+- When nflverse's projection is missing or stale, use ESPN rank-1 only as a **source-labelled projection**, never copy ESPN player IDs into nflverse GSIS IDs or fabricate a history sample.
+- On fresh, conflicting rank-1 projections, suppress both statistical QB research overlay eligibility and automatic quarterback replacement effects; preserve the conflicting names for human inspection.
+- Only explicitly dated player injury entries can contribute reported statuses. An undated update has no assumed report timestamp; availability stays unknown rather than healthy.
+- Light-refresh injury checks use up to 36-hour-old **previously completed QB history** without carrying forward old forecast probabilities. Each cached history has a fixed timestamp that subsequent refreshes cannot renew.
+- Correct new immutable pregame log timestamps to follow the last source fetch; existing archived predictions are not modified.
+- Add unit tests for source parsing, conflicting names, no fake dated injuries, history expiry, mapping and separate attribution; add mobile matchup evidence inspector.
+
 ## v2.5.1 — 6 November 2026 — Explain missing QB replacement evidence
 
 - Replaced the oversized blanket “Conditional / Monitor Only” mobile card with a compact, accurate status for no change, missing data, reported QB OUT with unconfirmed replacement, or a supported conditional scenario.

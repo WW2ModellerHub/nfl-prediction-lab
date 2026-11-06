@@ -183,4 +183,16 @@ class QBReplacementTests(unittest.TestCase):
         self.assertEqual(len(r['teamChecks']),2)
         self.assertFalse(r['affectsPrediction'])
 
+
+    def test_conflicting_espn_and_nflverse_qb_projections_never_price_as_confirmed(self):
+        g=matchup()
+        g["qbSourceEvidence"]={"home":{"sourceConflict":True},"away":{"sourceConflict":False}}
+        result=evaluate(g,NOW)
+        self.assertFalse(result["affectsPrediction"])
+        self.assertEqual(result["coverageStatus"],"conflicting-sources")
+        self.assertEqual(result["teamChecks"][0]["state"],"conflicting-sources")
+        self.assertEqual(result["scenarios"][0]["mode"],"scenario-only")
+        self.assertTrue(any("conflict" in x for x in result["warnings"]))
+
+
 if __name__=='__main__':unittest.main()

@@ -48,6 +48,22 @@ window.__SMOKE__.setData({nextGames:[{...game,qbReplacement:{
 window.__SMOKE__.syncRoute();
 assert.match(el('appContent').innerHTML,/REPORTED OUT.*REPLACEMENT UNKNOWN/i);
 assert.match(el('appContent').innerHTML,/No dated replacement-QB projection available/i);
+
+window.__SMOKE__.setData({nextGames:[{...game,qbReplacement:{
+ status:'conflicting-sources',affectsPrediction:false,coverageStatus:'conflicting-sources',
+ coverageSummary:'ESPN and nflverse disagree about projected QB',
+ teamChecks:[],scenarios:[]},
+ qbSourceEvidence:{status:'loaded',home:{team:'BAL',nflverseProjectedQB:'Starter Q',
+  espnProjectedQB:'Backup R',sourceConflict:true,espnDepthStatus:'loaded',
+  espnObservedAt:'2026-11-05T14:00:00Z'},
+ away:{team:'JAX',nflverseProjectedQB:'Starter J',espnProjectedQB:'Starter J',
+  sourcesAgree:true,espnDepthStatus:'loaded',espnObservedAt:'2026-11-05T14:00:00Z'}}}]});
+window.__SMOKE__.syncRoute();
+assert.match(el('appContent').innerHTML,/SOURCES DISAGREE/i);
+assert.match(el('appContent').innerHTML,/Backup R/i);
+assert.match(el('appContent').innerHTML,/nflverse/i);
+assert.match(el('appContent').innerHTML,/PROJECTIONS AGREE/i);
+
 assert.doesNotMatch(el('appContent').innerHTML,/0\.0 percentage points/i);
 
 window.location.hash='#game=test_fixture';window.__SMOKE__.syncRoute();
