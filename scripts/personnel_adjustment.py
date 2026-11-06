@@ -97,7 +97,7 @@ def qb_efficiency_preview(game,validation):
                         "assumption":"Provisional research effect (not certified starter or prospectively validated)"}]}
 
 
-def assess(game,now):
+def assess(game,now,exclude_qb=False):
     """Return an alternative probability, evidence trail and point assumptions.
 
     No new forecast is generated from a feed that did not actually refresh.
@@ -171,6 +171,10 @@ def assess(game,now):
                 reason="Dated QB projection; relative prior QB EPA with >=80 previous dropbacks each"
             else:
                 warnings.append(team+": changed QB projection, but direction unverified — no automatic penalty")
+        # The production pipeline uses the separate evidence-aware
+        # replacement-value module for QB OUT/DOUBTFUL. Never add the old
+        # fixed QB heuristic on top of it, even when the new feed is missing.
+        if exclude_qb:qb_pts=0.0
         qb_pts=max(-MAX_QB_POINTS,min(MAX_QB_POINTS,qb_pts))
         if abs(qb_pts)>0.001:
             scores[side]+=qb_pts

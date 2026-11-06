@@ -155,3 +155,6 @@
 
 /* v2.4: transparent grading of archived actual pregame predictions */
 .revision-results td{vertical-align:top;line-height:1.55}.revision-results td small{display:block;color:#a9c0d1;font-size:10px;margin-top:5px;line-height:1.6}.revision-results td strong{display:block;white-space:nowrap}.revision-results .negative{color:#efac92}.revision-results .positive{color:#adeda7}
+
+/* v2.5 empirical QB replacement and availability provenance */
+.qb-replace-panel{background:linear-gradient(140deg,#152c36,#1b2a42);border:1px solid #5a647a}.qb-replace-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.qb-replace-head h3{margin:0 0 8px}.qb-replace-card{background:#223849;padding:13px;border:1px solid #4d6576;border-radius:9px;margin:12px 0}.qb-replace-head strong{font-size:12px}.qb-replace-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:12px}.qb-replace-grid>div{display:flex;flex-direction:column;gap:5px;background:#152d3f;border-radius:7px;padding:10px}.qb-replace-grid small{font-size:9px;color:#b4c8d5}.qb-replace-grid b{font-size:17px;color:#f2f5ec}@media(max-width:700px){.qb-replace-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.qb-replace-grid b{font-size:14px}}

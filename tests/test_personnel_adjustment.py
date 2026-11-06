@@ -99,4 +99,13 @@ class PersonnelTests(unittest.TestCase):
         g["qbResearch"]["eligible"]=True
         self.assertFalse(qb_efficiency_preview(g,{**val,"trainedThroughSeason":2026})["affectsPrediction"])
 
+    def test_new_pipeline_can_exclude_fixed_qb_penalty_and_prevent_double_counting(self):
+        g=fixture()
+        regular=assess(g,NOW)
+        from personnel_adjustment import assess as assess_again
+        no_qb=assess_again(g,NOW,exclude_qb=True)
+        self.assertTrue(regular['affectsPrediction'])
+        self.assertFalse(no_qb['affectsPrediction'])
+        self.assertEqual(no_qb['homeProbability'],g['homeProbability'])
+
 if __name__=="__main__":unittest.main()

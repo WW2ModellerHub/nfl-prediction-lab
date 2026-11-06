@@ -91,12 +91,30 @@ class QBEngine:
         self.by_game=by_game or {}
         self.history=defaultdict(list)
         self.last_leader={}
+        self.first_start_history=[]
+        self.seen_verified_starters=set()
 
     def update(self,game):
         game_rows=self.by_game.get(game['id'],{})
         for side in ('home','away'):
             team=game[side]
             qb_rows=list(game_rows.get(team,{}).values())
+            recorded_id=clean_str(game.get(side+'_qb_id'))
+            starter_row=next((r for r in qb_rows if r.get('id')==recorded_id),None) if recorded_id else None
+            # Realised performance is learned only AFTER previous games finished.
+            # Never use this game's actual starter or EPA for its own forecast.
+            if (starter_row and recorded_id not in self.seen_verified_starters and
+                starter_row.get('dropbacks',0)>=10 and starter_row.get('epaPlays',0)>=10):
+                prior_dbs=sum(r.get('dropbacks',0)
+                              for _,_,r in self.history.get(recorded_id,[]))
+                if prior_dbs<80:
+                    self.first_start_history.append({
+                        'gameId':game['id'],'season':game['season'],
+                        'kickoff':game['kickoff'].isoformat(),'playerId':recorded_id,
+                        'priorDropbacks':prior_dbs,'dropbacks':starter_row['dropbacks'],
+                        'epaPerDropback':max(-1.,min(1.,
+                             starter_row['epaTotal']/starter_row['epaPlays']))})
+            if recorded_id:self.seen_verified_starters.add(recorded_id)
             for rec in qb_rows:
                 if rec['dropbacks']>0:
                     self.history[rec['id']].append((game['kickoff'],game['season'],dict(rec)))
@@ -141,11 +159,34 @@ class QBEngine:
                 'qbHitOrSackRate':weighted_rate('hitsOrSacks','dropbacks'),
                 'interceptions':sum(r['interceptions'] for r in recent)}
 
+    def first_start_prior(self,game):
+        """Empirical prior from other completed rookie/low-experience starts.
+
+        Game outcomes only enter the QB engine AFTER kickoff and final score.
+        A future game's actual starter/realised performance is never read.
+        """
+        prior=[r for r in self.first_start_history
+               if r['season']>=game['season']-7 and r['season']<=game['season']
+               and datetime.fromisoformat(r['kickoff'])<game['kickoff']]
+        if len(prior)<20:
+            return {'status':'insufficient','starts':len(prior),
+                    'epaPerDropback':None,'stddev':None,
+                    'source':'Historical completed first starts; no imputed value'}
+        xs=[r['epaPerDropback'] for r in prior]
+        mu=sum(xs)/len(xs)
+        sd=math.sqrt(sum((x-mu)**2 for x in xs)/len(xs))
+        return {'status':'observed','starts':len(xs),
+                'epaPerDropback':round(mu,4),'stddev':round(sd,4),
+                'source':'Past completed verified first starts with <80 prior dropbacks',
+                'lastCompletedSeason':max(r['season'] for r in prior)}
+
     def matchup(self,game,depth=None):
         depth=depth or {}
         result={'home':None,'away':None,'status':'unavailable','probabilityWeight':0,
                 'reason':'PBP quarterback history has not been received.'}
         exists=False
+        replacement_prior=self.first_start_prior(game)
+        result['firstStartPrior']=replacement_prior
         for side in ('home','away'):
             team=game[side]
             observed=self.last_leader.get(team)
@@ -164,6 +205,8 @@ class QBEngine:
                           'confirmedStarter':False,'lastGameLeader':observed,
                           'starterChangeWatch':changed,'sample':s,
                           'previousQBsample':self.summary(observed['id'],game) if observed and observed.get('id') else None,
+                          'replacementPrior':replacement_prior,
+                          'projectedQBId':projected.get('id') if projected else None,
                           'label':('Depth-chart QB (not a confirmed starter)' if projected else
                                    'Last recorded game starter (not confirmed for this game)' if basis=='last_game_recorded_starter' else
                                    'Last-game leading passer (not confirmed for this game)' if observed else 'No recent QB observation')}

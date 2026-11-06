@@ -27,6 +27,7 @@ from tactical_validation import FEATURES as TACTICAL_FEATURES, validate as valid
 from audit import build_audit
 from shadow_ensemble import vector as challenger_vector,run as run_challenger
 from qb_validation import FEATURES as QB_FEATURES, snapshot as qb_snapshot, validate as validate_qb, predict as predict_qb
+from qb_replacement import evaluate as replacement_evaluate, historical_screen as replacement_screen
 from signal_accuracy import evaluate as accuracy_audit
 
 TEAM_NAMES = {
@@ -340,6 +341,7 @@ def generate(games,now=None,previous_log=None,pbp_games=None,pbp_meta=None,
     tactical_rows=[]
     player_rows=[]
     qb_rows=[]
+    replacement_rows=[]
     challenger_rows=[]
     all_backtests=[]; upcoming=[]; scored=[]; strategy_history=[]; situation_rows=[]
     # Same-kickoff games must be predicted as one batch. Otherwise, a 13:00
@@ -396,6 +398,23 @@ def generate(games,now=None,previous_log=None,pbp_games=None,pbp_meta=None,
                     qb_rows.append({'season':game['season'],'p':p['home_probability'],
                                     'features':p['qb_research']['features'],
                                     'y':1 if game['home_score']>game['away_score'] else 0})
+                # True as-of conditional research: use a dated projected QB,
+                # previous completed QB samples and the empirical first-start
+                # prior. The actual QB starter in THIS game is never an input.
+                if game['season']>=2025 and game['home_score']!=game['away_score']:
+                    card={'season':game['season'],'home':game['home'],'away':game['away'],
+                          'kickoff':game['kickoff'].isoformat(),
+                          'homeProbability':p['home_probability'],
+                          'qbIntelligence':p['quarterbacks'],
+                          'personnelDepthChart':p['personnel_depth_chart']}
+                    historical_replacement=replacement_evaluate(card,cutoff)
+                    scenarios=historical_replacement.get('scenarios') or []
+                    if len(scenarios)==1:
+                        scenario=scenarios[0]
+                        replacement_rows.append({'season':game['season'],'week':game['week'],
+                            'eligible':True,'baseline':p['home_probability'],
+                            'conditional':scenario['conditionalHomeProbability'],
+                            'y':int(game['home_score']>game['away_score'])})
                 if p['player_impact']['eligible'] and game['home_score']!=game['away_score']:
                     player_rows.append({'season':game['season'],'p':p['home_probability'],
                                         'features':p['player_impact']['features'],
@@ -418,6 +437,8 @@ def generate(games,now=None,previous_log=None,pbp_games=None,pbp_meta=None,
     signal_audit['loadedSeasons']=(pbp_meta or {}).get('seasons',[])
     player_validation=validate_player(player_rows,current)
     qb_validation=validate_qb(qb_rows,current)
+    qb_replacement_research=replacement_screen(replacement_rows,current)
+    qb_replacement_research['firstStartPriorSource']='As-of completed prior first starts with previously recorded starter IDs'
     # XGBoost challenger: research only, never a live overlay or bet input.
     shadow_upcoming=[{'id':g['id'],'p':p['home_probability'],
                       'features':challenger_vector(g,p)} for g,p in upcoming]
@@ -532,6 +553,7 @@ def generate(games,now=None,previous_log=None,pbp_games=None,pbp_meta=None,
           'signalAccuracyLab':signal_audit,
           'playerValidation':player_validation,
           'qbValidation':qb_validation,
+          'qbReplacementResearch':qb_replacement_research,
           'challengerValidation':challenger_validation,
           'tacticalSource':pbp_meta or {'status':'unavailable','seasons':[]},
           'qbSource':{'status':'loaded' if qb_games else 'unavailable',

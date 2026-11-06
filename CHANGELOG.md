@@ -1,3 +1,13 @@
+## v2.5 — 6 November 2026 — NFL QB Replacement Value Lab
+
+- Replace the fixed-points-only QB absence estimate with a separate bounded, roster-specific replacement model that uses the outgoing starter's **completed prior-game EPA**, a dated QB replacement projection and the empirically observed EPA of quarterbacks making their first prior-data-light starts.
+- Build the historical first-start prior as a rolling point-in-time sample of *other completed games* (at least 20 observations); future starter identity and same-game EPA are never pregame model inputs.
+- Convert a shrunken QB efficiency gap into expected net points via recent dropback volume and a capped ±13-point scenario, with an explicitly unvalidated probability mapping.
+- A full adjustment activates **only** with a matching recent QB OUT/DOUBTFUL media report and fresh dated replacement projection; a projected-only or questionable QB yields a conditional scenario but does **not** change published probability.
+- Do not double-count the older fixed QB-out penalty. Keep separately archived statistical-QB, replacement-QB, and other-injury components with original predictions untouched.
+- Research study scores only earlier-year pregame projection-change scenarios; never calls them confirmed injuries, and never changes a published forecast retrospectively.
+- New full-matchup QB Replacement Value panel, source coverage audit and tests for rookie replacement, improving replacements, uncertainty, timestamp leakage and scenario gating.
+
 ## v2.4 — 6 November 2026 — Prospective forecast accountability
 
 - Recover **only genuinely timestamped original picks** from the pre-existing immutable forecast log into Prediction History, including games that have already finished. Every recovered record includes an import time distinct from its original forecast time; no postgame prediction is generated.

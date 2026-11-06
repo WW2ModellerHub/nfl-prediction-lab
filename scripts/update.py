@@ -14,6 +14,7 @@ from model import read_games,generate
 from player_usage import load_snap_counts,UsageHistory,enrich_upcoming
 from tactical import load_nflverse_pbp
 from personnel_adjustment import assess as assess_personnel, qb_efficiency_preview
+from qb_replacement import evaluate as assess_replacement
 from forecast_revisions import revisions as save_forecast_revisions
 from model import simulate as forecast_simulate
 from qb_injuries import load_historical_reports
@@ -163,83 +164,118 @@ def pbp_history_seasons(current_season):
 
 
 def apply_personnel_forecasts(dashboard,old_dashboard,now,source_mode,games):
-    """Publish provisional injury-aware percentages *only* with evidence.
+    """Publish source-labelled, conditional QB and injury-aware forecasts.
 
-    Full-refresh data may yield a provisional QB/availability correction.
-    A lightweight run retains an unchanged recent adjustment for up to 24h,
-    explicitly as cached; it never manufactures a new injury observation.
+    Only fresh, dated prior-QB OUT/DOUBTFUL status can activate a sizeable
+    replacement model adjustment. A depth-chart projection alone shows a
+    scenario but never assumes the projected QB actually starts. The old
+    fixed QB absence rule is disabled to avoid duplicating the new model.
     """
     old_map={r.get('id'):r for r in old_dashboard.get('nextGames',[])
              if isinstance(r,dict)} if isinstance(old_dashboard,dict) else {}
     lookup={r['id']:r for r in games}
+    active_counts={'statisticalQB':0,'replacementQB':0,'otherInjuries':0,
+                   'conditionalQBScenarios':0}
     for row in dashboard.get('nextGames',[]):
+        baseline=float(row['homeProbability'])
+        row['qbReplacement']={'status':'unavailable','affectsPrediction':False,'scenarios':[],
+                              'reason':'No refreshed play-by-play / injury information'}
         if source_mode=='full':
-            s=assess_personnel(row,now)
+            q=qb_efficiency_preview(row,dashboard.get('qbValidation'))
+            qb_p=q['homeProbability'] if q.get('affectsPrediction') else baseline
+            replacement=assess_replacement({**row,'homeProbability':qb_p},now)
+            row['qbReplacement']=replacement
+            repl_p=replacement['homeProbability'] if replacement.get('affectsPrediction') else qb_p
+            # Never double charge the OUT QB through the older fixed-point rule:
+            # the new replacement module handles QB status or leaves it unknown.
+            injury=assess_personnel({**row,'homeProbability':repl_p},now,exclude_qb=True)
+            final=injury['homeProbability'] if injury.get('affectsPrediction') else repl_p
+            qactive=bool(q.get('affectsPrediction'))
+            ractive=bool(replacement.get('affectsPrediction'))
+            iactive=bool(injury.get('affectsPrediction'))
+            if qactive:active_counts['statisticalQB']+=1
+            if ractive:active_counts['replacementQB']+=1
+            if iactive:active_counts['otherInjuries']+=1
+            if replacement.get('scenarios'):active_counts['conditionalQBScenarios']+=1
+            active=qactive or ractive or iactive
+            flags=([name for on,name in ((qactive,'statistical QB'),
+                     (ractive,'reported QB replacement'),(iactive,'other reported absences')) if on])
+            s={**injury,'status':'+'.join(flags)+' — PROVISIONAL' if flags else
+                       ('QB replacement scenario only' if replacement.get('scenarios')
+                        else injury.get('status','no-qualifying-evidence')),
+               'affectsPrediction':active,'validated':False,
+               'homeProbability':round(final,5),
+               'homeDelta':round(final-baseline,5),
+               'qbStatisticalHomeDelta':round(qb_p-baseline,5),
+               'qbReplacementHomeDelta':round(repl_p-qb_p,5),
+               'injuryHomeDelta':round(final-repl_p,5),
+               'marginDelta':round((q.get('marginDelta',0) if qactive else 0)+
+                                   (replacement.get('marginDelta',0) if ractive else 0)+
+                                   (injury.get('marginDelta',0) if iactive else 0),3),
+               'factors':list(q.get('factors',[]) if qactive else [])+
+                         list(replacement.get('factors',[]) if ractive else [])+
+                         list(injury.get('factors',[]) if iactive else []),
+               'statisticalQB':q,
+               'qbReplacement':replacement,
+               'sourceObservedAt':now.isoformat(),
+               'sourceDetails':'Computed at refresh. ESPN media and depth-chart observations may be older.',
+               'reason':(' + '.join(flags) if flags else replacement.get('reason') or
+                         injury.get('reason') or 'No qualifying pregame evidence'),
+               'uncertainty':'Provisional, no independent replacement injury calibration; official starter not confirmed.'}
         else:
             prior=old_map.get(row['id']) or {}
-            prior_s=prior.get('personnelScenario') or {}
-            prior_at=prior_s.get('sourceObservedAt')
-            try:observed=datetime.fromisoformat(str(prior_at).replace('Z','+00:00'))
+            s0=prior.get('personnelScenario') or {}
+            stamp=s0.get('sourceObservedAt')
+            try:observed=datetime.fromisoformat(str(stamp).replace('Z','+00:00'))
             except (ValueError,TypeError):observed=None
-            if (prior.get('kickoff')==row.get('kickoff') and observed is not None and
-                observed.tzinfo and now>=observed and (now-observed).total_seconds()<=24*3600 and
-                prior_s.get('affectsPrediction')):
-                delta=prior_s.get('homeDelta',0)
-                s={**prior_s,'homeProbability':round(max(.05,min(.95,row['homeProbability']+delta)),5),
-                   'status':'cached-provisional-assessment',
-                   'reason':'Prior provisional adjustment carried across schedule-only refresh; NOT fresh injury news'}
-                s['homeDelta']=round(s['homeProbability']-row['homeProbability'],5)
+            if (prior.get('kickoff')==row.get('kickoff') and observed is not None
+                and observed.tzinfo and now>=observed and
+                (now-observed).total_seconds()<=24*3600):
+                old_repl=prior.get('qbReplacement') or {}
+                row['qbReplacement']={**old_repl,'status':
+                    'cached '+old_repl.get('status','unavailable'),
+                    'cachedFrom':stamp}
+                delta=s0.get('homeDelta',0) if s0.get('affectsPrediction') else 0.
+                final=round(max(.005,min(.995,baseline+delta)),5)
+                s={**s0,'status':'cached provisional, not fresh',
+                    'homeProbability':final,'homeDelta':round(final-baseline,5),
+                    'sourceObservedAt':stamp,
+                    'reason':'Previous published player/QB research retained for up to 24h. Not a new injury report.'}
+                active=bool(s.get('affectsPrediction')) and abs(final-baseline)>.000001
             else:
-                s={'status':'source-unavailable','affectsPrediction':False,'homeProbability':row['homeProbability'],
-                   'homeDelta':0,'marginDelta':0,'factors':[],
-                   'reason':'Schedule-only refresh cannot verify fresh QB/injury reports'}
-        # Historical QB efficiency contributes a SEPARATE provisional forecast
-        # (prior-season coefficients only; never the current game's result).
-        qb_preview=(qb_efficiency_preview(row,dashboard.get('qbValidation'))
-                    if source_mode=='full' else {'affectsPrediction':False,'factors':[]})
-        if qb_preview.get('affectsPrediction'):
-            # Injury scenario is evaluated around the empirical-QB preview,
-            # not the unchanged Elo baseline, and remains separately recorded.
-            injury=assess_personnel({**row,'homeProbability':qb_preview['homeProbability']},now)
-            injury_active=bool(injury.get('affectsPrediction'))
-            final=injury['homeProbability'] if injury_active else qb_preview['homeProbability']
-            s={**injury,
-               'status':'qb-and-injury-provisional' if injury_active else 'qb-efficiency-provisional',
-               'affectsPrediction':True,
-               'homeProbability':round(final,5),
-               'homeDelta':round(final-row['homeProbability'],5),
-               'qbStatisticalHomeDelta':qb_preview['homeDelta'],
-               'injuryHomeDelta':injury.get('homeDelta',0),
-               'marginDelta':round(qb_preview['marginDelta']+injury.get('marginDelta',0),3),
-               'factors':list(qb_preview.get('factors',[]))+list(injury.get('factors',[])),
-               'statisticalQB':qb_preview}
-        else:
-            s['statisticalQB']=qb_preview
+                s={'status':'source-unavailable','validated':False,
+                   'affectsPrediction':False,'homeProbability':baseline,
+                   'homeDelta':0.,'marginDelta':0.,'factors':[],
+                   'reason':'Schedule-only refresh cannot verify a QB replacement or new injury'}
+                active=False
         row['personnelScenario']=s
-        if not s.get('affectsPrediction'):continue
-        base_p=row['homeProbability']
-        row['prePersonnelProbability']=base_p
-        row['homeProbability']=s['homeProbability']
+        if not active:continue
+        row['prePersonnelProbability']=baseline
+        row['homeProbability']=round(s['homeProbability'],5)
         row['awayProbability']=round(1-row['homeProbability'],5)
-        margin=s.get('marginDelta',0.0)
+        margin=s.get('marginDelta',0.)
         row['predMargin']=round(row.get('predMargin',0)+margin,2)
         row['predHome']=round(row.get('predHome',0)+margin/2,1)
         row['predAway']=round(row.get('predAway',0)-margin/2,1)
         row['favourite']=row['home'] if row['homeProbability']>=.5 else row['away']
-        p=max(row['homeProbability'],row['awayProbability'])
-        row['confidence']='High' if p>=.7 else 'Medium' if p>=.6 else 'Low'
-        row['model']=(row.get('model') or 'Elo/form')+' + provisional dated QB/injury scenario'
+        confidence=max(row['homeProbability'],row['awayProbability'])
+        row['confidence']='High' if confidence>=.7 else 'Medium' if confidence>=.6 else 'Low'
+        row['model']=(row.get('model') or 'Elo/form')+' + provisional QB/replacement and injury context'
         row['personnelEstimateValidated']=False
-        g=lookup.get(row['id'])
-        if g:
-            row['simulation']=forecast_simulate(g,{'margin':row['predMargin'],'total':row['predTotal']})
+        if row['id'] in lookup:
+            row['simulation']=forecast_simulate(lookup[row['id']],
+                                  {'margin':row['predMargin'],'total':row['predTotal']})
         if row.get('scenarios'):
             row['scenarios'][0]['text']=(
-                f"Provisional QB/injury-aware estimate: {row['home']} {row['predHome']:.1f}, "
-                f"{row['away']} {row['predAway']:.1f}. This adjustment is an unvalidated assumption, "
-                "not a statistically certified injury effect.")
+                f"Provisional QB-aware estimate: {row['home']} {row['predHome']:.1f}, "
+                f"{row['away']} {row['predAway']:.1f}. "
+                "Estimated QB replacement and injury effects are research assumptions, "
+                "not certified player availability or calibrated prediction improvement.")
+    dashboard['qbReplacementSource']={
+        'status':'full-source-review' if source_mode=='full' else 'cached-or-unavailable',
+        'counts':active_counts,
+        'notes':'Projected QB change alone never confirms an absence or triggers the full replacement-point adjustment. Conditional scenarios are unvalidated; dated media reporting required for activation.'}
     return dashboard
-
 
 def update(schedules_only=False,schedules_file=None):
     games,source=get_schedule(schedules_file)
@@ -374,6 +410,8 @@ def update(schedules_only=False,schedules_file=None):
         'signalAccuracyLab':dashboard.get('signalAccuracyLab'),
         'playerValidation':dashboard.get('playerValidation'),
         'qbValidation':dashboard.get('qbValidation'),
+        'qbReplacementResearch':dashboard.get('qbReplacementResearch'),
+        'qbReplacementSource':dashboard.get('qbReplacementSource'),
         'weatherSource':dashboard.get('weatherSource'),
         'chosenOverlay':dashboard.get('overlaySelection','none'),
         'tacticalSource':dashboard.get('tacticalSource'),
