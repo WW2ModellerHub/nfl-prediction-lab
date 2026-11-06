@@ -89,7 +89,7 @@ class QBReplacementTests(unittest.TestCase):
         g['qbIntelligence']['home']['previousQBsample']['epaPerDropback']=-.25
         r=evaluate(g,NOW)
         self.assertGreater(r['homeProbability'],.53)
-        self.assertLess(r['marginDelta'],0)
+        self.assertGreater(r['marginDelta'],0)  # better home QB raises expected home scoring margin
 
     def test_report_for_other_qb_does_not_trigger(self):
         g=matchup()
