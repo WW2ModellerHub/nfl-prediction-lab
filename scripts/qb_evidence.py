@@ -40,42 +40,55 @@ def clean_name(v):
     return "".join(c for c in str(v or "").casefold() if c.isalnum())
 
 def parse_depth(payload,observed_at):
-    """Require an explicitly first-ranked QB; no inference from list order."""
+    """Accept legacy depthCharts and 2026 depthchart shapes; require explicit QB1.
+
+    Position and rank MUST both be present. Search nested group variations
+    because ESPN's actual 2026 API uses the *singular* depthchart field and
+    some public examples show an obsolete depthCharts list. Never promote the
+    first listed athlete, rank-2 QB or any rank-1 non-QB.
+    """
     t=aware(observed_at)
     if not t:raise ValueError("Timezone-aware observation required")
-    if not isinstance(payload,dict) or not isinstance(payload.get("depthCharts"),list):
-        raise ValueError("ESPN depth chart missing expected depthCharts array")
-    candidates=[]
-    for chart in payload["depthCharts"]:
-        if not isinstance(chart,dict):continue
-        positions=chart.get("positions")
-        if isinstance(positions,dict):
-            groups=list(positions.items())
-        elif isinstance(positions,list):
-            groups=[("",p) for p in positions]
-        else:continue
-        for key,p in groups:
-            if not isinstance(p,dict):continue
-            position=p.get("position") or {}
-            abbreviation=value(position.get("abbreviation") if isinstance(position,dict) else "")
-            if str(key).lower() not in ("qb","quarterback") and abbreviation.upper()!="QB":
-                continue
-            for item in p.get("athletes") or []:
-                if not isinstance(item,dict):continue
-                athlete=item.get("athlete") or {}
-                if not isinstance(athlete,dict):continue
-                try:rank=int(item.get("rank"))
-                except (TypeError,ValueError):continue
-                name=value(athlete.get("displayName") or athlete.get("fullName"))
-                if name and rank==1:
-                    candidates.append({"name":name,"espnAthleteId":str(athlete.get("id") or ""),
-                       "rank":rank,"observedAt":t.isoformat(),
-                       "timestampBasis":"download-observation",
-                       "source":"ESPN team depthcharts (unofficial)"})
-    if not candidates:raise ValueError("No explicit rank-1 QB in ESPN depth-chart response")
-    if len({clean_name(x["name"]) for x in candidates})>1:
-        raise ValueError("Conflicting rank-1 quarterbacks within ESPN depth-chart feed")
-    return candidates[0]
+    if not isinstance(payload,dict):
+        raise ValueError("Depth chart is not a JSON object")
+    root=payload.get("depthchart",payload.get("depthCharts"))
+    if root is None:raise ValueError("No depthchart or depthCharts field in ESPN response")
+    found=[];nodes=[0]
+    def is_qb_label(label):
+        if isinstance(label,dict):
+            label=label.get("abbreviation") or label.get("name") or label.get("displayName")
+        return str(label or "").strip().casefold() in ("qb","quarterback")
+    def visit(node,parent_qb=False,depth=0):
+        nodes[0]+=1
+        if depth>15 or nodes[0]>12000:return
+        if isinstance(node,list):
+            for row in node:visit(row,parent_qb,depth+1)
+            return
+        if not isinstance(node,dict):return
+        qb_context=(parent_qb or is_qb_label(node.get("position")) or
+                    is_qb_label(node.get("abbreviation")) or
+                    is_qb_label(node.get("name") if "athlete" not in node else None))
+        rank=node.get("rank",node.get("depthRank",node.get("depthOrder")))
+        try:rank=int(rank)
+        except (TypeError,ValueError):rank=None
+        if qb_context and rank==1:
+            athlete=node.get("athlete") or node.get("player") or node
+            if isinstance(athlete,dict):
+                name=value(athlete.get("displayName") or athlete.get("fullName") or
+                           athlete.get("name"))
+                if name:
+                    found.append({"name":name,"espnAthleteId":str(athlete.get("id") or ""),
+                                  "rank":1,"observedAt":t.isoformat(),
+                                  "timestampBasis":"download-observation",
+                                  "source":"ESPN team depthcharts (unofficial)"})
+        for k,v in node.items():
+            if isinstance(v,(list,dict)):
+                visit(v,qb_context or is_qb_label(k),depth+1)
+    visit(root)
+    names={clean_name(x["name"]) for x in found}
+    if not names:raise ValueError("ESPN depthchart has no explicit rank-1 QB")
+    if len(names)>1:raise ValueError("ESPN depthchart contains conflicting rank-1 QBs")
+    return found[0]
 
 def parse_injuries(payload,observed_at):
     """Only athlete-specific, independently dated records can drive forecasts."""

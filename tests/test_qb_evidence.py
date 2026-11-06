@@ -49,6 +49,27 @@ class ESPNSourceTests(unittest.TestCase):
         self.assertEqual(x["timestampBasis"],"download-observation")
         self.assertEqual(x["observedAt"],NOW.isoformat())
 
+    def test_live_singular_depthchart_supports_nested_ranked_qb(self):
+        # ESPN's production 2026 team feed uses "depthchart" singular.
+        payload={"depthchart":{"offense":[
+           {"position":{"abbreviation":"WR"},"athletes":[
+               {"rank":1,"athlete":{"displayName":"Star Wideout"}}]},
+           {"position":{"abbreviation":"QB"},"athletes":[
+               {"rank":2,"athlete":{"displayName":"Backup Two"}},
+               {"rank":1,"athlete":{"displayName":"Starter One","id":"1234"}}]}]}}
+        x=parse_depth(payload,NOW)
+        self.assertEqual(x["name"],"Starter One")
+        self.assertEqual(x["espnAthleteId"],"1234")
+
+    def test_missing_rank_does_not_invent_starter_from_roster_order(self):
+        payload={"depthchart":{"quarterback":{"athletes":[
+            {"athlete":{"displayName":"QB Alpha"}},
+            {"rank":2,"athlete":{"displayName":"QB Beta"}}]}}}
+        with self.assertRaises(ValueError):parse_depth(payload,NOW)
+        wrong={"depthchart":{"offense":[{"position":{"abbreviation":"WR"},
+                    "athletes":[{"rank":1,"athlete":{"displayName":"WR One"}}]}]}}
+        with self.assertRaises(ValueError):parse_depth(wrong,NOW)
+
     def test_invalid_or_conflicting_depth_fails_closed(self):
         with self.assertRaises(ValueError):parse_depth({"depthCharts":[]},NOW)
         with self.assertRaises(ValueError):

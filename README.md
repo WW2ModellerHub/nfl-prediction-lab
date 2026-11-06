@@ -1,3 +1,5 @@
+**v2.6.2:** Corrected ESPN 2026 depth-chart response parsing. Its live payload uses `depthchart` (singular), whereas public examples often use `depthCharts`. The parser supports both nested structures but requires a documented QB position and explicit rank 1; it does not infer a starter from first-listed players. Ranked depth-chart evidence remains a projection, not game-day confirmation.
+
 **v2.6.1 live source validation:** The first new source run checked 28 teams, but ESPN team-specific depthchart and injury URLs returned no usable structured data. They are NOT counted as verified starter evidence. The Lab now collects team QB **roster membership** as an additional best-effort source and uses its already working league-wide ESPN injury watch for dated injury reports (269 reports across all 32 teams in the first v2.6 refresh), alongside nflverse depth charts and completed QB play. ESPN roster listing never establishes a starting QB. The model continues to label missing or conflicting evidence, and no injury probability effect is invented in its absence.
 
 # Version 2.6 · Collect actual QB evidence automatically

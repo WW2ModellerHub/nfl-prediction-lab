@@ -1,3 +1,10 @@
+## v2.6.2 — 6 November 2026 — Actual ESPN 2026 depthchart format support
+
+- Live 2026 ESPN depth endpoint returns `depthchart` singular (confirmed via response-key inspection), while outdated public examples show `depthCharts` plural.
+- Accept either nested structure through a bounded recursive search requiring BOTH an explicit QB/Quarterback position label and an explicit rank 1. No reliance on array order, no rank-2 promotion and no non-QB misclassification.
+- Retain the independent injury-report and roster-identity evidence feeds, all source timestamps and contradiction safety checks.
+- Regression tests for the live singular-key structure, missing rank and unrelated rank-1 players.
+
 ## v2.6.1 — 6 November 2026 — Correct live secondary-source integration
 
 - Live GitHub refresh proved ESPN's team-specific depthchart and injury endpoints returned no documented data structures (0/28 teams). Explicitly mark that failure rather than counting these sources as successful.
