@@ -1,3 +1,11 @@
+## v2.2.1 — 6 November 2026 — Corrected QB change direction and stale future-week estimates
+
+- A changed projected quarterback no longer automatically penalises a team. Returning starters can improve the estimate.
+- Without a dated prior-starter OUT/DOUBTFUL report, require >=80 previous dropbacks for both quarterbacks, use a bounded signed prior EPA difference, or do NOT move the forecast.
+- QB and injury adjustment is disabled until within seven days of kickoff; future-week depth charts are not proof of upcoming starters.
+- Regression tests cover unknown QB quality, a better returning starter and distant fixtures.
+- Corrected UI cache busting so the new Prediction History navigation is visible.
+
 ## v2.2 — 6 November 2026 — Immutable forecast revisions and QB/injury-aware estimates
 
 - All predictions are now snapshotted before kickoff in data/forecast-revisions.json, retaining the first original from the existing immutable forecast log.

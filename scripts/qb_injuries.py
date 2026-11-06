@@ -163,6 +163,7 @@ class QBEngine:
                           'playerId':pid,'basis':basis,
                           'confirmedStarter':False,'lastGameLeader':observed,
                           'starterChangeWatch':changed,'sample':s,
+                          'previousQBsample':self.summary(observed['id'],game) if observed and observed.get('id') else None,
                           'label':('Depth-chart QB (not a confirmed starter)' if projected else
                                    'Last recorded game starter (not confirmed for this game)' if basis=='last_game_recorded_starter' else
                                    'Last-game leading passer (not confirmed for this game)' if observed else 'No recent QB observation')}

@@ -66,4 +66,20 @@ class PersonnelTests(unittest.TestCase):
         g["supplementalInjuryWatch"]["home"]=[item("Other","CB","Out")]
         self.assertEqual(assess(g,NOW)["homeProbability"],.55)
 
+    def test_switch_with_unknown_relative_quality_does_not_penalise(self):
+        g=fixture();g["supplementalInjuryWatch"]["home"]=[]
+        x=assess(g,NOW)
+        self.assertFalse(x["affectsPrediction"])
+        self.assertTrue(any("direction unverified" in v for v in x["warnings"]))
+
+    def test_known_better_returning_qb_improves_chances(self):
+        g=fixture();g["supplementalInjuryWatch"]["home"]=[]
+        g["qbIntelligence"]["home"]["sample"]={"dropbacks":250,"epaPerDropback":.15}
+        g["qbIntelligence"]["home"]["previousQBsample"]={"dropbacks":100,"epaPerDropback":-.10}
+        self.assertGreater(assess(g,NOW)["homeProbability"],g["homeProbability"])
+
+    def test_fixtures_beyond_week_are_not_assumed_qb_absences(self):
+        g=fixture();g["kickoff"]=(NOW+timedelta(days=12)).isoformat()
+        self.assertEqual(assess(g,NOW)["status"],"future-week-monitor-only")
+
 if __name__=="__main__":unittest.main()

@@ -21,6 +21,8 @@ MAX_GAME_POINTS=5.0
 LOG_ODDS_PER_POINT=0.11
 MAX_REPORT_AGE_DAYS=7
 QB_MAX_CHART_AGE_DAYS=14
+MAX_FORECAST_HORIZON_DAYS=7
+MIN_QB_DROPBACKS=80
 
 OUT={"OUT","INJURED RESERVE","IR","OUT FOR SEASON","INACTIVE"}
 DOUBTFUL={"DOUBTFUL","DOUBTFUL FOR GAME"}
@@ -69,6 +71,9 @@ def assess(game,now):
            "method":"Assumed points mapped to log-odds; requires forward validation"}
     if now is None or kickoff is None or not now<kickoff or not isinstance(original,(int,float)) or not 0<original<1:
         return {**empty,"reason":"Fixture started or missing pregame probability; no retrospective edits"}
+    if kickoff-now>timedelta(days=MAX_FORECAST_HORIZON_DAYS):
+        return {**empty,"status":"future-week-monitor-only",
+                "reason":"Future-week projected roster has insufficient certainty"}
     media=game.get("supplementalInjuryWatch") or {}
     if media.get("status")!="loaded":
         return {**empty,"status":"source-unavailable",
@@ -103,18 +108,33 @@ def assess(game,now):
             for item in by_name.values() if str(item.get("position") or "").upper()=="QB"
             and leader_name and player_key(item)==leader_name.casefold()),None)
         qb_pts=0.0
-        if prior_qb_status in OUT:qb_pts=QB_OUT_POINTS
-        elif prior_qb_status in DOUBTFUL:qb_pts=QB_DOUBTFUL_POINTS
-        if qb_switch:qb_pts+=QB_CHANGE_POINTS
-        qb_pts=min(MAX_QB_POINTS,qb_pts)
-        if qb_pts:
+        reason=""
+        if prior_qb_status in OUT|DOUBTFUL:
+            qb_pts=QB_OUT_POINTS if prior_qb_status in OUT else QB_DOUBTFUL_POINTS
+            if qb_switch:qb_pts+=QB_CHANGE_POINTS
+            reason="Recent dated ESPN QB absence report"+("; dated QB projection changed" if qb_switch else "")
+        elif qb_switch:
+            # A healthy starter returning from a backup can be an UPGRADE.
+            prior=qb_info.get("previousQBsample") or {}
+            new=qb_info.get("sample") or {}
+            if (prior.get("dropbacks",0)>=MIN_QB_DROPBACKS and
+                new.get("dropbacks",0)>=MIN_QB_DROPBACKS and
+                isinstance(prior.get("epaPerDropback"),(int,float)) and
+                isinstance(new.get("epaPerDropback"),(int,float)) and
+                math.isfinite(prior["epaPerDropback"]) and
+                math.isfinite(new["epaPerDropback"])):
+                qb_pts=max(-2.5,min(2.5,10.0*(prior["epaPerDropback"]-new["epaPerDropback"])))
+                reason="Dated QB projection; relative prior QB EPA with >=80 previous dropbacks each"
+            else:
+                warnings.append(team+": changed QB projection, but direction unverified — no automatic penalty")
+        qb_pts=max(-MAX_QB_POINTS,min(MAX_QB_POINTS,qb_pts))
+        if abs(qb_pts)>0.001:
             scores[side]+=qb_pts
             factors.append({"team":team,"side":side,"kind":"qb",
               "player":leader_name,"status":prior_qb_status or "Observed QB projection change",
               "projectedQB":projected_name or None,"pointsAgainstTeam":round(qb_pts,3),
-              "evidence":("Recent ESPN QB media designation; " if prior_qb_status else "")+
-                         ("dated depth-chart QB switch" if qb_switch else "no verified replacement QB"),
-              "assumption":"Provisional QB absence/change rule, not an empirically validated point deduction"})
+              "evidence":reason,
+              "assumption":"Provisional signed QB assessment; a negative value is an upgrade, not validated player value"})
         for item in by_name.values():
             status=str(item.get("status") or "").upper().strip()
             pos=str(item.get("position") or "").upper()
