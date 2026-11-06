@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-05T21:29:02.475947+00:00",
+  "generatedAt": "2026-11-06T03:29:46.466173+00:00",
   "status": "production-pipeline-snapshot",
   "source": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-03T01:15:00+00:00",
-    "sha256": "c716ad27ef4aabf18a0895313d4b0119387d3128e77107364090bd40e1599bd4",
-    "downloadedAt": "2026-11-05T21:28:50.367370+00:00",
+    "sha256": "e1b16adc3eb878ec3eb7ae402b93c32a1857f53dab0a49006173f1babd6c0b70",
+    "downloadedAt": "2026-11-06T03:29:36.602180+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
@@ -14,7 +14,7 @@
   "latestResultAt": "2026-11-03T01:15:00+00:00",
   "baseline": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-05T21:29:02.475947+00:00",
+    "asOf": "2026-11-06T03:29:46.466173+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -770,7 +770,7 @@
       "A qualified candidate is research-only; live forecasts, markets and player availability weights are unchanged.",
       "Coverage requires nflverse play-by-play from completed earlier games; schedules-only refreshes cannot recompute this audit."
     ],
-    "generatedAt": "2026-11-05T21:29:02.475947+00:00",
+    "generatedAt": "2026-11-06T03:29:46.466173+00:00",
     "sourceStatus": "loaded",
     "requestedSeasons": [
       2019,
@@ -890,17 +890,17 @@
     "scope": "Non-commercial venue-area forecast; no probability weight",
     "queriedVenues": 20,
     "statuses": {
-      "forecast": 15,
-      "roof-unconfirmed": 6,
+      "roof-unconfirmed": 5,
       "indoor": 8,
-      "unavailable": 2,
+      "forecast": 16,
       "venue-unmapped": 1,
-      "outside-forecast-range": 8
+      "unavailable": 1,
+      "outside-forecast-range": 9
     },
     "errors": [
-      "NYC01: URLError: <urlopen error _ssl.c:994: The handshake operation timed out>"
+      "DAL00: URLError: <urlopen error _ssl.c:994: The handshake operation timed out>"
     ],
-    "asOf": "2026-11-05T21:29:02.475947+00:00"
+    "asOf": "2026-11-06T03:29:46.466173+00:00"
   },
   "chosenOverlay": "none",
   "tacticalSource": {
@@ -943,7 +943,7 @@
       "2025: ValueError: No timestamped report rows; undated historical records are not backdated"
     ],
     "source": "nflverse dated injuries_{season}.csv",
-    "asOf": "2026-11-05T21:28:56.384877+00:00",
+    "asOf": "2026-11-06T03:29:40.922850+00:00",
     "timestampBasis": "download-observation",
     "records": 2725
   },
@@ -960,15 +960,15 @@
   "additionalInjurySource": {
     "status": "loaded",
     "source": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
-    "retrievedAt": "2026-11-05T21:29:02.398579+00:00",
-    "reportCount": 264,
+    "retrievedAt": "2026-11-06T03:29:46.381138+00:00",
+    "reportCount": 269,
     "teamsCovered": 32,
     "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list.",
     "inspection": {
       "groups": 32,
       "items": 800,
       "dated": 800,
-      "latestDate": "2026-11-05T21:23:00+00:00",
+      "latestDate": "2026-11-06T03:27:00+00:00",
       "statusSamples": [
         "Active",
         "Doubtful",
@@ -1008,7 +1008,7 @@
       2026
     ],
     "records": 37905,
-    "watchItemsEnriched": 613
+    "watchItemsEnriched": 618
   },
   "challengerValidation": {
     "status": "validated-research",
@@ -1062,14 +1062,14 @@
     ]
   },
   "shadowForwardPerformance": {
-    "recordedPicks": 40,
+    "recordedPicks": 41,
     "gradedGames": 0,
     "brier": null,
     "accuracy": null,
     "source": "Immutable pregame XGBoost challenger picks; ties and late/backfilled entries excluded",
     "researchOnly": true
   },
-  "forwardPredictions": 44,
+  "forwardPredictions": 46,
   "forwardPerformance": {
     "count": 0,
     "accuracy": null,

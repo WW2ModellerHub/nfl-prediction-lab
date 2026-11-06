@@ -1288,5 +1288,93 @@
     "baselineHomeProbability": 0.57037,
     "adjustmentActive": false,
     "situationalProbabilityDelta": 0
+  },
+  {
+    "gameId": "2026_12_PHI_DAL",
+    "recordedAt": "2026-11-06T03:29:46.466173+00:00",
+    "kickoff": "2026-11-26T21:30:00+00:00",
+    "home": "DAL",
+    "away": "PHI",
+    "homeProbability": 0.5644,
+    "predMargin": 3.56,
+    "predTotal": 47.09,
+    "situationalSignals": [
+      "repeat_road"
+    ],
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "tacticalProbabilityDelta": 0,
+    "playerProbabilityDelta": 0,
+    "qbProbabilityDelta": 0,
+    "qbResearch": {
+      "eligible": false,
+      "features": null,
+      "status": "missing-observations",
+      "reason": "PHI: recent pregame QB and sufficient prior dropbacks unavailable",
+      "source": "Recorded prior starter or dated pregame depth chart, not game-day confirmation"
+    },
+    "qbObserved": {
+      "home": "00-0033077",
+      "away": "00-0039398"
+    },
+    "injuryReportAsOf": null,
+    "qbInjuryProbabilityWeight": 0,
+    "playerFeatures": null,
+    "playerImpactStatus": "informational",
+    "tacticalFeatures": [
+      0.8660623266810026,
+      0.19248680619695208,
+      0.519551010482158,
+      0.2513288014706928
+    ],
+    "baselineHomeProbability": 0.5644,
+    "adjustmentActive": false,
+    "situationalProbabilityDelta": 0
+  },
+  {
+    "gameId": "2026_12_KC_BUF",
+    "recordedAt": "2026-11-06T03:29:46.466173+00:00",
+    "kickoff": "2026-11-27T01:20:00+00:00",
+    "home": "BUF",
+    "away": "KC",
+    "homeProbability": 0.68403,
+    "predMargin": 5.4,
+    "predTotal": 46.68,
+    "situationalSignals": [
+      "repeat_road"
+    ],
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "tacticalProbabilityDelta": 0,
+    "playerProbabilityDelta": 0,
+    "qbProbabilityDelta": 0,
+    "qbResearch": {
+      "eligible": true,
+      "features": [
+        0.06999999999999999,
+        -0.011999999999999997,
+        0
+      ],
+      "status": "eligible",
+      "reason": "Prior-game QB observations available",
+      "source": "Recorded prior starter or dated pregame depth chart, not game-day confirmation"
+    },
+    "qbObserved": {
+      "home": "00-0034857",
+      "away": "00-0033873"
+    },
+    "injuryReportAsOf": null,
+    "qbInjuryProbabilityWeight": 0,
+    "playerFeatures": null,
+    "playerImpactStatus": "informational",
+    "tacticalFeatures": [
+      0.08067700658239335,
+      0.08062305561340229,
+      0.7249800450240793,
+      0.3302707099316676
+    ],
+    "baselineHomeProbability": 0.68403,
+    "adjustmentActive": false,
+    "situationalProbabilityDelta": 0
   }
 ]

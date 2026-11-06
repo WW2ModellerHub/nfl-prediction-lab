@@ -358,5 +358,14 @@
     "baselineHomeProbability": 0.4567,
     "model": "xgboost-shadow-research-v1",
     "researchOnly": true
+  },
+  {
+    "gameId": "2026_11_MIN_SF",
+    "kickoff": "2026-11-23T01:20:00+00:00",
+    "recordedAt": "2026-11-06T03:29:46.466173+00:00",
+    "homeProbability": 0.5179,
+    "baselineHomeProbability": 0.4988,
+    "model": "xgboost-shadow-research-v1",
+    "researchOnly": true
   }
 ]
