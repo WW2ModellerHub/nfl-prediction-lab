@@ -306,8 +306,10 @@ class QBReplacementTests(unittest.TestCase):
         candidate={'status':'qb-efficiency-provisional','affectsPrediction':True,
                    'homeProbability':.6,'homeDelta':.1,'marginDelta':2.,
                    'factors':[{'kind':'qb-efficiency'}]}
+        observed_inputs=[]
         def replace(game,now):
             p=game['homeProbability']
+            observed_inputs.append(p)  # capture before output row is mutated
             return {'status':'reported-absence-provisional','affectsPrediction':True,
                     'homeProbability':round(p-.1,5),'homeDelta':-.1,'marginDelta':-3.,
                     'scenarios':[],'factors':[{'kind':'qb-replacement'}]}
@@ -322,7 +324,7 @@ class QBReplacementTests(unittest.TestCase):
             dash={'nextGames':[row], 'qbValidation':{}}
             apply_personnel_forecasts(dash,{},NOW,'full',[])
         self.assertEqual(replace_mock.call_count,1)
-        self.assertEqual(replace_mock.call_args[0][0]['homeProbability'],.5)
+        self.assertEqual(observed_inputs,[.5])
         self.assertEqual(row['homeProbability'],.4)
         summary=row['personnelScenario']
         self.assertEqual(summary['qbStatisticalHomeDelta'],0.)
