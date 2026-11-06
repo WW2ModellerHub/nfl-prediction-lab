@@ -13,6 +13,9 @@ from pathlib import Path
 from model import read_games,generate
 from player_usage import load_snap_counts,UsageHistory,enrich_upcoming
 from tactical import load_nflverse_pbp
+from personnel_adjustment import assess as assess_personnel
+from forecast_revisions import revisions as save_forecast_revisions
+from model import simulate as forecast_simulate
 from qb_injuries import load_historical_reports
 from espn_injuries import load as load_espn_injuries
 from weather import enrich as enrich_weather
@@ -159,6 +162,63 @@ def pbp_history_seasons(current_season):
     return range(start,current_season+1)
 
 
+def apply_personnel_forecasts(dashboard,old_dashboard,now,source_mode,games):
+    """Publish provisional injury-aware percentages *only* with evidence.
+
+    Full-refresh data may yield a provisional QB/availability correction.
+    A lightweight run retains an unchanged recent adjustment for up to 24h,
+    explicitly as cached; it never manufactures a new injury observation.
+    """
+    old_map={r.get('id'):r for r in old_dashboard.get('nextGames',[])
+             if isinstance(r,dict)} if isinstance(old_dashboard,dict) else {}
+    lookup={r['id']:r for r in games}
+    for row in dashboard.get('nextGames',[]):
+        if source_mode=='full':
+            s=assess_personnel(row,now)
+        else:
+            prior=old_map.get(row['id']) or {}
+            prior_s=prior.get('personnelScenario') or {}
+            prior_at=prior_s.get('sourceObservedAt')
+            try:observed=datetime.fromisoformat(str(prior_at).replace('Z','+00:00'))
+            except (ValueError,TypeError):observed=None
+            if (prior.get('kickoff')==row.get('kickoff') and observed is not None and
+                observed.tzinfo and now>=observed and (now-observed).total_seconds()<=24*3600 and
+                prior_s.get('affectsPrediction')):
+                delta=prior_s.get('homeDelta',0)
+                s={**prior_s,'homeProbability':round(max(.05,min(.95,row['homeProbability']+delta)),5),
+                   'status':'cached-provisional-assessment',
+                   'reason':'Prior provisional adjustment carried across schedule-only refresh; NOT fresh injury news'}
+                s['homeDelta']=round(s['homeProbability']-row['homeProbability'],5)
+            else:
+                s={'status':'source-unavailable','affectsPrediction':False,'homeProbability':row['homeProbability'],
+                   'homeDelta':0,'marginDelta':0,'factors':[],
+                   'reason':'Schedule-only refresh cannot verify fresh QB/injury reports'}
+        row['personnelScenario']=s
+        if not s.get('affectsPrediction'):continue
+        base_p=row['homeProbability']
+        row['prePersonnelProbability']=base_p
+        row['homeProbability']=s['homeProbability']
+        row['awayProbability']=round(1-row['homeProbability'],5)
+        margin=s.get('marginDelta',0.0)
+        row['predMargin']=round(row.get('predMargin',0)+margin,2)
+        row['predHome']=round(row.get('predHome',0)+margin/2,1)
+        row['predAway']=round(row.get('predAway',0)-margin/2,1)
+        row['favourite']=row['home'] if row['homeProbability']>=.5 else row['away']
+        p=max(row['homeProbability'],row['awayProbability'])
+        row['confidence']='High' if p>=.7 else 'Medium' if p>=.6 else 'Low'
+        row['model']=(row.get('model') or 'Elo/form')+' + provisional dated QB/injury scenario'
+        row['personnelEstimateValidated']=False
+        g=lookup.get(row['id'])
+        if g:
+            row['simulation']=forecast_simulate(g,{'margin':row['predMargin'],'total':row['predTotal']})
+        if row.get('scenarios'):
+            row['scenarios'][0]['text']=(
+                f"Provisional QB/injury-aware estimate: {row['home']} {row['predHome']:.1f}, "
+                f"{row['away']} {row['predAway']:.1f}. This adjustment is an unvalidated assumption, "
+                "not a statistically certified injury effect.")
+    return dashboard
+
+
 def update(schedules_only=False,schedules_file=None):
     games,source=get_schedule(schedules_file)
     old_dashboard_path=Path('data/dashboard.json')
@@ -166,6 +226,7 @@ def update(schedules_only=False,schedules_file=None):
     except (OSError,ValueError):old_dashboard={}
     log_path=Path('data/predictions-log.json')
     log=json.loads(log_path.read_text()) if log_path.exists() else []
+    previous_first_ids={x.get('gameId') for x in log if isinstance(x,dict)}
     now=datetime.now(timezone.utc)
     current=now.year if now.month>=3 else now.year-1
     qb_plays={}
@@ -227,7 +288,23 @@ def update(schedules_only=False,schedules_file=None):
         snap_meta={'status':'cached','source':'Previous snap-count observation',
             'note':'Past snap participation carried forward, not a live player availability check'}
     dashboard['playerUsageSource']=snap_meta
+    dashboard=apply_personnel_forecasts(dashboard,old_dashboard,now,
+                                       'schedules-only' if schedules_only else 'full',games)
+    # The first published forecast is immutable; new fixture entries must
+    # match the final publish-time model, not the earlier unadjusted stage.
+    current_rows={row['id']:row for row in dashboard.get('nextGames',[])}
+    for item in log:
+        if item.get('gameId') in previous_first_ids:continue
+        row=current_rows.get(item.get('gameId'))
+        if not row:continue
+        item['homeProbability']=round(row['homeProbability'],5)
+        item['baselineHomeProbability']=round(row.get('baselineHomeProbability',row['homeProbability']),5)
+        item['personnelStatus']=(row.get('personnelScenario') or {}).get('status')
+        item['personnelHomeDelta']=(row.get('personnelScenario') or {}).get('homeDelta',0)
+        item['predMargin']=row.get('predMargin')
+        item['overlayType']=row.get('overlayType','none')
     record_shadow_predictions(dashboard,games,now)
+    save_forecast_revisions(dashboard,log,games,now)
     dashboard=preserve_recent_player_context(dashboard,old_dashboard,now)
     # Schedules-only refresh cannot recompute historical play-by-play accuracy.
     if schedules_only:
@@ -242,6 +319,9 @@ def update(schedules_only=False,schedules_file=None):
     # Every fixture records the roof status, horizon and source availability.
     dashboard['weatherSource']=enrich_weather(dashboard.get('nextGames',[]),now)
 
+    if any((r.get('personnelScenario') or {}).get('affectsPrediction') for r in dashboard.get('nextGames',[])):
+        dashboard['dataWarnings'].append(
+            'Published win chances may include a provisional media-injury/QB scenario. Its assumed point adjustments have NOT passed historical or forward validation.')
     if dashboard.get('injurySource',{}).get('status')=='snapshot-only':
         dashboard.setdefault('dataWarnings',[]).append('Current-season injury records have no individual report timestamps; displayed only as observed downloaded snapshots, not used for historical model fitting.')
     dashboard['source']=source['url'];dashboard['sourceUrl']=source['url'];dashboard['dataProvenance']=source
@@ -282,6 +362,8 @@ def update(schedules_only=False,schedules_file=None):
         'playerUsageSource':dashboard.get('playerUsageSource'),
         'challengerValidation':dashboard.get('challengerValidation'),
         'shadowForwardPerformance':dashboard.get('shadowForwardPerformance'),
+        'forecastRevisionSummary':dashboard.get('forecastRevisionSummary'),
+        'personnelModelStatus':'EXPERIMENTAL — reported injury/QB scenario assumptions, no validated active player coefficient',
         'forwardPredictions':dashboard.get('forwardPredictions'),
         'forwardPerformance':dashboard.get('forwardPerformance'),
         'warnings':dashboard.get('dataWarnings',[]),

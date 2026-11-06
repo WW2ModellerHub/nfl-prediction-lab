@@ -277,6 +277,7 @@ def human_game(g,p,kind='upcoming'):
                          else 'Undated weekly report (informational only)' if p.get('injuries',{}).get('status')=='snapshot-only'
                          else 'No verified current report'),
          'qbIntelligence':p.get('quarterbacks',{'status':'unavailable'}),
+         'personnelDepthChart':p.get('personnel_depth_chart',{}),
          'playerImpact':p.get('player_impact',{'status':'informational','eligible':False,'reason':'Missing historical data'}),
          'playerProbabilityDelta':round(p.get('player_probability_delta',0),4),
          'qbResearch':p.get('qb_research',{'eligible':False}),
@@ -358,6 +359,8 @@ def generate(games,now=None,previous_log=None,pbp_games=None,pbp_meta=None,
             cutoff=min(now,game['kickoff']-timedelta(hours=2))
             chart=chart_history.at(cutoff,(game['home'],game['away'])) if game['season']>=2025 else {}
             pred['quarterbacks']=qb_engine.matchup(game,chart)
+            pred['personnel_depth_chart']={side:{'asOf':(chart.get(game[side]) or {}).get('asOf')}
+                    for side in ('home','away')}
             pred['qb_research']=qb_snapshot(game,pred['quarterbacks'],chart,cutoff)
             pred['injuries']=injury_context(game,injuries_by_week[(game['season'],game['week'])],chart,cutoff)
             pred['player_impact']=player_snapshot(game,pred['quarterbacks'],pred['injuries'],

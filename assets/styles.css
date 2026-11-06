@@ -149,3 +149,6 @@
 }
 
 .accuracy-title{padding:18px;background:#172b3c;border:1px solid #4d6775;border-radius:12px;margin-bottom:16px}.accuracy-title h2{font-size:20px;margin:0 0 7px}.accuracy-title p,.accuracy-notes{font-size:11px;line-height:1.7;color:#b3c6d2}.accuracy-notes{padding-left:20px}.accuracy-title p{margin:0 0 10px}
+
+/* v2.2 original versus injury-aware and revised picks */
+.personnel-panel{background:#172d3b;border:1px solid #526877}.revision-numbers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}.revision-numbers>div{padding:12px;background:#203849;border:1px solid #415c6b;border-radius:9px;display:flex;flex-direction:column;gap:7px}.revision-numbers small{font-size:9px;line-height:1.5;color:#b1c4cf}.revision-numbers strong{font-size:22px;color:#f1f4e8}.revision-numbers span{font-size:10px;color:#b5c7d4}.personnel-flag{border-left:3px solid #b5cf82;border-radius:6px;padding:12px;background:#1d3340;margin:8px 0}.personnel-flag p{font-size:11px;line-height:1.6;color:#bbced5;margin:5px 0}@media(max-width:700px){.revision-numbers{gap:5px}.revision-numbers>div{padding:8px}.revision-numbers strong{font-size:16px}.revision-numbers small{font-size:8px}}

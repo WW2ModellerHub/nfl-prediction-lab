@@ -20,6 +20,7 @@ on:
       - 'data/predictions-log.json'
       - 'data/full-model-audit.json'
       - 'data/shadow-predictions-log.json'
+      - 'data/forecast-revisions.json'
 permissions:
   contents: write
   pages: write
@@ -59,7 +60,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/dashboard.json data/predictions-log.json data/full-model-audit.json data/shadow-predictions-log.json
+          git add data/dashboard.json data/predictions-log.json data/full-model-audit.json data/shadow-predictions-log.json data/forecast-revisions.json
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh verified NFL forecast snapshot'
             for attempt in 1 2 3; do

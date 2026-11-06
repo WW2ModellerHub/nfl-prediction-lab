@@ -1,3 +1,7 @@
+# v2.2 — Immutable Prediction History and provisional QB/injury forecasting
+
+The original first forecast is immutable. Every subsequent pre-kickoff refresh is recorded in `data/forecast-revisions.json`, with source evidence, model numbers and injury/QB assumptions. A separate **Prediction History** page displays first versus latest, and matchup pages show an explicitly *provisional* QB/injury-aware win estimate alongside the Elo/form baseline. The numeric point assumptions are NOT trained/calibrated from player availability outcomes yet. Media reports are not official gameday inactives, and questionable players are never automatically treated as OUT. The new `scripts/personnel_adjustment.py` and `scripts/forecast_revisions.py` have dedicated tests.
+
 # Version 2.1 · Multi-season tactical accuracy research
 
 Full data refreshes now request an eight-year nflverse play-by-play history, 2019–2026 for the current season. The Signal Accuracy Lab can therefore test more completed years, subject to actual source success. It also runs a simulated temporal selection test: choose one tactical variable from pre-2024 historical tests, then examine 2024+ historical outcomes while holding feature identity fixed. Coefficients re-fit from preceding seasons. The historical 2024+ games have already been studied by this project, so the feature-lock test is **not an untouched or preregistered blind study**. No candidate receives an automatic probability weight.

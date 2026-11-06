@@ -1,3 +1,12 @@
+## v2.2 — 6 November 2026 — Immutable forecast revisions and QB/injury-aware estimates
+
+- All predictions are now snapshotted before kickoff in data/forecast-revisions.json, retaining the first original from the existing immutable forecast log.
+- A fresh dated ESPN media OUT/DOUBTFUL report affecting a recent prior starting QB, dated QB projection changes and known ≥70% prior-snap player absences can change a separate, explicitly **provisional** published win probability.
+- Both the original and baseline probabilities remain visible, with assumptions, uncertainty, model-source timestamps and detailed changes.
+- New Prediction History page grades original and last recorded pre-kickoff forecasts independently, never retrospectively rewriting old scores.
+- Lightweight refreshes carry existing adjustments only for up to 24h and always label them cached.
+- New rules are an explicitly experimental point-based scenario, not proven injury replacement values or confirmed starting lineups.
+
 ## v2.1 — 5 November 2026 — Multi-season play-by-play accuracy research
 
 - Expand full-refresh NFL play-by-play source coverage to eight seasons (2019–2026 for the current season).
