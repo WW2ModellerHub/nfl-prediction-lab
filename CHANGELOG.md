@@ -1,3 +1,11 @@
+## v2.3 — 6 November 2026 — Provisional QB statistical forecast
+
+- Exposes the previously hidden prior-season-fitted QB EPA / sack-rate / starter-change model as an explicitly **provisional** numerical forecast when a genuine pregame QB feature snapshot is eligible.
+- Historical research sample (2019–2025) and 2020–2025 season-forward evaluation determines a conservative exploratory gate, without removing the original strict QB approval gate.
+- Bound QB statistical impact to ±0.20 log-odds (roughly ±5 percentage points near 50/50), retaining baseline and separately logging the QB and injury contributions.
+- A QB-out injury assumption is evaluated *after* the statistical QB scenario; both components are recorded in the immutable pre-kickoff forecast revision.
+- This model is NOT blind or independently prospectively calibrated; no claim of a profitable betting edge.
+
 ## v2.2.1 — 6 November 2026 — Corrected QB change direction and stale future-week estimates
 
 - A changed projected quarterback no longer automatically penalises a team. Returning starters can improve the estimate.

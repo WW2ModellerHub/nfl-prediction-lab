@@ -53,6 +53,50 @@ def _sigmoid(x):
     z=math.exp(x)
     return z/(1+z)
 
+def qb_efficiency_preview(game,validation):
+    """Experimental QB efficiency overlay from PREVIOUS completed seasons.
+
+    The original strict validation gate remains OFF. This is a separate,
+    clearly labelled provisional forecast with capped 0.20 log-odds effect.
+    """
+    p=game.get("homeProbability")
+    x=game.get("qbResearch") or {}
+    v=validation or {}
+    result={"status":"unavailable","affectsPrediction":False,"homeProbability":p,
+            "homeDelta":0.0,"marginDelta":0.0,"factors":[],
+            "researchOnly":True,"validated":False,
+            "trainedThroughSeason":v.get("trainedThroughSeason"),
+            "historicalBrierGain":v.get("brierGain")}
+    if not isinstance(p,(float,int)) or not 0<p<1 or not x.get("eligible"):return result
+    try:year=int(game["season"]);train=int(v.get("trainedThroughSeason") or 9999)
+    except (KeyError,ValueError,TypeError):return result
+    if (train>=year or v.get("sampleSize",0)<500 or
+        v.get("improvingSeasons",0)<2 or (v.get("brierGain") or 0)<.0003):
+        return {**result,"status":"exploratory-gate-not-met"}
+    features=x.get("features")
+    names=("qb_epa_edge","qb_sack_edge","qb_change_watch")
+    coeff=v.get("candidateCoefficients") or {}
+    if not isinstance(features,(list,tuple)) or len(features)!=3:return result
+    if not all(isinstance(z,(float,int)) and math.isfinite(z) for z in features):return result
+    if not all(isinstance(coeff.get(k),(float,int)) and math.isfinite(coeff[k]) for k in names):return result
+    z=max(-.2,min(.2,sum(coeff[k]*z for k,z in zip(names,features))))
+    if abs(z)<.001:return {**result,"status":"negligible-historical-qb-effect"}
+    estimated=round(_sigmoid(_logit(p)+z),5)
+    margin=round(z/LOG_ODDS_PER_POINT,3)
+    return {**result,"status":"historical-qb-efficiency-provisional",
+            "affectsPrediction":True,"homeProbability":estimated,
+            "homeDelta":round(estimated-p,5),"marginDelta":margin,
+            "featureNames":names,"features":list(features),
+            "coefficients":{k:coeff[k] for k in names},
+            "factors":[{"team":str(game.get("home"))+" vs "+str(game.get("away")),
+                        "side":"both","kind":"qb-efficiency",
+                        "player":"Historical QB matchup",
+                        "status":"Pregame EPA / sack / starter-change features",
+                        "pointsAgainstTeam":round(-margin,3),
+                        "evidence":"Earlier completed-season statistical QB calibration only",
+                        "assumption":"Provisional research effect (not certified starter or prospectively validated)"}]}
+
+
 def assess(game,now):
     """Return an alternative probability, evidence trail and point assumptions.
 

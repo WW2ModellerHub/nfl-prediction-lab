@@ -92,9 +92,12 @@ def validate(rows,current_season):
     gain=sum(r['games']*r['brierGain'] for r in recent)/n if n else 0
     positives=sum(x['brierGain']>0 for x in recent)
     enabled=(len(recent)>=2 and n>=350 and positives>=2 and gain>=.001)
-    coeff=fit(old) if enabled else [0.]*len(FEATURES)
+    candidate_coeff=fit(old)
+    coeff=candidate_coeff if enabled else [0.]*len(FEATURES)
     return {'enabled':enabled,'status':'ACTIVE — passed QB evidence gate' if enabled else 'OFF — QB adjustment unproven',
             'sampleSize':len(old),'trainedThroughSeason':max(seasons,default=None),
             'evaluationGames':n,'improvingSeasons':positives,'brierGain':round(gain,5) if n else None,
             'seasons':tests,'coefficients':dict(zip(FEATURES,coeff)),
+            'candidateCoefficients':dict(zip(FEATURES,candidate_coeff)),
+            'candidateResearchOnly':True,
             'researchOnly':True,'note':'Pre-kickoff QB observations, completed-season model selection, never postgame QB starters. Gate requires >=2 improving years, 350 test games, >=.001 Brier improvement.'}

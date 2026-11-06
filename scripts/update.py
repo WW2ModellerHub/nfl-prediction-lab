@@ -13,7 +13,7 @@ from pathlib import Path
 from model import read_games,generate
 from player_usage import load_snap_counts,UsageHistory,enrich_upcoming
 from tactical import load_nflverse_pbp
-from personnel_adjustment import assess as assess_personnel
+from personnel_adjustment import assess as assess_personnel, qb_efficiency_preview
 from forecast_revisions import revisions as save_forecast_revisions
 from model import simulate as forecast_simulate
 from qb_injuries import load_historical_reports
@@ -193,6 +193,28 @@ def apply_personnel_forecasts(dashboard,old_dashboard,now,source_mode,games):
                 s={'status':'source-unavailable','affectsPrediction':False,'homeProbability':row['homeProbability'],
                    'homeDelta':0,'marginDelta':0,'factors':[],
                    'reason':'Schedule-only refresh cannot verify fresh QB/injury reports'}
+        # Historical QB efficiency contributes a SEPARATE provisional forecast
+        # (prior-season coefficients only; never the current game's result).
+        qb_preview=(qb_efficiency_preview(row,dashboard.get('qbValidation'))
+                    if source_mode=='full' else {'affectsPrediction':False,'factors':[]})
+        if qb_preview.get('affectsPrediction'):
+            # Injury scenario is evaluated around the empirical-QB preview,
+            # not the unchanged Elo baseline, and remains separately recorded.
+            injury=assess_personnel({**row,'homeProbability':qb_preview['homeProbability']},now)
+            injury_active=bool(injury.get('affectsPrediction'))
+            final=injury['homeProbability'] if injury_active else qb_preview['homeProbability']
+            s={**injury,
+               'status':'qb-and-injury-provisional' if injury_active else 'qb-efficiency-provisional',
+               'affectsPrediction':True,
+               'homeProbability':round(final,5),
+               'homeDelta':round(final-row['homeProbability'],5),
+               'qbStatisticalHomeDelta':qb_preview['homeDelta'],
+               'injuryHomeDelta':injury.get('homeDelta',0),
+               'marginDelta':round(qb_preview['marginDelta']+injury.get('marginDelta',0),3),
+               'factors':list(qb_preview.get('factors',[]))+list(injury.get('factors',[])),
+               'statisticalQB':qb_preview}
+        else:
+            s['statisticalQB']=qb_preview
         row['personnelScenario']=s
         if not s.get('affectsPrediction'):continue
         base_p=row['homeProbability']

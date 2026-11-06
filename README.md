@@ -1,3 +1,7 @@
+# v2.3 · Provisional quarterback efficiency overlay
+
+Alongside explicit out/doubtful injury and roster-change assumptions, the Lab now also computes a bounded **provisional** QB efficiency change using a separately archived, season-forward-researched QB EPA, sack and projected-change regression. Its coefficients are fitted on earlier complete seasons, and the experimental output is capped and labelled. The original strict model approval gate remains off; we are collecting genuine timestamped forward results to determine whether the new QB-aware preview improves the Lab. Both the original first prediction and later revised estimates remain immutable.
+
 **QB safeguard (v2.2.1):** Merely changing the projected depth-chart quarterback cannot be assumed to be a downgrade. Without a fresh dated out/doubtful status for the previous starter, at least 80 previous dropbacks for both quarterbacks are required for a *signed* efficiency-based provisional effect. Games beyond seven days do not receive speculative depth-chart corrections. All values remain unvalidated assumptions.
 
 # v2.2 — Immutable Prediction History and provisional QB/injury forecasting

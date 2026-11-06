@@ -82,4 +82,21 @@ class PersonnelTests(unittest.TestCase):
         g=fixture();g["kickoff"]=(NOW+timedelta(days=12)).isoformat()
         self.assertEqual(assess(g,NOW)["status"],"future-week-monitor-only")
 
+    def test_historical_qb_efficiency_only_affects_eligible_pregame(self):
+        from personnel_adjustment import qb_efficiency_preview
+        g=fixture();g["season"]=2026
+        g["qbResearch"]={"eligible":True,"features":[.4,-.05,0]}
+        val={"trainedThroughSeason":2025,"sampleSize":1628,
+             "improvingSeasons":3,"brierGain":.00054,
+             "candidateCoefficients":{"qb_epa_edge":.2,"qb_sack_edge":.1,"qb_change_watch":-.1}}
+        v=qb_efficiency_preview(g,val)
+        self.assertTrue(v["affectsPrediction"])
+        self.assertGreater(v["homeProbability"],.55)
+        self.assertFalse(v["validated"])
+        self.assertEqual(g["homeProbability"],.55)
+        g["qbResearch"]["eligible"]=False
+        self.assertFalse(qb_efficiency_preview(g,val)["affectsPrediction"])
+        g["qbResearch"]["eligible"]=True
+        self.assertFalse(qb_efficiency_preview(g,{**val,"trainedThroughSeason":2026})["affectsPrediction"])
+
 if __name__=="__main__":unittest.main()
