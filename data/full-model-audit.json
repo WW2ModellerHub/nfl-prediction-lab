@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-06T12:28:35.730392+00:00",
+  "generatedAt": "2026-11-06T15:10:40.812713+00:00",
   "status": "production-pipeline-snapshot",
   "source": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-06T01:15:00+00:00",
-    "sha256": "5eb23d226ac264f421bad5d1cc08cc3f5b4cb7a1245c8ad3aafe843479c0a3f8",
-    "downloadedAt": "2026-11-06T12:28:26.100807+00:00",
+    "sha256": "d3ec2ad44465c14f3c221645e0490d9cf1a00d2814170f58d99bb78265e90517",
+    "downloadedAt": "2026-11-06T15:10:30.385939+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
@@ -14,7 +14,7 @@
   "latestResultAt": "2026-11-06T01:15:00+00:00",
   "baseline": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-06T12:28:35.730392+00:00",
+    "asOf": "2026-11-06T15:10:40.812713+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -770,7 +770,7 @@
       "A qualified candidate is research-only; live forecasts, markets and player availability weights are unchanged.",
       "Coverage requires nflverse play-by-play from completed earlier games; schedules-only refreshes cannot recompute this audit."
     ],
-    "generatedAt": "2026-11-06T12:28:35.730392+00:00",
+    "generatedAt": "2026-11-06T15:10:40.812713+00:00",
     "sourceStatus": "loaded",
     "requestedSeasons": [
       2019,
@@ -942,7 +942,7 @@
     "errors": [
       "ATL97: URLError: <urlopen error _ssl.c:994: The handshake operation timed out>"
     ],
-    "asOf": "2026-11-06T12:28:35.730392+00:00"
+    "asOf": "2026-11-06T15:10:40.812713+00:00"
   },
   "chosenOverlay": "none",
   "tacticalSource": {
@@ -985,7 +985,7 @@
       "2025: ValueError: No timestamped report rows; undated historical records are not backdated"
     ],
     "source": "nflverse dated injuries_{season}.csv",
-    "asOf": "2026-11-06T12:28:31.035409+00:00",
+    "asOf": "2026-11-06T15:10:35.325205+00:00",
     "timestampBasis": "download-observation",
     "records": 2799
   },
@@ -997,20 +997,20 @@
     ],
     "errors": [],
     "source": "nflverse 2025+ timestamped depth_charts_{season}.parquet",
-    "records": 1304691
+    "records": 1307017
   },
   "additionalInjurySource": {
     "status": "loaded",
     "source": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
-    "retrievedAt": "2026-11-06T12:28:35.677297+00:00",
-    "reportCount": 268,
+    "retrievedAt": "2026-11-06T15:10:40.747943+00:00",
+    "reportCount": 269,
     "teamsCovered": 32,
     "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list.",
     "inspection": {
       "groups": 32,
       "items": 800,
       "dated": 800,
-      "latestDate": "2026-11-06T12:01:00+00:00",
+      "latestDate": "2026-11-06T15:01:00+00:00",
       "statusSamples": [
         "Active",
         "Doubtful",
@@ -1050,7 +1050,7 @@
       2026
     ],
     "records": 37998,
-    "watchItemsEnriched": 616
+    "watchItemsEnriched": 618
   },
   "challengerValidation": {
     "status": "validated-research",
@@ -1112,7 +1112,7 @@
     "researchOnly": true
   },
   "forecastRevisionSummary": {
-    "savedRevisions": 246,
+    "savedRevisions": 286,
     "gamesTracked": 46,
     "completedCompared": 1,
     "originalBrier": 0.221097,
