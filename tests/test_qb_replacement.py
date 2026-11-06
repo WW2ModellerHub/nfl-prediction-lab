@@ -294,4 +294,69 @@ class QBReplacementTests(unittest.TestCase):
         self.assertEqual(r['scenarios'][0]['reportStatus'],'unverified projected switch')
 
 
+
+    def test_applied_replacement_suppresses_overlapping_qb_efficiency(self):
+        """Two statistical descriptions of the same QB change cannot stack."""
+        from unittest.mock import patch
+        from update import apply_personnel_forecasts
+        row={'id':'fixture','home':'BAL','away':'JAX','season':2026,'week':9,
+             'kickoff':(NOW+timedelta(days=1)).isoformat(),
+             'homeProbability':.5,'predMargin':0,'predHome':24,'predAway':24,
+             'predTotal':48,'model':'Elo/form'}
+        candidate={'status':'qb-efficiency-provisional','affectsPrediction':True,
+                   'homeProbability':.6,'homeDelta':.1,'marginDelta':2.,
+                   'factors':[{'kind':'qb-efficiency'}]}
+        def replace(game,now):
+            p=game['homeProbability']
+            return {'status':'reported-absence-provisional','affectsPrediction':True,
+                    'homeProbability':round(p-.1,5),'homeDelta':-.1,'marginDelta':-3.,
+                    'scenarios':[],'factors':[{'kind':'qb-replacement'}]}
+        def injury(game,now,exclude_qb=False):
+            self.assertTrue(exclude_qb)
+            return {'status':'none','affectsPrediction':False,
+                    'homeProbability':game['homeProbability'],
+                    'homeDelta':0.,'marginDelta':0.,'factors':[]}
+        with patch('update.qb_efficiency_preview',return_value=candidate), \
+             patch('update.assess_replacement',side_effect=replace) as replace_mock, \
+             patch('update.assess_personnel',side_effect=injury):
+            dash={'nextGames':[row], 'qbValidation':{}}
+            apply_personnel_forecasts(dash,{},NOW,'full',[])
+        self.assertEqual(replace_mock.call_count,1)
+        self.assertEqual(replace_mock.call_args[0][0]['homeProbability'],.5)
+        self.assertEqual(row['homeProbability'],.4)
+        summary=row['personnelScenario']
+        self.assertEqual(summary['qbStatisticalHomeDelta'],0.)
+        self.assertEqual(summary['qbReplacementHomeDelta'],-.1)
+        self.assertEqual(summary['statisticalQB']['status'],
+                         'withheld-overlapping-replacement-impact')
+        self.assertEqual(summary['statisticalQB']['candidateHomeDelta'],.1)
+        self.assertEqual(len(summary['factors']),1)
+        self.assertEqual(summary['factors'][0]['kind'],'qb-replacement')
+        self.assertEqual(dash['qbReplacementSource']['counts']['suppressedOverlappingQB'],1)
+
+    def test_statistical_qb_remains_if_replacement_not_source_verified(self):
+        from unittest.mock import patch
+        from update import apply_personnel_forecasts
+        row={'id':'fixture','home':'BAL','away':'JAX',
+             'homeProbability':.5,'predMargin':0,'predHome':24,'predAway':24,
+             'predTotal':48,'model':'Elo/form'}
+        candidate={'status':'qb-efficiency-provisional','affectsPrediction':True,
+                   'homeProbability':.6,'homeDelta':.1,'marginDelta':2.,
+                   'factors':[{'kind':'qb-efficiency'}]}
+        def no_replacement(game,now):
+            return {'status':'projection-only','affectsPrediction':False,
+                    'homeProbability':game['homeProbability'],'marginDelta':0.,
+                    'scenarios':[],'factors':[]}
+        def no_injury(game,now,exclude_qb=False):
+            return {'status':'none','affectsPrediction':False,
+                    'homeProbability':game['homeProbability'],'marginDelta':0.,
+                    'factors':[]}
+        with patch('update.qb_efficiency_preview',return_value=candidate), \
+             patch('update.assess_replacement',side_effect=no_replacement), \
+             patch('update.assess_personnel',side_effect=no_injury):
+            apply_personnel_forecasts({'nextGames':[row]}, {},NOW,'full',[])
+        self.assertEqual(row['homeProbability'],.6)
+        self.assertEqual(row['personnelScenario']['qbStatisticalHomeDelta'],.1)
+        self.assertEqual(row['personnelScenario']['qbReplacementHomeDelta'],0.)
+
 if __name__=='__main__':unittest.main()

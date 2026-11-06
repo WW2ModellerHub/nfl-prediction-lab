@@ -179,15 +179,30 @@ def apply_personnel_forecasts(dashboard,old_dashboard,now,source_mode,games):
              if isinstance(r,dict)} if isinstance(old_dashboard,dict) else {}
     lookup={r['id']:r for r in games}
     active_counts={'statisticalQB':0,'replacementQB':0,'otherInjuries':0,
-                   'conditionalQBScenarios':0}
+                   'conditionalQBScenarios':0,'suppressedOverlappingQB':0}
     for row in dashboard.get('nextGames',[]):
         baseline=float(row['homeProbability'])
         row['qbReplacement']={'status':'unavailable','affectsPrediction':False,'scenarios':[],
                               'reason':'No refreshed play-by-play / injury information'}
         if source_mode in ('full','evidence'):
-            q=qb_efficiency_preview(row,dashboard.get('qbValidation'))
+            candidate=qb_efficiency_preview(row,dashboard.get('qbValidation'))
+            # The statistical QB overlay and the replacement model both
+            # estimate QB performance. A documented NEW replacement takes
+            # precedence: never stack two overlapping QB coefficients.
+            observed_replacement=assess_replacement(row,now)
+            if observed_replacement.get('affectsPrediction') and candidate.get('affectsPrediction'):
+                q={**candidate,'status':'withheld-overlapping-replacement-impact',
+                   'affectsPrediction':False,'homeProbability':baseline,'homeDelta':0.,
+                   'marginDelta':0.,'factors':[],
+                   'candidateHomeDelta':candidate.get('homeDelta'),
+                   'reason':'Statistical QB coefficient suppressed because a reported QB replacement already changes the same matchup'}
+                active_counts['suppressedOverlappingQB']+=1
+            else:
+                q=candidate
             qb_p=q['homeProbability'] if q.get('affectsPrediction') else baseline
-            replacement=assess_replacement({**row,'homeProbability':qb_p},now)
+            replacement=(observed_replacement if observed_replacement.get('affectsPrediction') or
+                         not q.get('affectsPrediction') else
+                         assess_replacement({**row,'homeProbability':qb_p},now))
             row['qbReplacement']=replacement
             repl_p=replacement['homeProbability'] if replacement.get('affectsPrediction') else qb_p
             # Never double charge the OUT QB through the older fixed-point rule:

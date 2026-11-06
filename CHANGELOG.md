@@ -1,3 +1,9 @@
+## v2.7.1 — 6 November 2026 — No overlapping QB overlay penalties
+
+- If a fresh documented replacement qualifies for the provisional QB replacement model, **suppress** the independently researched QB-efficiency overlay for that fixture, rather than stacking two measurements of the same underlying QB downgrade. Preserve its hypothetical research delta separately, marked withheld.
+- Keep the provisional statistical QB preview for games with only projected/uncertain changes and no reported replacement adjustment.
+- Keep non-QB injury factors separate and the original pre-kickoff prediction immutable. Record suppression counts and two targeted regression tests.
+
 ## v2.7 — 6 November 2026 — Established QB and multiple-absence chain
 
 - Derive a team's **established current-season starter** from previous completed nflverse schedule starting-QB records (minimum two verified starts and a unique leader), even if the latest game's starter was another QB. A tie or too few starts stays unknown; this is a historic participation inference, NOT an official QB1 designation.

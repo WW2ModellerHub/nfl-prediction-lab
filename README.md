@@ -1,3 +1,5 @@
+**v2.7.1 no double-count rule:** When a reported QB replacement already changes the match probability, the statistical QB-efficiency research overlay is withheld for that game to avoid stacked estimates of the same QB change. Its suppressed candidate delta is preserved for audit, never added to the prediction. Otherwise eligible statistical QB context is left intact. This is an experimental model safeguard, not a claim that replacement values are validated.
+
 # v2.7 — Identify QB1 even after missed games; price the replacement chain once
 
 The QB history engine now counts only **verified starting QBs from previously completed games of the current season**, so a six-start QB remains the **established by past starts** reference even after two starts by a backup. This is an observed historical hierarchy, not a verified coaching declaration of QB1, a game-day inactive list or an automatically authorised model adjustment. A tie, fewer than two starts or unavailable verified IDs leaves the established starter unknown.
