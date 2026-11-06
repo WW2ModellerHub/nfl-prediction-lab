@@ -1,3 +1,7 @@
+# v2.4 · Original-vs-latest verified prediction audit
+
+Prediction History now **recovers completed games only from existing, timestamped immutable original picks**. This includes the earlier Jaguars–Ravens forecast, which was already archived before kickoff. A recovered original is identified by its original recording time plus the later import time; its probability is never recalculated after the outcome. A completed-game table compares actual final scores with first and last genuinely archived probabilities. Paired Brier, log-loss, accuracy and the direction of each revision are shown, alongside a strict last-24h cohort that requires a real saved forecast in the 24 hours before kickoff. Provisional QB/injury effects remain separate and unvalidated; no later game is reconstructed to create an apparent success.
+
 # v2.3 · Provisional quarterback efficiency overlay
 
 Alongside explicit out/doubtful injury and roster-change assumptions, the Lab now also computes a bounded **provisional** QB efficiency change using a separately archived, season-forward-researched QB EPA, sack and projected-change regression. Its coefficients are fitted on earlier complete seasons, and the experimental output is capped and labelled. The original strict model approval gate remains off; we are collecting genuine timestamped forward results to determine whether the new QB-aware preview improves the Lab. Both the original first prediction and later revised estimates remain immutable.

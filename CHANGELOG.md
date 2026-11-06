@@ -1,3 +1,12 @@
+## v2.4 — 6 November 2026 — Prospective forecast accountability
+
+- Recover **only genuinely timestamped original picks** from the pre-existing immutable forecast log into Prediction History, including games that have already finished. Every recovered record includes an import time distinct from its original forecast time; no postgame prediction is generated.
+- Score original and latest genuinely archived pre-kickoff probability on identical confirmed results: Brier, log loss, accuracy, improvements/worsenings, and per-fixture final scores.
+- Record exactly how many later prediction revisions existed and how old the most recent pre-kickoff update was for each completed game. An original-only match is never presented as an updated or injury-aware forecast.
+- Add a **strict final-24-hour** comparison restricted to games that actually have a saved forecast inside that final window; never guess last-minute results or availability.
+- Display a completed-games prediction-by-prediction scorecard and update the public machine-readable model audit.
+- Add regression tests for immutable original recovery, Jaguars–Ravens historical pick, timestamp cutoffs, legacy integrity protection, and strict 24-hour cohort.
+
 ## v2.3 — 6 November 2026 — Provisional QB statistical forecast
 
 - Exposes the previously hidden prior-season-fitted QB EPA / sack-rate / starter-change model as an explicitly **provisional** numerical forecast when a genuine pregame QB feature snapshot is eligible.
