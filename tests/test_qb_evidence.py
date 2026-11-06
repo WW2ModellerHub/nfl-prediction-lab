@@ -3,7 +3,7 @@ import io,json,sys,unittest
 from datetime import datetime,timezone,timedelta
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"scripts"))
-from qb_evidence import (parse_depth,parse_injuries,gather,attach,TEAM_IDS,BASE)
+from qb_evidence import (parse_depth,parse_injuries,parse_roster,gather,attach,TEAM_IDS,BASE)
 
 NOW=datetime(2026,11,6,17,tzinfo=timezone.utc)
 def depth(name="Backup B",person="410"):
@@ -11,6 +11,13 @@ def depth(name="Backup B",person="410"):
       "quarterback":{"position":{"abbreviation":"QB"},
          "athletes":[{"rank":2,"athlete":{"id":"23","displayName":"Reserve"}},
                      {"rank":1,"athlete":{"id":person,"displayName":name}}]}}}]}
+def roster():
+    return {"athletes":[{"position":"Quarterback",
+      "items":[{"id":"410","displayName":"Backup B",
+                "position":{"abbreviation":"QB"},"status":{"name":"Active"}},
+               {"id":"999","displayName":"Reserve C",
+                "position":{"abbreviation":"QB"}}]}]}
+
 def injuries(date=True):
     return {"injuries":[{"athlete":{"displayName":"Veteran A",
            "position":{"abbreviation":"QB"}},"status":{"description":"Out"},
@@ -49,6 +56,16 @@ class ESPNSourceTests(unittest.TestCase):
                "athletes":[{"rank":1,"athlete":{"displayName":"A"}},
                            {"rank":1,"athlete":{"displayName":"B"}}]}}}]},NOW)
 
+
+    def test_roster_is_not_a_starting_qb_projection(self):
+        qbs=parse_roster(roster(),NOW)
+        self.assertEqual(len(qbs),2)
+        self.assertTrue(all(x["role"]=="roster QB, not verified starter" for x in qbs))
+        with self.assertRaises(ValueError):parse_roster({"athletes":[]},NOW)
+        flat={"athletes":[{"id":"9","displayName":"Flat QB",
+                         "position":{"abbreviation":"QB"}}]}
+        self.assertEqual(parse_roster(flat,NOW)[0]["name"],"Flat QB")
+
     def test_dated_injury_only(self):
         self.assertEqual(parse_injuries(injuries(),NOW)[0]["status"],"OUT")
         self.assertEqual(parse_injuries(injuries(False),NOW),[])
@@ -59,10 +76,11 @@ class ESPNSourceTests(unittest.TestCase):
 
     def test_historical_first_pick_not_inferred_from_rank_one(self):
         g=fixture()
+        g["supplementalInjuryWatch"]["home"]=parse_injuries(injuries(),NOW)
         record={"BAL":{"depth":parse_depth(depth(),NOW),"depthStatus":"loaded",
-                       "injuries":parse_injuries(injuries(),NOW),"injuryStatus":"loaded"},
-                "JAX":{"depth":None,"depthStatus":"unavailable","injuries":[],
-                       "injuryStatus":"unavailable"}}
+                       "rosterQBs":parse_roster(roster(),NOW),"rosterStatus":"loaded"},
+                "JAX":{"depth":None,"depthStatus":"unavailable","rosterQBs":[],
+                       "rosterStatus":"unavailable"}}
         attach(g,record,{"status":"loaded","observationTime":NOW.isoformat()},NOW)
         h=g["qbIntelligence"]["home"]
         self.assertEqual(h["qb"],"Backup B")
@@ -79,7 +97,7 @@ class ESPNSourceTests(unittest.TestCase):
         g["qbIntelligence"]["home"].update(qb="Veteran A",basis="depth_chart_projection")
         g["personnelDepthChart"]["home"]["asOf"]=(NOW-timedelta(days=1)).isoformat()
         attach(g,{"BAL":{"depth":parse_depth(depth(),NOW),"depthStatus":"loaded",
-                         "injuries":[],"injuryStatus":"no-dated-records"}},
+                         "rosterQBs":parse_roster(roster(),NOW),"rosterStatus":"loaded"}},
                {"status":"loaded","observationTime":NOW.isoformat()},NOW)
         self.assertEqual(g["qbIntelligence"]["home"]["qb"],"Veteran A")
         self.assertTrue(g["qbSourceEvidence"]["home"]["sourceConflict"])
@@ -108,8 +126,7 @@ class ESPNSourceTests(unittest.TestCase):
     def test_undated_injuries_never_get_a_fake_report_time(self):
         g=fixture()
         attach(g,{"BAL":{"depth":None,"depthStatus":"unavailable",
-                         "injuries":parse_injuries(injuries(False),NOW),
-                         "injuryStatus":"no-dated-records"}},
+                         "rosterQBs":[],"rosterStatus":"unavailable"}},
                {"status":"unavailable","observationTime":NOW.isoformat()},NOW)
         self.assertEqual(g["supplementalInjuryWatch"]["home"],[])
         self.assertEqual(g["supplementalInjuryWatch"]["status"],"empty")
@@ -124,7 +141,7 @@ class ESPNSourceTests(unittest.TestCase):
         def opener(req,timeout):
             calls.append(req.full_url)
             if "/depthcharts" in req.full_url:return Response(depth())
-            return Response(injuries(False))
+            return Response(roster())
         near=fixture()
         far={**fixture(),"id":"far","home":"MIA",
              "kickoff":(NOW+timedelta(days=11)).isoformat()}
@@ -132,6 +149,7 @@ class ESPNSourceTests(unittest.TestCase):
         self.assertEqual(set(fetched),{"BAL","JAX"})
         self.assertEqual(len(calls),4)
         self.assertEqual(meta["depthChartsLoaded"],2)
+        self.assertEqual(meta["qbRostersLoaded"],2)
         self.assertNotIn("MIA",meta["selectedTeams"])
         self.assertTrue(all(c.startswith(BASE) for c in calls))
     def test_cached_qb_history_has_fixed_expiry_and_never_reuses_old_probabilities(self):

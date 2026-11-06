@@ -63,6 +63,8 @@ assert.match(el('appContent').innerHTML,/SOURCES DISAGREE/i);
 assert.match(el('appContent').innerHTML,/Backup R/i);
 assert.match(el('appContent').innerHTML,/nflverse/i);
 assert.match(el('appContent').innerHTML,/PROJECTIONS AGREE/i);
+assert.match(el('appContent').innerHTML,/ESPN roster QBs \(not starters\)/i);
+assert.match(el('appContent').innerHTML,/Dated QB injuries/i);
 
 assert.doesNotMatch(el('appContent').innerHTML,/0\.0 percentage points/i);
 

@@ -1,3 +1,12 @@
+## v2.6.1 — 6 November 2026 — Correct live secondary-source integration
+
+- Live GitHub refresh proved ESPN's team-specific depthchart and injury endpoints returned no documented data structures (0/28 teams). Explicitly mark that failure rather than counting these sources as successful.
+- Stop querying the nonworking team-specific injury endpoint; use the already live-verified ESPN **league-wide** injury watch (269 dated entries across 32 teams at the initial check), preserving report timestamps.
+- Attempt ESPN **team QB roster** endpoints instead as a secondary identity/membership check. A roster list can never become a projected or confirmed starting QB; depth-chart rank 1 is used only if a structurally valid dated rank is actually returned.
+- Show roster candidates and individually dated ESPN league QB reports beside nflverse projected starters and explicit source agreement/disagreement on each full matchup.
+- Include top-level response keys in source diagnostics, so future undocumented ESPN format changes are detectable without inventing results.
+- Preserve previous forecasts and never label absent data as healthy or give the roster a forecast weight.
+
 ## v2.6 — 6 November 2026 — Automated independent QB evidence collection
 
 - Fetch fresh ESPN team-specific projected QB rank-1 depth charts and dated team-specific injury reports for **teams playing within seven days**, on each scheduled full and lightweight refresh. ESPN endpoints are unofficial best-effort sources; fetch failure remains visible.

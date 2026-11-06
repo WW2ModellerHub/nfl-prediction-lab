@@ -434,9 +434,11 @@ function qbReplacementDetail(g){
    const e=feed[side]||{};
    return `<div class="qb-evidence-provider"><b>${escapeHTML(e.team||side)}</b>
    <div><span>nflverse</span><strong>${escapeHTML(e.nflverseProjectedQB||'Not available')}</strong></div>
-   <div><span>ESPN depth chart</span><strong>${escapeHTML(e.espnProjectedQB||e.espnDepthStatus||'Unavailable')}</strong></div>
+   <div><span>ESPN ranked depth</span><strong>${escapeHTML(e.espnProjectedQB||e.espnDepthStatus||'Unavailable')}</strong></div>
+   <div><span>ESPN roster QBs (not starters)</span><strong>${escapeHTML((e.espnRosterQBs||[]).join(', ')||e.espnRosterStatus||'Unavailable')}</strong></div>
+   <div><span>Dated QB injuries</span><strong>${escapeHTML((e.datedQBInjuryReports||[]).map(x=>x.name+' · '+x.status).join('; ')||'No individually dated report in available ESPN league feed')}</strong></div>
    <div><span>Comparison</span><strong>${e.sourceConflict?'SOURCES DISAGREE':e.sourcesAgree?'PROJECTIONS AGREE':escapeHTML(e.evidenceStatus||'Not checked')}</strong></div>
-   <small>ESPN observed: ${e.espnObservedAt?escapeHTML(date(e.espnObservedAt)):'unavailable'} · Injury feed: ${escapeHTML(e.espnInjuryStatus||'unavailable')}</small>
+   <small>ESPN ranked-depth snapshot observed: ${e.espnObservedAt?escapeHTML(date(e.espnObservedAt)):'unavailable'} · Roster feed: ${escapeHTML(e.espnRosterStatus||'unavailable')} · Injury designations: ESPN league injury feed</small>
    </div>`;
  }).join(''):'';
  const coverage=r.coverageStatus||'unknown',reason=r.coverageSummary||r.reason||'The data source has not supplied a verified QB replacement estimate.';

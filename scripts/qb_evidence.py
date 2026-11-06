@@ -110,6 +110,30 @@ def parse_injuries(payload,observed_at):
             latest[key]=r
     return list(latest.values())
 
+def parse_roster(payload,observed_at):
+    """Roster membership for context only: NEVER assume the first QB will start."""
+    t=aware(observed_at)
+    if not t:raise ValueError("Timezone-aware roster observation required")
+    if not isinstance(payload,dict) or not isinstance(payload.get("athletes"),list):
+        raise ValueError("ESPN roster missing expected athletes array")
+    found={}
+    for group in payload["athletes"]:
+        if not isinstance(group,dict):continue
+        arr=group.get("items")
+        arr=arr if isinstance(arr,list) else [group]
+        group_pos=value(group.get("position")).upper()
+        for athlete in arr:
+            if not isinstance(athlete,dict):continue
+            pos=value(athlete.get("position")).upper() or group_pos
+            if pos not in ("QB","QUARTERBACK"):continue
+            name=value(athlete.get("fullName") or athlete.get("displayName"))
+            if not name:continue
+            found[clean_name(name)]={"name":name,"espnAthleteId":str(athlete.get("id") or ""),
+                "observedAt":t.isoformat(),"role":"roster QB, not verified starter",
+                "source":"ESPN team roster (unofficial)"}
+    if not found:raise ValueError("ESPN roster contains no labelled QB athletes")
+    return sorted(found.values(),key=lambda x:x["name"])
+
 def fetch_json(url,opener=None):
     """Fixed endpoint on ESPN; limit size and fail closed when blocked."""
     req=urllib.request.Request(url,headers={
@@ -123,20 +147,21 @@ def fetch_json(url,opener=None):
 
 def _load_team(team,now,opener=None):
     id=TEAM_IDS[team]
-    result={"team":team,"observedAt":now.isoformat(),"depth":None,"injuries":[],
-            "depthStatus":"unavailable","injuryStatus":"unavailable",
+    result={"team":team,"observedAt":now.isoformat(),"depth":None,"rosterQBs":[],
+            "depthStatus":"unavailable","rosterStatus":"unavailable",
             "sourceUrls":{"depth":f"{BASE}/{id}/depthcharts",
-                          "injuries":f"{BASE}/{id}/injuries"},
-            "errors":[]}
+                          "roster":f"{BASE}/{id}/roster"},
+            "responseKeys":{},"errors":[]}
     for kind,url in result["sourceUrls"].items():
         try:
             payload=fetch_json(url,opener)
+            result["responseKeys"][kind]=sorted(payload)[:18] if isinstance(payload,dict) else [type(payload).__name__]
             if kind=="depth":
                 result["depth"]=parse_depth(payload,now)
                 result["depthStatus"]="loaded"
             else:
-                result["injuries"]=parse_injuries(payload,now)
-                result["injuryStatus"]="loaded" if result["injuries"] else "no-dated-records"
+                result["rosterQBs"]=parse_roster(payload,now)
+                result["rosterStatus"]="loaded"
         except (OSError,TimeoutError,UnicodeError,ValueError,TypeError,KeyError) as e:
             result["errors"].append(f"{kind}: {type(e).__name__}: {str(e)[:145]}")
     return result
@@ -159,17 +184,18 @@ def gather(games,now=None,opener=None,max_workers=5):
             team=jobs[future]
             try:teams[team]=future.result()
             except Exception as e:
-                teams[team]={"team":team,"depth":None,"injuries":[],"depthStatus":"unavailable",
-                             "injuryStatus":"unavailable","errors":[f"Unexpected fetch failure: {type(e).__name__}"]}
+                teams[team]={"team":team,"depth":None,"rosterQBs":[],"depthStatus":"unavailable",
+                             "rosterStatus":"unavailable","errors":[f"Unexpected fetch failure: {type(e).__name__}"]}
     depths=sum(x.get("depthStatus")=="loaded" for x in teams.values())
-    injuries=sum(x.get("injuryStatus")=="loaded" for x in teams.values())
-    metadata={"status":"loaded" if depths else "partial" if injuries else "unavailable",
-       "source":"ESPN team-specific depthcharts and injuries (unofficial)",
+    rosters=sum(x.get("rosterStatus")=="loaded" for x in teams.values())
+    metadata={"status":"loaded" if depths else "partial" if rosters else "unavailable",
+       "source":"ESPN team-specific depthcharts and QB rosters (unofficial)",
        "observationTime":now.isoformat(),"selectedTeams":sorted(target),
        "attemptedTeams":len(target),"depthChartsLoaded":depths,
-       "datedInjuryTeams":injuries,
+       "qbRostersLoaded":rosters,"rosterQBCandidates":sum(len(x.get("rosterQBs") or []) for x in teams.values()),
        "errors":{t:x["errors"] for t,x in teams.items() if x.get("errors")},
-       "notes":"ESPN is an unofficial best-effort second source. Rank 1 is not a confirmed starter. Download observation is not ESPN's update time. Only explicitly dated statuses qualify as injury records."}
+       "responseKeys":{t:x["responseKeys"] for t,x in teams.items() if x.get("responseKeys")},
+       "notes":"The documented ESPN team injuries endpoint returned no usable injury rows on 6 Nov 2026, so this collector instead queries team QB rosters. Media injury statuses come from the separately verified ESPN league-wide injury feed. Roster membership is NOT a starter projection. ESPN depth rank 1 is projected only; failure stays visible."}
     return teams,metadata
 
 def attach(game,records,meta,now):
@@ -221,24 +247,16 @@ def attach(game,records,meta,now):
             chart[side]["timestampBasis"]="download-observation"
             game["qbResearch"]={**(game.get("qbResearch") or {}),"eligible":False,
                 "reason":"ESPN fallback changed projected QB after historical QB feature snapshot; statistical QB preview withheld"}
-        new_media=record.get("injuries") or []
-        existing=(media.get(side) or [])
-        merged={}
-        for item in existing+new_media:
-            if not isinstance(item,dict):continue
-            name=clean_name(item.get("name"))
-            at=aware(item.get("reportDate"))
-            if not name or not at:continue
-            if name not in merged or merged[name]["reportDate"]<at.isoformat():
-                merged[name]=item
-        if new_media:
-            media[side]=sorted(merged.values(),key=lambda v:v.get("reportDate",""),reverse=True)[:24]
-            media["status"]="loaded"
+        qb_reports=[{"name":item.get("name"),"status":item.get("status"),
+                     "reportDate":item.get("reportDate"),"source":item.get("source")}
+                    for item in (media.get(side) or []) if isinstance(item,dict)
+                    and str(item.get("position") or "").upper()=="QB"][:8]
         sides[side]={"team":team,"nflverseProjectedQB":nf_name,"nflverseAsOf":nf_time.isoformat() if nf_time else None,
             "nflverseFresh":nf_fresh,"espnProjectedQB":ep_name,
             "espnObservedAt":ep.get("observedAt"),"espnDepthStatus":record.get("depthStatus","unavailable"),
-            "espnInjuryStatus":record.get("injuryStatus","unavailable"),
-            "espnDatedInjuries":len(new_media),"sourceConflict":conflict,"sourcesAgree":aligned,
+            "espnRosterStatus":record.get("rosterStatus","unavailable"),
+            "espnRosterQBs":[x["name"] for x in (record.get("rosterQBs") or [])][:8],
+            "datedQBInjuryReports":qb_reports,"sourceConflict":conflict,"sourcesAgree":aligned,
             "projectionUsed":"ESPN rank-1 fallback" if use_espn else "nflverse" if nf_fresh else "not verified",
             "evidenceStatus":"conflict" if conflict else "corroborated" if aligned else
                 "ESPN-only projection" if use_espn else "missing evidence"}
