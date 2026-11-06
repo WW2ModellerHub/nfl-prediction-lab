@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-06T07:43:47.580921+00:00",
+  "generatedAt": "2026-11-06T07:49:47.176704+00:00",
   "status": "production-pipeline-snapshot",
   "source": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-06T01:15:00+00:00",
     "sha256": "ea6beb0888cd123d84ecd998364b32661a85622e7522bd3cd63441cff3fe474f",
-    "downloadedAt": "2026-11-06T07:43:38.165384+00:00",
+    "downloadedAt": "2026-11-06T07:49:34.044853+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
@@ -14,7 +14,7 @@
   "latestResultAt": "2026-11-06T01:15:00+00:00",
   "baseline": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-06T07:43:47.580921+00:00",
+    "asOf": "2026-11-06T07:49:47.176704+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -770,7 +770,7 @@
       "A qualified candidate is research-only; live forecasts, markets and player availability weights are unchanged.",
       "Coverage requires nflverse play-by-play from completed earlier games; schedules-only refreshes cannot recompute this audit."
     ],
-    "generatedAt": "2026-11-06T07:43:47.580921+00:00",
+    "generatedAt": "2026-11-06T07:49:47.176704+00:00",
     "sourceStatus": "loaded",
     "requestedSeasons": [
       2019,
@@ -881,6 +881,12 @@
       "qb_sack_edge": 0.0,
       "qb_change_watch": 0.0
     },
+    "candidateCoefficients": {
+      "qb_epa_edge": 0.177461,
+      "qb_sack_edge": 0.016156,
+      "qb_change_watch": 0.021256
+    },
+    "candidateResearchOnly": true,
     "researchOnly": true,
     "note": "Pre-kickoff QB observations, completed-season model selection, never postgame QB starters. Gate requires >=2 improving years, 350 test games, >=.001 Brier improvement."
   },
@@ -893,14 +899,14 @@
       "roof-unconfirmed": 5,
       "indoor": 8,
       "forecast": 16,
-      "unavailable": 1,
       "venue-unmapped": 1,
+      "unavailable": 1,
       "outside-forecast-range": 9
     },
     "errors": [
-      "ATL97: URLError: <urlopen error _ssl.c:994: The handshake operation timed out>"
+      "DAL00: URLError: <urlopen error _ssl.c:994: The handshake operation timed out>"
     ],
-    "asOf": "2026-11-06T07:43:47.580921+00:00"
+    "asOf": "2026-11-06T07:49:47.176704+00:00"
   },
   "chosenOverlay": "none",
   "tacticalSource": {
@@ -943,7 +949,7 @@
       "2025: ValueError: No timestamped report rows; undated historical records are not backdated"
     ],
     "source": "nflverse dated injuries_{season}.csv",
-    "asOf": "2026-11-06T07:43:42.776165+00:00",
+    "asOf": "2026-11-06T07:49:40.384319+00:00",
     "timestampBasis": "download-observation",
     "records": 2799
   },
@@ -960,7 +966,7 @@
   "additionalInjurySource": {
     "status": "loaded",
     "source": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
-    "retrievedAt": "2026-11-06T07:43:47.516072+00:00",
+    "retrievedAt": "2026-11-06T07:49:47.098988+00:00",
     "reportCount": 268,
     "teamsCovered": 32,
     "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list.",
@@ -1070,7 +1076,7 @@
     "researchOnly": true
   },
   "forecastRevisionSummary": {
-    "savedRevisions": 120,
+    "savedRevisions": 160,
     "gamesTracked": 40,
     "completedCompared": 0,
     "originalBrier": null,
@@ -1107,6 +1113,7 @@
     "No coverage scheme data (man/zone) connected",
     "Odds require manual entry",
     "Backtests use score histories; no historical market ROI claimed",
+    "Published win chances may include a provisional media-injury/QB scenario. Its assumed point adjustments have NOT passed historical or forward validation.",
     "Current-season injury records have no individual report timestamps; displayed only as observed downloaded snapshots, not used for historical model fitting."
   ],
   "disclaimer": "Research validation is not a prospective betting edge. Only timestamped forward picks support forward performance."
