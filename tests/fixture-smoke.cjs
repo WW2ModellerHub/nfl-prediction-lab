@@ -45,10 +45,10 @@ window.__SMOKE__.setData({nextGames:[{...game,qbReplacement:{
    injuryReportStatus:'OUT',depthChartAsOf:null,outgoingPriorDropbacks:300,
    missingReasons:['No dated replacement-QB projection available'],
    injuryFeedStatus:'loaded'}],scenarios:[]}}]});
-window.__SMOKE__.openGame(game.id);
-assert.match(el('dialogContent').innerHTML,/REPORTED OUT.*REPLACEMENT UNKNOWN/i);
-assert.match(el('dialogContent').innerHTML,/No dated replacement-QB projection available/i);
-assert.doesNotMatch(el('dialogContent').innerHTML,/0\.0 percentage points/i);
+window.__SMOKE__.syncRoute();
+assert.match(el('appContent').innerHTML,/REPORTED OUT.*REPLACEMENT UNKNOWN/i);
+assert.match(el('appContent').innerHTML,/No dated replacement-QB projection available/i);
+assert.doesNotMatch(el('appContent').innerHTML,/0\.0 percentage points/i);
 
 window.location.hash='#game=test_fixture';window.__SMOKE__.syncRoute();
 assert.match(el('appContent').innerHTML,/Jacksonville Jaguars/);
