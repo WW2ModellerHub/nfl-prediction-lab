@@ -69,8 +69,8 @@ def explain(game):
         f=.4*(form-.5)
         add('elo','Elo strength & home field',e,'core',
             '60% of historical Elo strength and venue context relative to a neutral 50/50 reference')
-        add('form','Scoring form & projected margin',f,'core',
-            '40% of the normal-score-margin forecast, based on prior team scoring results')
+        add('form','Score-margin model (form + Elo)',f,'core',
+            '40% of the projected-score-margin win probability; that margin blends prior scoring form AND the team rating gap')
         gap=baseline-current
         if abs(gap)>0.00015:
             add('bounds','Probability model limit',gap,'core',
@@ -91,7 +91,7 @@ def explain(game):
                 'Applied as the single historically selected overlay before provisional player assessments')
         else:context(key,label,reason+'; no forecast percentage-point contribution')
     s=game.get('personnelScenario') or {}
-    have_components=all(_delta(s.get(field)) is not None for field,_,_ in EXPERIMENTAL)
+    have_components=all(_delta(s.get(field)) is not None for field,_,_,_ in EXPERIMENTAL)
     if have_components:
         for field,key,label,reason in EXPERIMENTAL:
             effect=_delta(s[field])
@@ -132,4 +132,4 @@ def explain(game):
             'warnings':warnings,
             'reconciles':abs(current-final)<.00015,
             'actualVsBaselinePP':round((final-baseline)*100,3),
-            'note':'Deltas are percentage points of HOME win probability; reverse the sign for the away team. Muted layers do not change the probability. The 50/50 start is an attribution reference, not a separate model prediction. Rounding can change displayed totals by 0.1 pp.'}
+            'note':'Deltas are percentage points of HOME win probability; reverse for the away team. Elo rating also feeds the projected score-margin component: these are weighted model votes, NOT independent causal signals. Unweighted layers do not change the probability. 50/50 is an attribution reference, not an additional prediction. Display rounding can change totals by 0.1 pp.'}
