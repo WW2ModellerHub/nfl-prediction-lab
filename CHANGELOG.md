@@ -1,3 +1,12 @@
+## v2.9 — 7 November 2026 — Honest live NFL prediction record
+
+- Add permanent, automatically updated `data/prediction-results.json` from existing timestamped original and revised forecasts, with one outcome per genuinely completed NFL game and explicit ungraded/pending statuses.
+- New prominent **Prediction Record** in the command centre and existing performance tab: original versus latest W/L, hit rate and Brier score; per-week results, the complete list of scored games and future pending picks with predicted winners.
+- Keep one pick per fixture regardless of number of refreshes; never include post-kickoff snapshots, games lacking verified final scores, or ties in performance metrics. Continue saving original predictions without rewriting them.
+- Add explicit warning on sample sizes below 30 games and distinguish live forward results from reconstructed historical backtests and betting ROI.
+- Scheduled workflow now commits the separate record JSON on each refresh, while using a path-ignore rule to prevent recursion.
+- Targeted tests for correct-vs-incorrect original and revised selections, sample deduplication, kickoff gating, no-result outcomes, weekly cohorts and legacy archival preservation.
+
 ## v2.8 — 7 November 2026 — One number, reconciled layer contributions
 
 - Replace the 3-column win/score headline with **one dominant predicted-winner win probability**, with the other team's chance and expected score secondary.

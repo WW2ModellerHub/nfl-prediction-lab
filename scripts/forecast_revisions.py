@@ -12,6 +12,8 @@ import math
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
+from prediction_record import summarize as summarize_prediction_record
+
 def dt(value):
     try:
         value=datetime.fromisoformat(str(value).replace("Z","+00:00")) if not isinstance(value,datetime) else value
@@ -207,6 +209,15 @@ def revisions(dashboard,originals,completed_games,now,path=Path('data/forecast-r
        'recentFinals':len(scored),'source':'data/forecast-revisions.json',
        'note':'Only original timestamped picks and later forecasts saved before the actual kickoff are scored. Recovered originals retain their original observation time and import provenance. Last recorded does not necessarily mean near kickoff; a separate 24-hour cohort reports true late updates. Ties excluded. No retrospective injury estimates.'}
     dashboard['forecastRevisionResults']=scored[:80]
+    record=summarize_prediction_record(scored,by_game,now,dt,valid)
+    dashboard['predictionRecord']={
+        key:value for key,value in record.items() if key!='allResults'
+    }
     path.parent.mkdir(parents=True,exist_ok=True)
+    # One row per outcome, including every source timestamp; the full
+    # snapshot archive above remains the immutable historical authority.
+    record_path=path.with_name('prediction-results.json')
+    record_path.write_text(json.dumps(record,indent=2,ensure_ascii=False)+'\n',
+                           encoding='utf8')
     path.write_text(json.dumps(records,indent=2,ensure_ascii=False)+'\n',encoding='utf8')
     return records

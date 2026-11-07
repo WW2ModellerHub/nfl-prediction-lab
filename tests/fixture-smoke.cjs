@@ -27,6 +27,46 @@ const game={id:'test_fixture',week:9,kickoff:'2026-11-06T01:15:00Z',
 window.__SMOKE__.setData({nextGames:[game],generatedAt:'2026-11-05T18:00:00Z'});
 window.__SMOKE__.handleClick({target:{closest:()=>({dataset:{open:game.id}})}});
 assert.equal(window.location.hash,'#game=test_fixture','Fixture URL not updated');
+
+// v2.9: actual win/loss dashboard, separate from historical backtests.
+window.__SMOKE__.setData({nextGames:[game],
+ predictionRecord:{status:'timestamped-forward-grading',completed:{
+ games:1,original:{games:1,wins:1,losses:0,accuracy:1,brier:.221097},
+ latest:{games:1,wins:1,losses:0,accuracy:1,brier:.221097}},
+ recent10:{games:1,latest:{wins:1,losses:0,accuracy:1}},
+ smallSample:true,upcomingCount:1,awaitingFinalCount:0,
+ latestResults:[{gameId:'2026_09_JAX_BAL',season:2026,week:9,
+ home:'BAL',away:'JAX',kickoff:'2026-11-06T01:15:00Z',
+ originalPick:'JAX',originalWinProbability:.52979,originalCorrect:true,
+ latestPick:'JAX',latestWinProbability:.52979,latestCorrect:true,
+ awayScore:33,homeScore:10,originalRecordedAt:'2026-11-04T20:34:50Z',
+ latestRecordedAt:'2026-11-04T20:34:50Z',revisionCount:0,changed:false}],
+ byWeek:[{season:2026,week:9,games:1,
+ original:{wins:1,losses:0,accuracy:1},latest:{wins:1,losses:0,accuracy:1}}],
+ upcoming:[{gameId:'test_fixture',home:'BAL',away:'JAX',kickoff:'2026-11-12T13:00:00Z',
+ originalPick:'JAX',originalProbability:.53,latestPick:'BAL',latestProbability:.55}]},
+ generatedAt:'2026-11-07T19:30:00Z'});
+window.location.hash='#tab=performance';
+window.__SMOKE__.syncRoute();
+const recordHtml=el('appContent').innerHTML;
+assert.match(recordHtml,/Our actual prediction record/i);
+assert.match(recordHtml,/1–0/);
+assert.match(recordHtml,/100\.0% correct/);
+assert.match(recordHtml,/too few games|too few to call|too few to judge/i);
+assert.match(recordHtml,/JAX 33 – BAL 10/i);
+assert.match(recordHtml,/JAX 53\.0%/i);
+assert.match(recordHtml,/Complete source log/i);
+assert.match(recordHtml,/Weekly win\/loss record/i);
+assert.match(recordHtml,/Predictions waiting for kickoff/i);
+assert.doesNotMatch(recordHtml,/15 snapshots/i);
+window.location.hash='#tab=overview';
+window.__SMOKE__.syncRoute();
+assert.match(el('appContent').innerHTML,/Actual prediction record/i);
+assert.match(el('appContent').innerHTML,/1–0/i);
+window.location.hash='#game=test_fixture';
+window.__SMOKE__.syncRoute();
+assert.doesNotMatch(el('appContent').innerHTML,/Our actual prediction record/i,'No long record on individual matchup');
+
 assert.match(el('appContent').innerHTML,/FULL MATCHUP DOSSIER/i,'Dossier not rendered in page');
 assert.match(el('appContent').innerHTML,/Quarterbacks, practice and injuries/i);
 assert.match(el('appContent').innerHTML,/Copy matchup link/i);
