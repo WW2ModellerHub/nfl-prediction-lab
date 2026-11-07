@@ -16,6 +16,7 @@ from tactical import load_nflverse_pbp
 from personnel_adjustment import assess as assess_personnel, qb_efficiency_preview
 from qb_replacement import evaluate as assess_replacement
 from forecast_revisions import revisions as save_forecast_revisions
+from forecast_layers import explain as explain_forecast_layers
 from model import simulate as forecast_simulate
 from qb_injuries import load_historical_reports
 from espn_injuries import load as load_espn_injuries
@@ -290,6 +291,10 @@ def apply_personnel_forecasts(dashboard,old_dashboard,now,source_mode,games):
                 f"{row['away']} {row['predAway']:.1f}. "
                 "Estimated QB replacement and injury effects are research assumptions, "
                 "not certified player availability or calibrated prediction improvement.")
+    # One published probability, with additive, explicit contributions
+    # for every weighted layer and truthful no-weight context layers.
+    for row in dashboard.get('nextGames',[]):
+        row['forecastExplanation']=explain_forecast_layers(row)
     dashboard['qbReplacementSource']={
         'status':'fresh-secondary-source-review' if source_mode=='evidence' else
                  'full-source-review' if source_mode=='full' else 'cached-or-unavailable',

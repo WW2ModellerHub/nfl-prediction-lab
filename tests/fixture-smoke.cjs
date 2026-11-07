@@ -33,6 +33,51 @@ assert.match(el('appContent').innerHTML,/Copy matchup link/i);
 assert.match(el('appContent').innerHTML,/Why each team could win/i);
 assert.match(el('appContent').innerHTML,/Player availability exposure/i);
 
+// v2.8: one primary winner probability; the move of every weighted layer
+// is reconciled, while unweighted research is explicitly 'Not applied'.
+const explained={...game,homeProbability:.39,awayProbability:.61,
+ baselineHomeProbability:.47,prePersonnelProbability:.47,
+ forecastHistoryCount:15,
+ originalForecast:{homeProbability:.404},
+ forecastExplanation:{status:'provisional',homeProbability:.39,
+ winner:'JAX',winnerProbability:.61,reconciles:true,
+ layers:[
+ {key:'elo',label:'Elo strength & home field',applied:true,
+  deltaHome:-.03,afterHome:.47,kind:'core'},
+ {key:'form',label:'Scoring form & projected margin',applied:true,
+  deltaHome:0,afterHome:.47,kind:'core'},
+ {key:'qb-statistical',label:'QB efficiency research',applied:true,
+  deltaHome:-.08,afterHome:.39,kind:'provisional'},
+ {key:'tactical',label:'Passing, rushing & pressure',applied:false,
+  deltaHome:null,kind:'not-weighted',
+  explanation:'Historical validation gate is off'},
+ {key:'weather',label:'Weather & venue conditions',applied:false,
+  deltaHome:null,kind:'not-weighted',
+  explanation:'Weather has no independently validated probability weight'}],
+ warnings:['Provisional research is not forward validated']}};
+window.__SMOKE__.setData({nextGames:[explained],generatedAt:'2026-11-05T18:00:00Z'});
+window.__SMOKE__.syncRoute();
+const explainedHTML=el('appContent').innerHTML;
+assert.match(explainedHTML,/one-forecast-number[^>]*>61\.0%/,'Single dominant winner probability must render');
+assert.match(explainedHTML,/Jacksonville Jaguars to win/);
+assert.match(explainedHTML,/How we got to 61\.0%/);
+assert.match(explainedHTML,/Elo strength &amp; home field/);
+assert.match(explainedHTML,/QB efficiency research/);
+assert.match(explainedHTML,/\+3\.0 pp/,'Home negative contribution should help the AWAY winner');
+assert.match(explainedHTML,/\+8\.0 pp/,'QB home negative contribution should help the AWAY winner');
+assert.match(explainedHTML,/Not applied/,'Unweighted layers must not claim numerical effects');
+assert.match(explainedHTML,/class="matchup-evidence"/,'All supporting evidence must remain accessible but collapsed');
+assert.doesNotMatch(explainedHTML,/Saved pre-game predictions/,'Remove repetitive pregame prediction snapshots from matchup');
+assert.doesNotMatch(explainedHTML,/15 snapshots/,'Never render archived revision counts in the main matchup');
+assert.doesNotMatch(explainedHTML,/FIRST RECORDED HOME WIN/,'No old 3-column revision-summary panel');
+assert.doesNotMatch(source,/revisions:\['Prediction History'/,'Remove redundant Prediction History main nav');
+const oldForecast={...game,homeProbability:.53,awayProbability:.47};
+window.__SMOKE__.setData({nextGames:[oldForecast],generatedAt:'2026-11-05T18:00:00Z'});
+window.__SMOKE__.syncRoute();
+assert.match(el('appContent').innerHTML,/LAYER AUDIT PENDING/,'Missing layer data cannot be invented');
+assert.match(el('appContent').innerHTML,/53\.0%/,'Missing attribution does not hide the published probability');
+
+
 assert.match(el('appContent').innerHTML,/QB Replacement/i);
 assert.match(el('appContent').innerHTML,/No separate QB replacement percentage has been applied/i);
 assert.doesNotMatch(el('appContent').innerHTML,/Published home win change from replacement alone/i);

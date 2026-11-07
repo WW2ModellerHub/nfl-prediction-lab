@@ -1,3 +1,9 @@
+# v2.8 — One prediction, visible layer accounting
+
+Every fixture now leads with **one overall predicted winner probability**, followed by a short numerical reconciliation: start from 50% as an *attribution reference*, then show the signed contribution of Elo/home field, scoring form, the (maximum one) historically selected model overlay, and the independently labelled provisional QB/injury components. Every applied layer shows the revised running percentage for the eventual favourite. Inactive or merely descriptive research is explicitly **Not applied** and never presented as a fabricated 0.0 percentage-point effect. Where cached data cannot be explained precisely, the backend records an unverified remainder rather than hiding it. The maths must reconcile to the published percentage.
+
+The large **Saved pre-game predictions** panel and its navigation entry have been removed from the user-facing matchup experience. Original and updated timestamped forecasts remain safely preserved in `data/forecast-revisions.json` and continue to support forward model validation. Detailed injury, QB, tactical, weather, rest and scenario research remains available under an expandable evidence section. Future archived revisions include compact observed layer deltas, without retrospectively modifying earlier picks.
+
 **v2.7.1 no double-count rule:** When a reported QB replacement already changes the match probability, the statistical QB-efficiency research overlay is withheld for that game to avoid stacked estimates of the same QB change. Its suppressed candidate delta is preserved for audit, never added to the prediction. Otherwise eligible statistical QB context is left intact. This is an experimental model safeguard, not a claim that replacement values are validated.
 
 # v2.7 — Identify QB1 even after missed games; price the replacement chain once

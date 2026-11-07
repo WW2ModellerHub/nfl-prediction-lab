@@ -1,3 +1,13 @@
+## v2.8 — 7 November 2026 — One number, reconciled layer contributions
+
+- Replace the 3-column win/score headline with **one dominant predicted-winner win probability**, with the other team's chance and expected score secondary.
+- Add a short, auditable **probability-contribution ladder**, starting at a 50/50 accounting reference. Elo (60% weight), scoring form (40%), any historically selected overlay, provisional QB efficiency, reported-QB replacement, and other injury effects are shown as **signed percentage-point moves toward the final predicted winner**. Every stage has its running total, and its stored home-oriented deltas reconcile to the exact final published number.
+- Signals that have **no probability weighting** (situational, tactical, injuries, weather, etc.) say **Not applied**, not a misleading numerical zero. Evidence and model limitations remain accessible in compact expandable sections.
+- Remove the long, repetitive **Saved pre-game predictions** table from every matchup, and remove the Prediction History navigation entry; retain the underlying immutable prediction ledger and forward-performance grading for research.
+- Collapse full player, injury, QB-replacement, tactical, weather, rest, simulation and score evidence behind a single **Explore all supporting evidence** section on mobile.
+- Persist actual activated layer contributions in new immutable forward revision snapshots without rewriting earlier records.
+- Fix older dossier wording that incorrectly claimed QB/injury information was never part of the published percentage.
+
 ## v2.7.1 — 6 November 2026 — No overlapping QB overlay penalties
 
 - If a fresh documented replacement qualifies for the provisional QB replacement model, **suppress** the independently researched QB-efficiency overlay for that fixture, rather than stacking two measurements of the same underlying QB downgrade. Preserve its hypothetical research delta separately, marked withheld.

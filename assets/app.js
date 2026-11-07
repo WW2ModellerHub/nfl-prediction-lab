@@ -4,7 +4,7 @@
 (() => {
 'use strict';
 const TEAM_COLORS={ARI:'#a71930',ATL:'#a71930',BAL:'#6637a6',BUF:'#185aa6',CAR:'#0085ca',CHI:'#c14720',CIN:'#e56b1e',CLE:'#d06423',DAL:'#769fc6',DEN:'#fa751e',DET:'#2476b2',GB:'#248363',HOU:'#1c426d',IND:'#4c72a6',JAX:'#008b91',KC:'#d62d3e',LA:'#2874b8',LAC:'#f0bc46',LV:'#8e98a0',MIA:'#068b92',MIN:'#7657a5',NE:'#3c6289',NO:'#b9a169',NYG:'#296ba0',NYJ:'#2c7554',PHI:'#1c7378',PIT:'#eac046',SEA:'#477ba1',SF:'#c84348',TB:'#bd4549',TEN:'#5c8fbb',WAS:'#9d752d'};
-const TABS={overview:['Command Centre','Every matchup. Every probability. Every prediction accountable.'],matchups:['Full Matchup','QB, injuries, pass/rush matchups, rest, projected scores and the exact factors used in win probabilities.'],tactics:['Tactical Radar','Pass and rush EPA, QB-hit/sack proxies and explosive-play matchup intelligence.'],players:['QB & Injury Radar','Observed quarterback performance, depth-chart projections and dated injury reports.'],impact:['Player Impact Lab','QB changes, injury signals, historical eligibility and honest prediction improvements.'],radar:['Upset & Value Radar','Separate win probability from the potential value of a bookmaker price.'],performance:['Performance Tracker','Evaluate sequential backtests and timestamped forward predictions separately.'],revisions:['Prediction History','Original and updated pre-kickoff predictions, injury assumptions and accuracy.'],accuracy:['Signal Accuracy Lab','Does passing, rushing, pressure or explosive-play information reduce forecasting errors on later completed seasons?'],audit:['Market Reality Check','Historical probability accuracy against a no-vig closing moneyline benchmark.'],evidence:['Situational Evidence','Real NFL games: assess overtime, recovery and bounce-back effects.'],models:['Model Laboratory','Transparent statistical forecasts with explicit source limitations.'],bets:['My Bet Ledger','Your personal bookmaker entries, paper value checks and actual bet records.']};
+const TABS={overview:['Command Centre','Every matchup. Every probability. Every prediction accountable.'],matchups:['Full Matchup','QB, injuries, pass/rush matchups, rest, projected scores and the exact factors used in win probabilities.'],tactics:['Tactical Radar','Pass and rush EPA, QB-hit/sack proxies and explosive-play matchup intelligence.'],players:['QB & Injury Radar','Observed quarterback performance, depth-chart projections and dated injury reports.'],impact:['Player Impact Lab','QB changes, injury signals, historical eligibility and honest prediction improvements.'],radar:['Upset & Value Radar','Separate win probability from the potential value of a bookmaker price.'],performance:['Performance Tracker','Evaluate sequential backtests and timestamped forward predictions separately.'],accuracy:['Signal Accuracy Lab','Does passing, rushing, pressure or explosive-play information reduce forecasting errors on later completed seasons?'],audit:['Market Reality Check','Historical probability accuracy against a no-vig closing moneyline benchmark.'],evidence:['Situational Evidence','Real NFL games: assess overtime, recovery and bounce-back effects.'],models:['Model Laboratory','Transparent statistical forecasts with explicit source limitations.'],bets:['My Bet Ledger','Your personal bookmaker entries, paper value checks and actual bet records.']};
 const byId=id=>document.getElementById(id); const $=sel=>document.querySelector(sel);
 const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pct=x=>x==null?'—':(100*x).toFixed(1)+'%'; const number=(n,d=1)=>n==null?'—':Number(n).toFixed(d);
@@ -96,7 +96,7 @@ function supplementalInjuryDetails(g){
    }
    html+='</div>';
  }
- html+='</div><p class="source-meta">'+(state==='cached'?'CACHED — NOT A CURRENT CHECK. ':'')+'ESPN media injury list retrieved '+escapeHTML(watch.retrievedAt||'unknown')+'. Dated media reports are not the official NFL weekly report or verified gameday inactive list. No automatic probability change is applied.</p>';
+ html+='</div><p class="source-meta">'+(state==='cached'?'CACHED — NOT A CURRENT CHECK. ':'')+'ESPN media injury list retrieved '+escapeHTML(watch.retrievedAt||'unknown')+'. Dated media reports are not the official NFL weekly report or verified gameday inactive list. Any numerical effects actually applied appear in the forecast layer breakdown above.</p>';
  return html;
 }
 
@@ -134,8 +134,8 @@ function fullMatchupReport(g){
    {label:'Explosive passing',v:tacticalText('Explosive pass opportunity')}
  ];
  const statusRows=[['Team strength / scoring',true,'IN FORECAST'],
- ['QB identity & efficiency',c.qbReady,['qb','player'].includes(g.overlayType)?'IN FORECAST':'RESEARCH ONLY'],
- ['Player availability',c.injuryReady,g.overlayType==='player'?'IN FORECAST':'RESEARCH ONLY'],
+ ['QB identity & efficiency',c.qbReady,(g.forecastExplanation?.layers||[]).some(x=>x.applied&&['qb','qb-statistical','qb-replacement'].includes(x.key))?'IN FORECAST':'RESEARCH ONLY'],
+ ['Player availability',c.injuryReady,(g.forecastExplanation?.layers||[]).some(x=>x.applied&&['player','other-injuries'].includes(x.key))?'IN FORECAST':'RESEARCH ONLY'],
  ['Tactical EPA matchups',c.tacticalReady,g.overlayType==='tactical'?'IN FORECAST':'RESEARCH ONLY'],
  ['Rest / overtime',c.restReady,g.overlayType==='situational'?'IN FORECAST':'RESEARCH ONLY'],
  ['Venue-area weather',c.weatherReady,'CONTEXT ONLY']];
@@ -150,13 +150,13 @@ function fullMatchupReport(g){
  'Kickoff forecast unavailable ('+(weather.status||'not loaded')+').';
  const tacticalEdges=(t.advantages||[]).filter(x=>x.strong);
  const reliability=c.complete===c.total?'Broad feed coverage':c.complete>=4?'Partial feed coverage':'Limited feed coverage';
- const verdict=`${g.homeProbability>=0.5?g.homeName:g.awayName} is the ${pct(Math.max(g.homeProbability,g.awayProbability))} baseline favourite. ${tacticalEdges.length?`${tacticalEdges.length} material tactical differential${tacticalEdges.length===1?' is':'s are'} flagged.`:'No large tactical differential is confirmed.'} ${qbAlerts.length?`${qbAlerts.length} player availability or QB watch alert${qbAlerts.length===1?' requires':'s require'} review.`:'Player availability is not independently verified.'}`;
+ const verdict=`${g.homeProbability>=0.5?g.homeName:g.awayName} is the ${pct(Math.max(g.homeProbability,g.awayProbability))} published favourite. ${tacticalEdges.length?`${tacticalEdges.length} material tactical differential${tacticalEdges.length===1?' is':'s are'} flagged.`:'No large tactical differential is confirmed.'} ${qbAlerts.length?`${qbAlerts.length} player availability or QB watch alert${qbAlerts.length===1?' requires':'s require'} review.`:'Player availability is not independently verified.'}`;
  const row=(label,aValue,hValue)=>`<div class="fm-compare-row"><span class="fm-row-label">${escapeHTML(label)}</span><span>${escapeHTML(aValue)}</span><span>${escapeHTML(hValue)}</span></div>`;
  const status=statusRows.map(([name,available,impact])=>`<div class="fm-data-line"><span>${escapeHTML(name)}</span><span>${tag(available?impact:'UNAVAILABLE',!available?'warn':impact==='IN FORECAST'?'lime':'')}</span></div>`).join('');
  return `<section class="fm-report" aria-label="Complete matchup breakdown">
  <div class="fm-header"><div><div class="eyebrow">FULL MATCHUP DOSSIER · ${escapeHTML(reliability.toUpperCase())}</div><h3>What could decide this game?</h3></div>${tag(`${c.complete}/${c.total} data layers`,c.complete>=5?'lime':'warn')}</div>
  <p class="fm-verdict">${escapeHTML(verdict)}</p>
- <div class="fm-callout"><strong>What the ${pct(g.homeProbability)} home-win probability includes</strong><p>${g.adjustmentActive?`Elo, scoring form and the validated ${escapeHTML(g.overlayType)} overlay. Other indicators below remain informational.`:'Only Elo team strength and scoring form. QB, injuries, tactical signals, overtime and rest are shown below but do NOT currently change this percentage.'} This is not an all-factor calibrated forecast.</p></div>
+ <div class="fm-callout"><strong>What the ${pct(g.homeProbability)} home-win probability includes</strong><p>The reconciled forecast breakdown above is authoritative: it identifies exactly which statistical, QB and injury layers moved the published number. Other matchup evidence is displayed here as context only and may be unavailable or unweighted. Provisional player effects have not passed independent forward validation.</p></div>
  <div class="fm-side-grid"><div><small>${escapeHTML(g.away)} · AWAY</small><strong>${escapeHTML(playerText('away'))}</strong><p>${escapeHTML(watchText('away'))}</p></div><div><small>${escapeHTML(g.home)} · HOME</small><strong>${escapeHTML(playerText('home'))}</strong><p>${escapeHTML(watchText('home'))}</p></div></div>
  <div class="fm-compare"><div class="fm-compare-row fm-compare-head"><span>MATCHUP FACTOR</span><span>${escapeHTML(g.away)}</span><span>${escapeHTML(g.home)}</span></div>
  ${row('Offence · recent points/game',number(g.formAway,1),number(g.formHome,1))}
@@ -521,37 +521,56 @@ function personnelSummary(g){
  ${flags.length?flags.map(x=>`<div class="personnel-flag"><b>${escapeHTML(x.team)}: ${escapeHTML(x.player)} (${escapeHTML(x.status)})</b><p>${escapeHTML(x.evidence||'')} · ${number(x.pointsAgainstTeam,2)} assumed team-point impact (positive means penalty, negative means improvement). ${escapeHTML(x.assumption||'')}</p></div>`).join(''):`<p class="instruction">${escapeHTML(s.reason||'No current verified injury-report signal; not proof of full health.')}</p>`}
  <p class="source-meta">Source observed ${escapeHTML(s.sourceObservedAt||'not refreshed')} · ${escapeHTML(s.status||'unavailable')}. ESPN media reports and projected depth-chart QBs are not official gameday starters or inactives. This provisional adjustment uses explicit point assumptions, not a validated injury-value model. Questionable status never counts as OUT.</p></section>`;
 }
-function historySection(g){
- const first=g.originalForecast?.homeProbability,all=(g.forecastHistory||[]).slice().reverse();
- return `<section class="matchup-panel matchup-wide"><h3>Saved pre-game predictions ${tag((g.forecastHistoryCount||0)+' snapshots','')}</h3>
- <div class="revision-numbers"><div><small>FIRST RECORDED HOME WIN</small><strong>${pct(first)}</strong><span>Immutable original</span></div><div><small>LATEST HOME WIN</small><strong>${pct(g.homeProbability)}</strong><span>Current published view</span></div><div><small>CHANGE SINCE FIRST</small><strong>${first==null?'—':(g.homeProbability>=first?'+':'')+number((g.homeProbability-first)*100,1)+' pp'}</strong><span>Before kickoff only</span></div></div>
- ${all.length?`<div class="table-wrap"><table class="data-table"><thead><tr><th>Recorded (UK)</th><th>Home win</th><th>Player status</th></tr></thead><tbody>${all.map(x=>`<tr><td>${escapeHTML(date(x.recordedAt))}</td><td class="num">${pct(x.homeProbability)}</td><td>${escapeHTML(x.kind==='first'?'ORIGINAL (never rewritten)':x.personnelStatus||'Source refresh')}</td></tr>`).join('')}</tbody></table></div>`:empty('No prediction revisions published yet','The revision ledger will be populated automatically after the next successful refresh.')}
- <p class="source-meta">The separate GitHub forecast-revisions.json file preserves all pre-kickoff updates, not just the latest twelve shown here. No post-kickoff rewriting.</p></section>`;
+function forecastHero(g){
+ const p=Number(g.homeProbability),homeFav=p>=.5;
+ const fav=homeFav?(g.homeName||g.home):(g.awayName||g.away),other=homeFav?(g.awayName||g.away):(g.homeName||g.home);
+ const chance=homeFav?p:1-p,otherChance=1-chance;
+ const e=g.forecastExplanation||{},provisional=e.status==='provisional',quality=e.status==='partially-unverified';
+ const badge=provisional?'PROVISIONAL QB / INJURY ESTIMATE':quality?'ATTRIBUTION PARTLY UNVERIFIED':'STATISTICAL ESTIMATE · DATA NOT FULLY VERIFIED';
+ return `<div class="one-forecast">
+  <div class="one-forecast-label">ONE PREDICTION · ${escapeHTML(badge)}</div>
+  <div class="one-forecast-number">${pct(chance)}</div>
+  <div class="one-forecast-winner">${escapeHTML(fav)} to win</div>
+  <div class="one-forecast-comparison">${escapeHTML(other)} ${pct(otherChance)} <span aria-hidden="true">·</span> Projected score ${g.predAway==null||g.predHome==null?'unavailable':`${escapeHTML(g.away)} ${Math.round(g.predAway)} – ${escapeHTML(g.home)} ${Math.round(g.predHome)}`}</div>
+  <div class="matchup-prob-track"><div style="width:${Math.max(0,Math.min(100,100*chance))}%"></div></div>
+  <p class="one-forecast-fine">Model estimate, not a guaranteed outcome or bookmaker probability. ${escapeHTML(g.model||'Elo and scoring form')} · Updated ${escapeHTML(store.data?.generatedAt?date(store.data.generatedAt):'date unavailable')}.</p>
+ </div>`;
 }
-function scoredForecastAudit(){
- const d=store.data||{},m=d.forecastRevisionSummary||{},recent=Array.isArray(d.forecastRevisionResults)?d.forecastRevisionResults:[];
- const signed=n=>n==null?'—':(n>=0?'+':'')+number(n,5);
- const niceBrier=n=>n==null?'—':number(n,5);
- const scorecards=`<div class="summary"><div class="metric"><div class="metric-label">Original Brier</div><div class="metric-number">${niceBrier(m.originalBrier)}</div><div class="metric-sub">First saved pre-kickoff prediction</div></div><div class="metric"><div class="metric-label">Latest Brier</div><div class="metric-number">${niceBrier(m.latestBrier)}</div><div class="metric-sub">Last actually archived pre-kickoff</div></div><div class="metric"><div class="metric-label">Brier improvement</div><div class="metric-number">${signed(m.brierGain)}</div><div class="metric-sub">Positive means later forecast was better</div></div><div class="metric"><div class="metric-label">Changed forecasts graded</div><div class="metric-number">${m.changedGames||0}</div><div class="metric-sub">${m.improvedGames||0} improved · ${m.worsenedGames||0} worsened</div></div></div>`;
- const row=rec.map(x=>{
- const firstHome=x.firstProbability,lastHome=x.lastProbability,firstFav=firstHome>=.5?x.home:x.away,lastFav=lastHome>=.5?x.home:x.away;
- const firstPct=Math.max(firstHome,1-firstHome),lastPct=Math.max(lastHome,1-lastHome);
- const changed=Math.abs(lastHome-firstHome)>.00001;
- const grade=x.brierGain>0.000001?'Improved':x.brierGain<-.000001?'Worsened':'Unchanged';
- const tone=x.brierGain>0.000001?'positive':x.brierGain<-.000001?'negative':'';
- return `<tr><td><strong>${escapeHTML(x.away)} @ ${escapeHTML(x.home)}</strong><small>${escapeHTML(date(x.kickoff))} · Week ${escapeHTML(x.week??'—')}</small><small><b>Final ${escapeHTML(x.away)} ${escapeHTML(x.awayScore)} – ${escapeHTML(x.home)} ${escapeHTML(x.homeScore)}</b></small></td><td>${escapeHTML(firstFav)} ${pct(firstPct)}<small>${x.firstCorrect?'Correct':'Incorrect'}</small></td><td>${escapeHTML(lastFav)} ${pct(lastPct)}<small>${x.lastCorrect?'Correct':'Incorrect'}</small></td><td class="${tone}">${grade}<small>${signed(x.brierGain)} Brier</small></td><td>${x.revisionsAfterFirst===0?'Original only':x.revisionsAfterFirst+' update(s)'}<small>Last recorded ${number(x.lastAgeHours,1)}h before kickoff</small></td><td>${x.lastQBEvidence?'QB evidence recorded':'No QB adjustment recorded'}</td></tr>`;
+function forecastLayerCard(g){
+ const e=g.forecastExplanation||{},homeFav=Number(g.homeProbability)>=.5,win=homeFav?g.home:g.away;
+ const current=homeFav?Number(g.homeProbability):1-Number(g.homeProbability);
+ const rows=Array.isArray(e.layers)?e.layers:[];
+ const valid=rows.length&&e.reconciles!==false&&Number.isFinite(e.homeProbability)&&Math.abs(e.homeProbability-Number(g.homeProbability))<.0002;
+ const signed=v=>Math.abs(v*100)<.045?'0.0 pp':`${v>0?'+':'−'}${number(Math.abs(v)*100,1)} pp`;
+ if(!valid)return `<section class="matchup-panel matchup-wide forecast-attribution" aria-label="Forecast calculation">
+ <div class="forecast-attribution-title"><h3>How we got to ${pct(current)}</h3>${tag('LAYER AUDIT PENDING','warn')}</div>
+ <p class="instruction">The one-number forecast is available, but a complete reconciled layer breakdown has not been published for this fixture yet. We will not invent percentage-point contributions.</p>
+ </section>`;
+ const used=rows.filter(x=>x.applied),unused=rows.filter(x=>!x.applied);
+ const shown=used.map((x,i)=>{
+   const impact=homeFav?x.deltaHome:-x.deltaHome;
+   const after=homeFav?x.afterHome:1-x.afterHome;
+   const cls=x.kind==='provisional'?'provisional':x.kind==='unverified'?'unverified':x.kind==='validated'?'validated':'core';
+   return `<div class="forecast-layer-row ${cls}">
+    <div class="forecast-layer-name"><b>${escapeHTML(x.label)}</b><small>${escapeHTML(x.kind==='provisional'?'Provisional model input':x.kind==='validated'?'Historically selected model layer':x.kind==='unverified'?'Unverified contribution':'Baseline model component')}</small></div>
+    <div class="forecast-layer-move ${impact<-.00045?'down':impact>.00045?'up':'flat'}">${signed(impact)}</div>
+    <div class="forecast-layer-after">${pct(after)}<small>running</small></div>
+   </div>`;
  }).join('');
- const table=recent.length?`<div class="table-wrap"><table class="data-table revision-results"><thead><tr><th>Match · actual result</th><th>Original prediction</th><th>Latest saved prediction</th><th>Change quality</th><th>Timeline</th><th>QB evidence</th></tr></thead><tbody>${row}</tbody></table></div>`:empty('No completed games graded yet','When a verified final score arrives, the Lab checks it against existing timestamped pre-kickoff records. It never invents a missing earlier forecast.');
- const late=`<div class="panel-body"><div class="stat-pair"><span>Games with an actual saved update in the final 24 hours</span><strong>${m.latestWithin24hGames||0}</strong></div><div class="stat-pair"><span>Original Brier on that same subset</span><strong>${niceBrier(m.firstBrierOn24hCohort)}</strong></div><div class="stat-pair"><span>Last recorded within-24h Brier</span><strong>${niceBrier(m.latest24hBrier)}</strong></div><p class="source-meta">No estimate is generated for a missing last-24h observation. A 'latest' forecast can be several days old; that fact is included in the match table. Comparing methods only becomes meaningful with more finished games.</p></div>`;
- return panel('Live accountability · completed NFL games',`<div class="panel-body"><p class="instruction">Actual results alongside the original archived prediction and the latest genuinely saved pregame probability. Historic originals recovered from the earlier log retain their <b>original timestamp</b> and show as <b>Original only</b>, never as hindsight adjustments.</p></div>${scorecards}${table}`,'Verified final scores · ties excluded · no retrospective forecast revisions')+
- panel('True final-24-hour forecast check',late,'Evaluated only on games with an actual timestamped prediction in the final 24 hours');
-}
-function historyLab(){
- const d=store.data||{},m=d.forecastRevisionSummary||{},g=games();
- return warnBanner()+`<div class="summary">${metric('Saved snapshots',m.savedRevisions||0,'All recorded before kickoff','lime','▤')}${metric('Games tracked',m.gamesTracked||0,'Never overwrite the original','blue','◇')}${metric('Completed comparisons',m.completedCompared||0,'First vs latest saved','','∿')}${metric('Latest pick Brier',number(m.latestBrier,4),'Only genuinely archived predictions','orange','⌁')}</div>`+
- panel('First prediction versus latest',`<div class="panel-body"><p>Our original prediction is always preserved. Each subsequent model run adds a dated snapshot including the QB and injury assumptions that affected the number.</p><div class="stat-pair"><span>Original-pick Brier</span><strong>${number(m.originalBrier,4)}</strong></div><div class="stat-pair"><span>Last pre-kickoff Brier</span><strong>${number(m.latestBrier,4)}</strong></div><p><a href="https://github.com/WW2ModellerHub/nfl-prediction-lab/blob/main/data/forecast-revisions.json" target="_blank" rel="noopener">Inspect full revision archive ↗</a></p></div>`,'No probabilities are invented postgame; recovered original picks keep the original logged time')+
- panel('Upcoming game revisions',`<div>${g.length?g.map(x=>`<div class="signal-radar-item" role="button" tabindex="0" data-open="${escapeHTML(x.id)}"><div class="signal-radar-top"><strong>${escapeHTML(x.away)} @ ${escapeHTML(x.home)}</strong>${tag((x.forecastHistoryCount||0)+' saved','')}</div><div class="signal-radar-list"><span>Original: ${pct(x.originalForecast?.homeProbability)}</span><span>Latest: ${pct(x.homeProbability)}</span><span>${escapeHTML(x.personnelScenario?.status||'No availability evidence')}</span></div><p>Tap to inspect the entire game matchup and recent dated revisions.</p></div>`).join(''):empty('No upcoming fixtures','The source schedule has no future games to record.')}</div>`,'Every subsequent pregame refresh is preserved')+
- scoredForecastAudit();
+ const notApplied=unused.map(x=>`<div class="forecast-not-applied-item"><strong>${escapeHTML(x.label)}</strong><span>Not applied</span><small>${escapeHTML(x.explanation||'Not weighted in this prediction')}</small></div>`).join('');
+ const warnings=(e.warnings||[]).map(w=>`<li>${escapeHTML(w)}</li>`).join('');
+ return `<section class="matchup-panel matchup-wide forecast-attribution" aria-label="Reconciled forecast layers">
+  <div class="forecast-attribution-title"><div><h3>How we got to ${pct(current)}</h3><p>Every applied layer, measured in percentage points for ${escapeHTML(win)}.</p></div>${tag(e.status==='provisional'?'PROVISIONAL':e.status==='partially-unverified'?'PARTLY UNVERIFIED':'MODEL-DERIVED',e.status==='provisional'||e.status==='partially-unverified'?'warn':'')}</div>
+  <div class="forecast-layer-headers"><span>Layer</span><span>Chance moves</span><span>Running win %</span></div>
+  <div class="forecast-layer-start"><strong>Starting reference</strong><span>50.0%</span></div>
+  ${shown}
+  <div class="forecast-layer-final"><strong>${escapeHTML(win)} to win</strong><span>${pct(current)}</span></div>
+  <details class="forecast-layer-hidden"><summary>${unused.length} other layers evaluated, but not weighted <span>See evidence</span></summary>
+   ${notApplied}
+  </details>
+  ${warnings?`<details class="forecast-layer-hidden"><summary>Model uncertainty <span>Important limits</span></summary><ul class="forecast-layer-warnings">${warnings}</ul></details>`:''}
+  <p class="forecast-layer-note">50/50 is an attribution reference, not an extra model forecast. Only applied layers move the published number. Differences of 0.1 pp may arise from display rounding.</p>
+ </section>`;
 }
 function fullMatchupPage(g){
  const slate=games(), index=slate.findIndex(x=>x.id===g.id);
@@ -565,17 +584,14 @@ function fullMatchupPage(g){
  <section class="matchup-hero" aria-label="Game forecast summary">
   <div class="eyebrow">WEEK ${escapeHTML(g.week??'—')} · ${escapeHTML(date(g.kickoff))} · PRE-GAME RESEARCH</div>
   <h2>${escapeHTML(g.awayName||g.away)} <span class="muted">@</span> ${escapeHTML(g.homeName||g.home)}</h2>
-  <div class="matchup-headline-grid">
-   <div><span class="matchup-small">AWAY WIN</span><strong>${pct(g.awayProbability)}</strong><small>${escapeHTML(g.away)}</small></div>
-   <div><span class="matchup-small">PROJECTED SCORE</span><strong>${g.predAway==null||g.predHome==null?'—':`${Math.round(g.predAway)}–${Math.round(g.predHome)}`}</strong><small>Expected total ${number(g.predTotal,1)} points</small></div>
-   <div><span class="matchup-small">HOME WIN</span><strong>${pct(g.homeProbability)}</strong><small>${escapeHTML(g.home)}</small></div>
-  </div>
-  <div class="matchup-prob-track"><div style="width:${Math.max(0,Math.min(100,100*Number(g.homeProbability||0)))}%"></div></div>
-  <p class="matchup-provenance">${escapeHTML(g.model||'Baseline forecast')} · ${escapeHTML(g.confidence||'Unrated')} confidence classification · Dataset refreshed ${escapeHTML(sourceDate)}. Historical backtests do not guarantee betting value.</p>
+  ${forecastHero(g)}
  </section>
- ${personnelSummary(g)}
+ ${forecastLayerCard(g)}
+ <details class="matchup-evidence" aria-label="Full supporting evidence">
+  <summary>Explore all QB, injury, tactical and matchup data <span>Open detailed analysis</span></summary>
+  <div class="matchup-evidence-body">
  ${qbReplacementDetail(g)}
- ${historySection(g)}
+ ${personnelSummary(g)}
  ${intelligencePanel(g)}
  ${fullMatchupReport(g)}
  <div class="matchup-detail-grid">
@@ -588,6 +604,8 @@ function fullMatchupPage(g){
   <section class="matchup-panel matchup-wide"><h3>Alternative game scripts</h3>${scenarios.length?`<div class="scenarios">${scenarios.map(s=>`<div class="scenario"><strong>${escapeHTML(s.name)}</strong><p>${escapeHTML(s.text)}</p></div>`).join('')}</div>`:'<p class="instruction">No game scripts have been produced for this fixture.</p>'}</section>
   <section class="matchup-panel matchup-wide"><h3>Bookmaker comparison</h3><p>${o?`${escapeHTML(o.book||'Manually entered market')}: ${escapeHTML(o.side)} at ${o.price.toFixed(2)} decimal odds · implied break-even ${pct(o.breakeven)} · model EV ${o.ev>=0?'+':''}${pct(o.ev)}.`:'No bookmaker price entered for this fixture. Prices are manual; no live odds feed is connected.'}</p><button class="btn btn-primary" data-odds="${escapeHTML(g.id)}">${o?'Edit market odds':'Enter decimal odds'}</button></section>
  </div>
+ </div>
+ </details>
  <div class="matchup-pagination">${prev?`<button class="btn" data-open="${escapeHTML(prev.id)}">← ${escapeHTML(prev.away)} @ ${escapeHTML(prev.home)}</button>`:'<span></span>'}${next?`<button class="btn" data-open="${escapeHTML(next.id)}">${escapeHTML(next.away)} @ ${escapeHTML(next.home)} →</button>`:'<span></span>'}</div>
  </div>`;
 }
@@ -635,7 +653,7 @@ function render(){
  document.querySelectorAll('[data-tab]').forEach(btn=>{btn.classList.toggle('active',btn.dataset.tab===t);btn.setAttribute('aria-current',btn.dataset.tab===t?'page':'false')});
  byId('appContent').innerHTML=!d?'<div class="loading"><span>◈</span><p>Loading prediction dataset...</p></div>'
  :store.activeGameId?(selected?warnBanner()+fullMatchupPage(selected):warnBanner()+empty('Matchup no longer on this slate','The fixture may have already kicked off or moved out of the published forecast window.')+'<div class="matchup-actions"><button class="btn btn-primary" data-back-matchups="1">View upcoming fixtures</button></div>')
- :t==='overview'?overview():t==='matchups'?matchups():t==='tactics'?tacticalRadar():t==='players'?playerRadar():t==='impact'?playerImpactLab():t==='radar'?radar():t==='performance'?perf():t==='revisions'?historyLab():t==='accuracy'?signalAccuracyLab():t==='audit'?marketAudit():t==='evidence'?researchEvidenceLab():t==='models'?models():bets();
+ :t==='overview'?overview():t==='matchups'?matchups():t==='tactics'?tacticalRadar():t==='players'?playerRadar():t==='impact'?playerImpactLab():t==='radar'?radar():t==='performance'?perf():t==='accuracy'?signalAccuracyLab():t==='audit'?marketAudit():t==='evidence'?researchEvidenceLab():t==='models'?models():bets();
 }
 
 function navigate(tab){

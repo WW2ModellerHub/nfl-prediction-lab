@@ -290,6 +290,8 @@ def human_game(g,p,kind='upcoming'):
          'overlayType':p.get('overlay_type','none'),
          'tacticalProbabilityDelta':round(p.get('tactical_probability_delta',0),4),
          'baselineHomeProbability':round(p.get('baseline_home_probability',p['home_probability']),4),
+         'eloModelProbability':round(p['elo_probability'],7),
+         'formModelProbability':round(p['normal_probability'],7),
          'situationalProbabilityDelta':round(p['home_probability']-p.get('baseline_home_probability',p['home_probability']),4) if p.get('overlay_type')=='situational' else 0,
          'adjustmentActive':p.get('adjustment_active',False),
          'scenarios':[

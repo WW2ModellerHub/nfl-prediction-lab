@@ -38,7 +38,11 @@ def snapshot(g,stamp,kind,origin):
        'mediaRetrievedAt':personnel.get('sourceObservedAt'),
        'qbNames':{side:((g.get('qbIntelligence') or {}).get(side) or {}).get('qb')
                   for side in ('home','away')},
-       'provisionalPlayerRules':True}
+       'provisionalPlayerRules':True,
+       'appliedLayerDeltas':{item['key']:item['deltaHome']
+           for item in (g.get('forecastExplanation') or {}).get('layers',[])
+           if item.get('applied')},
+       'layerExplanationStatus':(g.get('forecastExplanation') or {}).get('status','unavailable')}
 
 def _legacy_original(record,now):
     """Existing recorded forecast is reproduced exactly; never re-estimated."""
