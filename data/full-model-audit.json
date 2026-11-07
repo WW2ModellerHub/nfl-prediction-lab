@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-11-07T14:10:21.076781+00:00",
+  "generatedAt": "2026-11-07T18:04:40.369621+00:00",
   "status": "production-pipeline-snapshot",
   "source": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-06T01:15:00+00:00",
-    "sha256": "9894a25565c9df25bae18bbd37841bd1ce82d2cbe06f8ccf1f28d505119d1b58",
-    "downloadedAt": "2026-11-07T14:10:01.057679+00:00",
+    "sha256": "132a84995a93ebda0b33e5ec8dacc1ec09ff6a0da8dc447e85da3d1064ba57d5",
+    "downloadedAt": "2026-11-07T18:04:33.596880+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
   },
-  "mode": "full",
+  "mode": "schedules-only",
   "latestResultAt": "2026-11-06T01:15:00+00:00",
   "baseline": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-07T14:10:10.898752+00:00",
+    "asOf": "2026-11-07T18:04:33.982085+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -274,47 +274,11 @@
   "tacticalValidation": {
     "status": "RESEARCH — selection results are not prospective approval",
     "enabled": false,
-    "trainedThroughSeason": 2025,
-    "seasons": [
-      {
-        "season": 2021,
-        "games": 284,
-        "baselineBrier": 0.23064,
-        "adjustedBrier": 0.23054,
-        "brierGain": 9e-05
-      },
-      {
-        "season": 2022,
-        "games": 282,
-        "baselineBrier": 0.22631,
-        "adjustedBrier": 0.22369,
-        "brierGain": 0.00262
-      },
-      {
-        "season": 2023,
-        "games": 285,
-        "baselineBrier": 0.23069,
-        "adjustedBrier": 0.23106,
-        "brierGain": -0.00037
-      },
-      {
-        "season": 2024,
-        "games": 285,
-        "baselineBrier": 0.21562,
-        "adjustedBrier": 0.21368,
-        "brierGain": 0.00193
-      },
-      {
-        "season": 2025,
-        "games": 284,
-        "baselineBrier": 0.22431,
-        "adjustedBrier": 0.2242,
-        "brierGain": 0.00011
-      }
-    ],
-    "evaluationGames": 854,
-    "brierGain": 0.00056,
-    "improvingSeasons": 2,
+    "trainedThroughSeason": null,
+    "seasons": [],
+    "evaluationGames": 0,
+    "brierGain": 0,
+    "improvingSeasons": 0,
     "coefficients": {
       "pass_matchup": 0,
       "rush_matchup": 0,
@@ -322,12 +286,12 @@
       "explosive_matchup": 0
     },
     "researchOnly": true,
-    "sampleSize": 1907,
+    "sampleSize": 0,
     "notes": "Ablation uses prior-season data only. Evaluation years were used for selection, not an independent blind test.",
     "wouldPassHistoricalScreen": false
   },
   "signalAccuracyLab": {
-    "status": "historical season-forward research",
+    "status": "cached historical research — not recalculated",
     "researchOnly": true,
     "productionWeight": 0,
     "forecastChanged": false,
@@ -768,7 +732,8 @@
       "The pre-2024 feature-selection check is simulated retrospectively, NOT genuine untouched prospective evidence.",
       "Historical testing, including the newest seasons, is not untouched blind prospective validation.",
       "A qualified candidate is research-only; live forecasts, markets and player availability weights are unchanged.",
-      "Coverage requires nflverse play-by-play from completed earlier games; schedules-only refreshes cannot recompute this audit."
+      "Coverage requires nflverse play-by-play from completed earlier games; schedules-only refreshes cannot recompute this audit.",
+      "This historical research was retained from a previous full PBP refresh."
     ],
     "generatedAt": "2026-11-07T14:10:10.898752+00:00",
     "sourceStatus": "loaded",
@@ -791,7 +756,8 @@
       2024,
       2025,
       2026
-    ]
+    ],
+    "cachedAt": "2026-11-07T18:04:40.369621+00:00"
   },
   "playerValidation": {
     "enabled": false,
@@ -894,19 +860,11 @@
     "status": "research-only; independent QB injury validation unavailable",
     "researchOnly": true,
     "productionApproved": false,
-    "eligibleProjectedChangeGames": 47,
-    "baselineBrier": 0.220496,
-    "conditionalScenarioBrier": 0.196788,
-    "brierGain": 0.023708,
-    "seasons": [
-      {
-        "season": 2025,
-        "games": 47,
-        "baselineBrier": 0.220496,
-        "projectedScenarioBrier": 0.196788,
-        "brierGain": 0.023708
-      }
-    ],
+    "eligibleProjectedChangeGames": 0,
+    "baselineBrier": null,
+    "conditionalScenarioBrier": null,
+    "brierGain": null,
+    "seasons": [],
     "notes": [
       "Historical timestamped depth charts are only sourced from 2025 onward.",
       "Pregame projected QB change is not a verified starter injury or actual replacement.",
@@ -917,7 +875,7 @@
     "firstStartPriorSource": "As-of completed prior first starts with previously recorded starter IDs"
   },
   "qbReplacementSource": {
-    "status": "full-source-review",
+    "status": "fresh-secondary-source-review",
     "counts": {
       "statisticalQB": 33,
       "replacementQB": 0,
@@ -930,7 +888,7 @@
   "qbEvidenceSource": {
     "status": "partial",
     "source": "ESPN team-specific depthcharts and QB rosters (unofficial)",
-    "observationTime": "2026-11-07T14:10:19.809638+00:00",
+    "observationTime": "2026-11-07T18:04:38.970989+00:00",
     "selectedTeams": [
       "ARI",
       "ATL",
@@ -966,16 +924,16 @@
     "qbRostersLoaded": 28,
     "rosterQBCandidates": 92,
     "errors": {
-      "ATL": [
+      "CAR": [
         "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
       ],
       "ARI": [
         "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
       ],
-      "CHI": [
+      "ATL": [
         "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
       ],
-      "CAR": [
+      "CHI": [
         "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
       ],
       "BUF": [
@@ -987,34 +945,34 @@
       "DAL": [
         "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
       ],
-      "CLE": [
+      "DEN": [
         "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
       ],
       "DET": [
         "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
       ],
-      "DEN": [
-        "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
-      ],
-      "IND": [
-        "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
-      ],
-      "HOU": [
-        "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
-      ],
-      "GB": [
-        "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
-      ],
-      "LA": [
+      "CLE": [
         "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
       ],
       "KC": [
         "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
       ],
-      "LAC": [
+      "IND": [
+        "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
+      ],
+      "GB": [
+        "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
+      ],
+      "HOU": [
+        "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
+      ],
+      "LA": [
         "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
       ],
       "LV": [
+        "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
+      ],
+      "MIN": [
         "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
       ],
       "MIA": [
@@ -1023,16 +981,16 @@
       "NE": [
         "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
       ],
-      "MIN": [
+      "LAC": [
         "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
       ],
       "NO": [
         "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
       ],
-      "NYG": [
+      "NYJ": [
         "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
       ],
-      "NYJ": [
+      "NYG": [
         "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
       ],
       "PHI": [
@@ -1041,10 +999,10 @@
       "SEA": [
         "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
       ],
-      "SF": [
+      "TB": [
         "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
       ],
-      "TB": [
+      "SF": [
         "depth: ValueError: ESPN depthchart has no explicit rank-1 QB"
       ],
       "WAS": [
@@ -1052,7 +1010,7 @@
       ]
     },
     "responseKeys": {
-      "ATL": {
+      "CAR": {
         "depth": [
           "depthchart",
           "season",
@@ -1086,7 +1044,7 @@
           "timestamp"
         ]
       },
-      "CHI": {
+      "ATL": {
         "depth": [
           "depthchart",
           "season",
@@ -1103,7 +1061,7 @@
           "timestamp"
         ]
       },
-      "CAR": {
+      "CHI": {
         "depth": [
           "depthchart",
           "season",
@@ -1171,7 +1129,7 @@
           "timestamp"
         ]
       },
-      "CLE": {
+      "DEN": {
         "depth": [
           "depthchart",
           "season",
@@ -1205,75 +1163,7 @@
           "timestamp"
         ]
       },
-      "DEN": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
-      "IND": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
-      "HOU": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
-      "GB": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
-      "LA": {
+      "CLE": {
         "depth": [
           "depthchart",
           "season",
@@ -1307,7 +1197,58 @@
           "timestamp"
         ]
       },
-      "LAC": {
+      "IND": {
+        "depth": [
+          "depthchart",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ],
+        "roster": [
+          "athletes",
+          "coach",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ]
+      },
+      "GB": {
+        "depth": [
+          "depthchart",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ],
+        "roster": [
+          "athletes",
+          "coach",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ]
+      },
+      "HOU": {
+        "depth": [
+          "depthchart",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ],
+        "roster": [
+          "athletes",
+          "coach",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ]
+      },
+      "LA": {
         "depth": [
           "depthchart",
           "season",
@@ -1325,6 +1266,23 @@
         ]
       },
       "LV": {
+        "depth": [
+          "depthchart",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ],
+        "roster": [
+          "athletes",
+          "coach",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ]
+      },
+      "MIN": {
         "depth": [
           "depthchart",
           "season",
@@ -1375,7 +1333,7 @@
           "timestamp"
         ]
       },
-      "MIN": {
+      "LAC": {
         "depth": [
           "depthchart",
           "season",
@@ -1409,7 +1367,7 @@
           "timestamp"
         ]
       },
-      "NYG": {
+      "NYJ": {
         "depth": [
           "depthchart",
           "season",
@@ -1426,7 +1384,7 @@
           "timestamp"
         ]
       },
-      "NYJ": {
+      "NYG": {
         "depth": [
           "depthchart",
           "season",
@@ -1477,7 +1435,7 @@
           "timestamp"
         ]
       },
-      "SF": {
+      "TB": {
         "depth": [
           "depthchart",
           "season",
@@ -1494,7 +1452,7 @@
           "timestamp"
         ]
       },
-      "TB": {
+      "SF": {
         "depth": [
           "depthchart",
           "season",
@@ -1530,8 +1488,8 @@
       }
     },
     "notes": "The documented ESPN team injuries endpoint returned no usable injury rows on 6 Nov 2026, so this collector instead queries team QB rosters. Media injury statuses come from the separately verified ESPN league-wide injury feed. Roster membership is NOT a starter projection. ESPN depth rank 1 is projected only; failure stays visible. Already completed historical QB plays may be reused for up to 36h. ESPN feed access may fail; missing sources are not imputed.",
-    "historicalQBReusedOnLightweight": 0,
-    "nflverseDepthSource": "nflverse 2025+ timestamped depth_charts_{season}.parquet",
+    "historicalQBReusedOnLightweight": 40,
+    "nflverseDepthSource": null,
     "mediaSource": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries"
   },
   "weatherSource": {
@@ -1547,13 +1505,13 @@
       "unavailable": 1
     },
     "errors": [
-      "CIN00: URLError: <urlopen error _ssl.c:994: The handshake operation timed out>"
+      "BUF00: URLError: <urlopen error _ssl.c:994: The handshake operation timed out>"
     ],
-    "asOf": "2026-11-07T14:10:21.076781+00:00"
+    "asOf": "2026-11-07T18:04:40.369621+00:00"
   },
   "chosenOverlay": "none",
   "tacticalSource": {
-    "status": "loaded",
+    "status": "cached",
     "seasons": [
       2019,
       2020,
@@ -1575,15 +1533,17 @@
       2025,
       2026
     ],
-    "source": "nflverse play_by_play_{year}.parquet"
+    "source": "nflverse play_by_play_{year}.parquet",
+    "cachedFrom": "2026-11-07T14:10:21.076781+00:00",
+    "notes": "Cached previous verified full refresh; no new feed data fetched"
   },
   "qbSource": {
-    "status": "loaded",
-    "games": 2082,
-    "source": "Same nflverse PBP downloaded for tactical engine"
+    "status": "schedule-history-only",
+    "games": 0,
+    "source": "Previous recorded starting QB from completed nflverse schedule entries; no PBP statistics"
   },
   "injurySource": {
-    "status": "snapshot-only",
+    "status": "cached",
     "loadedSeasons": [],
     "snapshotSeasons": [
       2026
@@ -1594,30 +1554,26 @@
     "source": "nflverse dated injuries_{season}.csv",
     "asOf": "2026-11-07T14:10:05.450076+00:00",
     "timestampBasis": "download-observation",
-    "records": 2819
+    "records": 2819,
+    "cachedFrom": "2026-11-07T14:10:21.076781+00:00",
+    "notes": "Cached previous verified full refresh; no new feed data fetched"
   },
   "depthSource": {
-    "status": "loaded",
-    "loadedSeasons": [
-      2025,
-      2026
-    ],
-    "errors": [],
-    "source": "nflverse 2025+ timestamped depth_charts_{season}.parquet",
-    "records": 1311654
+    "status": "unavailable",
+    "loadedSeasons": []
   },
   "additionalInjurySource": {
     "status": "loaded",
     "source": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
-    "retrievedAt": "2026-11-07T14:10:10.820539+00:00",
-    "reportCount": 215,
+    "retrievedAt": "2026-11-07T18:04:33.899199+00:00",
+    "reportCount": 213,
     "teamsCovered": 32,
     "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list.",
     "inspection": {
       "groups": 32,
       "items": 800,
       "dated": 800,
-      "latestDate": "2026-11-07T04:55:00+00:00",
+      "latestDate": "2026-11-07T17:51:00+00:00",
       "statusSamples": [
         "Active",
         "Doubtful",
@@ -1650,14 +1606,9 @@
     }
   },
   "playerUsageSource": {
-    "status": "loaded",
-    "source": "nflverse/PFR snap counts via nflreadpy (attribution: CC BY 4.0)",
-    "seasons": [
-      2025,
-      2026
-    ],
-    "records": 37998,
-    "watchItemsEnriched": 496
+    "status": "unavailable",
+    "source": "nflreadpy snap counts",
+    "note": "Not downloaded on lightweight refresh"
   },
   "challengerValidation": {
     "status": "validated-research",
@@ -1684,8 +1635,8 @@
         "season": 2024,
         "games": 285,
         "baselineBrier": 0.21562,
-        "challengerBrier": 0.21161,
-        "brierGain": 0.00401,
+        "challengerBrier": 0.21084,
+        "brierGain": 0.00478,
         "baselineAccuracy": 0.6772,
         "challengerAccuracy": 0.6877
       },
@@ -1693,17 +1644,17 @@
         "season": 2025,
         "games": 284,
         "baselineBrier": 0.22431,
-        "challengerBrier": 0.22015,
-        "brierGain": 0.00416,
+        "challengerBrier": 0.22166,
+        "brierGain": 0.00265,
         "baselineAccuracy": 0.6655,
-        "challengerAccuracy": 0.6373
+        "challengerAccuracy": 0.6408
       }
     ],
     "note": "Shadow forecasts never change published percentages or picks. Evaluated years are model-selection data, not an independent blind prospective test.",
     "evaluationGames": 569,
     "improvingSeasons": 2,
     "baselineBrier": 0.21996,
-    "challengerBrier": 0.21587,
+    "challengerBrier": 0.21624,
     "candidateQualifiedForFurtherResearch": true,
     "trainSeasons": [
       2016,
@@ -1719,7 +1670,7 @@
     "researchOnly": true
   },
   "forecastRevisionSummary": {
-    "savedRevisions": 687,
+    "savedRevisions": 727,
     "gamesTracked": 47,
     "completedCompared": 1,
     "originalBrier": 0.221097,
@@ -1796,14 +1747,15 @@
     "No automated player prop feed",
     "QB and injury effects are informational unless the player model passes completed-season validation",
     "No weather adjustments",
-    "Tactical PBP data: loaded",
+    "Tactical PBP data: unavailable",
     "No situational, tactical or player overlay activates without a completed-season validation gate",
     "Pass rush proxy is QB hits/sacks, NOT independently charted pressures",
     "No coverage scheme data (man/zone) connected",
     "Odds require manual entry",
     "Backtests use score histories; no historical market ROI claimed",
+    "QB/tactical/injury context cached from 2026-11-07T14:10:21.076781+00:00; player reports are not live and may have changed.",
     "Published win chances may include a provisional media-injury/QB scenario. Its assumed point adjustments have NOT passed historical or forward validation.",
-    "Current-season injury records have no individual report timestamps; displayed only as observed downloaded snapshots, not used for historical model fitting."
+    "Lightweight refresh: new tactical, QB statistics and injury updates were not fetched; previous observations may be cached"
   ],
   "disclaimer": "Research validation is not a prospective betting edge. Only timestamped forward picks support forward performance."
 }
