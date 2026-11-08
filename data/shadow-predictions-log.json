@@ -367,5 +367,14 @@
     "baselineHomeProbability": 0.4988,
     "model": "xgboost-shadow-research-v1",
     "researchOnly": true
+  },
+  {
+    "gameId": "2026_11_CIN_WAS",
+    "kickoff": "2026-11-24T01:15:00+00:00",
+    "recordedAt": "2026-11-08T16:37:18.699204+00:00",
+    "homeProbability": 0.3971,
+    "baselineHomeProbability": 0.4716,
+    "model": "xgboost-shadow-research-v1",
+    "researchOnly": true
   }
 ]
