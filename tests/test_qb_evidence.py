@@ -68,6 +68,30 @@ class ESPNSourceTests(unittest.TestCase):
         self.assertEqual(x["name"],"Starter One")
         self.assertEqual(x["espnAthleteId"],"1234")
 
+    def test_live_2026_espn_flat_ordered_qb_athletes_do_not_invent_explicit_rank(self):
+        payload={"depthchart":[{"id":"offense","positions":{
+          "qb":{"position":{"abbreviation":"QB"},
+                "athletes":[{"id":"101","displayName":"Projected One"},
+                            {"id":"102","displayName":"Backup Two"}]},
+          "wr1":{"position":{"abbreviation":"WR"},
+                 "athletes":[{"id":"999","displayName":"Wideout"}]}}}]}
+        x=parse_depth(payload,NOW)
+        self.assertEqual(x["name"],"Projected One")
+        self.assertIsNone(x["rank"])
+        self.assertEqual(x["rankingBasis"],"first-listed-no-explicit-rank")
+        self.assertIn("unconfirmed",x["source"])
+        x2=parse_depth(depth(),NOW)
+        self.assertEqual(x2["rankingBasis"],"explicit-rank-1")
+
+    def test_multiple_formations_with_different_unranked_qbs_fail_closed(self):
+        payload={"depthchart":[
+          {"positions":{"qb":{"position":{"abbreviation":"QB"},"athletes":[
+              {"displayName":"QB One"},{"displayName":"QB Two"}]}}},
+          {"positions":{"qb":{"position":{"abbreviation":"QB"},"athletes":[
+              {"displayName":"QB Three"},{"displayName":"QB One"}]}}}]}
+        with self.assertRaisesRegex(ValueError,"formations disagree"):
+            parse_depth(payload,NOW)
+
     def test_missing_rank_does_not_invent_starter_from_roster_order(self):
         payload={"depthchart":{"quarterback":{"athletes":[
             {"athlete":{"displayName":"QB Alpha"}},
@@ -118,7 +142,8 @@ class ESPNSourceTests(unittest.TestCase):
         self.assertFalse(h["confirmedStarter"])
         self.assertEqual(g["personnelDepthChart"]["home"]["timestampBasis"],"download-observation")
         self.assertEqual(g["supplementalInjuryWatch"]["home"][0]["reportDate"],NOW.isoformat())
-        self.assertEqual(g["qbSourceEvidence"]["home"]["projectionUsed"],"ESPN rank-1 fallback")
+        self.assertEqual(g["qbSourceEvidence"]["home"]["projectionUsed"],"ESPN explicit rank-1 fallback")
+        self.assertFalse(g["qbSourceEvidence"]["home"]["independentConfirmation"])
 
     def test_fresh_nflverse_disagreement_is_not_silently_overwritten(self):
         g=fixture()

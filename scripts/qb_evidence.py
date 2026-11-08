@@ -140,7 +140,51 @@ def parse_depth(payload,observed_at):
     names={clean_name(x["name"]) for x in found}
     if not names:raise ValueError("ESPN depthchart has no explicit rank-1 QB")
     if len(names)>1:raise ValueError("ESPN depthchart contains conflicting rank-1 QBs")
-    return found[0]
+    # ESPN's live 2026 chart provides position-specific athletes in an
+    # ordered list but sometimes provides NO rank field at all. Preserve the
+    # difference between an explicit rank-1 and a first-listed projection.
+    # Do not silently promote any rank-2 entry or the first roster QB.
+    ordered=[]
+    visited=[0]
+    def ordered_visit(node,parent_key="",depth=0):
+        visited[0]+=1
+        if depth>14 or visited[0]>14000:return
+        if isinstance(node,list):
+            for item in node:ordered_visit(item,parent_key,depth+1)
+            return
+        if not isinstance(node,dict):return
+        labelled=(parent_key.casefold() in ("qb","quarterback") or
+                  is_qb_label(node.get("position")) or
+                  is_qb_label(node.get("abbreviation")))
+        athletes=node.get("athletes")
+        if labelled and isinstance(athletes,list) and athletes:
+            # Explicit ranks are authoritative: if present but no QB1,
+            # mark as unavailable rather than using list position.
+            has_any_rank=any(isinstance(item,dict) and any(
+                k in item for k in ("rank","depthRank","depthOrder","depth","order"))
+                for item in athletes)
+            if not has_any_rank:
+                candidates=[]
+                for item in athletes:
+                    athlete=item.get("athlete") or item.get("player") or item if isinstance(item,dict) else {}
+                    if not isinstance(athlete,dict):continue
+                    name=value(athlete.get("displayName") or athlete.get("fullName") or athlete.get("name"))
+                    if name:candidates.append((name,str(athlete.get("id") or "")))
+                if candidates and len({clean_name(n) for n,_ in candidates})==len(candidates):
+                    ordered.append(candidates[0])
+        for key,val in node.items():
+            if isinstance(val,(dict,list)):ordered_visit(val,key,depth+1)
+    ordered_visit(root)
+    # Conflicting explicit and ordered chart formations need review.
+    all_names=names | {clean_name(n) for n,_ in ordered}
+    if len(all_names)>1:raise ValueError("ESPN formations disagree on first-listed QB")
+    if found:return {**found[0],"rankingBasis":"explicit-rank-1"}
+    if len(all_names)!=1:raise ValueError("ESPN depthchart has no explicit rank-1 QB or unambiguous ordered QB list")
+    name,athlete_id=ordered[0]
+    return {"name":name,"espnAthleteId":athlete_id,
+            "rank":None,"rankingBasis":"first-listed-no-explicit-rank",
+            "observedAt":t.isoformat(),"timestampBasis":"download-observation",
+            "source":"ESPN QB position ordering (unconfirmed, rank not explicit)"}
 
 def parse_injuries(payload,observed_at):
     """Only athlete-specific, independently dated records can drive forecasts."""
@@ -263,7 +307,7 @@ def gather(games,now=None,opener=None,max_workers=5):
        "responseKeys":{t:x["responseKeys"] for t,x in teams.items() if x.get("responseKeys")},
        "depthShapeSamples":{t:teams[t]["depthShape"] for t in sorted(teams)[:3]
                             if teams[t].get("depthShape")},
-       "notes":"The documented ESPN team injuries endpoint returned no usable injury rows on 6 Nov 2026, so this collector instead queries team QB rosters. Media injury statuses come from the separately verified ESPN league-wide injury feed. Roster membership is NOT a starter projection. ESPN depth rank 1 is projected only; failure stays visible."}
+       "notes":"ESPN's live depthchart has a QB athlete list that may omit rank fields. A first-listed player is an unconfirmed projection, NOT an explicitly ranked starter. nflverse and ESPN depth charts may share origin. QB rosters are context only, never a starter confirmation."}
     return teams,metadata
 
 def attach(game,records,meta,now):
@@ -288,6 +332,7 @@ def attach(game,records,meta,now):
         nf_fresh=bool(nf_name and nf_time and timedelta(0)<=now-nf_time<=timedelta(days=14))
         ep=record.get("depth") or {}
         ep_name=ep.get("name")
+        ranking_basis=ep.get("rankingBasis","explicit-rank-1" if ep.get("rank")==1 else "unavailable")
         conflict=bool(nf_fresh and ep_name and clean_name(nf_name)!=clean_name(ep_name))
         aligned=bool(nf_fresh and ep_name and clean_name(nf_name)==clean_name(ep_name))
         use_espn=bool(ep_name and not nf_fresh)
@@ -300,9 +345,13 @@ def attach(game,records,meta,now):
             q["qb"]=ep_name
             q["basis"]="depth_chart_projection"
             q["confirmedStarter"]=False
-            q["projectionSource"]="ESPN depth rank 1, observed at download (unconfirmed)"
+            q["projectionSource"]=("ESPN explicitly ranked QB1 (unconfirmed)" if
+                ranking_basis=="explicit-rank-1" else
+                "ESPN first-listed QB, no explicit rank (unconfirmed)")
             q["espnAthleteId"]=ep.get("espnAthleteId")
-            q["label"]="ESPN depth-chart rank 1, not confirmed starting QB"
+            q["label"]=("ESPN explicitly ranked QB1, not confirmed starting QB" if
+                ranking_basis=="explicit-rank-1" else
+                "ESPN first-listed QB, rank unspecified, NOT confirmed starter")
             # ESPN athlete IDs and nflverse GSIS IDs must never be equated.
             # Recompute no player stats using the new ESPN identity.
             q["sample"]=q.get("previousQBsample") if previous_matches else None
@@ -325,7 +374,14 @@ def attach(game,records,meta,now):
             "espnRosterStatus":record.get("rosterStatus","unavailable"),
             "espnRosterQBs":[x["name"] for x in (record.get("rosterQBs") or [])][:8],
             "datedQBInjuryReports":qb_reports,"sourceConflict":conflict,"sourcesAgree":aligned,
-            "projectionUsed":"ESPN rank-1 fallback" if use_espn else "nflverse" if nf_fresh else "not verified",
+            "espnRankingBasis":ranking_basis,
+            # nflverse charts are often derived from ESPN; two copies of
+            # the same underlying chart are NOT independent confirmation.
+            "independentConfirmation":False,
+            "corroborationBasis":"ESPN-derived mirror comparison, not an independent starter source",
+            "projectionUsed":("ESPN first-listed fallback" if ranking_basis=="first-listed-no-explicit-rank"
+                              else "ESPN explicit rank-1 fallback") if use_espn else
+                              "nflverse" if nf_fresh else "not verified",
             "evidenceStatus":"conflict" if conflict else "corroborated" if aligned else
                 "ESPN-only projection" if use_espn else "missing evidence"}
     if media.get("status")=="loaded" and not media.get("retrievedAt"):
@@ -335,5 +391,5 @@ def attach(game,records,meta,now):
     game["supplementalInjuryWatch"]=media
     game["qbSourceEvidence"]={"status":meta.get("status","unavailable"),
         "observedAt":meta.get("observationTime"),"home":sides["home"],"away":sides["away"],
-        "note":"Independent sources may disagree. Depth rank 1 is a projection, not official confirmation."}
+        "note":"ESPN and nflverse depth-chart snapshots may have the SAME originating provider. Agreement is a consistency check only, not independent starter confirmation. First-listed QB can lack an explicit ranking. Roster-only membership does not identify a starter."}
     return game

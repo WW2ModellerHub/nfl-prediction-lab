@@ -201,12 +201,33 @@ class VerificationTests(unittest.TestCase):
         for side in ('home','away'):
             g['qbSourceEvidence'][side]['nflverseAsOf']=NOW.isoformat()
             g['qbSourceEvidence'][side]['espnObservedAt']=NOW.isoformat()
+            g['qbSourceEvidence'][side]['independentConfirmation']=True
         v=evaluate(g,NOW)
         self.assertEqual(v['level'],'checked')
         self.assertTrue(v['bettingEligible'])
         self.assertEqual(v['starterConfirmation'],'not-connected')
         self.assertFalse(v['teamChecks'][0]['starterOfficiallyConfirmed'])
         self.assertEqual(g['homeProbability'],.47)
+
+    def test_espn_derived_mirror_agreement_is_not_independent_verification(self):
+        g=game()
+        g['officialInjuryEvidence']={
+            'status':'loaded',
+            'home':{'isWeeklyReportAvailable':True,'qbs':[],
+                    'rows':[{'reportDate':NOW.isoformat()}]},
+            'away':{'isWeeklyReportAvailable':True,'qbs':[],
+                    'rows':[{'reportDate':NOW.isoformat()}]}}
+        for side in ('home','away'):
+            g['qbSourceEvidence'][side]['nflverseAsOf']=NOW.isoformat()
+            g['qbSourceEvidence'][side]['espnObservedAt']=NOW.isoformat()
+            g['qbSourceEvidence'][side]['independentConfirmation']=False
+            g['qbSourceEvidence'][side]['espnRankingBasis']='first-listed-no-explicit-rank'
+        out=evaluate(g,NOW)
+        self.assertEqual(out['level'],'review')
+        self.assertFalse(out['bettingEligible'])
+        self.assertEqual(out['teamChecks'][0]['qbProjectionStatus'],'mirrored-charts-agree-only')
+        self.assertFalse(out['teamChecks'][0]['independentSourceConfirmed'])
+        self.assertTrue(any('not independent' in x for x in out['reviewReasons']))
 
     def test_stale_weekly_report_blocks_value_alerts(self):
         g=game()

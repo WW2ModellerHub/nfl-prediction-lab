@@ -636,6 +636,8 @@ function verificationPanel(g){
  <div class="evidence-gate-field"><span>Established from past starts</span><b>${escapeHTML(c.establishedQB||'Unknown')}</b></div>
  <div class="evidence-gate-field"><span>Projected QB</span><b>${escapeHTML(c.projectedQB||'Not verified')}</b></div>
  <div class="evidence-gate-field"><span>Depth-chart comparison</span><b>${escapeHTML(c.qbProjectionStatus||'Not verified')}</b></div>
+ <div class="evidence-gate-field"><span>ESPN QB ordering</span><b>${c.espnRankingBasis==='first-listed-no-explicit-rank'?'First-listed only — no explicit QB1 rank':escapeHTML(c.espnRankingBasis||'Not available')}</b></div>
+ <div class="evidence-gate-field"><span>Independent starter corroboration</span><b>${c.independentSourceConfirmed===true?'Independent evidence supplied':'Not established — both depth charts may share ESPN origin'}</b></div>
  <div class="evidence-gate-field"><span>Same-week NFL injury report</span><b>${c.officialReportForWeek?'Recent dated mirror rows':'Missing / stale / not published'}</b></div>
  <div class="evidence-gate-field"><span>Latest report observation</span><b>${escapeHTML(c.officialReportLatestAt||'No dated row available')}${Number.isFinite(c.officialReportAgeHours)?' · '+number(c.officialReportAgeHours,1)+'h old':''}</b></div>
  <div class="evidence-gate-field"><span>QB projection recency</span><b>${c.qbSourceDatesCurrent===true?'Current dated sources':'Stale / unverified timestamps'}</b></div>
@@ -650,7 +652,7 @@ function verificationPanel(g){
  ${issues.length?`<div class="evidence-gate-issues"><b>What needs checking</b>${issues.slice(0,5).map(x=>`<p>• ${escapeHTML(x)}</p>`).join('')}</div>`:''}
  <details class="evidence-gate-details"><summary>Inspect QB and injury sources <span>Both teams</span></summary>
  <div class="evidence-gate-grid">${teamHTML||'<p>No team-level source checks.</p>'}</div>
- <p class="source-meta">Game statuses are mirrored from NFL weekly injury reports by <a href="https://github.com/nflverse/nflverse-data/releases/tag/injuries" target="_blank" rel="noopener">nflverse</a>, not fetched directly from NFL.com. Check <a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">NFL.com</a> for the official version. Depth charts are projections, not certified starting QBs. Game-day inactive and coach-confirmation feeds are not yet connected; missing reports never mean healthy.</p></details>
+ <p class="source-meta">A QB shown first in an ESPN depth-chart list is NOT an officially confirmed starter, and matching ESPN/nflverse charts may share the same source. Game statuses are mirrored from NFL weekly injury reports by <a href="https://github.com/nflverse/nflverse-data/releases/tag/injuries" target="_blank" rel="noopener">nflverse</a>, not fetched directly from NFL.com. Check <a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">NFL.com</a> for the official version. Depth charts are projections, not certified starting QBs. Game-day inactive and coach-confirmation feeds are not yet connected; missing reports never mean healthy.</p></details>
  </section>`;
 }
 function forecastHero(g){

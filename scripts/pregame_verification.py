@@ -106,9 +106,12 @@ def evaluate(game,now):
         nfl_limit=timedelta(days=7 if near_kickoff else 14)
         nfl_current=bool(nfl_fresh and nfl_at and timedelta(0)<=now-nfl_at<=nfl_limit)
         espn_current=bool(espn_at and timedelta(0)<=now-espn_at<=timedelta(hours=72))
-        independent_agree=bool(src.get("sourcesAgree") and nfl_current and espn_current)
-        if not independent_agree:
-            needs_review.append(f"{name}: no agreement between two current dated projected-QB sources")
+        mirror_agree=bool(src.get("sourcesAgree") and nfl_current and espn_current)
+        independent_agree=bool(mirror_agree and src.get("independentConfirmation") is True)
+        if not mirror_agree:
+            needs_review.append(f"{name}: no agreement between two current dated QB depth-chart observations")
+        elif not independent_agree:
+            needs_review.append(f"{name}: matching ESPN-derived depth charts are not independent QB starter confirmation")
         if src.get("sourcesAgree") and not (nfl_current and espn_current):
             needs_review.append(f"{name}: projected QB evidence stale or missing a source timestamp")
         # Availability flags are not evidence: require actual dated rows observed
@@ -131,7 +134,8 @@ def evaluate(game,now):
             "team":name,"side":side,"establishedQB":established,
             "establishedObservedStarts":primary.get("verifiedStarts",0),
             "lastGameQB":last,"projectedQB":projected,
-            "qbProjectionStatus":"two-sources-agree" if independent_agree else
+            "qbProjectionStatus":"independently-corroborated" if independent_agree else
+                                "mirrored-charts-agree-only" if mirror_agree else
                                 "sources-disagree" if depth_conflict else
                                 "one-source-only" if projected else "not-verified",
             "qbProjectionSource":src.get("projectionUsed","not-verified"),
@@ -139,6 +143,8 @@ def evaluate(game,now):
             "espnQB":src.get("espnProjectedQB"),
             "nflverseChartAsOf":src.get("nflverseAsOf"),
             "espnObservedAt":src.get("espnObservedAt"),
+            "espnRankingBasis":src.get("espnRankingBasis"),
+            "independentSourceConfirmed":independent_agree,
             "qbSourceDatesCurrent":bool(nfl_current and espn_current),
             "officialReportLatestAt":newest_report.isoformat() if newest_report else None,
             "officialReportAgeHours":round((now-newest_report).total_seconds()/3600,1) if newest_report else None,
@@ -182,7 +188,7 @@ def evaluate(game,now):
     betting_ok=(level=="checked")
     all_issues=(blocking+needs_review+issues)[:24]
     return {
-        "version":2,"level":level,"status":status,
+        "version":3,"level":level,"status":status,
         "bettingEligible":betting_ok,
         "highConfidenceEligible":betting_ok,
         "qbAutomationAllowed":qb_auto_allowed and not blocking,
@@ -199,4 +205,4 @@ def evaluate(game,now):
         "riskSummary":risk,
         "starterConfirmation":"not-connected",
         "inactiveVerification":"not-connected",
-        "note":"Quality gates do not change the win probability. Near kickoff, injury reports older than five days and nflverse QB chart observations older than seven days cannot pass source checks; ESPN chart observations must be within 72 hours. Dated same-week rows are required; flags alone cannot clear a forecast. NFL reports are mirrored via nflverse, and undated mirror rows are observed only from download time forward. 'Checked' never certifies a starter, inactive list, or profitable bet."}
+        "note":"Quality gates do not change the win probability. Independent QB verification cannot be inferred by comparing ESPN against an ESPN-derived nflverse mirror. First-listed ESPN QBs may have no explicit rank. Near kickoff, injury reports older than five days and nflverse QB charts older than seven days cannot pass. ESPN chart observations must be within 72h, and same-week injury rows must be dated. Even a checked report is not an official starter or an inactives confirmation."}
