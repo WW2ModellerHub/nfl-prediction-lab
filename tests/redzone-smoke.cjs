@@ -18,4 +18,46 @@ const games=R.gameData([{id:"g1",status:{type:{state:"in"},period:3,displayClock
  situation:{possession:"22",isRedZone:true,downDistanceText:"1st & 10 at WSH 15"}}]}]);
 assert.equal(games.zones[0].team,"BAL");assert.equal(games.games.WAS.inRedZone,false);assert.equal(games.games.BAL.inRedZone,true);
 assert.equal(R.gameData([{id:"g2",status:{type:{state:"post"}},competitions:[{competitors:[],situation:{isRedZone:true}}]}]).zones.length,0);
+
+// Verified ESPN position text: away at home 15 means marker 85% from away goal.
+const field=R.listGames([{id:"1000",date:"2026-11-08T18:00:00Z",
+ status:{type:{state:"in"},period:2,displayClock:"06:30"},
+ competitions:[{competitors:[
+ {id:"away",homeAway:"away",team:{abbreviation:"BAL"},score:"14"},
+ {id:"home",homeAway:"home",team:{abbreviation:"WSH"},score:"10"}],
+ situation:{possession:"away",downDistanceText:"2nd & 4 at WSH 15",isRedZone:true}}]}]);
+assert.equal(field.length,1);
+assert.equal(field[0].away,"BAL");assert.equal(field[0].home,"WAS");
+assert.equal(field[0].possession,"BAL");assert.equal(field[0].position,85);
+assert.equal(field[0].isRedZone,true);
+assert.equal(R.listGames([{id:"x",status:{type:{state:"in"}},competitions:[{competitors:[
+ {id:"away",homeAway:"away",team:{abbreviation:"BAL"}},
+ {id:"home",homeAway:"home",team:{abbreviation:"WSH"}}],situation:{possession:"away"}}]}])[0].position,null);
+assert.equal(R.winChanceFromProjected(110,100,24)>0.5,true);
+assert.equal(R.winChanceFromProjected(100,110,24)<0.5,true);
+assert.equal(R.winChanceFromProjected(100,100,24),0.5);
+assert.equal(R.winChanceFromProjected(null,100,24),null);
+const forecastPair={
+ mine:{roster_id:9,points:10,starters:["one"],starters_points:[5]},
+ theirs:{roster_id:2,points:12,starters:["two"],starters_points:[8]}
+};
+const projection={"one":{rec:5,rec_yd:90,team:"BAL"},
+                  "two":{rec:4,rec_yd:40,team:"WAS"}};
+const settings={rec:0.5,rec_yd:0.1}; // 11.5 v 6.0 for remaining games
+const pre={BAL:{state:"pre"},WAS:{state:"pre"}};
+const result=R.estimateMatchup(forecastPair,projection,settings,pre);
+assert.equal(result.mine.final,21.5);
+assert.equal(result.theirs.final,18);
+assert.ok(result.win>0.5);
+assert.equal(result.approximate,false);
+const withoutClock=R.estimateMatchup(forecastPair,projection,settings,{});
+assert.ok(withoutClock.win!==null);
+assert.equal(withoutClock.approximate,true);
+assert.equal(withoutClock.mine.final,16.5);
+const final=R.estimateMatchup({mine:{...forecastPair.mine,points:30},
+ theirs:{...forecastPair.theirs,points:27}},projection,settings,
+ {BAL:{state:"post"},WAS:{state:"post"}});
+assert.equal(final.win,1);
+assert.equal(final.mine.final,30);
+
 console.log("Fantasy Red Zone matchup, scoring delta and possession tests passed.");
