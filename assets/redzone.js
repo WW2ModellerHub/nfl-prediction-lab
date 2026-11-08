@@ -7,7 +7,7 @@ var cfg=read(KCFG)||DEF;
 cfg.leagueId=String(cfg.leagueId||DEF.leagueId).trim();cfg.rosterId=String(cfg.rosterId||DEF.rosterId).trim();
 var state={week:null,nflWeek:null,rows:[],rosters:[],users:[],league:null,players:{},games:{},zones:[],zoneKeys:null,
   pair:{mine:null,theirs:null},feed:[],before:null,loading:false,interval:null,errors:{},lastUpdated:0,
-  bench:false,sound:false,notify:false,flashes:{},lastEspnTime:0,fullGames:[],selectedGame:null,projections:null,projectionAt:0,projectionWeek:null,projectionError:null,projectionBusy:false};
+  bench:false,sound:false,notify:false,gameFilter:"all",flashes:{},lastEspnTime:0,fullGames:[],selectedGame:null,projections:null,projectionAt:0,projectionWeek:null,projectionError:null,projectionBusy:false};
 var $=function(id){return document.getElementById(id);};
 function read(key){try{return JSON.parse(localStorage.getItem(key));}catch(e){return null;}}
 function store(key,val){try{localStorage.setItem(key,JSON.stringify(val));}catch(e){}}
@@ -176,12 +176,18 @@ function gameState(g){
   if(g.state==="post")return "FINAL";
   return gameStart(g);
 }
+function gameListForFilter(){
+  var all=listedGames();
+  if(state.gameFilter==="live")return all.filter(function(g){return g.state==="in";});
+  if(state.gameFilter==="mine")return all.filter(function(g){return participantCounts(g).count.mine>0;});
+  return all;
+}
 function renderGames(){
-  var games=listedGames(),live=games.filter(function(g){return g.state==="in";});
+  var all=listedGames(),games=gameListForFilter(),live=all.filter(function(g){return g.state==="in";});
   $("gamesLiveCount").textContent=live.length+" LIVE";
   $("gamesStatus").textContent=state.errors.espn?"Drive data unavailable":games.length+" NFL GAMES";
   if(!games.length){
-    $("gameStrip").innerHTML='<div class="empty">No games available from the NFL scoreboard for this week.</div>';
+    $("gameStrip").innerHTML='<div class="empty">'+(state.gameFilter==="live"?"No live NFL games in this week’s slate.":state.gameFilter==="mine"?"None of your starters are in these games.":"No games available from the NFL scoreboard.")+'</div>';
     $("gameDetails").innerHTML='<div class="empty">Game field view requires NFL scoreboard data.</div>';
     return;
   }
@@ -436,6 +442,15 @@ function init(){
     Notification.requestPermission().then(function(p){state.notify=p==="granted";$("notifications").textContent=state.notify?"Alerts on":"Alerts unavailable";}).catch(function(){$("notifications").textContent="Alerts unavailable";});
   });
   $("refresh").addEventListener("click",function(){state.projectionAt=0;getProjections();tick();});
+  Array.from(document.querySelectorAll("[data-game-filter]")).forEach(function(btn){
+    btn.addEventListener("click",function(){
+      state.gameFilter=btn.getAttribute("data-game-filter")||"all";
+      Array.from(document.querySelectorAll("[data-game-filter]")).forEach(function(b){
+        var on=b===btn;b.classList.toggle("selected",on);b.setAttribute("aria-pressed",String(on));
+      });
+      state.selectedGame=null;renderGames();
+    });
+  });
   $("gameStrip").addEventListener("click",function(e){
     var t=e.target.closest("[data-game]");
     if(!t)return;
@@ -443,7 +458,7 @@ function init(){
     t=document.querySelector('.game-tab.selected');if(t)t.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});
   });
   function moveGame(delta){
-    var games=listedGames(),at=games.findIndex(function(g){return g.id===state.selectedGame;});
+    var games=gameListForFilter(),at=games.findIndex(function(g){return g.id===state.selectedGame;});
     if(!games.length)return;
     state.selectedGame=games[(at+delta+games.length)%games.length].id;renderGames();
     var t=document.querySelector('.game-tab.selected');if(t)t.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});

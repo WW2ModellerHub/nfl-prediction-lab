@@ -8,7 +8,7 @@
 <title>Fantasy Red Zone | NFL Prediction Lab</title>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/redzone.css?v=4-broadcast">
-<link rel="stylesheet" href="assets/redzone-broadcast.css?v=4-2" />
+<link rel="stylesheet" href="assets/redzone-broadcast.css?v=4-3" />
 </head>
 <body>
 <div class="shell">
@@ -55,6 +55,12 @@
         <div><span class="eyebrow"><span class="broadcast-dot"></span> EVERY GAME · EVERY DRIVE</span><h2>Game Centre <span id="gamesLiveCount" class="games-live-count">—</span></h2></div>
         <div class="game-controls"><span id="gamesStatus">Loading fixtures…</span><span class="swipe-hint">SWIPE TO SWITCH</span><button type="button" class="small-btn" id="gamePrev" aria-label="Previous NFL game">‹</button><button type="button" class="small-btn" id="gameNext" aria-label="Next NFL game">›</button></div>
       </div>
+      <div class="game-filterbar" role="group" aria-label="Filter NFL game carousel">
+        <span class="filter-title">SHOW GAMES</span>
+        <button type="button" data-game-filter="all" aria-pressed="true" class="selected">All fixtures</button>
+        <button type="button" data-game-filter="live" aria-pressed="false">● Live now</button>
+        <button type="button" data-game-filter="mine" aria-pressed="false">★ My players</button>
+      </div>
       <div class="game-strip" id="gameStrip" role="tablist" aria-label="Choose an NFL game"><div class="empty">Loading NFL games…</div></div>
       <div class="game-details" id="gameDetails" role="tabpanel"><div class="empty">Choose any NFL game to view the ball on the field.</div></div>
     </section>
@@ -75,6 +81,6 @@
   <nav class="mobile-dock" aria-label="Red Zone navigation"><a href="#matchup"><span aria-hidden="true">◈</span>Matchup</a><a href="#games"><span aria-hidden="true">▰</span>Games</a><a href="#players"><span aria-hidden="true">♙</span>Players</a><a href="#scoringSection"><span aria-hidden="true">↗</span>Activity</a></nav>
 </div>
 <script src="assets/redzone-core.js?v=4-broadcast" defer></script>
-<script src="assets/redzone.js?v=4-broadcast-2" defer></script>
+<script src="assets/redzone.js?v=4-broadcast-filter" defer></script>
 </body>
 </html>
