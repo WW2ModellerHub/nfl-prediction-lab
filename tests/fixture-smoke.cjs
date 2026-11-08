@@ -155,6 +155,7 @@ assert.equal(window.__SMOKE__.readValue(clearedFixture).eligible,true);
 assert.equal(window.__SMOKE__.readAlerts().some(x=>x.type==='value'),true,
   'Verified price comparison remains available after source checks pass');
 window.__SMOKE__.setOdds({});
+window.__SMOKE__.setData({nextGames:[evidenceHeld],generatedAt:'2026-11-08T11:00:00Z'});
 
 window.location.hash='#tab=overview';
 window.__SMOKE__.syncRoute();
