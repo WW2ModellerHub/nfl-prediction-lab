@@ -372,3 +372,9 @@ main{padding:21px 0 40px}
  .game{font-size:9px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.game-tab,.ball-marker,.share-bar span{transition:none!important}}
+
+/* Live red-zone game cards get a clear but non-distracting signal. */
+.game-tab.in-the-redzone{border-color:#d79a68;background:linear-gradient(140deg,#533d2d,#272e36)}
+.game-tab.in-the-redzone .game-tab-status{color:#ffd5a2}
+.game-tab.in-the-redzone.selected{box-shadow:inset 0 0 0 1px #f1bd85b0,0 0 21px #e9a9632b}
+.game-tab.in-the-redzone.selected:before{background:#ffc382}
