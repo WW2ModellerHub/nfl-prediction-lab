@@ -43,7 +43,7 @@ const full=UI.render(fixture,freshBase,{homeProbability:.03,fetchedAt:Date.now()
 assert(full.includes('LIVE MODEL · EXPERIMENTAL'));
 assert(full.includes('Clock / unplayed time'));
 assert(full.includes('Score difference'));
-assert(full.includes('Possession & field'));
+assert(full.includes('Possession &amp; field'));
 assert(full.includes('Model disagreement'));
 assert(full.includes('not a betting recommendation'));
 const missing=UI.render(fixture,null,null,true);
