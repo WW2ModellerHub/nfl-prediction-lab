@@ -38,7 +38,8 @@ console.log('NFL in-play model clocks, scoring, possession, attribution, freshne
 global.NFLGameLiveModel=L;
 const UI=require('../assets/live-win-ui.js');
 const fixture={id:'lab-test',home:'DAL',away:'NYG',homeProbability:.58};
-const full=UI.render(fixture,base,{homeProbability:.80,fetchedAt:now},true);
+const freshBase={...base,fetchedAt:Date.now()};
+const full=UI.render(fixture,freshBase,{homeProbability:.03,fetchedAt:Date.now()},true);
 assert(full.includes('LIVE MODEL · EXPERIMENTAL'));
 assert(full.includes('Clock / unplayed time'));
 assert(full.includes('Score difference'));
@@ -48,7 +49,7 @@ assert(full.includes('not a betting recommendation'));
 const missing=UI.render(fixture,null,null,true);
 assert(missing.includes('Awaiting') || missing.includes('unavailable'));
 assert(!missing.includes('livewin-main'));
-const completed=UI.render(fixture,{...base,state:'post'},null,true);
+const completed=UI.render(fixture,{...freshBase,state:'post'},null,true);
 assert(completed.includes('Game finished'));
 const fs=require('node:fs');
 assert(fs.readFileSync('assets/app.js','utf8').includes('data-live-full='));
