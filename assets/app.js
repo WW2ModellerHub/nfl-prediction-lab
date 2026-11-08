@@ -42,7 +42,7 @@ async function refreshSelectedLiveReference(){
   const res=await fetch('https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event='+encodeURIComponent(source.id),{cache:'no-store'});
   if(!res.ok)throw Error('ESPN summary HTTP '+res.status);
   const reference=window.NFLGameLiveModel?.espnReference(await res.json());
-  if(reference){store.liveReferences[g.id]=reference;updateLiveDom();}
+  if(reference){store.liveReferences[g.id]={...reference,fetchedAt:Date.now()};updateLiveDom();}
  }catch(e){/* Optional external comparison, never block the core live model. */}
  finally{liveRefBusy=false;}
 }

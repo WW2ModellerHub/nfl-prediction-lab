@@ -30,7 +30,8 @@ function render(g,live,reference,expanded){
     '<span>Score: '+away+' '+h(live.awayScore)+' – '+home+' '+h(live.homeScore)+'</span>'+
     '<span>Ball: '+h(live.possession||"not verified")+'</span>'+
     '<span>Position: '+h(r.possessionBasis)+'</span></div>';
-  if(reference&&Number.isFinite(reference.homeProbability)&&reference.homeProbability>=0&&reference.homeProbability<=1)
+  if(reference&&(!reference.fetchedAt||Date.now()-reference.fetchedAt<120000)&&
+     Number.isFinite(reference.homeProbability)&&reference.homeProbability>=0&&reference.homeProbability<=1)
     display+='<div class="livewin-reference">ESPN reference (last published play): <b>'+pct(reference.homeProbability)+' '+home+'</b>'+
     '<small>External model, not used in the Lab estimate; could lag the scoreboard.'+
     (Math.abs(reference.homeProbability-r.homeProbability)>=.15?

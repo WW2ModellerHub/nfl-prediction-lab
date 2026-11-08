@@ -33,3 +33,25 @@ assert.equal(espn.homeScore,14);
 assert.equal(L.espnReference({winprobability:[{homeWinPercentage:.32},{homeWinPercentage:.74,playId:'abc'}]}).homeProbability,.74);
 assert.equal(L.espnReference({winprobability:[{homeWinPercentage:102}]}),null);
 console.log('NFL in-play model clocks, scoring, possession, attribution, freshness and ESPN reference passed.');
+
+/* HTML shows independent research and external model separately, never fabricated live data. */
+global.NFLGameLiveModel=L;
+const UI=require('../assets/live-win-ui.js');
+const fixture={id:'lab-test',home:'DAL',away:'NYG',homeProbability:.58};
+const full=UI.render(fixture,base,{homeProbability:.80,fetchedAt:now},true);
+assert(full.includes('LIVE MODEL · EXPERIMENTAL'));
+assert(full.includes('Clock / unplayed time'));
+assert(full.includes('Score difference'));
+assert(full.includes('Possession & field'));
+assert(full.includes('Model disagreement'));
+assert(full.includes('not a betting recommendation'));
+const missing=UI.render(fixture,null,null,true);
+assert(missing.includes('Awaiting') || missing.includes('unavailable'));
+assert(!missing.includes('livewin-main'));
+const completed=UI.render(fixture,{...base,state:'post'},null,true);
+assert(completed.includes('Game finished'));
+const fs=require('node:fs');
+assert(fs.readFileSync('assets/app.js','utf8').includes('data-live-full='));
+assert(fs.readFileSync('assets/redzone.js','utf8').includes('liveNFLWinPanel(chosen)'));
+assert(fs.readFileSync('redzone.html','utf8').includes('live-win-model.js'));
+console.log('Live game winner UI and no-fabrication safeguards passed.');

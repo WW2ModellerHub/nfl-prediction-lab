@@ -466,7 +466,7 @@ function refreshGamePosition(id){
       var current=state.fullGames.find(function(g){return g.id===id;});
       if(!current||current.state!=="in")return;
       var ref=window.NFLGameLiveModel&&window.NFLGameLiveModel.espnReference(summary);
-      if(ref)state.liveReference[id]=ref;
+      if(ref)state.liveReference[id]=Object.assign({},ref,{fetchedAt:Date.now()});
       if(current.position===null){
         var found=Core.summaryFieldSpot(current,summary);
         if(found){current.position=found.position;current.positionSource=found.source;}
