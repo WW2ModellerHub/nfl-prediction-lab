@@ -4,7 +4,7 @@
 (() => {
 'use strict';
 const TEAM_COLORS={ARI:'#a71930',ATL:'#a71930',BAL:'#6637a6',BUF:'#185aa6',CAR:'#0085ca',CHI:'#c14720',CIN:'#e56b1e',CLE:'#d06423',DAL:'#769fc6',DEN:'#fa751e',DET:'#2476b2',GB:'#248363',HOU:'#1c426d',IND:'#4c72a6',JAX:'#008b91',KC:'#d62d3e',LA:'#2874b8',LAC:'#f0bc46',LV:'#8e98a0',MIA:'#068b92',MIN:'#7657a5',NE:'#3c6289',NO:'#b9a169',NYG:'#296ba0',NYJ:'#2c7554',PHI:'#1c7378',PIT:'#eac046',SEA:'#477ba1',SF:'#c84348',TB:'#bd4549',TEN:'#5c8fbb',WAS:'#9d752d'};
-const TABS={overview:['Command Centre','Every matchup. Every probability. Every prediction accountable.'],matchups:['Full Matchup','QB, injuries, pass/rush matchups, rest, projected scores and the exact factors used in win probabilities.'],tactics:['Tactical Radar','Pass and rush EPA, QB-hit/sack proxies and explosive-play matchup intelligence.'],players:['QB & Injury Radar','Observed quarterback performance, depth-chart projections and dated injury reports.'],impact:['Player Impact Lab','QB changes, injury signals, historical eligibility and honest prediction improvements.'],radar:['Upset & Value Radar','Separate win probability from the potential value of a bookmaker price.'],performance:['Prediction Record','Every saved pregame pick, verified result and actual hit rate — with historical backtests kept separate.'],accuracy:['Signal Accuracy Lab','Does passing, rushing, pressure or explosive-play information reduce forecasting errors on later completed seasons?'],audit:['Market Reality Check','Historical probability accuracy against a no-vig closing moneyline benchmark.'],evidence:['Situational Evidence','Real NFL games: assess overtime, recovery and bounce-back effects.'],models:['Model Laboratory','Transparent statistical forecasts with explicit source limitations.'],bets:['My Bet Ledger','Your personal bookmaker entries, paper value checks and actual bet records.']};
+const TABS={overview:['Command Centre','Live games, forecasts and results.'],matchups:['Full Matchup','Forecasts, QB updates and matchup evidence.'],tactics:['Tactical Radar','Passing, rushing and pressure edges.'],players:['QB & Injury Radar','QB projections and injury reports.'],impact:['Player Impact Lab','How player changes affect the model.'],radar:['Upset & Value Radar','Underdogs and bookmaker comparisons.'],performance:['Prediction Record','Saved picks, results and accuracy.'],accuracy:['Signal Accuracy Lab','Which signals improve prediction accuracy?'],audit:['Market Reality Check','Model accuracy against closing prices.'],evidence:['Situational Evidence','Rest, overtime and recovery factors.'],models:['Model Laboratory','Explore model performance and assumptions.'],bets:['My Bet Ledger','Track your picks and returns.']};
 const byId=id=>document.getElementById(id); const $=sel=>document.querySelector(sel);
 const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pct=x=>x==null?'—':(100*x).toFixed(1)+'%'; const number=(n,d=1)=>n==null?'—':Number(n).toFixed(d);
@@ -20,7 +20,7 @@ function tag(text,kind=''){return `<span class="tag ${kind?'tag-'+kind:''}">${es
 function metric(label,val,sub,kind='',icon='↗'){return `<div class="metric"><div class="metric-label">${label}<span class="metric-ico">${icon}</span></div><div class="metric-number ${kind?'metric-'+kind:''}">${val}</div><div class="metric-sub">${sub}</div></div>`}
 function panel(title,content,subtitle='',action=''){return `<article class="panel"><div class="panel-head"><div><div class="panel-title">${title}</div>${subtitle?`<div class="panel-sub">${subtitle}</div>`:''}</div>${action}</div>${content}</article>`}
 function empty(title,body){return `<div class="empty"><div class="empty-symbol">◇</div><h3>${title}</h3><p>${body}</p></div>`}
-function warnBanner(){if(store.data?.previewMode)return `<div class="data-banner"><div><strong>ARCHIVED RESEARCH PREVIEW — NOT LIVE</strong><p>Real November 2026 fixtures and a pinned independent baseline reconstruction; no tactical, injury, live or bookmaker data. Real production predictions are generated after the GitHub workflow refresh.</p></div>${tag('PINNED 3 NOV 2026','warn')}</div>`;if(store.data?.dataStatus==='ok')return `<div class="banner-plain"><strong>DATA SCOPE ·</strong> Pregame statistical model. ${escapeHTML(store.data.dataWarnings?.slice(0,4).join(' · ')||'')}.</div>`; return `<div class="data-banner"><div><strong>◉ Awaiting the first real-data refresh</strong><p>The interface is installed, but predictions are not yet published. Run <code>python scripts/update.py</code> with internet access, or trigger the GitHub Actions workflow after deployment. No simulated picks are displayed as real.</p></div>${tag('SETUP REQUIRED','warn')}</div>`}
+function warnBanner(){if(store.data?.previewMode)return `<div class="data-banner"><div><strong>ARCHIVED RESEARCH PREVIEW — NOT LIVE</strong><p>Real November 2026 fixtures and a pinned independent baseline reconstruction; no tactical, injury, live or bookmaker data. Real production predictions are generated after the GitHub workflow refresh.</p></div>${tag('PINNED 3 NOV 2026','warn')}</div>`;if(store.data?.dataStatus==='ok')return ''; return `<div class="data-banner"><div><strong>◉ Awaiting the first real-data refresh</strong><p>The interface is installed, but predictions are not yet published. Run <code>python scripts/update.py</code> with internet access, or trigger the GitHub Actions workflow after deployment. No simulated picks are displayed as real.</p></div>${tag('SETUP REQUIRED','warn')}</div>`}
 function latest(){if(store.data?.previewMode)return 'ARCHIVED 3 NOV 2026';if(!store.data?.generatedAt)return 'AWAITING DATA';const age=(Date.now()-new Date(store.data.generatedAt).getTime())/3600000;return age<0?'DATA TIMESTAMP CHECK':age<1?'UPDATED <1H AGO':age<24?`UPDATED ${Math.floor(age)}H AGO`:`UPDATED ${Math.floor(age/24)}D AGO`}
 function games(){return store.data?.nextGames||[]}
 function recentKickoffs(){return Array.isArray(store.data?.recentKickoffs)?store.data.recentKickoffs:[]}
@@ -60,7 +60,7 @@ function recentKickoffRow(g){
  <small>${escapeHTML(date(g.kickoff))} · Week ${escapeHTML(g.week??'—')}</small>
  <span class="started-live" data-live-status="${escapeHTML(g.id)}">${escapeHTML(live.main)}</span>
  <span class="started-live-detail" data-live-detail="${escapeHTML(g.id)}">${escapeHTML(live.detail)}</span></div></div>
- <div class="started-prob"><strong>${escapeHTML(fav)} ${pct(p)}</strong><small>LAST SAVED PRE-KICKOFF PICK</small>
+ <div class="started-prob"><strong>${escapeHTML(fav)} ${pct(p)}</strong><small>FROZEN PREGAME</small>
  <small>Saved ${escapeHTML(date(g.lastPregameRecordedAt))}</small>
  <div data-live-model="${escapeHTML(g.id)}">${liveModelMarkup(g,false)}</div></div>
  <div class="started-open">VIEW ARCHIVE ›</div></div>`;
@@ -69,9 +69,9 @@ function startedSlatePanel(){
  const recent=recentKickoffs();
  if(!recent.length)return '';
  return panel('Today’s live & recently started games',
- `<div class="started-note">These fixtures stay here after kickoff. Your frozen pregame forecast is shown alongside a separate <strong>experimental in-play win chance</strong> when ESPN supplies current game state. Scores are from ESPN where available. <a href="./redzone.html">Open Red Zone ↗</a></div>
+ `<div class="started-note">Live estimates are <strong>experimental</strong>; pregame picks stay frozen. ESPN scores may lag. <a href="./redzone.html">Open Red Zone ↗</a></div>
  <div>${recent.map(recentKickoffRow).join('')}</div>`,
- 'Kickoffs within 30 hours · frozen prediction archive · live scores separate');
+ '');
 }
 function archivedMatchupPage(g){
  const p=Number(g.homeProbability),fav=p>=.5?g.home:g.away,prob=Math.max(p,1-p),live=scoreFromESPN(g);
@@ -81,20 +81,19 @@ function archivedMatchupPage(g){
  <section class="matchup-hero">
  <div class="eyebrow">${escapeHTML(date(g.kickoff))} · WEEK ${escapeHTML(g.week??'—')} · KICKED OFF</div>
  <h2>${escapeHTML(g.away)} @ ${escapeHTML(g.home)}</h2>
- <div class="one-forecast"><div class="one-forecast-label">FROZEN PRE-KICKOFF FORECAST · NOT A LIVE PROBABILITY</div>
- <div class="one-forecast-number">${pct(prob)}</div><div class="one-forecast-winner">${escapeHTML(fav)} to win before kickoff</div>
- <div class="one-forecast-comparison">Original forecast: ${pct(g.originalHomeProbability)} ${escapeHTML(g.home)} win · Last saved: ${pct(g.homeProbability)} ${escapeHTML(g.home)} win</div>
- <p class="source-meta">Last saved ${escapeHTML(date(g.lastPregameRecordedAt))} · ${escapeHTML(g.model||'pregame model')} · ${escapeHTML(g.verificationLevel||'verification unavailable')} evidence. These values will not be rewritten during the game.</p></div></section>
+ <div class="one-forecast"><div class="one-forecast-label">PREGAME · FROZEN</div>
+ <div class="one-forecast-number">${pct(prob)}</div><div class="one-forecast-winner">${escapeHTML(fav)} to win</div>
+ <p class="source-meta">Last saved ${escapeHTML(date(g.lastPregameRecordedAt))} · ${escapeHTML(g.model||'pregame model')} · ${escapeHTML(g.verificationLevel||'verification unavailable')} evidence.</p></div></section>
  <section class="matchup-panel"><h3>Match status</h3>
  <div class="panel-body"><strong data-live-status="${escapeHTML(g.id)}">${escapeHTML(live.main)}</strong>
  <p data-live-detail="${escapeHTML(g.id)}">${escapeHTML(live.detail)}</p>
- <p class="source-meta">ESPN scoreboard information is an independent live-display feed and may lag or be unavailable. Neither live scores nor final results are used to invent updated pregame probabilities.</p></div></section>
- <section class="matchup-panel"><h3>Live NFL win probability · research model</h3>
+ <p class="source-meta">ESPN scores may lag.</p></div></section>
+ <section class="matchup-panel"><h3>In-play win chance</h3>
  <div class="panel-body" data-live-full="${escapeHTML(g.id)}">${liveModelMarkup(g,true)}</div></section>
- <section class="matchup-panel"><h3>Archived prediction record</h3>
+ <section class="matchup-panel"><h3>Pregame history</h3>
  <div class="panel-body"><div class="stat-pair"><span>Original saved ${escapeHTML(date(g.originalRecordedAt))}</span><strong>${pct(g.originalHomeProbability)} ${escapeHTML(g.home)} win</strong></div>
  <div class="stat-pair"><span>Final pregame revision ${escapeHTML(date(g.lastPregameRecordedAt))}</span><strong>${pct(g.homeProbability)} ${escapeHTML(g.home)} win</strong></div>
- <div class="stat-pair"><span>Earlier saved updates</span><strong>${escapeHTML(g.revisions??0)}</strong></div></div></section>
+ <div class="stat-pair"><span>Revisions</span><strong>${escapeHTML(g.revisions??0)}</strong></div></div></section>
  </div>`;
 }
 function updateLiveDom(){
@@ -363,7 +362,7 @@ function getAlerts(){const alerts=[];if(!store.data?.generatedAt)alerts.push({ti
  const goodValues=games().map(g=>({g,v:valueFor(g)})).filter(x=>x.v&&x.v.eligible&&x.v.ev>.04).sort((a,b)=>b.v.ev-a.v.ev);
  goodValues.slice(0,3).forEach(({g,v})=>alerts.push({title:`Potential value: ${v.side} ${Math.round(v.ev*100)}% EV`,body:`Based on your entered ${v.book||'bookmaker'} price of ${v.price.toFixed(2)}. Model uncertainty applies.`,type:'value'}));
  if(store.data?.generatedAt&&!goodValues.length)alerts.push({title:'No qualified value flags',body:'Model-based value alerts remain disabled until QB and injury evidence is cross-checked.',type:'neutral'});
- alerts.push({title:'Live feed not connected',body:'Live scores, in-play props and push alerts are outside this free first release.',type:'neutral'});
+
  return alerts}
 function alertContent(){return `<div class="panel-body alert-list">${getAlerts().map(a=>`<div class="alert"><span class="alert-icon">${a.type==='value'?'↗':a.type==='warn'?'⚠':'◌'}</span><div><strong>${escapeHTML(a.title)}</strong><p>${escapeHTML(a.body)}</p></div></div>`).join('')}</div>`}
 function verificationQueue(){
@@ -390,24 +389,24 @@ function verificationQueue(){
 function overview(){const g=games(),perf=store.data?.recentPerformance||store.data?.performance||{},fp=store.data?.forwardPerformance||{};
  const values=g.map(x=>valueFor(x)).filter(Boolean);const positives=values.filter(x=>x.eligible&&x.ev>.04);
  const metrics=`<div class="summary">${metric('Upcoming matchups',g.length,'Next available NFL fixtures','lime','◇')}${metric('Model favourites',g.filter(x=>Math.max(x.homeProbability,x.awayProbability)>=.65).length,'65%+ forecast win probability','blue','◎')}${metric('Value watchlist',positives.length,`${values.length} manual prices compared`,'orange','↗')}${metric('Backtest Brier',perf.brier==null?'—':number(perf.brier,3),`${perf.count||0} sequential test games`,'','∿')}</div>`;
- const slate=panel('Upcoming fixtures',g.length?`<div>${g.slice(0,12).map(gameRow).join('')}</div>`:empty('Fixtures will appear here','Once the first nflverse data refresh succeeds, genuine upcoming matchups and computed probabilities will populate this list.'),'Open a matchup for forecast details',`<button class="btn btn-sm" data-nav="matchups">View all →</button>`);
+ const slate=panel('Upcoming fixtures',g.length?`<div>${g.slice(0,12).map(gameRow).join('')}</div>`:empty('Fixtures will appear here','Once the first nflverse data refresh succeeds, genuine upcoming matchups and computed probabilities will populate this list.'),'',`<button class="btn btn-sm" data-nav="matchups">View all →</button>`);
  const rec=store.data?.predictionRecord||{}, graded=rec.completed?.games||0, finalPicks=rec.completed?.latest||{};
  const recordCard=panel('Actual prediction record',
    `<div class="panel-body"><div class="record-home-number">${finalPicks.wins??0}–${finalPicks.losses??0} <span>${graded?pct(finalPicks.accuracy):'—'} correct</span></div>
-   <p>${graded} completed NFL game${graded===1?'':'s'} graded from real, timestamped predictions — ${graded<30?'too few to judge predictive accuracy.':'graded separately from historical backtests.'}</p>
-   <p class="source-meta">Original picks: ${rec.completed?.original?.wins??0}–${rec.completed?.original?.losses??0}. ${rec.upcomingCount??0} future fixtures tracked; each counts once when final.</p>
+   <p>${graded} completed NFL game${graded===1?'':'s'} from saved pregame picks · ${graded<30?'too few to judge accuracy.':'not a backtest.'}</p>
+   <p class="source-meta">First picks: ${rec.completed?.original?.wins??0}–${rec.completed?.original?.losses??0}. ${rec.upcomingCount??0} future games tracked.</p>
    <button class="btn btn-sm btn-ghost" data-nav="performance">See complete prediction record →</button></div>`,
-   'Not a reconstructed backtest');
- const perfPanel=panel('Model reliability',`<div class="panel-body">${perf.count?`<div class="stat-pair"><span>Correct favourite</span><strong>${pct(perf.accuracy)}</strong></div><div class="stat-pair"><span>Brier score <span title="Lower is better" class="info-icon">?</span></span><strong>${number(perf.brier,3)}</strong></div><div class="stat-pair"><span>50/50 baseline Brier</span><strong>${number(perf.baselineBrier,3)}</strong></div><div class="stat-pair"><span>Forward-tested games</span><strong>${fp.count||0}</strong></div>`:'<p class="instruction">Run the NFL data importer to calculate sequential historical test metrics.</p>'}<p class="panel-note" style="margin-top:13px">Backtests use historical records only; they are not archived real-time predictions. Betting profitability is not established.</p><button class="btn btn-sm btn-ghost" style="margin-top:10px" data-nav="performance">Explore performance →</button></div>`);
- const rankings=panel('Power ratings',`<div class="panel-body">${(store.data?.powerRankings||[]).length?(store.data.powerRankings.slice(0,6).map(rankingRow).join('')):'<p class="instruction">Ratings appear after the first data run.</p>'}</div>`,'Elo adjusted for previous games, not injuries');
+   'Recorded pregame picks');
+ const perfPanel=panel('Model reliability',`<div class="panel-body">${perf.count?`<div class="stat-pair"><span>Correct favourite</span><strong>${pct(perf.accuracy)}</strong></div><div class="stat-pair"><span>Brier score <span title="Lower is better" class="info-icon">?</span></span><strong>${number(perf.brier,3)}</strong></div><div class="stat-pair"><span>50/50 baseline Brier</span><strong>${number(perf.baselineBrier,3)}</strong></div><div class="stat-pair"><span>Forward-tested games</span><strong>${fp.count||0}</strong></div>`:'<p class="instruction">Run the NFL data importer to calculate sequential historical test metrics.</p>'}<p class="panel-note" style="margin-top:13px">Historical backtest, not live-pick performance.</p><button class="btn btn-sm btn-ghost" style="margin-top:10px" data-nav="performance">Explore performance →</button></div>`);
+ const rankings=panel('Power ratings',`<div class="panel-body">${(store.data?.powerRankings||[]).length?(store.data.powerRankings.slice(0,6).map(rankingRow).join('')):'<p class="instruction">Ratings appear after the first data run.</p>'}</div>`,'Elo based on completed games');
  return warnBanner()+metrics+startedSlatePanel()+`<div class="grid-main"><div>${recordCard}${slate}${perfPanel}</div><div class="right-stack">${verificationQueue()}${panel('Intelligence alerts',alertContent(),'Situational effects are applied only after the validation gate passes',tag('WATCHLIST'))}${rankings}</div></div>`}
 function matchups(){
  const g=games().filter(matchSearch),started=recentKickoffs().filter(matchSearch);
  return warnBanner()+panel('Matchup board',`<div class="panel-body"><div class="search-row"><input aria-label="Search matchups" class="input" id="searchGames" placeholder="Search a team..." value="${escapeHTML(store.query)}"/><span class="tiny">${started.length} kicked off · ${g.length} upcoming</span></div>
- <div class="note-box">Started games retain their actual pre-kickoff forecasts; ESPN supplies live scores separately. Pregame probabilities are frozen once the game starts. Future matchups continue to show QB, injury, matchup and model evidence.</div></div>
+ </div>
  <div id="gameRows">${started.length?`<div class="started-board-heading">LIVE & RECENT KICKOFFS</div>${started.map(recentKickoffRow).join('')}`:''}
  ${g.length?`<div class="started-board-heading">UPCOMING FIXTURES</div>${g.map(gameRow).join('')}`:''}
- ${!started.length&&!g.length?empty('No matching matchups',store.query?'Try another team name.':'Waiting for the NFL schedule feed.'):''}</div>`,'Tap any fixture to view its frozen pregame forecast or full upcoming matchup');}
+ ${!started.length&&!g.length?empty('No matching matchups',store.query?'Try another team name.':'Waiting for the NFL schedule feed.'):''}</div>`,'');}
 function radar(){const g=games();const rated=g.map(x=>({g:x,v:valueFor(x)})).filter(x=>x.v).sort((a,b)=>Number(b.v.eligible)-Number(a.v.eligible)||b.v.ev-a.v.ev);
  const upset=g.filter(x=>x.forecastQuality?.bettingEligible===true).map(x=>({g:x,prob:Math.min(x.homeProbability,x.awayProbability),underdog:x.homeProbability<.5?x.home:x.away})).filter(x=>x.prob>=.33).sort((a,b)=>b.prob-a.prob);
  const cols=`<div class="value-row value-head"><div>Market / Matchup</div><div>Model p</div><div>Price</div><div>Break-even</div><div>Model EV</div></div>`;
@@ -795,12 +794,12 @@ function forecastHero(g){
  const e=g.forecastExplanation||{},provisional=e.status==='provisional',quality=e.status==='partially-unverified';
  const gate=g.forecastQuality||{},badge=(gate.level==='hold'?'HOLD · VERIFY QB / INJURY':gate.level==='review'?'REVIEW · SOURCES INCOMPLETE':gate.level==='checked'?'SOURCES CHECKED':'VERIFICATION MISSING')+(provisional?' · PROVISIONAL PLAYER EFFECT':'');
  return `<div class="one-forecast">
-  <div class="one-forecast-label">ONE PREDICTION · ${escapeHTML(badge)}</div>
+  <div class="one-forecast-label">PREGAME · ${escapeHTML(badge)}</div>
   <div class="one-forecast-number">${pct(chance)}</div>
   <div class="one-forecast-winner">${escapeHTML(fav)} to win</div>
   <div class="one-forecast-comparison">${escapeHTML(other)} ${pct(otherChance)} <span aria-hidden="true">·</span> Projected score ${g.predAway==null||g.predHome==null?'unavailable':`${escapeHTML(g.away)} ${Math.round(g.predAway)} – ${escapeHTML(g.home)} ${Math.round(g.predHome)}`}</div>
   <div class="matchup-prob-track"><div style="width:${Math.max(0,Math.min(100,100*chance))}%"></div></div>
-  <p class="one-forecast-fine">Model estimate, not a guaranteed outcome or bookmaker probability. ${escapeHTML(g.model||'Elo and scoring form')} · Updated ${escapeHTML(store.data?.generatedAt?date(store.data.generatedAt):'date unavailable')}.</p>
+  <p class="one-forecast-fine">${escapeHTML(g.model||'Elo and scoring form')} · Updated ${escapeHTML(store.data?.generatedAt?date(store.data.generatedAt):'date unavailable')}.</p>
  </div>`;
 }
 function forecastLayerCard(g){
@@ -811,7 +810,7 @@ function forecastLayerCard(g){
  const signed=v=>Math.abs(v*100)<.045?'0.0 pp':`${v>0?'+':'−'}${number(Math.abs(v)*100,1)} pp`;
  if(!valid)return `<section class="matchup-panel matchup-wide forecast-attribution" aria-label="Forecast calculation">
  <div class="forecast-attribution-title"><h3>How we got to ${pct(current)}</h3>${tag('LAYER AUDIT PENDING','warn')}</div>
- <p class="instruction">The one-number forecast is available, but a complete reconciled layer breakdown has not been published for this fixture yet. We will not invent percentage-point contributions.</p>
+ <p class="instruction">Detailed layer breakdown unavailable.</p>
  </section>`;
  const used=rows.filter(x=>x.applied),unused=rows.filter(x=>!x.applied);
  const shown=used.map((x,i)=>{
@@ -827,7 +826,7 @@ function forecastLayerCard(g){
  const notApplied=unused.map(x=>`<div class="forecast-not-applied-item"><strong>${escapeHTML(x.label)}</strong><span>Not applied</span><small>${escapeHTML(x.explanation||'Not weighted in this prediction')}</small></div>`).join('');
  const warnings=(e.warnings||[]).map(w=>`<li>${escapeHTML(w)}</li>`).join('');
  return `<section class="matchup-panel matchup-wide forecast-attribution" aria-label="Reconciled forecast layers">
-  <div class="forecast-attribution-title"><div><h3>How we got to ${pct(current)}</h3><p>Every applied layer, measured in percentage points for ${escapeHTML(win)}.</p></div>${tag(e.status==='provisional'?'PROVISIONAL':e.status==='partially-unverified'?'PARTLY UNVERIFIED':'MODEL-DERIVED',e.status==='provisional'||e.status==='partially-unverified'?'warn':'')}</div>
+  <div class="forecast-attribution-title"><div><h3>How we got to ${pct(current)}</h3><p>Forecast changes for ${escapeHTML(win)}.</p></div>${tag(e.status==='provisional'?'PROVISIONAL':e.status==='partially-unverified'?'PARTLY UNVERIFIED':'MODEL-DERIVED',e.status==='provisional'||e.status==='partially-unverified'?'warn':'')}</div>
   <div class="forecast-layer-headers"><span>Layer</span><span>Chance moves</span><span>Running win %</span></div>
   <div class="forecast-layer-start"><strong>Starting reference</strong><span>50.0%</span></div>
   ${shown}
@@ -847,30 +846,30 @@ function fullMatchupPage(g){
  const scenarios=Array.isArray(g.scenarios)?g.scenarios:[];
  const sourceDate=store.data?.generatedAt?date(store.data.generatedAt):'No verified refresh timestamp';
  return `<div class="matchup-page">
- <div class="matchup-actions"><button class="btn btn-secondary" data-back-matchups="1">← All fixtures</button><button class="btn btn-secondary" data-share-game="${escapeHTML(g.id)}">Copy matchup link</button><button class="btn btn-primary" data-full-game="${escapeHTML(g.id)}">Open classic analysis ↗</button></div>
+ <div class="matchup-actions"><button class="btn btn-secondary" data-back-matchups="1">← All fixtures</button><button class="btn btn-secondary" data-share-game="${escapeHTML(g.id)}">Copy matchup link</button><button class="btn btn-primary" data-full-game="${escapeHTML(g.id)}">More analysis ↗</button></div>
  <section class="matchup-hero" aria-label="Game forecast summary">
-  <div class="eyebrow">WEEK ${escapeHTML(g.week??'—')} · ${escapeHTML(date(g.kickoff))} · PRE-GAME RESEARCH</div>
+  <div class="eyebrow">WEEK ${escapeHTML(g.week??'—')} · ${escapeHTML(date(g.kickoff))} · PREGAME</div>
   <h2>${escapeHTML(g.awayName||g.away)} <span class="muted">@</span> ${escapeHTML(g.homeName||g.home)}</h2>
   ${forecastHero(g)}
  </section>
  ${verificationPanel(g)}
  ${forecastLayerCard(g)}
  <details class="matchup-evidence" aria-label="Full supporting evidence">
-  <summary>Explore all QB, injury, tactical and matchup data <span>Open detailed analysis</span></summary>
+  <summary>Supporting evidence <span>Expand</span></summary>
   <div class="matchup-evidence-body">
  ${qbReplacementDetail(g)}
  ${personnelSummary(g)}
  ${intelligencePanel(g)}
  ${fullMatchupReport(g)}
  <div class="matchup-detail-grid">
-  <section class="matchup-panel matchup-wide"><h3>Quarterbacks, practice and injuries</h3><p class="matchup-sub">Dated observations, not confirmed starters or inactive lists.</p>${playerDetails(g)}</section>
+  <section class="matchup-panel matchup-wide"><h3>Quarterbacks, practice and injuries</h3><p class="matchup-sub">Unconfirmed availability.</p>${playerDetails(g)}</section>
   <section class="matchup-panel matchup-wide"><h3>Player impact model audit</h3>${impactDetail(g)}</section>
   <section class="matchup-panel matchup-wide"><h3>Pass, rush and pressure matchup</h3>${tacticalDetails(g)}</section>
   <section class="matchup-panel"><h3>Recovery, travel and overtime</h3>${signalDetails(g)}</section>
-  <section class="matchup-panel"><h3>Forecast assumptions</h3><div class="stat-pair"><span>Baseline home win</span><strong>${pct(g.baselineHomeProbability??g.homeProbability)}</strong></div><div class="stat-pair"><span>Published home win</span><strong>${pct(g.homeProbability)}</strong></div><div class="stat-pair"><span>Selected adjustment</span><strong>${escapeHTML(g.adjustmentActive?g.overlayType||'validated overlay':'none')}</strong></div><p class="source-meta">The published estimate may include explicitly provisional QB/injury assumptions. The unadjusted baseline is shown above and no provisional player points have yet passed prospective validation.</p></section>
-  <section class="matchup-panel matchup-wide"><h3>Winning-margin simulation</h3>${simulations.length?barChart(simulations):'<p class="instruction">Simulation sample unavailable for this fixture.</p>'}<p class="source-meta">Illustrative distribution based on model assumptions; not drive-by-drive simulation or an independently verified market forecast.</p></section>
+  <section class="matchup-panel"><h3>Forecast assumptions</h3><div class="stat-pair"><span>Baseline home win</span><strong>${pct(g.baselineHomeProbability??g.homeProbability)}</strong></div><div class="stat-pair"><span>Published home win</span><strong>${pct(g.homeProbability)}</strong></div><div class="stat-pair"><span>Selected adjustment</span><strong>${escapeHTML(g.adjustmentActive?g.overlayType||'validated overlay':'none')}</strong></div><p class="source-meta">QB/injury changes are provisional and unvalidated.</p></section>
+  <section class="matchup-panel matchup-wide"><h3>Winning-margin simulation</h3>${simulations.length?barChart(simulations):'<p class="instruction">Simulation sample unavailable for this fixture.</p>'}<p class="source-meta">Illustrative simulation, not live play-by-play.</p></section>
   <section class="matchup-panel matchup-wide"><h3>Alternative game scripts</h3>${scenarios.length?`<div class="scenarios">${scenarios.map(s=>`<div class="scenario"><strong>${escapeHTML(s.name)}</strong><p>${escapeHTML(s.text)}</p></div>`).join('')}</div>`:'<p class="instruction">No game scripts have been produced for this fixture.</p>'}</section>
-  <section class="matchup-panel matchup-wide"><h3>Bookmaker comparison</h3><p>${o?`${escapeHTML(o.book||'Manually entered market')}: ${escapeHTML(o.side)} at ${o.price.toFixed(2)} decimal odds · implied break-even ${pct(o.breakeven)} · ${o.eligible?`raw model EV ${o.ev>=0?'+':''}${pct(o.ev)}`:'EV ALERT WITHHELD pending source review'}.`:'No bookmaker price entered for this fixture. Prices are manual; no live odds feed is connected.'}</p><button class="btn btn-primary" data-odds="${escapeHTML(g.id)}">${o?'Edit market odds':'Enter decimal odds'}</button></section>
+  <section class="matchup-panel matchup-wide"><h3>Bookmaker comparison</h3><p>${o?`${escapeHTML(o.book||'Manually entered market')}: ${escapeHTML(o.side)} at ${o.price.toFixed(2)} decimal odds · implied break-even ${pct(o.breakeven)} · ${o.eligible?`raw model EV ${o.ev>=0?'+':''}${pct(o.ev)}`:'EV ALERT WITHHELD pending source review'}.`:'No price entered. Odds are manual.'}</p><button class="btn btn-primary" data-odds="${escapeHTML(g.id)}">${o?'Edit market odds':'Enter decimal odds'}</button></section>
  </div>
  </div>
  </details>
@@ -916,7 +915,7 @@ function shareGameLink(id){
 function render(){
  const t=store.tab,d=store.data,selected=store.activeGameId?browseGames().find(g=>String(g.id)===String(store.activeGameId)):null;
  byId('pageTitle').innerHTML=(selected?escapeHTML(selected.away+' @ '+selected.home):escapeHTML(TABS[t][0]))+'<span class="title-dot">.</span>';
- byId('pageIntro').textContent=selected?'Detailed pregame intelligence, evidence and uncertainty for this fixture.':TABS[t][1];
+ byId('pageIntro').textContent=selected?'Matchup forecast and evidence.':TABS[t][1];
  byId('breadcrumb').textContent=selected?'FULL MATCHUP':TABS[t][0].toUpperCase();
  byId('dataAge').textContent=latest();
  document.querySelectorAll('[data-tab]').forEach(btn=>{btn.classList.toggle('active',btn.dataset.tab===t);btn.setAttribute('aria-current',btn.dataset.tab===t?'page':'false')});

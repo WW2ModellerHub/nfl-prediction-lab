@@ -21,12 +21,12 @@ t.setData({generatedAt:'2026-11-08T21:15:00Z',nextGames:[],
 const html=t.overview();
 assert(html.includes('Today’s live & recently started games'));
 assert(html.includes('DAL @ NYG'));
-assert(html.includes('LAST SAVED PRE-KICKOFF PICK'));
+assert(html.includes('FROZEN PREGAME'));
 assert(html.includes('NOT')===false || html.includes('pregame')); // show frozen labels
 assert(t.matchups().includes('DAL @ NYG'));
 t.openGamePage('2026_09_DAL_NYG');
-assert(el('appContent').innerHTML.includes('FROZEN PRE-KICKOFF FORECAST'));
-assert(el('appContent').innerHTML.includes('NOT A LIVE PROBABILITY'));
+assert(el('appContent').innerHTML.includes('PREGAME · FROZEN'));
+assert(el('appContent').innerHTML.includes('In-play win chance'));
 t.setLive({'2026_09_DAL_NYG':{status:'in',period:3,clock:'6:10',away:'DAL',home:'NYG',awayScore:17,homeScore:10}});
 assert.equal(t.live({id:'2026_09_DAL_NYG'}).main,'LIVE Q3 6:10');
 assert.equal(t.live({id:'2026_09_DAL_NYG'}).detail,'DAL 17 – NYG 10');
