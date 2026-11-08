@@ -35,6 +35,25 @@ function teamName(id){
   var user=roster&&state.users.find(function(u){return String(u.user_id)===String(roster.owner_id);});
   return user && ((user.metadata && user.metadata.team_name)||user.display_name) || "Roster "+id;
 }
+
+function compactInitials(name){
+  var tokens=String(name||"").replace(/[^a-zA-Z0-9 ]/g," ").trim().split(/\s+/).filter(Boolean);
+  return tokens.length>1?(tokens[0][0]+tokens[1][0]).toUpperCase():String(name||"??").slice(0,2).toUpperCase();
+}
+function safeTeam(team){var t=Core.norm(team);return /^[A-Z]{2,3}$/.test(t)?t:"";}
+function teamMark(team,cls){
+  var t=safeTeam(team);
+  return '<span class="team-mark '+(cls||"")+'" aria-label="'+esc(t||"NFL")+'">'+(t?
+    '<span class="team-code">'+esc(t)+'</span><img alt="" loading="lazy" decoding="async" src="https://a.espncdn.com/i/teamlogos/nfl/500/'+t.toLowerCase()+'.png" onerror="this.remove()">':
+    '<span class="team-code">NFL</span>')+'</span>';
+}
+function playerPhoto(player){
+  var id=String(player.id||"");
+  var type=/^[0-9]+$/.test(id) && player.position!=="DEF";
+  return '<span class="player-photo"><span class="photo-fallback">'+esc((player.name||"?").slice(0,1))+'</span>'+
+    (type?'<img src="https://sleepercdn.com/content/nfl/players/thumb/'+id+'.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()">':'')+'</span>';
+}
+
 function gameStatus(team){
   var g=state.games[Core.norm(team)];
   if(!g)return {main:"—",sub:"No feed",className:""};
@@ -47,22 +66,27 @@ function activeZonesFor(side,player){
   return state.zones.some(function(z){return z.team===Core.norm(player.team) && (side==="mine"||side==="theirs") && !["DEF","K","—"].includes(player.position);});
 }
 function renderLineup(side,target){
-  var row=state.pair[side];var starters=Core.lineup(row,state.players,false),bench=state.bench?Core.lineup(row,state.players,true):[];
-  $(side==="mine"?"myCount":"theirCount").textContent=row?"("+starters.length+" starters)":"";
-  if(!row){$(target).innerHTML='<div class="empty">No matchup lineup available for this week.</div>';return;}
+  var row=state.pair[side];
+  var starters=Core.lineup(row,state.players,false);
+  var bench=state.bench?Core.lineup(row,state.players,true):[];
+  $(side==="mine"?"myCount":"theirCount").textContent=row?starters.length+" STARTERS":"";
+  if(!row){$(target).innerHTML='<div class="empty">No matchup lineup available this week.</div>';return;}
   $(target).innerHTML=starters.concat(bench).map(function(p){
     var g=gameStatus(p.team),danger=activeZonesFor(side,p);
     var deltaKey=side+":"+(p.bench?"bench:":"")+p.id;
     var changed=state.flashes[deltaKey] && Date.now()-state.flashes[deltaKey]<6000;
     return '<div class="player '+(p.bench?"bench ":"")+(danger?"redzone "+(side==="theirs"?"enemy ":""):"")+(changed?"changed":"")+'">'+
-       '<div class="who"><span class="position">'+esc(p.position)+'</span><span class="who-text"><strong>'+esc(p.name)+'</strong><small>'+
-       esc(p.team||"—")+(p.bench?" · BENCH":"")+(danger?" · ⚠ RED ZONE":"")+'</small></span></div>'+
-       '<div class="game '+g.className+'">'+esc(g.main)+'<small>'+esc(g.sub)+'</small></div>'+
-       '<div class="playerpoints '+(p.points===null?"unknown":"")+'">'+fmt(p.points)+'</div></div>';
+      '<div class="who">'+playerPhoto(p)+'<span class="who-text"><strong title="'+esc(p.name)+'">'+esc(p.name)+'</strong><small>'+
+      '<span class="position">'+esc(p.position)+'</span>'+teamMark(p.team,"tiny")+
+      (p.bench?'<span class="bench-label">BENCH</span>':'')+
+      (danger?'<span class="threat-indicator">● RZ</span>':'')+
+      '</small></span></div>'+
+      '<div class="game '+g.className+'">'+esc(g.main)+'<small>'+esc(g.sub)+'</small></div>'+
+      '<div class="playerpoints '+(p.points===null?"unknown":"")+'">'+fmt(p.points)+'</div></div>';
   }).join("");
 }
 function renderZones(){
-  var list=[];
+  var cards=[];
   state.zones.forEach(function(z){
     ["mine","theirs"].forEach(function(side){
       var starters=Core.lineup(state.pair[side],state.players,false);
@@ -70,34 +94,62 @@ function renderZones(){
       var kickers=starters.filter(function(p){return Core.norm(p.team)===z.team && p.position==="K";});
       var defenders=starters.filter(function(p){return Core.norm(p.team)===z.opponent && p.position==="DEF";});
       if(!relevant.length && !kickers.length && !defenders.length)return;
-      var role=side==="mine"?"YOUR PLAYERS":"OPPONENT PLAYERS";
+      var mine=side==="mine";
       var names=relevant.map(function(p){return p.name;}).join(" · ");
-      var other=(kickers.length?' <span class="muted">FG watch: '+esc(kickers.map(function(p){return p.name;}).join(", "))+'</span>':'')+
-        (defenders.length?' <span class="muted">Defence at risk: '+esc(defenders.map(function(p){return p.name;}).join(", "))+'</span>':'');
-      list.push('<article class="redzone-card '+(side==="theirs"?"opponent":"")+'"><div class="rz-top"><span class="rz-pill">'+role+'</span><b>INSIDE 20</b></div>'+
-        '<div class="rz-game">'+esc(z.team)+' attacking '+esc(z.opponent)+'</div><div class="rz-players">'+(names?esc(names):"No offensive starters")+other+'</div>'+
-        '<div class="rz-foot">'+esc(z.downDistance||"Red Zone possession")+' · '+(z.period?"Q"+z.period+" ":"")+esc(z.clock)+'</div></article>');
+      var other=(kickers.length?'<span class="rz-secondary">FG watch: '+esc(kickers.map(function(p){return p.name;}).join(", "))+'</span>':"")+
+        (defenders.length?'<span class="rz-secondary">DEF defending: '+esc(defenders.map(function(p){return p.name;}).join(", "))+'</span>':"");
+      cards.push('<article class="redzone-card '+(mine?"friendly":"opponent")+'">'+
+        '<div class="rz-top"><span class="rz-pill">'+(mine?"▲ YOUR ATTACK":"▼ OPPONENT THREAT")+'</span>'+
+        '<span class="rz-clock">Q'+esc(z.period||"–")+' · '+esc(z.clock||"Live")+'</span></div>'+
+        '<div class="rz-main"><div class="rz-team">'+teamMark(z.team,"large")+'<div><b>'+esc(z.team)+'</b><small>vs '+esc(z.opponent)+'</small></div></div>'+
+        '<span class="rz-chip">IN THE 20</span></div>'+
+        '<div class="mini-field" role="img" aria-label="Schematic red zone field: offence inside opponent 20, not precise ball location"><div class="field-stripes"></div><span class="field-twenty">20</span><span class="field-ten">10</span><span class="field-goal">GOAL</span><span class="field-ball">◆</span></div>'+
+        '<div class="rz-players">'+(names?esc(names):"No starting skill player")+'</div>'+other+
+        '<div class="rz-foot">'+esc(z.downDistance||"Scoring chance")+'</div></article>');
     });
   });
-  $("redzones").innerHTML=list.join("") || '<div class="empty">'+(state.errors.espn?"NFL Red Zone data currently unavailable. Sleeper fantasy scores still update.":"No watched NFL offence is confirmed inside the 20 right now.")+'</div>';
+  $("rzCount").textContent=String(cards.length);
+  $("redzones").classList.toggle("has-zones",cards.length>0);
+  $("redzones").innerHTML=cards.join("") ||
+    '<div class="empty idle-zone"><span class="idle-icon">◎</span><div><b>No active scoring threats</b><small>'+
+    (state.errors.espn?"NFL drive feed unavailable; fantasy points still refresh.":"Watching both lineups for possessions inside the 20.")+
+    '</small></div></div>';
 }
 function renderScore(){
   var own=state.pair.mine,opp=state.pair.theirs;
-  $("myName").textContent=teamName(cfg.rosterId);
-  $("theirName").textContent=opp?teamName(opp.roster_id):"No paired opponent";
-  $("myScore").textContent=own?fmt(Core.num(own.points)):"—";
-  $("theirScore").textContent=opp?fmt(Core.num(opp.points)):"—";
-  if(own && opp && Core.num(own.points)!==null && Core.num(opp.points)!==null){
-    var d=Number(own.points)-Number(opp.points);
-    $("margin").textContent=Math.abs(d)<0.005?"TIED":(d>0?"+":"−")+Math.abs(d).toFixed(2)+" "+(d>0?"AHEAD":"BEHIND");
-  } else $("margin").textContent="NO H2H SCORE";
-  $("myDetails").textContent=own?"Sleeper live total":"No roster found";
-  $("theirDetails").textContent=opp?"Sleeper live total":"Unpaired / not published";
+  var nameMine=teamName(cfg.rosterId),nameOpp=opp?teamName(opp.roster_id):"No paired opponent";
+  $("myName").textContent=nameMine;$("theirName").textContent=nameOpp;
+  $("myBadge").textContent=compactInitials(nameMine);$("theirBadge").textContent=compactInitials(nameOpp);
+  var my=own?Core.num(own.points):null,them=opp?Core.num(opp.points):null;
+  $("myScore").textContent=fmt(my);$("theirScore").textContent=fmt(them);
+  $("margin").className="margin";
+  if(my!==null && them!==null){
+    var d=Math.round((my-them)*100)/100;
+    $("margin").textContent=Math.abs(d)<0.005?"TIED":(d>0?"▲ +":"▼ −")+Math.abs(d).toFixed(2);
+    $("margin").classList.add(d>0?"leading":d<0?"trailing":"tied");
+    var sum=Math.max(0,my)+Math.max(0,them);
+    var pct=sum>0?Math.max(0,Math.min(100,Math.max(0,my)/sum*100)):50;
+    $("myShareBar").style.width=pct.toFixed(2)+"%";
+    $("theirShareBar").style.width=(100-pct).toFixed(2)+"%";
+    $("mySharePct").textContent=pct.toFixed(0)+"%";
+    $("theirSharePct").textContent=(100-pct).toFixed(0)+"%";
+  } else {
+    $("margin").textContent="VS";
+    $("myShareBar").style.width="50%";$("theirShareBar").style.width="50%";
+    $("mySharePct").textContent="—";$("theirSharePct").textContent="—";
+  }
+  $("myDetails").textContent=own?"SLEEPER SCORE":"ROSTER NOT FOUND";
+  $("theirDetails").textContent=opp?"SLEEPER SCORE":"H2H NOT AVAILABLE";
 }
 function renderActivity(){
   $("activity").innerHTML=state.feed.length?state.feed.slice(0,65).map(function(e){
-    return '<div class="activity-row"><time class="event-time">'+esc(stamp(e.at))+'</time><span class="event-team '+(e.side==="mine"?"my":"their")+'">'+(e.side==="mine"?"YOU":"THEM")+'</span><div class="event-title">'+esc(e.title)+'<small>'+esc(e.detail)+'</small></div><span class="event-delta '+(e.delta<0?"neg":"")+'">'+(e.delta===null?"●":(e.delta>0?"+":"")+fmt(e.delta))+'</span></div>';
-  }).join(""):'<div class="empty">No new changes recorded yet. Your first successful sync establishes the baseline.</div>';
+    var own=e.side==="mine",threat=e.delta===null;
+    return '<div class="activity-row '+(own?"event-own":"event-rival")+'">'+
+      '<span class="event-symbol">'+(threat?"◎":e.delta>=0?"↗":"↘")+'</span>'+
+      '<div class="event-description"><span class="event-label">'+(own?"YOU":"OPP")+' · '+esc(stamp(e.at))+'</span>'+
+      '<strong>'+esc(e.title)+'</strong><small>'+esc(e.detail)+'</small></div>'+
+      '<span class="event-delta '+(e.delta<0?"neg":"")+'">'+(threat?"RZ":(e.delta>0?"+":"")+fmt(e.delta))+'</span></div>';
+  }).join(""):'<div class="empty empty-events"><span class="idle-icon">↗</span><span>Waiting for the next scoring change</span></div>';
 }
 function render(){
   $("weekLabel").textContent="WEEK "+(state.week||"—");
@@ -210,6 +262,15 @@ function startTimer(){
 }
 function init(){
   $("leagueInput").value=cfg.leagueId;$("rosterInput").value=cfg.rosterId;
+  Array.from(document.querySelectorAll(".view-switch button")).forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var v=btn.getAttribute("data-view");
+      $("lineups").setAttribute("data-view",v);
+      Array.from(document.querySelectorAll(".view-switch button")).forEach(function(b){
+        var yes=b===btn;b.classList.toggle("active",yes);b.setAttribute("aria-pressed",String(yes));
+      });
+    });
+  });
   $("benchToggle").checked=false;$("benchToggle").addEventListener("change",function(e){state.bench=e.target.checked;render();});
   $("sound").addEventListener("click",function(){state.sound=!state.sound;$("sound").textContent=state.sound?"🔔 Sound on":"🔕 Sound off";if(state.sound)beep();});
   $("notifications").addEventListener("click",function(){
