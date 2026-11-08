@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-11-08T17:29:20.100403+00:00",
+  "generatedAt": "2026-11-08T17:45:35.531917+00:00",
   "status": "production-pipeline-snapshot",
   "source": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
-    "latestFinalAt": "2026-11-06T01:15:00+00:00",
-    "sha256": "b78b9e603fdec6de60004c0800fb5a76ae8e88ed61213fa78c10f5a380cba283",
-    "downloadedAt": "2026-11-08T17:28:59.059552+00:00",
+    "latestFinalAt": "2026-11-08T14:30:00+00:00",
+    "sha256": "f909f4ff0ee05a6ef16d518488309bbf1a75cf16c37943542043a42f7c6cf54a",
+    "downloadedAt": "2026-11-08T17:45:08.860465+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
   },
   "mode": "full",
-  "latestResultAt": "2026-11-06T01:15:00+00:00",
+  "latestResultAt": "2026-11-08T14:30:00+00:00",
   "baseline": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-08T17:29:09.479197+00:00",
+    "asOf": "2026-11-08T17:45:22.379198+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -22,31 +22,31 @@
     "clvAvailable": false,
     "ukBookmakersCovered": false,
     "overall": {
-      "completedGames": 692,
+      "completedGames": 693,
       "ties": 2,
       "baseline": {
-        "games": 690,
-        "accuracy": 0.6623,
-        "brier": 0.22174,
-        "logLoss": 0.63359
+        "games": 691,
+        "accuracy": 0.6628,
+        "brier": 0.22166,
+        "logLoss": 0.63342
       },
       "market": {
-        "games": 690,
-        "accuracy": 0.6783,
-        "brier": 0.20937,
-        "logLoss": 0.60624
+        "games": 691,
+        "accuracy": 0.6787,
+        "brier": 0.20928,
+        "logLoss": 0.60606
       },
       "baselineOnMarketMatchedGames": {
-        "games": 690,
-        "accuracy": 0.6623,
-        "brier": 0.22174,
-        "logLoss": 0.63359
+        "games": 691,
+        "accuracy": 0.6628,
+        "brier": 0.22166,
+        "logLoss": 0.63342
       },
-      "marketCoverage": 690,
-      "modelMinusMarketBrier": 0.01237,
+      "marketCoverage": 691,
+      "modelMinusMarketBrier": 0.01238,
       "modelMinusMarketBrier95CI": [
-        0.00648,
-        0.01918
+        0.00651,
+        0.01917
       ]
     },
     "seasons": [
@@ -110,31 +110,31 @@
       },
       {
         "season": 2026,
-        "completedGames": 122,
+        "completedGames": 123,
         "ties": 1,
         "baseline": {
-          "games": 121,
-          "accuracy": 0.6281,
-          "brier": 0.23014,
-          "logLoss": 0.65141
+          "games": 122,
+          "accuracy": 0.6311,
+          "brier": 0.2296,
+          "logLoss": 0.65032
         },
         "market": {
-          "games": 121,
-          "accuracy": 0.6529,
-          "brier": 0.22552,
-          "logLoss": 0.64456
+          "games": 122,
+          "accuracy": 0.6557,
+          "brier": 0.22487,
+          "logLoss": 0.64325
         },
         "baselineOnMarketMatchedGames": {
-          "games": 121,
-          "accuracy": 0.6281,
-          "brier": 0.23014,
-          "logLoss": 0.65141
+          "games": 122,
+          "accuracy": 0.6311,
+          "brier": 0.2296,
+          "logLoss": 0.65032
         },
-        "marketCoverage": 121,
-        "modelMinusMarketBrier": 0.00463,
+        "marketCoverage": 122,
+        "modelMinusMarketBrier": 0.00472,
         "modelMinusMarketBrier95CI": [
-          -0.00743,
-          0.01592
+          -0.00724,
+          0.01593
         ]
       }
     ],
@@ -770,7 +770,7 @@
       "A qualified candidate is research-only; live forecasts, markets and player availability weights are unchanged.",
       "Coverage requires nflverse play-by-play from completed earlier games; schedules-only refreshes cannot recompute this audit."
     ],
-    "generatedAt": "2026-11-08T17:29:09.479197+00:00",
+    "generatedAt": "2026-11-08T17:45:22.379198+00:00",
     "sourceStatus": "loaded",
     "requestedSeasons": [
       2019,
@@ -930,7 +930,7 @@
   "qbEvidenceSource": {
     "status": "loaded",
     "source": "ESPN team-specific depthcharts and QB rosters (unofficial)",
-    "observationTime": "2026-11-08T17:29:17.514305+00:00",
+    "observationTime": "2026-11-08T17:45:32.767936+00:00",
     "selectedTeams": [
       "ARI",
       "BUF",
@@ -982,7 +982,7 @@
           "timestamp"
         ]
       },
-      "BUF": {
+      "ARI": {
         "depth": [
           "depthchart",
           "season",
@@ -1000,23 +1000,6 @@
         ]
       },
       "BUF": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
-      "CAR": {
         "depth": [
           "depthchart",
           "season",
@@ -1050,75 +1033,7 @@
           "timestamp"
         ]
       },
-      "ARI": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
-      "DEN": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
-      "DAL": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
-      "HOU": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
-      "GB": {
+      "CLE": {
         "depth": [
           "depthchart",
           "season",
@@ -1152,6 +1067,57 @@
           "timestamp"
         ]
       },
+      "DEN": {
+        "depth": [
+          "depthchart",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ],
+        "roster": [
+          "athletes",
+          "coach",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ]
+      },
+      "GB": {
+        "depth": [
+          "depthchart",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ],
+        "roster": [
+          "athletes",
+          "coach",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ]
+      },
+      "DAL": {
+        "depth": [
+          "depthchart",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ],
+        "roster": [
+          "athletes",
+          "coach",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ]
+      },
       "KC": {
         "depth": [
           "depthchart",
@@ -1169,7 +1135,41 @@
           "timestamp"
         ]
       },
+      "HOU": {
+        "depth": [
+          "depthchart",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ],
+        "roster": [
+          "athletes",
+          "coach",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ]
+      },
       "LA": {
+        "depth": [
+          "depthchart",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ],
+        "roster": [
+          "athletes",
+          "coach",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ]
+      },
+      "IND": {
         "depth": [
           "depthchart",
           "season",
@@ -1237,24 +1237,7 @@
           "timestamp"
         ]
       },
-      "IND": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
-      "LA": {
+      "MIN": {
         "depth": [
           "depthchart",
           "season",
@@ -1288,75 +1271,24 @@
           "timestamp"
         ]
       },
-      "NO": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
-      "MIN": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
-      "SEA": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
-      "PHI": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
       "NYG": {
+        "depth": [
+          "depthchart",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ],
+        "roster": [
+          "athletes",
+          "coach",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ]
+      },
+      "NO": {
         "depth": [
           "depthchart",
           "season",
@@ -1390,24 +1322,7 @@
           "timestamp"
         ]
       },
-      "WAS": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
-      "IND": {
+      "PHI": {
         "depth": [
           "depthchart",
           "season",
@@ -1425,6 +1340,40 @@
         ]
       },
       "SEA": {
+        "depth": [
+          "depthchart",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ],
+        "roster": [
+          "athletes",
+          "coach",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ]
+      },
+      "TB": {
+        "depth": [
+          "depthchart",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ],
+        "roster": [
+          "athletes",
+          "coach",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ]
+      },
+      "WAS": {
         "depth": [
           "depthchart",
           "season",
@@ -1876,7 +1825,7 @@
       "source": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2026.csv",
       "sourceType": "official-report-derived-mirror",
       "officialReference": "https://www.nfl.com/injuries/",
-      "observedAt": "2026-11-08T17:29:20.084397+00:00",
+      "observedAt": "2026-11-08T17:45:35.511919+00:00",
       "records": 2821,
       "dated": 0,
       "snapshotObserved": 2821,
@@ -1901,14 +1850,15 @@
     "statuses": {
       "indoor": 8,
       "roof-unconfirmed": 6,
-      "forecast": 20,
-      "unavailable": 4,
+      "forecast": 21,
+      "unavailable": 3,
       "venue-unmapped": 2
     },
     "errors": [
-      "NYC01: URLError: <urlopen error _ssl.c:994: The handshake operation timed out>"
+      "CLE00: URLError: <urlopen error _ssl.c:994: The handshake operation timed out>",
+      "DEN00: URLError: <urlopen error _ssl.c:994: The handshake operation timed out>"
     ],
-    "asOf": "2026-11-08T17:29:20.100403+00:00"
+    "asOf": "2026-11-08T17:45:35.531917+00:00"
   },
   "chosenOverlay": "none",
   "tacticalSource": {
@@ -1951,7 +1901,7 @@
       "2025: ValueError: No timestamped report rows; undated historical records are not backdated"
     ],
     "source": "nflverse dated injuries_{season}.csv",
-    "asOf": "2026-11-08T17:29:04.115402+00:00",
+    "asOf": "2026-11-08T17:45:15.366793+00:00",
     "timestampBasis": "download-observation",
     "records": 2821
   },
@@ -1968,7 +1918,7 @@
   "additionalInjurySource": {
     "status": "loaded",
     "source": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
-    "retrievedAt": "2026-11-08T17:29:09.407166+00:00",
+    "retrievedAt": "2026-11-08T17:45:22.291920+00:00",
     "reportCount": 240,
     "teamsCovered": 32,
     "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list.",
@@ -1976,7 +1926,7 @@
       "groups": 32,
       "items": 800,
       "dated": 800,
-      "latestDate": "2026-11-08T17:17:00+00:00",
+      "latestDate": "2026-11-08T17:39:00+00:00",
       "statusSamples": [
         "Active",
         "Doubtful",
@@ -2071,37 +2021,66 @@
   },
   "shadowForwardPerformance": {
     "recordedPicks": 42,
-    "gradedGames": 1,
-    "brier": 0.16257,
+    "gradedGames": 2,
+    "brier": 0.15186,
     "accuracy": 1.0,
     "source": "Immutable pregame XGBoost challenger picks; ties and late/backfilled entries excluded",
     "researchOnly": true
   },
   "forecastRevisionSummary": {
-    "savedRevisions": 1327,
+    "savedRevisions": 1367,
     "gamesTracked": 47,
-    "completedCompared": 1,
-    "originalBrier": 0.221097,
-    "latestBrier": 0.221097,
+    "completedCompared": 2,
+    "originalBrier": 0.192318,
+    "latestBrier": 0.187169,
     "originalAccuracy": 1.0,
     "latestAccuracy": 1.0,
-    "originalLogLoss": 0.635275,
-    "latestLogLoss": 0.635275,
-    "brierGain": 0.0,
-    "changedGames": 0,
-    "improvedGames": 0,
+    "originalLogLoss": 0.57673,
+    "latestLogLoss": 0.565984,
+    "brierGain": 0.005149,
+    "changedGames": 1,
+    "improvedGames": 1,
     "worsenedGames": 0,
     "unchangedGames": 1,
-    "qbEvidenceGraded": 0,
-    "qbEvidenceBrierGain": null,
-    "latestWithin24hGames": 0,
-    "firstBrierOn24hCohort": null,
-    "latest24hBrier": null,
-    "recentFinals": 1,
+    "qbEvidenceGraded": 1,
+    "qbEvidenceBrierGain": 0.010298,
+    "latestWithin24hGames": 1,
+    "firstBrierOn24hCohort": 0.163539,
+    "latest24hBrier": 0.153241,
+    "recentFinals": 2,
     "source": "data/forecast-revisions.json",
     "note": "Only original timestamped picks and later forecasts saved before the actual kickoff are scored. Recovered originals retain their original observation time and import provenance. Last recorded does not necessarily mean near kickoff; a separate 24-hour cohort reports true late updates. Ties excluded. No retrospective injury estimates."
   },
   "forecastRevisionResults": [
+    {
+      "gameId": "2026_09_CIN_ATL",
+      "season": 2026,
+      "week": 9,
+      "kickoff": "2026-11-08T14:30:00+00:00",
+      "home": "ATL",
+      "away": "CIN",
+      "homeScore": 17,
+      "awayScore": 34,
+      "outcomeHome": 0,
+      "winner": "CIN",
+      "firstProbability": 0.4044,
+      "lastProbability": 0.39146,
+      "firstRecordedAt": "2026-11-04T20:34:50.252044+00:00",
+      "lastRecordedAt": "2026-11-08T14:22:51.847603+00:00",
+      "firstAgeHours": 89.9,
+      "lastAgeHours": 0.1,
+      "revisionsAfterFirst": 24,
+      "changed": true,
+      "firstCorrect": 1,
+      "lastCorrect": 1,
+      "firstBrier": 0.163539,
+      "lastBrier": 0.153241,
+      "brierGain": 0.010298,
+      "lastPersonnelStatus": "statistical QB — PROVISIONAL",
+      "lastQBEvidence": true,
+      "within24hProbability": 0.39146,
+      "within24hRecordedAt": "2026-11-08T14:22:51.847603+00:00"
+    },
     {
       "gameId": "2026_09_JAX_BAL",
       "season": 2026,
@@ -2134,66 +2113,66 @@
   ],
   "predictionRecord": {
     "schemaVersion": 1,
-    "generatedAt": "2026-11-08T17:29:20.100403+00:00",
+    "generatedAt": "2026-11-08T17:45:35.531917+00:00",
     "status": "timestamped-forward-grading",
     "trackedGames": 47,
     "completed": {
-      "games": 1,
+      "games": 2,
       "original": {
-        "games": 1,
-        "wins": 1,
+        "games": 2,
+        "wins": 2,
         "losses": 0,
         "accuracy": 1.0,
-        "brier": 0.221097,
-        "logLoss": 0.635275
+        "brier": 0.192318,
+        "logLoss": 0.57673
       },
       "latest": {
-        "games": 1,
-        "wins": 1,
+        "games": 2,
+        "wins": 2,
         "losses": 0,
         "accuracy": 1.0,
-        "brier": 0.221097,
-        "logLoss": 0.635275
+        "brier": 0.187169,
+        "logLoss": 0.565984
       }
     },
     "recent10": {
-      "games": 1,
+      "games": 2,
       "original": {
-        "games": 1,
-        "wins": 1,
+        "games": 2,
+        "wins": 2,
         "losses": 0,
         "accuracy": 1.0,
-        "brier": 0.221097,
-        "logLoss": 0.635275
+        "brier": 0.192318,
+        "logLoss": 0.57673
       },
       "latest": {
-        "games": 1,
-        "wins": 1,
+        "games": 2,
+        "wins": 2,
         "losses": 0,
         "accuracy": 1.0,
-        "brier": 0.221097,
-        "logLoss": 0.635275
+        "brier": 0.187169,
+        "logLoss": 0.565984
       }
     },
     "bySeason": [
       {
         "season": 2026,
-        "games": 1,
+        "games": 2,
         "original": {
-          "games": 1,
-          "wins": 1,
+          "games": 2,
+          "wins": 2,
           "losses": 0,
           "accuracy": 1.0,
-          "brier": 0.221097,
-          "logLoss": 0.635275
+          "brier": 0.192318,
+          "logLoss": 0.57673
         },
         "latest": {
-          "games": 1,
-          "wins": 1,
+          "games": 2,
+          "wins": 2,
           "losses": 0,
           "accuracy": 1.0,
-          "brier": 0.221097,
-          "logLoss": 0.635275
+          "brier": 0.187169,
+          "logLoss": 0.565984
         }
       }
     ],
@@ -2201,26 +2180,54 @@
       {
         "season": 2026,
         "week": 9,
-        "games": 1,
+        "games": 2,
         "original": {
-          "games": 1,
-          "wins": 1,
+          "games": 2,
+          "wins": 2,
           "losses": 0,
           "accuracy": 1.0,
-          "brier": 0.221097,
-          "logLoss": 0.635275
+          "brier": 0.192318,
+          "logLoss": 0.57673
         },
         "latest": {
-          "games": 1,
-          "wins": 1,
+          "games": 2,
+          "wins": 2,
           "losses": 0,
           "accuracy": 1.0,
-          "brier": 0.221097,
-          "logLoss": 0.635275
+          "brier": 0.187169,
+          "logLoss": 0.565984
         }
       }
     ],
     "latestResults": [
+      {
+        "gameId": "2026_09_CIN_ATL",
+        "season": 2026,
+        "week": 9,
+        "kickoff": "2026-11-08T14:30:00+00:00",
+        "home": "ATL",
+        "away": "CIN",
+        "homeScore": 17,
+        "awayScore": 34,
+        "winner": "CIN",
+        "outcomeHome": 0,
+        "originalPick": "CIN",
+        "originalWinProbability": 0.5956,
+        "originalHomeProbability": 0.4044,
+        "originalCorrect": true,
+        "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
+        "latestPick": "CIN",
+        "latestWinProbability": 0.60854,
+        "latestHomeProbability": 0.39146,
+        "latestCorrect": true,
+        "latestRecordedAt": "2026-11-08T14:22:51.847603+00:00",
+        "latestHoursBeforeKickoff": 0.1,
+        "changed": true,
+        "revisionCount": 24,
+        "hadQBReport": true,
+        "latestPersonnelStatus": "statistical QB — PROVISIONAL",
+        "improvementBrier": 0.010298
+      },
       {
         "gameId": "2026_09_JAX_BAL",
         "season": 2026,
@@ -2261,8 +2268,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "NO",
         "latestProbability": 0.53392,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_09_DAL_IND",
@@ -2274,8 +2281,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "DAL",
         "latestProbability": 0.52692,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_09_DEN_CAR",
@@ -2287,8 +2294,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "DEN",
         "latestProbability": 0.65921,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_09_DET_MIA",
@@ -2300,8 +2307,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "DET",
         "latestProbability": 0.61263,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_09_LA_WAS",
@@ -2313,8 +2320,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "LA",
         "latestProbability": 0.55916,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_09_NYG_PHI",
@@ -2326,8 +2333,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "PHI",
         "latestProbability": 0.5746,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_09_NYJ_KC",
@@ -2339,8 +2346,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "KC",
         "latestProbability": 0.76459,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_09_HOU_LAC",
@@ -2352,8 +2359,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "HOU",
         "latestProbability": 0.5454,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_09_LV_SF",
@@ -2365,8 +2372,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "SF",
         "latestProbability": 0.76193,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_09_ARI_SEA",
@@ -2378,8 +2385,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "SEA",
         "latestProbability": 0.77077,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_09_GB_NE",
@@ -2391,8 +2398,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "NE",
         "latestProbability": 0.64252,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_09_TB_CHI",
@@ -2404,8 +2411,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "CHI",
         "latestProbability": 0.6892,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_09_BUF_MIN",
@@ -2417,8 +2424,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "MIN",
         "latestProbability": 0.5167,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_10_WAS_NYG",
@@ -2430,8 +2437,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "NYG",
         "latestProbability": 0.57159,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_10_NE_DET",
@@ -2443,8 +2450,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "NE",
         "latestProbability": 0.5023,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_10_BUF_NYJ",
@@ -2456,8 +2463,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "BUF",
         "latestProbability": 0.74524,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_10_CAR_NO",
@@ -2469,8 +2476,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "NO",
         "latestProbability": 0.5523,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_10_HOU_CLE",
@@ -2482,8 +2489,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "HOU",
         "latestProbability": 0.5113,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_10_JAX_TEN",
@@ -2495,8 +2502,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "JAX",
         "latestProbability": 0.75538,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_10_KC_ATL",
@@ -2507,9 +2514,9 @@
         "originalProbability": 0.53002,
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "KC",
-        "latestProbability": 0.53797,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestProbability": 0.55901,
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_10_MIA_IND",
@@ -2521,8 +2528,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "IND",
         "latestProbability": 0.57261,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_10_MIN_GB",
@@ -2534,8 +2541,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "GB",
         "latestProbability": 0.51111,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_10_LA_ARI",
@@ -2547,8 +2554,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "LA",
         "latestProbability": 0.6316,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_10_SEA_LV",
@@ -2560,8 +2567,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "SEA",
         "latestProbability": 0.63717,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_10_SF_DAL",
@@ -2573,8 +2580,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "SF",
         "latestProbability": 0.59,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_10_PIT_CIN",
@@ -2585,9 +2592,9 @@
         "originalProbability": 0.5448,
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "CIN",
-        "latestProbability": 0.55927,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestProbability": 0.57834,
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_10_LAC_BAL",
@@ -2599,8 +2606,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "BAL",
         "latestProbability": 0.63986,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_11_IND_HOU",
@@ -2612,8 +2619,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "HOU",
         "latestProbability": 0.70051,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_11_ARI_KC",
@@ -2625,8 +2632,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "KC",
         "latestProbability": 0.7322,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_11_BAL_CAR",
@@ -2638,8 +2645,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "CAR",
         "latestProbability": 0.52818,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_11_JAX_NYG",
@@ -2651,8 +2658,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "JAX",
         "latestProbability": 0.62392,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_11_MIA_BUF",
@@ -2664,8 +2671,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "BUF",
         "latestProbability": 0.81307,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_11_NO_CHI",
@@ -2677,8 +2684,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "CHI",
         "latestProbability": 0.75153,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_11_TB_DET",
@@ -2690,8 +2697,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "DET",
         "latestProbability": 0.68706,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_11_TEN_DAL",
@@ -2703,8 +2710,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "DAL",
         "latestProbability": 0.72585,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_11_NYJ_LAC",
@@ -2716,8 +2723,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "LAC",
         "latestProbability": 0.62969,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_11_LV_DEN",
@@ -2729,8 +2736,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "DEN",
         "latestProbability": 0.77437,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_11_PIT_PHI",
@@ -2742,8 +2749,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "PIT",
         "latestProbability": 0.5433,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_11_MIN_SF",
@@ -2755,8 +2762,8 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "SF",
         "latestProbability": 0.50756,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 32
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 33
       },
       {
         "gameId": "2026_11_CIN_WAS",
@@ -2767,9 +2774,9 @@
         "originalProbability": 0.52844,
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "CIN",
-        "latestProbability": 0.54101,
-        "latestRecordedAt": "2026-11-08T17:29:20.100403+00:00",
-        "revisions": 8
+        "latestProbability": 0.56022,
+        "latestRecordedAt": "2026-11-08T17:45:35.531917+00:00",
+        "revisions": 9
       },
       {
         "gameId": "2026_12_GB_LA",
@@ -2838,22 +2845,8 @@
       }
     ],
     "upcomingCount": 45,
-    "awaitingFinal": [
-      {
-        "gameId": "2026_09_CIN_ATL",
-        "kickoff": "2026-11-08T14:30:00+00:00",
-        "home": "ATL",
-        "away": "CIN",
-        "originalPick": "CIN",
-        "originalProbability": 0.5956,
-        "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
-        "latestPick": "CIN",
-        "latestProbability": 0.60854,
-        "latestRecordedAt": "2026-11-08T14:22:51.847603+00:00",
-        "revisions": 24
-      }
-    ],
-    "awaitingFinalCount": 1,
+    "awaitingFinal": [],
+    "awaitingFinalCount": 0,
     "smallSample": true,
     "note": "These are real timestamped forward predictions, NOT historical backtests. Every game counts once, irrespective of saved revisions. Original picks never change. Latest means the last actually recorded pre-kickoff pick, not necessarily a game-day estimate. Only official final scores available in nflverse schedules are graded; tied, unplayed, and unverified matches are excluded. Accuracy is favourite-pick win rate. Brier and log loss measure probability quality, and lower is better. Sample sizes below 30 are preliminary."
   },
@@ -2896,17 +2889,17 @@
   "personnelModelStatus": "EXPERIMENTAL — reported injury/QB scenario assumptions, no validated active player coefficient",
   "forwardPredictions": 47,
   "forwardPerformance": {
-    "count": 1,
+    "count": 2,
     "accuracy": 1.0,
-    "brier": 0.2211,
-    "logLoss": 0.6353,
+    "brier": 0.1923,
+    "logLoss": 0.5767,
     "baselineBrier": 0.25,
     "calibration": [
       {
         "label": "40–60%",
-        "pred": 47.0,
+        "pred": 43.7,
         "actual": 0,
-        "count": 1
+        "count": 2
       }
     ],
     "recent": []
