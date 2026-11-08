@@ -207,11 +207,11 @@ function renderGames(){
   var watchers=participantCounts(chosen).players;
   var hasBall=chosen.state==="in"&&chosen.position!==null;
   var spots=Array.from({length:11},function(_,i){return '<span class="yard-grid-mark" style="left:'+i*10+'%">'+(i===0||i===10?"G":i<=5?i*10:(10-i)*10)+'</span>';}).join("");
-  var field= '<div class="field-wrap"><div class="field-stadium"><div class="field-surface">'+
+  var field= '<div class="field-wrap"><div class="field-stadium">'+
      '<div class="endzone endzone-away">'+teamMark(chosen.away,"large")+'<b>'+esc(chosen.away)+'</b></div>'+
      '<div class="playing-field">'+spots+(hasBall?'<div class="ball-marker" style="left:'+chosen.position+'%" title="'+esc(chosen.downDistance||"Reported field position")+'"><span>🏈</span></div>':'<div class="no-ball">'+(chosen.state==="pre"?"AWAITING KICKOFF":chosen.state==="post"?"FINAL":"BALL POSITION NOT REPORTED")+'</div>')+'</div>'+
      '<div class="endzone endzone-home">'+teamMark(chosen.home,"large")+'<b>'+esc(chosen.home)+'</b></div>'+
-   '</div></div></div>';
+   '</div></div>';
   $("gameDetails").innerHTML='<div class="field-details-head"><div class="field-matchup">'+
      teamMark(chosen.away,"large")+' <b>'+esc(chosen.away)+'</b> <span>'+fmtNFL(chosen.awayScore)+'</span>'+
      '<span class="field-vs">—</span>'+
