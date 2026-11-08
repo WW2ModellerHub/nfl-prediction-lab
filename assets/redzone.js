@@ -157,7 +157,7 @@ function participantCounts(game){
   ["mine","theirs"].forEach(function(side){
     var on=Core.lineup(state.pair[side],state.players,false).filter(function(p){return p.team===game.away||p.team===game.home;});
     count[side]=on.length;
-    on.forEach(function(p){players.push({side:side,name:p.name,team:p.team});});
+    on.forEach(function(p){players.push({side:side,name:p.name,team:p.team,points:p.points,position:p.position,id:p.id});});
   });
   return {count:count,players:players};
 }
@@ -193,15 +193,20 @@ function renderGames(){
     state.selectedGame=relevant.id;
   }
   var preservedScroll=$("gameStrip").scrollLeft;
-  $("gameStrip").innerHTML=games.map(function(g){
+  var focusedId=document.activeElement&&document.activeElement.closest&&document.activeElement.closest("#gameStrip")?state.selectedGame:null;
+  var nextGameMarkup=games.map(function(g){
     var active=state.selectedGame===g.id,counts=participantCounts(g).count;
     return '<button type="button" class="game-tab '+(active?"selected ":"")+(g.state==="in"?"playing":"")+
-      '" data-game="'+esc(g.id)+'" role="tab" aria-selected="'+String(active)+'">'+
+      '" data-game="'+esc(g.id)+'" role="tab" aria-selected="'+String(active)+'" aria-label="'+esc(g.away+' at '+g.home+', '+(g.state==="in"?"live":g.state==="post"?"final":"upcoming"))+'">'+
       '<div class="game-tab-top"><span class="game-tab-status">'+(g.state==="in"?"● LIVE":g.state==="post"?"FINAL":gameStart(g))+'</span>'+
-      ((counts.mine+counts.theirs)?'<span class="fantasy-watch-count">◉ '+(counts.mine+counts.theirs)+'</span>':"")+'</div>'+
+      ((counts.mine+counts.theirs)?'<span class="fantasy-watch-count">'+(counts.mine?'<span class="count-mine">●'+counts.mine+'</span>':"")+(counts.theirs?'<span class="count-theirs">●'+counts.theirs+'</span>':"")+'</span>':"")+'</div>'+
       '<div class="game-tab-score"><span>'+teamMark(g.away,"tiny")+' '+esc(g.away)+'</span><b>'+fmtNFL(g.awayScore)+'</b></div>'+
       '<div class="game-tab-score"><span>'+teamMark(g.home,"tiny")+' '+esc(g.home)+'</span><b>'+fmtNFL(g.homeScore)+'</b></div></button>';
   }).join("");
+  if($("gameStrip").innerHTML!==nextGameMarkup){
+    $("gameStrip").innerHTML=nextGameMarkup;
+    if(focusedId){var activeButton=$("gameStrip").querySelector(".game-tab.selected");if(activeButton)activeButton.focus({preventScroll:true});}
+  }
   $("gameStrip").scrollLeft=preservedScroll;
   var chosen=games.find(function(g){return g.id===state.selectedGame;});
   var watchers=participantCounts(chosen).players;
@@ -209,7 +214,7 @@ function renderGames(){
   var spots=Array.from({length:11},function(_,i){return '<span class="yard-grid-mark" style="left:'+i*10+'%">'+(i===0||i===10?"G":i<=5?i*10:(10-i)*10)+'</span>';}).join("");
   var field= '<div class="field-wrap"><div class="field-stadium">'+
      '<div class="endzone endzone-away">'+teamMark(chosen.away,"large")+'<b>'+esc(chosen.away)+'</b></div>'+
-     '<div class="playing-field">'+spots+(hasBall?'<div class="ball-marker" style="left:'+chosen.position+'%" title="'+esc(chosen.downDistance||"Reported field position")+'"><span>🏈</span></div>':'<div class="no-ball">'+(chosen.state==="pre"?"AWAITING KICKOFF":chosen.state==="post"?"FINAL":"BALL POSITION NOT REPORTED")+'</div>')+'</div>'+
+     '<div class="playing-field">'+spots+(hasBall?'<div class="ball-marker" style="left:'+chosen.position+'%" title="'+esc(chosen.downDistance||"Reported field position")+'"><span>🏈</span></div>':'<div class="no-ball">'+(chosen.state==="pre"?"AWAITING KICKOFF":chosen.state==="post"?"FINAL":"BALL POSITION NOT REPORTED")+'</div>')+(chosen.state==="in"&&chosen.possession?'<div class="field-possess '+(chosen.possession===chosen.away?"arrow-right":"arrow-left")+'">'+esc(chosen.possession)+' POSSESSION '+(chosen.possession===chosen.away?"→":"←")+'</div>':"")+'</div>'+
      '<div class="endzone endzone-home">'+teamMark(chosen.home,"large")+'<b>'+esc(chosen.home)+'</b></div>'+
    '</div></div>';
   $("gameDetails").innerHTML='<div class="field-details-head"><div class="field-matchup">'+
@@ -218,9 +223,9 @@ function renderGames(){
      '<span>'+fmtNFL(chosen.homeScore)+'</span> <b>'+esc(chosen.home)+'</b> '+teamMark(chosen.home,"large")+'</div>'+
      '<div class="field-state">'+(chosen.state==="in"?'<span class="live-ring">● LIVE</span>':"")+esc(gameState(chosen))+'</div></div>'+
      field+
-     '<div class="field-meta"><span>'+esc(chosen.state==="in"?(chosen.downDistance||"Down and distance unavailable"):"Game not currently in play")+'</span>'+
+     '<div class="field-meta"><span class="down-badge">'+esc(chosen.state==="in"?(chosen.downDistance||"Down and distance unavailable"):"Game not currently in play")+'</span>'+
      '<span>'+(chosen.state==="in"&&chosen.possession?"POSSESSION · "+esc(chosen.possession):"NO LIVE POSSESSION")+'</span></div>'+
-     '<div class="field-watch"><b>FANTASY WATCH</b> '+(watchers.length?watchers.map(function(p){return '<span class="watch-chip '+(p.side==="mine"?"own":"rival")+'">'+esc(p.name)+'</span>';}).join(""):'<span class="watch-none">Neither lineup has a starter in this game</span>')+'</div>'+
+     '<div class="field-watch"><b>FANTASY WATCH</b> '+(watchers.length?watchers.map(function(p){return '<span class="watch-chip '+(p.side==="mine"?"own":"rival")+'"><span class="watch-flag">'+(p.side==="mine"?"YOU":"OPP")+'</span>'+esc(p.name)+(p.points!==null&&p.points!==undefined?'<strong>'+fmt(p.points)+'</strong>':"")+'</span>';}).join(""):'<span class="watch-none">Neither lineup has a starter in this game</span>')+'</div>'+
      (chosen.state==="in"&&chosen.lastPlay?'<div class="last-play">LAST PLAY · '+esc(chosen.lastPlay)+'</div>':'')+
      '<p class="field-source">'+(hasBall?"Ball placement from "+esc(chosen.positionSource)+" (reported, not a live animation).":"No precise ball location has been reported for this game.")+'</p>';
 }
