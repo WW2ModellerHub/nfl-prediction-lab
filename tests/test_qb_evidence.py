@@ -3,7 +3,7 @@ import io,json,sys,unittest
 from datetime import datetime,timezone,timedelta
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"scripts"))
-from qb_evidence import (parse_depth,parse_injuries,parse_roster,gather,attach,TEAM_IDS,BASE)
+from qb_evidence import (parse_depth,parse_injuries,parse_roster,gather,attach,TEAM_IDS,BASE,depth_structure)
 
 NOW=datetime(2026,11,6,17,tzinfo=timezone.utc)
 def depth(name="Backup B",person="410"):
@@ -41,6 +41,13 @@ class ESPNSourceTests(unittest.TestCase):
         self.assertEqual(TEAM_IDS["WAS"],28)
         self.assertEqual(TEAM_IDS["BAL"],33)
         self.assertEqual(TEAM_IDS["JAX"],30)
+
+    def test_depth_schema_diagnostic_never_serialises_complete_roster(self):
+        d=depth(name="Private Name")
+        diag=depth_structure(d)
+        self.assertEqual(diag["rootType"],"list")
+        self.assertTrue(diag["qbCandidates"])
+        self.assertNotIn("Private Name",json.dumps(diag))
 
     def test_read_rank_one_from_espn_depthchart(self):
         x=parse_depth(depth(),NOW)

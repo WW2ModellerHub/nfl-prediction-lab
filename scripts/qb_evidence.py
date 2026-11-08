@@ -39,6 +39,36 @@ def value(v):
 def clean_name(v):
     return "".join(c for c in str(v or "").casefold() if c.isalnum())
 
+def depth_structure(payload):
+    """Small schema-only diagnostic; never archive third-party response bodies."""
+    root=payload.get("depthchart",payload.get("depthCharts")) if isinstance(payload,dict) else None
+    summary={"rootType":type(root).__name__,"examples":[],"qbCandidates":[]}
+    stack=[("depthchart",root,0)]
+    count=0
+    while stack and count<4000 and len(summary["qbCandidates"])<12:
+        path,node,level=stack.pop()
+        count+=1
+        if isinstance(node,dict):
+            keys=list(node)
+            if level<=2 and len(summary["examples"])<12:
+                summary["examples"].append({"path":path,"keys":keys[:14]})
+            label=str(value(node.get("position") or node.get("abbreviation") or
+                            node.get("name") or node.get("label"))).casefold()
+            if label in ("qb","quarterback") or "quarterback" in (k.casefold() for k in keys):
+                summary["qbCandidates"].append({
+                    "path":path,"keys":keys[:14],"position":label[:30],
+                    "rankKeys":[k for k in keys if "rank" in k.lower() or "depth" in k.lower()]})
+            if level<12:
+                for k,v in list(node.items())[:25]:
+                    if isinstance(v,(list,dict)):
+                        stack.append((path+"."+str(k),v,level+1))
+        elif isinstance(node,list) and level<12:
+            for i,v in enumerate(node[:25]):
+                if isinstance(v,(list,dict)):
+                    stack.append((path+"["+str(i)+"]",v,level+1))
+    summary["nodesVisited"]=count
+    return summary
+
 def parse_depth(payload,observed_at):
     """Accept legacy depthCharts and 2026 depthchart shapes; require explicit QB1.
 
@@ -170,6 +200,7 @@ def _load_team(team,now,opener=None):
             payload=fetch_json(url,opener)
             result["responseKeys"][kind]=sorted(payload)[:18] if isinstance(payload,dict) else [type(payload).__name__]
             if kind=="depth":
+                result["depthShape"]=depth_structure(payload)
                 result["depth"]=parse_depth(payload,now)
                 result["depthStatus"]="loaded"
             else:
@@ -208,6 +239,8 @@ def gather(games,now=None,opener=None,max_workers=5):
        "qbRostersLoaded":rosters,"rosterQBCandidates":sum(len(x.get("rosterQBs") or []) for x in teams.values()),
        "errors":{t:x["errors"] for t,x in teams.items() if x.get("errors")},
        "responseKeys":{t:x["responseKeys"] for t,x in teams.items() if x.get("responseKeys")},
+       "depthShapeSamples":{t:teams[t]["depthShape"] for t in sorted(teams)[:3]
+                            if teams[t].get("depthShape")},
        "notes":"The documented ESPN team injuries endpoint returned no usable injury rows on 6 Nov 2026, so this collector instead queries team QB rosters. Media injury statuses come from the separately verified ESPN league-wide injury feed. Roster membership is NOT a starter projection. ESPN depth rank 1 is projected only; failure stays visible."}
     return teams,metadata
 
