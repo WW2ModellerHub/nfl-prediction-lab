@@ -141,6 +141,8 @@ window.location.hash='#tab=overview';
 window.__SMOKE__.syncRoute();
 assert.match(el('appContent').innerHTML,/EVIDENCE HOLD/);
 
+window.location.hash='#game=test_fixture';
+window.__SMOKE__.syncRoute();
 assert.match(el('appContent').innerHTML,/LAYER AUDIT PENDING/,'Missing layer data cannot be invented');
 assert.match(el('appContent').innerHTML,/53\.0%/,'Missing attribution does not hide the published probability');
 
