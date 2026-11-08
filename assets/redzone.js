@@ -111,8 +111,8 @@ function renderZones(){
     function line(group,who){
       var chunks=[];
       if(group.offense.length)chunks.push('<strong>'+esc(group.offense.map(function(p){return p.name;}).join(" · "))+'</strong>');
-      if(group.kickers.length)chunks.push('<span class="rz-secondary">FG opportunity: '+esc(group.kickers.map(function(p){return p.name;}).join(" · "))+'</span>');
-      if(group.defense.length)chunks.push('<span class="rz-secondary">Defence facing attack: '+esc(group.defense.map(function(p){return p.name;}).join(" · "))+'</span>');
+      if(group.kickers.length)chunks.push('<span class="rz-secondary">FG watch: '+esc(group.kickers.map(function(p){return p.name;}).join(" · "))+'</span>');
+      if(group.defense.length)chunks.push('<span class="rz-secondary">Defence: '+esc(group.defense.map(function(p){return p.name;}).join(" · "))+'</span>');
       if(!chunks.length)return "";
       return '<div class="rz-side-line '+(who==="mine"?"rz-own":"rz-rival")+'"><span class="rz-side-label">'+(who==="mine"?"YOU":"OPP")+'</span><div>'+chunks.join("")+'</div></div>';
     }
@@ -121,7 +121,7 @@ function renderZones(){
     var dist=accurate?(game.possession===game.away?100-game.position:game.position):null;
     var progress=dist===null?null:Math.min(100,Math.max(0,(20-dist)/20*100));
     var marker=progress===null?'':'<span class="field-ball exact" style="left:'+progress.toFixed(1)+'%" aria-hidden="true">◆</span>';
-    var readable=progress===null?"Offence inside the 20; exact yard line unavailable":"Ball confirmed "+dist.toFixed(0)+" yards from goal";
+    var readable=progress===null?"Inside 20 · exact spot unknown":"Ball confirmed "+dist.toFixed(0)+" yards from goal";
     cards.push('<article class="redzone-card '+(mine.offense.length?"friendly":"opponent")+'">'+
       '<div class="rz-top"><span class="rz-pill">'+(mine.offense.length?"▲ YOUR SCORING CHANCE":"● SCORING OPPORTUNITY")+'</span>'+
       '<span class="rz-clock">Q'+esc(z.period||"–")+' · '+esc(z.clock||"Live")+'</span></div>'+
@@ -131,8 +131,8 @@ function renderZones(){
       '<div class="mini-field '+(accurate?"known":"unlocated")+'" role="img" aria-label="'+esc(readable)+'">'+
         '<div class="field-stripes"></div><span class="field-twenty">20</span><span class="field-ten">10</span><span class="field-goal">GOAL</span>'+marker+'</div>'+
       line(mine,"mine")+line(opp,"theirs")+
-      (progress===null?'<div class="rz-unknown">Approximate area only · awaiting confirmed ball spot</div>':"")+
-      '<div class="rz-foot">'+esc(z.downDistance||"Confirmed team Red Zone possession")+
+      (progress===null?'<div class="rz-unknown">Exact yard line unknown</div>':"")+
+      '<div class="rz-foot">'+esc(z.downDistance||"Inside the 20")+
       ' <button type="button" class="rz-open-game" data-open-game="'+esc(z.gameId)+'">View game →</button></div></article>');
   });
   $("rzCount").textContent=String(cards.length);
@@ -248,7 +248,7 @@ function gameTileChance(game){
  if(!prior||!window.NFLGameLiveModel)return '';
  var result=window.NFLGameLiveModel.estimate(Object.assign({},game,{fetchedAt:state.lastEspnTime}),prior.homeProbability);
  if(result.status!=='experimental')return '';
- return '<div class="game-tab-live-win">◉ '+esc(result.favorite)+' '+(result.winProbability*100).toFixed(1)+'% <small>LAB LIVE · EXPERIMENTAL</small></div>';
+ return '<div class="game-tab-live-win">◉ '+esc(result.favorite)+' '+(result.winProbability*100).toFixed(1)+'% <small>LIVE ESTIMATE</small></div>';
 }
 function renderGames(){
   var all=listedGames(),games=gameListForFilter(),live=all.filter(function(g){return g.state==="in";});
@@ -292,7 +292,7 @@ function renderGames(){
   var redzoneShade=zoneKnown&&!hasBall?'<div class="field-redzone-range '+(zoneAtHome?"home-target":"away-target")+'" aria-label="Confirmed inside the 20, exact ball position unavailable"><span>INSIDE 20</span></div>':'';
   var field= '<div class="field-wrap"><div class="field-stadium">'+
      '<div class="endzone endzone-away">'+teamMark(chosen.away,"large")+'<b>'+esc(chosen.away)+'</b></div>'+
-     '<div class="playing-field">'+spots+redzoneShade+(hasBall?'<div class="ball-marker" style="left:'+chosen.position+'%" title="'+esc(chosen.downDistance||"Reported field position")+'"><span>🏈</span></div>':'<div class="no-ball">'+(chosen.state==="pre"?"AWAITING KICKOFF":chosen.state==="post"?"FINAL":"INSIDE THE 20 · POSITION PENDING")+'</div>')+(chosen.state==="in"&&chosen.possession?'<div class="field-possess '+(chosen.possession===chosen.away?"arrow-right":"arrow-left")+'">'+esc(chosen.possession)+' POSSESSION '+(chosen.possession===chosen.away?"→":"←")+'</div>':"")+'</div>'+
+     '<div class="playing-field">'+spots+redzoneShade+(hasBall?'<div class="ball-marker" style="left:'+chosen.position+'%" title="'+esc(chosen.downDistance||"Reported field position")+'"><span>🏈</span></div>':'<div class="no-ball">'+(chosen.state==="pre"?"AWAITING KICKOFF":chosen.state==="post"?"FINAL":"BALL SPOT UNKNOWN")+'</div>')+(chosen.state==="in"&&chosen.possession?'<div class="field-possess '+(chosen.possession===chosen.away?"arrow-right":"arrow-left")+'">'+esc(chosen.possession)+' POSSESSION '+(chosen.possession===chosen.away?"→":"←")+'</div>':"")+'</div>'+
      '<div class="endzone endzone-home">'+teamMark(chosen.home,"large")+'<b>'+esc(chosen.home)+'</b></div>'+
    '</div></div>';
   $("gameDetails").innerHTML='<div class="field-details-head"><div class="field-matchup">'+
@@ -306,7 +306,7 @@ function renderGames(){
      '<div class="redzone-nfl-live-forecast">'+liveNFLWinPanel(chosen)+'</div>'+
      '<div class="field-watch"><b>FANTASY WATCH</b> '+(watchers.length?watchers.map(function(p){return '<span class="watch-chip '+(p.side==="mine"?"own":"rival")+'"><span class="watch-flag">'+(p.side==="mine"?"YOU":"OPP")+'</span>'+esc(p.name)+(p.points!==null&&p.points!==undefined?'<strong>'+fmt(p.points)+'</strong>':"")+'</span>';}).join(""):'<span class="watch-none">Neither lineup has a starter in this game</span>')+'</div>'+
      (chosen.state==="in"&&chosen.lastPlay?'<div class="last-play">LAST PLAY · '+esc(chosen.lastPlay)+'</div>':'')+
-     '<p class="field-source">'+(hasBall?"Ball placed from "+esc(chosen.positionSource)+" (reported, not a live animation).":zoneKnown?"ESPN confirms a Red Zone possession; awaiting an exact yard line. Shaded area only.":"No precise ball location has been reported for this game.")+'</p>';
+     '<p class="field-source">'+(hasBall?"Position from "+esc(chosen.positionSource)+".":zoneKnown?"ESPN confirms a Red Zone possession; awaiting an exact yard line. Shaded area only.":"Ball position unavailable.")+'</p>';
 }
 function fmtNFL(n){return n===null||n===undefined?"–":String(n);}
 function projLookup(id){
@@ -324,7 +324,7 @@ function renderProjections(){
   if(!state.projections){
     at.textContent=state.projectionError?"Projection feed unavailable":"Connecting to Sleeper";
     unavailable(state.projectionError?
-      "Sleeper player projections could not be retrieved. Current fantasy scores remain live; no win probability is fabricated.":
+      "Sleeper projections unavailable; live scores still work.":
       "Loading Sleeper's projected player points…");
     return;
   }
@@ -355,12 +355,12 @@ function renderProjections(){
   $("myForecastBar").style.width=share.toFixed(2)+"%";
   $("theirForecastBar").style.width=(100-share).toFixed(2)+"%";
   var gap=Math.abs(a-b).toFixed(1);
-  status.textContent=(forecast.approximate?"PROVISIONAL · ":"MODEL ESTIMATE · ")+
+  status.textContent=(forecast.approximate?"PARTIAL · ":"")+
     (a>b?"You projected ahead":a<b?"Opponent projected ahead":"Teams projected level")+
     " by "+gap+" points · based on "+
     forecast.mine.covered+"/"+forecast.mine.required+" and "+
     forecast.theirs.covered+"/"+forecast.theirs.required+" starters"+
-    (forecast.approximate?" · some projections/game times incomplete":"");
+    (forecast.approximate?" · incomplete data":"");
 }
 function getProjections(){
   if(!state.week||state.projectionBusy)return Promise.resolve();

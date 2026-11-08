@@ -6,23 +6,23 @@ function pct(p){return p==null?"—":(100*p).toFixed(1)+"%";}
 function delta(p){return (p>=0?"+":"−")+(Math.abs(p)*100).toFixed(1)+" pp";}
 function result(g,live){return root.NFLGameLiveModel.estimate(live, g&&g.homeProbability);}
 function render(g,live,reference,expanded){
- if(!g)return '<div class="livewin-empty">No saved pregame forecast for this fixture.</div>';
+ if(!g)return '<div class="livewin-empty">No archived pregame pick.</div>';
  var r=result(g,live),home=h(g.home),away=h(g.away),prior=pct(g.homeProbability);
  if(r.status!=="experimental"){
-   var desc=r.status==="final"?"Game finished. Final result is not a prediction.":
-     r.status==="overtime"?"Overtime — no calibrated live forecast available.":
-     r.reason||"Waiting for an in-play score and game clock from ESPN.";
-   return '<div class="livewin-unavailable"><span>◉ NFL IN-PLAY FORECAST</span><b>'+h(desc)+'</b>'+
-     '<small>Archived pregame '+home+' win: '+prior+'. We do not invent a live percentage when the data is unavailable.</small></div>';
+   var desc=r.status==="final"?"Final score · live forecast closed.":
+     r.status==="overtime"?"Overtime · estimate unavailable.":
+     r.reason||"Waiting for live score and clock.";
+   return '<div class="livewin-unavailable"><span>◉ IN-PLAY</span><b>'+h(desc)+'</b>'+
+     '<small>Archived pregame '+home+' win: '+prior+'. Live estimate unavailable.</small></div>';
  }
  var favorite=r.favorite, winning=r.winProbability, other= favorite===g.home?g.away:g.home;
- var display='<div class="livewin-top"><span class="livewin-live">● LIVE MODEL · EXPERIMENTAL</span><small>Not validated for betting</small></div>'+
+ var display='<div class="livewin-top"><span class="livewin-live">● IN-PLAY · EXPERIMENTAL</span></div>'+
   '<div class="livewin-main"><div><strong>'+pct(winning)+'</strong><span>'+h(favorite)+' to win</span></div>'+
-  '<div class="livewin-versus">'+h(other)+' '+pct(1-winning)+'<small>Updated from current score & clock</small></div></div>'+
+  '<div class="livewin-versus">'+h(other)+' '+pct(1-winning)+'</div></div>'+
   '<div class="livewin-prob"><span style="width:'+(r.homeProbability*100).toFixed(2)+'%"></span></div>'+
   '<div class="livewin-labels"><small>'+home+' '+pct(r.homeProbability)+'</small><small>'+away+' '+pct(r.awayProbability)+'</small></div>';
  if(expanded){
-  display+='<div class="livewin-attribution"><div class="livewin-subtitle">HOW THE HOME WIN CHANCE MOVED</div>'+
+  display+='<div class="livewin-attribution"><div class="livewin-subtitle">WHAT CHANGED</div>'+
     '<div class="livewin-factor"><span>Saved pregame</span><b>'+prior+'</b></div>'+
     r.layers.slice(1).map(function(row){return '<div class="livewin-factor"><span>'+h(row.name)+'</span><b class="'+(row.delta>=0?"up":"down")+'">'+delta(row.delta)+'</b></div>'}).join('')+
     '<div class="livewin-factor final"><span>Live '+home+' win probability</span><b>'+pct(r.homeProbability)+'</b></div></div>'+
@@ -34,13 +34,13 @@ function render(g,live,reference,expanded){
   if(reference&&(!reference.fetchedAt||Date.now()-reference.fetchedAt<120000)&&
      Number.isFinite(reference.homeProbability)&&reference.homeProbability>=0&&reference.homeProbability<=1)
     display+='<div class="livewin-reference">ESPN reference (last published play): <b>'+pct(reference.homeProbability)+' '+home+'</b>'+
-    '<small>External model, not used in the Lab estimate; could lag the scoreboard.'+
+    '<small>External model · may lag.'+
     (Math.abs(reference.homeProbability-r.homeProbability)>=.15?
-       ' <b>Model disagreement: '+(Math.abs(reference.homeProbability-r.homeProbability)*100).toFixed(1)+' pp — do not treat this as a reliable edge.</b>':'')+
+       ' <b>Model disagreement: '+(Math.abs(reference.homeProbability-r.homeProbability)*100).toFixed(1)+' pp · not a proven edge.</b>':'')+
     '</small></div>';
-  display+='<p class="livewin-disclaimer">Our provisional NFL in-play model uses the archived pregame prediction, scoreboard difference, game clock and approximate possession/field-position values. Assumed scoring-volatility and field-value coefficients have not passed independent historical validation. This is a research forecast, not a betting recommendation.</p>';
+  display+='<p class="livewin-disclaimer">Experimental: archived pregame pick + ESPN score, clock and possession. Not historically validated or suitable for betting.</p>';
  }else{
-   display+='<small class="livewin-mini">Before kickoff: '+prior+' '+home+' · '+(live.period?"Q"+h(live.period)+" "+h(live.clock):"game running")+'</small>';
+   display+='<small class="livewin-mini">Pregame: '+prior+' '+home+' · '+(live.period?"Q"+h(live.period)+" "+h(live.clock):"game running")+'</small>';
  }
  return '<div class="livewin-panel '+(expanded?"livewin-expanded":"livewin-compact")+'">'+display+'</div>';
 }
