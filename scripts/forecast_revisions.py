@@ -44,7 +44,16 @@ def snapshot(g,stamp,kind,origin):
        'appliedLayerDeltas':{item['key']:item['deltaHome']
            for item in (g.get('forecastExplanation') or {}).get('layers',[])
            if item.get('applied')},
-       'layerExplanationStatus':(g.get('forecastExplanation') or {}).get('status','unavailable')}
+       'layerExplanationStatus':(g.get('forecastExplanation') or {}).get('status','unavailable'),
+       'verificationLevel':(g.get('forecastQuality') or {}).get('level','not-collected'),
+       'verificationAt':(g.get('forecastQuality') or {}).get('timestamp'),
+       'verificationIssues':(g.get('forecastQuality') or {}).get('issues',[])[:10],
+       'reportMirrorStatus':(g.get('officialInjuryEvidence') or {}).get('status'),
+       'reportTimestampBasis':{side:
+          ('download-observation' if any(x.get('timestampBasis')=='download-observation'
+              for x in ((g.get('officialInjuryEvidence') or {}).get(side) or {}).get('rows',[]))
+           else 'row-updated' if ((g.get('officialInjuryEvidence') or {}).get(side) or {}).get('rows')
+           else 'unavailable') for side in ('home','away')}}
 
 def _legacy_original(record,now):
     """Existing recorded forecast is reproduced exactly; never re-estimated."""
@@ -58,7 +67,10 @@ def _legacy_original(record,now):
         'model':record.get('model'),'overlayType':record.get('overlayType','none'),
         'personnelStatus':record.get('personnelStatus') or 'not-collected-in-legacy-forecast',
         'personnelHomeDelta':record.get('personnelHomeDelta',0),
-        'personnelEvidence':[], 'provisionalPlayerRules':False}
+        'personnelEvidence':[], 'provisionalPlayerRules':False,
+        'verificationLevel':record.get('verificationLevel','not-collected-in-original'),
+        'verificationAt':record.get('recordedAt') if record.get('verificationLevel') else None,
+        'verificationIssues':record.get('verificationReasons',[])[:10]}
 
 def _evaluate(rows,field):
     if not rows:return {'games':0,'brier':None,'accuracy':None,'logLoss':None}

@@ -1,3 +1,11 @@
+## v3.0.1 — 8 November 2026 — Treat undated weekly report rows as current observations, never hindsight
+
+- The live nflverse mirror returned 2,821 rows with **zero row-level `date_modified`** timestamps. Preserve those source facts as download-time snapshots for genuinely future games; no retrospective availability claims or changed archived original picks.
+- Distinguish `sourceUpdatedAt` (null when unavailable) from `reportDate` (actual first-known prospective observation), with `timestampBasis=download-observation` and a visible source status `snapshot-only`.
+- Tighten the quality gate: distant future matchups without same-week injury reports or two-source QB corroboration remain `review`, never automatically `checked`.
+- Store source verification level, report timestamp provenance and unresolved concerns in each new immutable prediction revision; preserve old original records exactly.
+- Extend tests for download-timestamp integrity, historical/after-kickoff exclusion, unverified future fixtures, archived evidence, and held value alerts.
+
 ## v3.0 — 8 November 2026 — Pregame Verification Engine
 
 - Load **same-week NFL official game-status and practice-report fields from the dated nflverse injuries mirror** on both full and lightweight refreshes. Preserve each row's actual `date_modified` timestamp; undated reports and post-kickoff/future data cannot certify absences. The mirror is explicitly labelled and linked to NFL.com for direct checking.

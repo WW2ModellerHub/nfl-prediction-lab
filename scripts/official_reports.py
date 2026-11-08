@@ -63,8 +63,10 @@ def parse(text,season,now):
             "gameStatus":game_status,
             "practiceStatus":str(r.get("practice_status") or "").strip() or None,
             "injury":str(r.get("report_primary_injury") or r.get("practice_primary_injury") or "").strip(),
-            "reportDate":at.isoformat() if at else None,
-            "timestampBasis":"row-updated" if at else "undated-unusable",
+            "reportDate":(at or now).isoformat(),
+            "sourceUpdatedAt":at.isoformat() if at else None,
+            "observedAt":now.isoformat(),
+            "timestampBasis":"row-updated" if at else "download-observation",
             "source":"NFL weekly report mirrored by nflverse",
             "sourceType":"official-report-derived-mirror",
             "officialNFLDomain":False,
@@ -97,8 +99,10 @@ def fetch(season,now,opener=None):
             raw=response.read(MAX_BYTES+1)
         if len(raw)>MAX_BYTES:raise ValueError("Injury source exceeds size cap")
         records=parse(raw.decode("utf-8-sig"),season,now)
-        meta.update(status="loaded" if records else "empty",records=len(records),
-                    dated=sum(bool(r["reportDate"]) for r in records),
+        meta.update(status=("loaded" if any(r["timestampBasis"]=="row-updated" for r in records)
+                            else "snapshot-only" if records else "empty"),records=len(records),
+                    dated=sum(r["timestampBasis"]=="row-updated" for r in records),
+                    snapshotObserved=sum(r["timestampBasis"]=="download-observation" for r in records),
                     gameStatuses=sum(bool(r["gameStatus"] and r["reportDate"]) for r in records),
                     teamsCovered=len({r["team"] for r in records}))
         return records,meta
@@ -119,6 +123,8 @@ def from_existing(rows,season,now):
             "gsisId":r.get("id"),"position":r.get("position"),
             "gameStatus":s,"practiceStatus":r.get("practiceStatus") or None,
             "injury":r.get("injury"),"reportDate":at.isoformat(),
+            "sourceUpdatedAt":at.isoformat() if r.get("timestampBasis")=="row-updated" else None,
+            "observedAt":now.isoformat(),
             "timestampBasis":r.get("timestampBasis"),
             "source":"NFL weekly report mirrored by nflverse",
             "sourceType":"official-report-derived-mirror",
@@ -126,11 +132,13 @@ def from_existing(rows,season,now):
             "sourceURL":URL.format(season=season),
             "officialReferenceURL":OFFICIAL_PAGE,
             "starterConfirmed":False,"inactiveConfirmed":False})
-    meta={"status":"loaded" if result else "unavailable",
+    meta={"status":("loaded" if any(x["timestampBasis"]=="row-updated" for x in result)
+                         else "snapshot-only" if result else "unavailable"),
           "source":URL.format(season=season),
           "sourceType":"official-report-derived-mirror",
           "officialReference":OFFICIAL_PAGE,"observedAt":now.isoformat(),
           "records":len(result),"dated":sum(x["timestampBasis"]=="row-updated" for x in result),
+          "snapshotObserved":sum(x["timestampBasis"]=="download-observation" for x in result),
           "gameStatuses":sum(bool(x["gameStatus"] and x["timestampBasis"]=="row-updated") for x in result),
           "teamsCovered":len({x["team"] for x in result}),
           "note":"Historical full-refresh injury report rows reused; undated snapshot rows remain non-authoritative."}
@@ -148,7 +156,10 @@ def attach(game,records,meta,now):
         for r in records:
             if r.get("team")!=team or r.get("season")!=game.get("season") or r.get("week")!=game.get("week"):continue
             at=stamp(r.get("reportDate"))
-            if not at or at>cutoff or r.get("timestampBasis")!="row-updated":continue
+            if not at or at>cutoff or r.get("timestampBasis") not in ("row-updated","download-observation"):continue
+            # An undated report can be observed prospectively *now*, but
+            # cannot be asserted to have existed before that download.
+            if r.get("timestampBasis")=="download-observation" and at>now:continue
             # Old record from a different game-week should not qualify even
             # if upstream incorrectly assigned it to the current week.
             if cutoff-at>timedelta(days=11):continue
@@ -165,5 +176,5 @@ def attach(game,records,meta,now):
         "source":meta.get("source"),"sourceType":"official-report-derived-mirror",
         "observedAt":meta.get("observedAt"),"week":game.get("week"),"season":game.get("season"),
         "home":groups["home"],"away":groups["away"],
-        "notes":"Official NFL report fields mirrored by nflverse, not directly downloaded from NFL.com. An unlisted player is UNKNOWN, not available; practice DNP is not an OUT designation. Not a starter or final inactive confirmation."}
+        "notes":"NFL weekly report fields mirrored by nflverse. If original date_modified is absent, rows are prospective observations at DOWNLOAD time only, never retrospectively backdated. An unlisted player is UNKNOWN; practice DNP is not an OUT designation. Not a confirmed starter or inactive list."}
     return game

@@ -6,7 +6,7 @@ const assert=require('node:assert/strict');
 const source=fs.readFileSync(path.join(__dirname,'..','assets','app.js'),'utf8');
 const marker="window.addEventListener('DOMContentLoaded',start);";
 assert(source.includes(marker),'Dashboard startup signature changed');
-const code=source.replace(marker,'window.__SMOKE__={setData:d=>{store.data=d},handleClick,openGamePage,syncRoute,render,openGame};'+marker);
+const code=source.replace(marker,'window.__SMOKE__={setData:d=>{store.data=d},setOdds:d=>{store.odds=d},readValue:valueFor,readAlerts:getAlerts,handleClick,openGamePage,syncRoute,render,openGame};'+marker);
 const elements={};
 const el=id=>elements[id]||(elements[id]={innerHTML:'',textContent:'',setAttribute(){},classList:{add(){},remove(){},toggle(){}},close(){},showModal(){this.opened=true}});
 const document={getElementById:el,querySelectorAll:()=>[],querySelector:()=>el('sidebar')};
@@ -137,6 +137,25 @@ assert.match(heldPage,/Franchise QB/);
 assert.match(heldPage,/Third QB/);
 assert.match(heldPage,/NO HIGH-CONFIDENCE OR VALUE ALERT/i);
 assert.match(heldPage,/53\.0%/,'Hold status must not invent a probability change');
+
+window.__SMOKE__.setOdds({test_fixture:{side:'JAX',price:2.5,book:'Manual'}});
+assert.equal(window.__SMOKE__.readValue(evidenceHeld).eligible,false,
+  'Held fixture may show user-entered price but cannot be a qualified value bet');
+assert.equal(window.__SMOKE__.readAlerts().some(x=>x.type==='value'),false,
+  'Unverified predictions must not trigger betting-value alerts');
+window.location.hash='#tab=radar';
+window.__SMOKE__.syncRoute();
+assert.match(el('appContent').innerHTML,/HELD · verify evidence/i,
+  'Manual odds comparison should disclose withheld model EV');
+const clearedFixture={...evidenceHeld,forecastQuality:{
+  ...evidenceHeld.forecastQuality,level:'checked',bettingEligible:true,
+  highConfidenceEligible:true,issues:[]}};
+window.__SMOKE__.setData({nextGames:[clearedFixture],generatedAt:'2026-11-08T11:00:00Z'});
+assert.equal(window.__SMOKE__.readValue(clearedFixture).eligible,true);
+assert.equal(window.__SMOKE__.readAlerts().some(x=>x.type==='value'),true,
+  'Verified price comparison remains available after source checks pass');
+window.__SMOKE__.setOdds({});
+
 window.location.hash='#tab=overview';
 window.__SMOKE__.syncRoute();
 assert.match(el('appContent').innerHTML,/EVIDENCE HOLD/);

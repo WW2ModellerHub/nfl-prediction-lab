@@ -102,16 +102,10 @@ def evaluate(game,now):
         espn_observed=bool(src.get("espnProjectedQB"))
         independent_agree=bool(src.get("sourcesAgree") and nfl_fresh)
         if not independent_agree:
-            if future and hours<=96:
-                needs_review.append(f"{name}: no agreement between two recent projected-QB sources")
-            else:
-                issues.append(f"{name}: only a partial projected-QB picture this far from kickoff")
-        report_ready=bool(report.get("isWeeklyReportAvailable") and official.get("status")=="loaded")
+            needs_review.append(f"{name}: no agreement between two recent projected-QB sources")
+        report_ready=bool(report.get("isWeeklyReportAvailable") and official.get("status") in ("loaded","snapshot-only"))
         if not report_ready:
-            if future and hours<=96:
-                needs_review.append(f"{name}: no timestamped same-week NFL game/practice report found")
-            else:
-                issues.append(f"{name}: injury report not expected or unavailable yet")
+            needs_review.append(f"{name}: no prospective same-week NFL game/practice report observed yet")
         if not projected:
             needs_review.append(f"{name}: starting QB is not projected by a current dated chart")
         if future and hours<=96 and not src.get("nflverseFresh") and not src.get("espnProjectedQB"):
@@ -132,6 +126,9 @@ def evaluate(game,now):
             "officialReportForWeek":report_ready,
             "gameStatusEvidence":bool(qb_rows),
             "officialSourceType":official.get("sourceType","unavailable"),
+            "reportTimestampBasis":(
+                "download-observation" if any(r.get("timestampBasis")=="download-observation" for r in (report.get("rows") or []))
+                else "row-updated" if report_ready else "unavailable"),
             "officialReportQBRows":[{"name":r.get("name"),"status":r.get("gameStatus"),
                                       "practice":r.get("practiceStatus"),"reportDate":r.get("reportDate")}
                                      for r in qb_rows[:10]],
@@ -170,7 +167,7 @@ def evaluate(game,now):
         "qbAutomationAllowed":qb_auto_allowed and not blocking,
         "timestamp":now.isoformat(),
         "kickoff":kick.isoformat(),"hoursToKickoff":round(hours,2),
-        "gameId":game.get("id"),"officialMirrorAvailable":official.get("status")=="loaded",
+        "gameId":game.get("id"),"officialMirrorAvailable":official.get("status") in ("loaded","snapshot-only"),
         "officialSourceType":official.get("sourceType","unavailable"),
         "officialReferenceURL":"https://www.nfl.com/injuries/",
         "teamChecks":team_checks,
@@ -181,4 +178,4 @@ def evaluate(game,now):
         "riskSummary":risk,
         "starterConfirmation":"not-connected",
         "inactiveVerification":"not-connected",
-        "note":"Quality gates do not change the win probability. Official weekly report statuses are mirrored via nflverse with original row timestamps; media observations and depth chart projections are independently cross-checked. A 'checked' forecast does NOT certify a game-day starter, final inactive list, or profitable bet."}
+        "note":"Quality gates do not change the win probability. NFL weekly report statuses are mirrored via nflverse; their original row timestamps are used where available, otherwise current-season reports are observed prospectively at download time only. Neither the download time nor the absence of a report establishes player health. 'Checked' does not certify a starter, inactive list, or profitable bet."}

@@ -65,11 +65,22 @@ class OfficialReportTests(unittest.TestCase):
         txt=COLUMNS+f"2026,9,BAL,01,Future QB,QB,Out,DNP,{after},Knee\n"
         self.assertFalse(parse(txt,2026,NOW))
 
-    def test_undated_report_is_not_usable_as_confirmed_game_status(self):
+    def test_undated_report_is_observed_now_not_earlier_or_invented_publication(self):
         txt=COLUMNS+"2026,9,BAL,01,Undated QB,QB,Out,DNP,,Knee\n"
-        g=game();attach(g,parse(txt,2026,NOW),{'status':'loaded'},NOW)
-        self.assertEqual(g['officialInjuryEvidence']['home']['qbs'],[])
-        self.assertEqual(g['officialInjuryEvidence']['home']['reportCount'],0)
+        records=parse(txt,2026,NOW)
+        self.assertEqual(records[0]['reportDate'],NOW.isoformat())
+        self.assertIsNone(records[0]['sourceUpdatedAt'])
+        self.assertEqual(records[0]['timestampBasis'],'download-observation')
+        game_after=game()
+        attach(game_after,records,{'status':'snapshot-only'},NOW)
+        self.assertEqual(len(game_after['officialInjuryEvidence']['home']['qbs']),1)
+        game_before=game()
+        attach(game_before,records,{'status':'snapshot-only'},NOW-timedelta(hours=1))
+        self.assertFalse(game_before['officialInjuryEvidence']['home']['qbs'])
+        game_started=game()
+        game_started['kickoff']=(NOW-timedelta(minutes=3)).isoformat()
+        attach(game_started,records,{'status':'snapshot-only'},NOW)
+        self.assertFalse(game_started['officialInjuryEvidence']['home']['qbs'])
 
     def test_fetch_counts_and_records_provenance(self):
         class Response:
@@ -145,7 +156,26 @@ class VerificationTests(unittest.TestCase):
         v=evaluate(g,NOW)
         self.assertEqual(v['level'],'review')
         self.assertFalse(v['bettingEligible'])
-        self.assertTrue(any('no timestamped same-week' in x for x in v['reviewReasons']))
+        self.assertTrue(any('no prospective same-week' in x for x in v['reviewReasons']))
+
+    def test_future_week_without_report_is_never_marked_checked(self):
+        g=game()
+        g['kickoff']=(NOW+timedelta(days=10)).isoformat()
+        g['officialInjuryEvidence']={'status':'unavailable','home':{},'away':{}}
+        result=evaluate(g,NOW)
+        self.assertEqual(result['level'],'review')
+        self.assertFalse(result['bettingEligible'])
+
+    def test_snapshot_observed_this_week_is_prospective_evidence(self):
+        g=game()
+        txt=COLUMNS+f"2026,9,BAL,01,Franchise QB,QB,Out,DNP,,Thumb\n"
+        attach(g,parse(txt,2026,NOW),{'status':'snapshot-only'},NOW)
+        q=evaluate(g,NOW)
+        h=q['teamChecks'][0]
+        self.assertTrue(h['officialReportForWeek'])
+        self.assertEqual(h['reportTimestampBasis'],'download-observation')
+        self.assertTrue(h['establishedQBUnavailable'])
+        self.assertFalse(h['starterOfficiallyConfirmed'])
 
     def test_checked_sources_are_not_falsely_confirmed_starters(self):
         g=game()
@@ -200,5 +230,20 @@ class VerificationTests(unittest.TestCase):
         self.assertEqual(g['confidence'],'Unverified')
         self.assertFalse(g['personnelScenario']['affectsPrediction'])
         self.assertFalse(g['qbReplacement']['affectsPrediction'])
+
+    def test_immutable_revision_captures_quality_gate_and_snapshot_time_basis(self):
+        from forecast_revisions import snapshot
+        g=game()
+        txt=COLUMNS+f"2026,9,BAL,001,Franchise QB,QB,Out,DNP,,Thumb\n"
+        attach(g,parse(txt,2026,NOW),{'status':'snapshot-only'},NOW)
+        g['forecastQuality']=evaluate(g,NOW)
+        record=snapshot(g,NOW,'refresh','model-generated')
+        self.assertEqual(record['verificationLevel'],g['forecastQuality']['level'])
+        self.assertEqual(record['reportTimestampBasis']['home'],'download-observation')
+        self.assertEqual(record['reportMirrorStatus'],'snapshot-only')
+        self.assertEqual(record['verificationAt'],NOW.isoformat())
+        self.assertTrue(record['verificationIssues'])
+        self.assertEqual(record['homeProbability'],.47)
+
 
 if __name__=='__main__':unittest.main()
