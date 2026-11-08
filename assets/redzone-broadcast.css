@@ -402,3 +402,30 @@ main{padding:21px 0 40px}
  .filter-title{display:none}
  .game-filterbar button{font-size:9px;padding:6px 9px;min-height:31px}
 }
+
+
+/* v4.4: One Red Zone possession = one card, with both sides' fantasy exposure. */
+.redzone-card .mini-field{margin:7px 0 11px}
+.rz-side-line{display:flex;align-items:flex-start;gap:10px;border-top:1px solid #ffffff1b;padding:10px 0 4px;min-width:0}
+.rz-side-line>div{min-width:0;flex:1;line-height:1.4}
+.rz-side-line strong{font-size:12px;color:#f3fffa}
+.rz-side-line .rz-secondary{font-size:10px;line-height:1.5;color:#b6cad5;margin:3px 0}
+.rz-side-label{display:grid;place-items:center;min-width:40px;background:#255948;color:#c0ffe1;border-radius:5px;padding:4px 5px;font-size:9px;letter-spacing:.05em;font-weight:900}
+.rz-rival .rz-side-label{color:#ffdfbc;background:#633e34}
+.rz-unknown{font-size:9px;color:#9dc5b2;font-weight:700;letter-spacing:.03em;margin-top:9px}
+.mini-field.unlocated{background:linear-gradient(90deg,#285f43ad,#174d37ad),repeating-linear-gradient(90deg,#194d36 0,#194d36 19.9%,#245d42 20%,#245d42 39.9%);border-color:#9cdbaca9}
+.mini-field.unlocated:after{content:"RANGE ONLY";position:absolute;right:42%;top:11px;transform:translateX(50%);font-size:9px;letter-spacing:.13em;font-weight:850;color:#d3f8d5af}
+.mini-field .field-ball.exact{font-size:17px;top:9px;transform:translateX(-50%) rotate(10deg)}
+.rz-foot{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.rz-open-game{margin-left:auto;background:#28493d;border:1px solid #498d6b;color:#c8ffe3;border-radius:6px;padding:6px 9px;font-size:10px;font-weight:800;white-space:nowrap}
+.rz-open-game:hover{background:#2c654f}
+.field-redzone-range{position:absolute;top:0;bottom:0;width:20%;z-index:2;background:repeating-linear-gradient(120deg,#ffda631c 0,#ffda631c 8px,#ffad4a3b 8px,#ffad4a3b 16px);outline:1px solid #f9c57eaa;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.field-redzone-range.home-target{right:0}.field-redzone-range.away-target{left:0}
+.field-redzone-range span{display:block;text-align:center;font-size:10px;letter-spacing:.08em;font-weight:950;color:#ffe3a9;text-shadow:0 2px 6px #000}
+@media(max-width:600px){
+ .rz-side-line{padding:8px 0 3px;gap:8px}
+ .rz-side-line strong{font-size:11px}
+ .rz-side-label{min-width:33px;font-size:8px}
+ .rz-open-game{font-size:9px;padding:5px 7px}
+ .field-redzone-range span{font-size:7px}
+}

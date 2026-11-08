@@ -60,4 +60,31 @@ const final=R.estimateMatchup({mine:{...forecastPair.mine,points:30},
 assert.equal(final.win,1);
 assert.equal(final.mine.final,30);
 
+
+const dakVsAubrey={
+  mine:{starters:["dak"],starters_points:[1.16]},
+  theirs:{starters:["aubrey"],starters_points:[0]}
+};
+const watch=R.zoneParticipants({team:"DAL",opponent:"IND"},dakVsAubrey,{
+  dak:{full_name:"Dak Prescott",position:"QB",team:"DAL"},
+  aubrey:{full_name:"Brandon Aubrey",position:"K",team:"DAL"}
+});
+assert.equal(watch.mine.offense.length,1);
+assert.equal(watch.mine.offense[0].name,"Dak Prescott");
+assert.equal(watch.theirs.offense.length,0);
+assert.equal(watch.theirs.kickers.length,1);
+assert.equal(watch.theirs.kickers[0].name,"Brandon Aubrey");
+assert.equal(R.fieldSpot("Official Timeout at 11:45","DAL","IND"),null);
+assert.equal(R.fieldSpot("2nd & 4 at IND 18","DAL","IND"),82);
+assert.equal(R.fieldSpot("at midfield","DAL","IND"),50);
+const timeoutGame={id:"401",state:"in",away:"DAL",home:"IND",possession:"DAL",position:null};
+const spot=R.summaryFieldSpot(timeoutGame,{drives:{current:{
+ team:{abbreviation:"DAL"},plays:[
+ {end:{text:"IND 18"}},
+ {text:"Official Timeout at 11:45",end:{}}
+ ]}}});
+assert.equal(spot.position,82);
+assert.equal(R.summaryFieldSpot(timeoutGame,{drives:{current:{team:{abbreviation:"IND"},plays:[{end:{text:"IND 5"}}]}}}),null);
+assert.equal(R.summaryFieldSpot(timeoutGame,{drives:{previous:[{plays:[{end:{text:"IND 9"}}]}]}}),null);
+
 console.log("Fantasy Red Zone matchup, scoring delta and possession tests passed.");

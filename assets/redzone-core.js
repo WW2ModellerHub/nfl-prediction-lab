@@ -119,6 +119,59 @@
         isRedZone:state==="in"&&sit.isRedZone===true,lastPlay:sit.lastPlay&&sit.lastPlay.text||""};
     }).filter(Boolean);
   }
+
+  /** Fantasy players in one offensive red-zone possession, grouped by side and exposure. */
+  function zoneParticipants(zone,pair,players){
+    var out={mine:{offense:[],kickers:[],defense:[]},theirs:{offense:[],kickers:[],defense:[]}};
+    ["mine","theirs"].forEach(function(side){
+      lineup(pair&&pair[side],players||{},false).forEach(function(p){
+        if(norm(p.team)===norm(zone.team)){
+          if(p.position==="K")out[side].kickers.push(p);
+          else if(p.position!=="DEF"&&p.position!=="—")out[side].offense.push(p);
+        }else if(norm(p.team)===norm(zone.opponent)&&p.position==="DEF"){
+          out[side].defense.push(p);
+        }
+      });
+    });
+    return out;
+  }
+
+  /** Convert confirmed ESPN yard-line text into a left-to-right football-field coordinate. */
+  function fieldSpot(text,away,home){
+    var raw=String(text||"");
+    if(/\bmidfield\b/i.test(raw))return 50;
+    var matches=raw.match(/(?:\bat\s+|\b)([A-Z]{2,3})\s+([0-9]{1,2})\b/i);
+    if(!matches)return null;
+    var side=norm(matches[1]),yard=Number(matches[2]);
+    if(!Number.isFinite(yard)||yard<0||yard>50)return null;
+    return side===norm(away)?yard:side===norm(home)?100-yard:null;
+  }
+
+  /** Read ESPN current-drive play end location, never using the previous drive. */
+  function summaryFieldSpot(game,summary){
+    if(!game||game.state!=="in"||!game.possession||!summary)return null;
+    var comp=summary.header&&summary.header.competitions&&summary.header.competitions[0]||{};
+    var situation=comp.situation||summary.situation||{};
+    var pos=fieldSpot(situation.downDistanceText,game.away,game.home);
+    if(pos!==null)return {position:pos,source:"ESPN game situation"};
+    var remaining=num(situation.yardsToEndzone);
+    if(remaining!==null&&remaining>=0&&remaining<=100){
+      return {position:game.possession===game.away?100-remaining:remaining,source:"ESPN game situation"};
+    }
+    var current=summary.drives&&summary.drives.current;
+    if(!current)return null;
+    var currentTeam=norm(current.team&&(current.team.abbreviation||current.team.team&&current.team.team.abbreviation)||"");
+    if(currentTeam&&currentTeam!==game.possession)return null;
+    var plays=Array.isArray(current.plays)?current.plays:[];
+    for(var i=plays.length-1;i>=0;i--){
+      var p=plays[i]||{};
+      var end=p.end||{};
+      pos=fieldSpot(end.text||end.displayValue||"",game.away,game.home);
+      if(pos!==null)return {position:pos,source:"ESPN current-drive last confirmed spot"};
+    }
+    return null;
+  }
+
   /** Sleeper's undocumented weekly projections are player-id -> projected raw stats. */
   function projectionFor(stat,settings){
     if(!stat || typeof stat!=="object")return null;
@@ -210,7 +263,7 @@
       reason:approximate?"Partial player projections or NFL game states — lower confidence":null};
   }
 
-  var api={num:num,norm:norm,starterScore:starterScore,benchScore:benchScore,lineup:lineup,findMatchup:findMatchup,snapshot:snapshot,changes:changes,gameData:gameData,listGames:listGames,projectionFor:projectionFor,gameRemaining:gameRemaining,estimateMatchup:estimateMatchup,winChanceFromProjected:winChanceFromProjected};
+  var api={num:num,norm:norm,starterScore:starterScore,benchScore:benchScore,lineup:lineup,findMatchup:findMatchup,snapshot:snapshot,changes:changes,gameData:gameData,listGames:listGames,projectionFor:projectionFor,gameRemaining:gameRemaining,estimateMatchup:estimateMatchup,winChanceFromProjected:winChanceFromProjected,zoneParticipants:zoneParticipants,fieldSpot:fieldSpot,summaryFieldSpot:summaryFieldSpot};
   root.RedZoneCore=api;
   if(typeof module!=="undefined" && module.exports) module.exports=api;
 })(typeof globalThis!=="undefined"?globalThis:this);

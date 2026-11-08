@@ -88,25 +88,38 @@ function renderLineup(side,target){
 function renderZones(){
   var cards=[];
   state.zones.forEach(function(z){
-    ["mine","theirs"].forEach(function(side){
-      var starters=Core.lineup(state.pair[side],state.players,false);
-      var relevant=starters.filter(function(p){return Core.norm(p.team)===z.team && !["K","DEF","—"].includes(p.position);});
-      var kickers=starters.filter(function(p){return Core.norm(p.team)===z.team && p.position==="K";});
-      var defenders=starters.filter(function(p){return Core.norm(p.team)===z.opponent && p.position==="DEF";});
-      if(!relevant.length && !kickers.length && !defenders.length)return;
-      var mine=side==="mine";
-      var names=relevant.map(function(p){return p.name;}).join(" · ");
-      var other=(kickers.length?'<span class="rz-secondary">FG watch: '+esc(kickers.map(function(p){return p.name;}).join(", "))+'</span>':"")+
-        (defenders.length?'<span class="rz-secondary">DEF defending: '+esc(defenders.map(function(p){return p.name;}).join(", "))+'</span>':"");
-      cards.push('<article class="redzone-card '+(mine?"friendly":"opponent")+'">'+
-        '<div class="rz-top"><span class="rz-pill">'+(mine?"▲ YOUR ATTACK":"▼ OPPONENT THREAT")+'</span>'+
-        '<span class="rz-clock">Q'+esc(z.period||"–")+' · '+esc(z.clock||"Live")+'</span></div>'+
-        '<div class="rz-main"><div class="rz-team">'+teamMark(z.team,"large")+'<div><b>'+esc(z.team)+'</b><small>vs '+esc(z.opponent)+'</small></div></div>'+
-        '<span class="rz-chip">IN THE 20</span></div>'+
-        '<div class="mini-field" role="img" aria-label="Schematic red zone field: offence inside opponent 20, not precise ball location"><div class="field-stripes"></div><span class="field-twenty">20</span><span class="field-ten">10</span><span class="field-goal">GOAL</span><span class="field-ball">◆</span></div>'+
-        '<div class="rz-players">'+(names?esc(names):"No starting skill player")+'</div>'+other+
-        '<div class="rz-foot">'+esc(z.downDistance||"Scoring chance")+'</div></article>');
+    var sides=Core.zoneParticipants(z,state.pair,state.players);
+    var mine=sides.mine,opp=sides.theirs;
+    var any=["mine","theirs"].some(function(k){
+      return sides[k].offense.length||sides[k].kickers.length||sides[k].defense.length;
     });
+    if(!any)return;
+    function line(group,who){
+      var chunks=[];
+      if(group.offense.length)chunks.push('<strong>'+esc(group.offense.map(function(p){return p.name;}).join(" · "))+'</strong>');
+      if(group.kickers.length)chunks.push('<span class="rz-secondary">FG opportunity: '+esc(group.kickers.map(function(p){return p.name;}).join(" · "))+'</span>');
+      if(group.defense.length)chunks.push('<span class="rz-secondary">Defence facing attack: '+esc(group.defense.map(function(p){return p.name;}).join(" · "))+'</span>');
+      if(!chunks.length)return "";
+      return '<div class="rz-side-line '+(who==="mine"?"rz-own":"rz-rival")+'"><span class="rz-side-label">'+(who==="mine"?"YOU":"OPP")+'</span><div>'+chunks.join("")+'</div></div>';
+    }
+    var game=state.fullGames.find(function(g){return g.id===z.gameId;});
+    var accurate=game&&game.state==="in"&&game.position!==null&&game.possession===z.team;
+    var dist=accurate?(game.possession===game.away?100-game.position:game.position):null;
+    var progress=dist===null?null:Math.min(100,Math.max(0,(20-dist)/20*100));
+    var marker=progress===null?'':'<span class="field-ball exact" style="left:'+progress.toFixed(1)+'%" aria-hidden="true">◆</span>';
+    var readable=progress===null?"Offence inside the 20; exact yard line unavailable":"Ball confirmed "+dist.toFixed(0)+" yards from goal";
+    cards.push('<article class="redzone-card '+(mine.offense.length?"friendly":"opponent")+'">'+
+      '<div class="rz-top"><span class="rz-pill">'+(mine.offense.length?"▲ YOUR SCORING CHANCE":"● SCORING OPPORTUNITY")+'</span>'+
+      '<span class="rz-clock">Q'+esc(z.period||"–")+' · '+esc(z.clock||"Live")+'</span></div>'+
+      '<div class="rz-main"><div class="rz-team">'+teamMark(z.team,"large")+
+        '<div><b>'+esc(z.team)+'</b><small>attacking '+esc(z.opponent)+'</small></div></div>'+
+        '<span class="rz-chip">INSIDE THE 20</span></div>'+
+      '<div class="mini-field '+(accurate?"known":"unlocated")+'" role="img" aria-label="'+esc(readable)+'">'+
+        '<div class="field-stripes"></div><span class="field-twenty">20</span><span class="field-ten">10</span><span class="field-goal">GOAL</span>'+marker+'</div>'+
+      line(mine,"mine")+line(opp,"theirs")+
+      (progress===null?'<div class="rz-unknown">Approximate area only · awaiting confirmed ball spot</div>':"")+
+      '<div class="rz-foot">'+esc(z.downDistance||"Confirmed team Red Zone possession")+
+      ' <button type="button" class="rz-open-game" data-open-game="'+esc(z.gameId)+'">View game →</button></div></article>');
   });
   $("rzCount").textContent=String(cards.length);
   $("redzones").classList.toggle("has-zones",cards.length>0);
@@ -218,9 +231,12 @@ function renderGames(){
   var watchers=participantCounts(chosen).players;
   var hasBall=chosen.state==="in"&&chosen.position!==null;
   var spots=Array.from({length:11},function(_,i){return '<span class="yard-grid-mark" style="left:'+i*10+'%">'+(i===0||i===10?"G":i<=5?i*10:(10-i)*10)+'</span>';}).join("");
+  var zoneKnown=chosen.state==="in"&&chosen.isRedZone&&chosen.possession;
+  var zoneAtHome=chosen.possession===chosen.away;
+  var redzoneShade=zoneKnown&&!hasBall?'<div class="field-redzone-range '+(zoneAtHome?"home-target":"away-target")+'" aria-label="Confirmed inside the 20, exact ball position unavailable"><span>INSIDE 20</span></div>':'';
   var field= '<div class="field-wrap"><div class="field-stadium">'+
      '<div class="endzone endzone-away">'+teamMark(chosen.away,"large")+'<b>'+esc(chosen.away)+'</b></div>'+
-     '<div class="playing-field">'+spots+(hasBall?'<div class="ball-marker" style="left:'+chosen.position+'%" title="'+esc(chosen.downDistance||"Reported field position")+'"><span>🏈</span></div>':'<div class="no-ball">'+(chosen.state==="pre"?"AWAITING KICKOFF":chosen.state==="post"?"FINAL":"BALL POSITION NOT REPORTED")+'</div>')+(chosen.state==="in"&&chosen.possession?'<div class="field-possess '+(chosen.possession===chosen.away?"arrow-right":"arrow-left")+'">'+esc(chosen.possession)+' POSSESSION '+(chosen.possession===chosen.away?"→":"←")+'</div>':"")+'</div>'+
+     '<div class="playing-field">'+spots+redzoneShade+(hasBall?'<div class="ball-marker" style="left:'+chosen.position+'%" title="'+esc(chosen.downDistance||"Reported field position")+'"><span>🏈</span></div>':'<div class="no-ball">'+(chosen.state==="pre"?"AWAITING KICKOFF":chosen.state==="post"?"FINAL":"INSIDE THE 20 · POSITION PENDING")+'</div>')+(chosen.state==="in"&&chosen.possession?'<div class="field-possess '+(chosen.possession===chosen.away?"arrow-right":"arrow-left")+'">'+esc(chosen.possession)+' POSSESSION '+(chosen.possession===chosen.away?"→":"←")+'</div>':"")+'</div>'+
      '<div class="endzone endzone-home">'+teamMark(chosen.home,"large")+'<b>'+esc(chosen.home)+'</b></div>'+
    '</div></div>';
   $("gameDetails").innerHTML='<div class="field-details-head"><div class="field-matchup">'+
@@ -233,7 +249,7 @@ function renderGames(){
      '<span>'+(chosen.state==="in"&&chosen.possession?"POSSESSION · "+esc(chosen.possession):"NO LIVE POSSESSION")+'</span></div>'+
      '<div class="field-watch"><b>FANTASY WATCH</b> '+(watchers.length?watchers.map(function(p){return '<span class="watch-chip '+(p.side==="mine"?"own":"rival")+'"><span class="watch-flag">'+(p.side==="mine"?"YOU":"OPP")+'</span>'+esc(p.name)+(p.points!==null&&p.points!==undefined?'<strong>'+fmt(p.points)+'</strong>':"")+'</span>';}).join(""):'<span class="watch-none">Neither lineup has a starter in this game</span>')+'</div>'+
      (chosen.state==="in"&&chosen.lastPlay?'<div class="last-play">LAST PLAY · '+esc(chosen.lastPlay)+'</div>':'')+
-     '<p class="field-source">'+(hasBall?"Ball placement from "+esc(chosen.positionSource)+" (reported, not a live animation).":"No precise ball location has been reported for this game.")+'</p>';
+     '<p class="field-source">'+(hasBall?"Ball placed from "+esc(chosen.positionSource)+" (reported, not a live animation).":zoneKnown?"ESPN confirms a Red Zone possession; awaiting an exact yard line. Shaded area only.":"No precise ball location has been reported for this game.")+'</p>';
 }
 function fmtNFL(n){return n===null||n===undefined?"–":String(n);}
 function projLookup(id){
@@ -372,6 +388,30 @@ function loadPlayerIndex(){
     state.players=compact;store(KCACHE,{at:Date.now(),data:compact});render();
   }).catch(function(){if(cached && cached.data)state.players=cached.data;render();});
 }
+
+/**
+ * Optional ESPN game-summary fallback when timeouts temporarily hide the yard line.
+ * Only selected LIVE game, throttled; never invent location from Red Zone flag.
+ */
+var positionFetches={};
+function refreshGamePosition(id){
+  if(!id||!/^[0-9]+$/.test(String(id)))return;
+  var game=state.fullGames.find(function(g){return g.id===id;});
+  if(!game||game.state!=="in"||game.position!==null)return;
+  var previous=positionFetches[id]||0;
+  if(Date.now()-previous<36000)return;
+  positionFetches[id]=Date.now();
+  fetchJson("https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event="+encodeURIComponent(id),11000)
+    .then(function(summary){
+      var current=state.fullGames.find(function(g){return g.id===id;});
+      if(!current||current.state!=="in"||current.position!==null)return;
+      var found=Core.summaryFieldSpot(current,summary);
+      if(!found)return;
+      current.position=found.position;current.positionSource=found.source;
+      renderGames();renderZones();
+    }).catch(function(){/* ESPN summary is optional: keep shaded zone instead. */});
+}
+
 function getESPN(){
   if(!state.week)return Promise.resolve();
   var season=state.league && state.league.season || new Date().getUTCFullYear();
@@ -395,6 +435,7 @@ function getESPN(){
     }
     state.zoneKeys=newKeys;state.games=result.games;state.zones=result.zones;
     state.fullGames=Core.listGames(data.events||[]);state.lastEspnTime=Date.now();state.errors.espn=null;render();
+    refreshGamePosition(state.selectedGame);
   }).catch(function(e){state.errors.espn=e.message||"Feed error";render();});
 }
 function getSleeper(){
@@ -414,7 +455,7 @@ function tick(){
 }
 function resetWeek(week,override){
   if(!Number.isInteger(week) || week<1 || week>18)return;
-  state.week=week;state.pair={mine:null,theirs:null};state.rows=[];state.before=read(key()+"-snapshot");
+  positionFetches={};state.week=week;state.pair={mine:null,theirs:null};state.rows=[];state.before=read(key()+"-snapshot");
   state.feed=read(key()+"-feed")||[];state.flashes={};state.games={};state.zones=[];state.fullGames=[];state.selectedGame=null;state.zoneKeys=null;
   state.projections=null;state.projectionAt=0;state.projectionWeek=null;state.projectionError=null;
   cfg.weekOverride=override?week:null;store(KCFG,cfg);render();getProjections();tick();
@@ -451,16 +492,28 @@ function init(){
       state.selectedGame=null;renderGames();
     });
   });
+  $("redzones").addEventListener("click",function(e){
+    var b=e.target.closest("[data-open-game]");
+    if(!b)return;
+    state.gameFilter="all";
+    Array.from(document.querySelectorAll("[data-game-filter]")).forEach(function(x){
+      var selected=x.getAttribute("data-game-filter")==="all";
+      x.classList.toggle("selected",selected);x.setAttribute("aria-pressed",String(selected));
+    });
+    state.selectedGame=b.getAttribute("data-open-game");
+    renderGames();refreshGamePosition(state.selectedGame);
+    $("games").scrollIntoView({behavior:"smooth",block:"start"});
+  });
   $("gameStrip").addEventListener("click",function(e){
     var t=e.target.closest("[data-game]");
     if(!t)return;
-    state.selectedGame=t.getAttribute("data-game");renderGames();
+    state.selectedGame=t.getAttribute("data-game");renderGames();refreshGamePosition(state.selectedGame);
     t=document.querySelector('.game-tab.selected');if(t)t.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});
   });
   function moveGame(delta){
     var games=gameListForFilter(),at=games.findIndex(function(g){return g.id===state.selectedGame;});
     if(!games.length)return;
-    state.selectedGame=games[(at+delta+games.length)%games.length].id;renderGames();
+    state.selectedGame=games[(at+delta+games.length)%games.length].id;renderGames();refreshGamePosition(state.selectedGame);
     var t=document.querySelector('.game-tab.selected');if(t)t.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});
   }
   // Flick left/right over the field to move between games (vertical scrolling remains native).

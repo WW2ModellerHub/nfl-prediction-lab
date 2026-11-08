@@ -8,7 +8,7 @@
 <title>Fantasy Red Zone | NFL Prediction Lab</title>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/redzone.css?v=4-broadcast">
-<link rel="stylesheet" href="assets/redzone-broadcast.css?v=4-3" />
+<link rel="stylesheet" href="assets/redzone-broadcast.css?v=4-4" />
 </head>
 <body>
 <div class="shell">
@@ -76,11 +76,11 @@
     <div class="bench-actions"><label><input id="benchToggle" type="checkbox"> Show both benches (bench points do not count)</label></div>
     <section id="scoringSection" class="panel activity-panel"><div class="panelhead"><h2><span class="section-graphic">↗</span> Points feed</h2><div class="actions"><button id="sound" class="small-btn">🔕 Sound off</button><button id="notifications" class="small-btn">Alerts</button><button id="clearActivity" class="small-btn subtle">Clear feed</button></div></div><div class="activity-help">Live changes since opening the watcher · corrections may subtract points · alerts require this tab open</div><div id="activity" class="activity"><div class="empty">Waiting for the next fantasy-points change…</div></div></section>
     <section class="settings"><details><summary>League connection &amp; settings</summary><div class="settings-body"><p>Connected by default to Sunday Funday / Tall &amp; Handsome. You can change league and roster if you want to watch a different Sleeper matchup.</p><div class="settings-controls"><label>Sleeper league ID <input id="leagueInput" inputmode="numeric" autocomplete="off"></label><label>My roster number <input id="rosterInput" type="number" min="1" max="99"></label><button id="saveSettings" class="small-btn primary">Connect league</button></div><p class="fine">No Sleeper password or API key needed. Settings and scoring activity remain in this browser.</p></div></details></section>
-    <footer>Fantasy scores and lineups are read from Sleeper. NFL play situations are read from an ESPN public scoreboard feed and may be delayed, missing or corrected. Red Zone warnings indicate the team in possession inside the 20, not a particular player getting the ball. This is a read-only personal viewer. <a href="https://docs.sleeper.com/" target="_blank" rel="noopener">Sleeper API</a> · <a href="./index.html">NFL Prediction Lab</a></footer>
+    <footer>Fantasy scores and lineups are read from Sleeper. NFL play situations are read from an ESPN public scoreboard feed and may be delayed, missing or corrected. One Red Zone possession is shown once, with both sides’ relevant starters and kickers. A highlighted 20-yard area is not an exact ball spot. This is a read-only personal viewer. <a href="https://docs.sleeper.com/" target="_blank" rel="noopener">Sleeper API</a> · <a href="./index.html">NFL Prediction Lab</a></footer>
   </main>
   <nav class="mobile-dock" aria-label="Red Zone navigation"><a href="#matchup"><span aria-hidden="true">◈</span>Matchup</a><a href="#games"><span aria-hidden="true">▰</span>Games</a><a href="#players"><span aria-hidden="true">♙</span>Players</a><a href="#scoringSection"><span aria-hidden="true">↗</span>Activity</a></nav>
 </div>
-<script src="assets/redzone-core.js?v=4-broadcast" defer></script>
-<script src="assets/redzone.js?v=4-broadcast-filter" defer></script>
+<script src="assets/redzone-core.js?v=4-4" defer></script>
+<script src="assets/redzone.js?v=4-4" defer></script>
 </body>
 </html>
