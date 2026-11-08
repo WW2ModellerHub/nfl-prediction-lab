@@ -99,13 +99,30 @@ def evaluate(game,now):
             blocking.append(f"{name}: no current projected starting QB inside four days of kickoff")
             qb_auto_allowed=False
         nfl_fresh=bool(src.get("nflverseFresh"))
-        espn_observed=bool(src.get("espnProjectedQB"))
-        independent_agree=bool(src.get("sourcesAgree") and nfl_fresh)
+        # Source-agreement booleans alone must never clear a stale QB projection.
+        nfl_at=stamp(src.get("nflverseAsOf"))
+        espn_at=stamp(src.get("espnObservedAt"))
+        near_kickoff=future and hours<=96
+        nfl_limit=timedelta(days=7 if near_kickoff else 14)
+        nfl_current=bool(nfl_fresh and nfl_at and timedelta(0)<=now-nfl_at<=nfl_limit)
+        espn_current=bool(espn_at and timedelta(0)<=now-espn_at<=timedelta(hours=72))
+        independent_agree=bool(src.get("sourcesAgree") and nfl_current and espn_current)
         if not independent_agree:
-            needs_review.append(f"{name}: no agreement between two recent projected-QB sources")
-        report_ready=bool(report.get("isWeeklyReportAvailable") and official.get("status") in ("loaded","snapshot-only"))
+            needs_review.append(f"{name}: no agreement between two current dated projected-QB sources")
+        if src.get("sourcesAgree") and not (nfl_current and espn_current):
+            needs_review.append(f"{name}: projected QB evidence stale or missing a source timestamp")
+        # Availability flags are not evidence: require actual dated rows observed
+        # prospectively within the current week and near the current kickoff.
+        source_rows=report.get("rows") or []
+        report_dates=[stamp(r.get("reportDate")) for r in source_rows if isinstance(r,dict)]
+        report_dates=[d for d in report_dates if d and d<=now and d<kick]
+        newest_report=max(report_dates,default=None)
+        report_limit=timedelta(hours=120 if near_kickoff else 264)
+        report_current=bool(newest_report and timedelta(0)<=now-newest_report<=report_limit)
+        report_ready=bool(report.get("isWeeklyReportAvailable") and
+                          official.get("status") in ("loaded","snapshot-only") and report_current)
         if not report_ready:
-            needs_review.append(f"{name}: no prospective same-week NFL game/practice report observed yet")
+            needs_review.append(f"{name}: no recent timestamped same-week NFL injury report (stale, missing or not yet published)")
         if not projected:
             needs_review.append(f"{name}: starting QB is not projected by a current dated chart")
         if future and hours<=96 and not src.get("nflverseFresh") and not src.get("espnProjectedQB"):
@@ -122,6 +139,10 @@ def evaluate(game,now):
             "espnQB":src.get("espnProjectedQB"),
             "nflverseChartAsOf":src.get("nflverseAsOf"),
             "espnObservedAt":src.get("espnObservedAt"),
+            "qbSourceDatesCurrent":bool(nfl_current and espn_current),
+            "officialReportLatestAt":newest_report.isoformat() if newest_report else None,
+            "officialReportAgeHours":round((now-newest_report).total_seconds()/3600,1) if newest_report else None,
+            "officialReportCurrent":report_current,
             "sourceConflict":depth_conflict,
             "officialReportForWeek":report_ready,
             "gameStatusEvidence":bool(qb_rows),
@@ -161,7 +182,7 @@ def evaluate(game,now):
     betting_ok=(level=="checked")
     all_issues=(blocking+needs_review+issues)[:24]
     return {
-        "version":1,"level":level,"status":status,
+        "version":2,"level":level,"status":status,
         "bettingEligible":betting_ok,
         "highConfidenceEligible":betting_ok,
         "qbAutomationAllowed":qb_auto_allowed and not blocking,
@@ -178,4 +199,4 @@ def evaluate(game,now):
         "riskSummary":risk,
         "starterConfirmation":"not-connected",
         "inactiveVerification":"not-connected",
-        "note":"Quality gates do not change the win probability. NFL weekly report statuses are mirrored via nflverse; their original row timestamps are used where available, otherwise current-season reports are observed prospectively at download time only. Neither the download time nor the absence of a report establishes player health. 'Checked' does not certify a starter, inactive list, or profitable bet."}
+        "note":"Quality gates do not change the win probability. Near kickoff, injury reports older than five days and nflverse QB chart observations older than seven days cannot pass source checks; ESPN chart observations must be within 72 hours. Dated same-week rows are required; flags alone cannot clear a forecast. NFL reports are mirrored via nflverse, and undated mirror rows are observed only from download time forward. 'Checked' never certifies a starter, inactive list, or profitable bet."}

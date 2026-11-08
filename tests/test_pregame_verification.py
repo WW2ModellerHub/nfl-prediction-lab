@@ -193,15 +193,66 @@ class VerificationTests(unittest.TestCase):
         g=game()
         reports={
             'status':'loaded',
-            'home':{'isWeeklyReportAvailable':True,'qbs':[]},
-            'away':{'isWeeklyReportAvailable':True,'qbs':[]}}
+            'home':{'isWeeklyReportAvailable':True,'qbs':[],
+                    'rows':[{'reportDate':NOW.isoformat()}]},
+            'away':{'isWeeklyReportAvailable':True,'qbs':[],
+                    'rows':[{'reportDate':NOW.isoformat()}]}}
         g['officialInjuryEvidence']=reports
+        for side in ('home','away'):
+            g['qbSourceEvidence'][side]['nflverseAsOf']=NOW.isoformat()
+            g['qbSourceEvidence'][side]['espnObservedAt']=NOW.isoformat()
         v=evaluate(g,NOW)
         self.assertEqual(v['level'],'checked')
         self.assertTrue(v['bettingEligible'])
         self.assertEqual(v['starterConfirmation'],'not-connected')
         self.assertFalse(v['teamChecks'][0]['starterOfficiallyConfirmed'])
         self.assertEqual(g['homeProbability'],.47)
+
+    def test_stale_weekly_report_blocks_value_alerts(self):
+        g=game()
+        g['officialInjuryEvidence']={
+            'status':'loaded',
+            'home':{'isWeeklyReportAvailable':True,'qbs':[],
+                    'rows':[{'reportDate':(NOW-timedelta(days=6)).isoformat()}]},
+            'away':{'isWeeklyReportAvailable':True,'qbs':[],
+                    'rows':[{'reportDate':NOW.isoformat()}]}}
+        for side in ('home','away'):
+            g['qbSourceEvidence'][side]['nflverseAsOf']=NOW.isoformat()
+            g['qbSourceEvidence'][side]['espnObservedAt']=NOW.isoformat()
+        v=evaluate(g,NOW)
+        self.assertEqual(v['level'],'review')
+        self.assertFalse(v['bettingEligible'])
+        self.assertFalse(v['teamChecks'][0]['officialReportCurrent'])
+        self.assertTrue(any('stale' in x for x in v['reviewReasons']))
+
+    def test_stale_qb_charts_block_checked_status_despite_agreement(self):
+        g=game()
+        g['officialInjuryEvidence']={
+            'status':'loaded',
+            'home':{'isWeeklyReportAvailable':True,'qbs':[],
+                    'rows':[{'reportDate':NOW.isoformat()}]},
+            'away':{'isWeeklyReportAvailable':True,'qbs':[],
+                    'rows':[{'reportDate':NOW.isoformat()}]}}
+        for side in ('home','away'):
+            g['qbSourceEvidence'][side]['nflverseAsOf']=(NOW-timedelta(days=9)).isoformat()
+            g['qbSourceEvidence'][side]['espnObservedAt']=NOW.isoformat()
+        v=evaluate(g,NOW)
+        self.assertEqual(v['level'],'review')
+        self.assertFalse(v['bettingEligible'])
+        self.assertFalse(v['teamChecks'][0]['qbSourceDatesCurrent'])
+
+    def test_future_dated_report_does_not_clear_forecast(self):
+        g=game()
+        g['officialInjuryEvidence']={
+            'status':'loaded',
+            'home':{'isWeeklyReportAvailable':True,'qbs':[],
+                    'rows':[{'reportDate':(NOW+timedelta(hours=2)).isoformat()}]},
+            'away':{'isWeeklyReportAvailable':True,'qbs':[],
+                    'rows':[{'reportDate':NOW.isoformat()}]}}
+        for side in ('home','away'):
+            g['qbSourceEvidence'][side]['nflverseAsOf']=NOW.isoformat()
+            g['qbSourceEvidence'][side]['espnObservedAt']=NOW.isoformat()
+        self.assertEqual(evaluate(g,NOW)['level'],'review')
 
     def test_no_projection_near_kickoff_fails_closed(self):
         g=game()
