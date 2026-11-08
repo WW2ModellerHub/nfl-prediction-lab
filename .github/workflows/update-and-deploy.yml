@@ -48,6 +48,8 @@ jobs:
         run: node tests/fixture-smoke.cjs
       - name: Validate matchup intelligence and prediction invariance
         run: node tests/intelligence-smoke.cjs
+      - name: Validate Sleeper fantasy Red Zone calculations
+        run: node tests/redzone-smoke.cjs
       - name: Refresh NFL schedule and model audit
         env:
           REFRESH_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.refresh_mode || (github.event_name == 'schedule' && github.event.schedule == '19 13,19 * * *' && 'schedules-only') || 'full' }}
