@@ -138,7 +138,6 @@ def parse_depth(payload,observed_at):
                 visit(v,qb_context or is_qb_label(k),depth+1)
     visit(root)
     names={clean_name(x["name"]) for x in found}
-    if not names:raise ValueError("ESPN depthchart has no explicit rank-1 QB")
     if len(names)>1:raise ValueError("ESPN depthchart contains conflicting rank-1 QBs")
     # ESPN's live 2026 chart provides position-specific athletes in an
     # ordered list but sometimes provides NO rank field at all. Preserve the
