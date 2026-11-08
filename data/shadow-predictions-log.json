@@ -439,5 +439,41 @@
     "baselineHomeProbability": 0.614,
     "model": "xgboost-shadow-research-v1",
     "researchOnly": true
+  },
+  {
+    "gameId": "2026_12_LV_CLE",
+    "kickoff": "2026-11-29T18:00:00+00:00",
+    "recordedAt": "2026-11-08T21:25:50.831401+00:00",
+    "homeProbability": 0.5616,
+    "baselineHomeProbability": 0.6209,
+    "model": "xgboost-shadow-research-v1",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_12_NO_CIN",
+    "kickoff": "2026-11-29T18:00:00+00:00",
+    "recordedAt": "2026-11-08T21:25:50.831401+00:00",
+    "homeProbability": 0.7836,
+    "baselineHomeProbability": 0.7251,
+    "model": "xgboost-shadow-research-v1",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_12_NYG_IND",
+    "kickoff": "2026-11-29T18:00:00+00:00",
+    "recordedAt": "2026-11-08T21:25:50.831401+00:00",
+    "homeProbability": 0.4291,
+    "baselineHomeProbability": 0.5064,
+    "model": "xgboost-shadow-research-v1",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_12_NYJ_MIA",
+    "kickoff": "2026-11-29T18:00:00+00:00",
+    "recordedAt": "2026-11-08T21:25:50.831401+00:00",
+    "homeProbability": 0.5639,
+    "baselineHomeProbability": 0.6284,
+    "model": "xgboost-shadow-research-v1",
+    "researchOnly": true
   }
 ]

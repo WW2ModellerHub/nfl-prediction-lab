@@ -1714,5 +1714,140 @@
     "baselineHomeProbability": 0.62902,
     "adjustmentActive": false,
     "situationalProbabilityDelta": 0
+  },
+  {
+    "gameId": "2026_12_TEN_JAX",
+    "recordedAt": "2026-11-08T21:25:50.831401+00:00",
+    "kickoff": "2026-11-29T21:05:00+00:00",
+    "home": "JAX",
+    "away": "TEN",
+    "homeProbability": 0.83898,
+    "predMargin": 11.17,
+    "predTotal": 46.26,
+    "situationalSignals": [
+      "rest_edge",
+      "repeat_road"
+    ],
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "tacticalProbabilityDelta": 0,
+    "playerProbabilityDelta": 0,
+    "qbProbabilityDelta": 0,
+    "qbResearch": {
+      "eligible": true,
+      "features": [
+        0.366,
+        -0.0049999999999999975,
+        0
+      ],
+      "status": "eligible",
+      "reason": "Prior-game QB observations available",
+      "source": "Recorded prior starter or dated pregame depth chart, not game-day confirmation"
+    },
+    "qbObserved": {
+      "home": "00-0036971",
+      "away": "00-0040676"
+    },
+    "injuryReportAsOf": null,
+    "qbInjuryProbabilityWeight": 0,
+    "playerFeatures": null,
+    "playerImpactStatus": "informational",
+    "tacticalFeatures": [
+      0.27076540961354423,
+      -0.08111844448052241,
+      0.0009010441758949134,
+      0.5959723980703395
+    ],
+    "baselineHomeProbability": 0.83898,
+    "adjustmentActive": false,
+    "situationalProbabilityDelta": 0
+  },
+  {
+    "gameId": "2026_12_SEA_SF",
+    "recordedAt": "2026-11-08T21:25:50.831401+00:00",
+    "kickoff": "2026-11-29T21:25:00+00:00",
+    "home": "SF",
+    "away": "SEA",
+    "homeProbability": 0.57129,
+    "predMargin": 2.17,
+    "predTotal": 45.25,
+    "situationalSignals": [
+      "rest_edge"
+    ],
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "tacticalProbabilityDelta": 0,
+    "playerProbabilityDelta": 0,
+    "qbProbabilityDelta": 0,
+    "qbResearch": {
+      "eligible": true,
+      "features": [
+        0.17400000000000002,
+        0.027999999999999997,
+        0
+      ],
+      "status": "eligible",
+      "reason": "Prior-game QB observations available",
+      "source": "Recorded prior starter or dated pregame depth chart, not game-day confirmation"
+    },
+    "qbObserved": {
+      "home": "00-0037834",
+      "away": "00-0034869"
+    },
+    "injuryReportAsOf": null,
+    "qbInjuryProbabilityWeight": 0,
+    "playerFeatures": null,
+    "playerImpactStatus": "informational",
+    "tacticalFeatures": [
+      0.6113131468912362,
+      0.16247603766862467,
+      0.05166093571836866,
+      0.16334080786754487
+    ],
+    "baselineHomeProbability": 0.57129,
+    "adjustmentActive": false,
+    "situationalProbabilityDelta": 0
+  },
+  {
+    "gameId": "2026_12_WAS_ARI",
+    "recordedAt": "2026-11-08T21:25:50.831401+00:00",
+    "kickoff": "2026-11-29T21:25:00+00:00",
+    "home": "ARI",
+    "away": "WAS",
+    "homeProbability": 0.51704,
+    "predMargin": 0.26,
+    "predTotal": 47.4,
+    "situationalSignals": [
+      "rest_edge"
+    ],
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "tacticalProbabilityDelta": 0,
+    "playerProbabilityDelta": 0,
+    "qbProbabilityDelta": 0,
+    "qbResearch": {
+      "eligible": false,
+      "features": null,
+      "status": "missing-observations",
+      "reason": "ARI: recent pregame QB and sufficient prior dropbacks unavailable",
+      "source": "Recorded prior starter or dated pregame depth chart, not game-day confirmation"
+    },
+    "qbObserved": {
+      "home": "00-0035289",
+      "away": "00-0039910"
+    },
+    "injuryReportAsOf": null,
+    "qbInjuryProbabilityWeight": 0,
+    "playerFeatures": null,
+    "playerImpactStatus": "informational",
+    "tacticalFeatures": [
+      0.2624659869782439,
+      -0.07421876212198024,
+      -0.12231493957874547,
+      -0.35446519637168517
+    ],
+    "baselineHomeProbability": 0.51704,
+    "adjustmentActive": false,
+    "situationalProbabilityDelta": 0
   }
 ]
