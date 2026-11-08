@@ -238,6 +238,27 @@ function getAlerts(){const alerts=[];if(!store.data?.generatedAt)alerts.push({ti
  alerts.push({title:'Live feed not connected',body:'Live scores, in-play props and push alerts are outside this free first release.',type:'neutral'});
  return alerts}
 function alertContent(){return `<div class="panel-body alert-list">${getAlerts().map(a=>`<div class="alert"><span class="alert-icon">${a.type==='value'?'↗':a.type==='warn'?'⚠':'◌'}</span><div><strong>${escapeHTML(a.title)}</strong><p>${escapeHTML(a.body)}</p></div></div>`).join('')}</div>`}
+function verificationQueue(){
+ const all=games(),counts={checked:0,review:0,hold:0};
+ all.forEach(g=>{const level=g.forecastQuality?.level;if(Object.prototype.hasOwnProperty.call(counts,level))counts[level]++});
+ const pending=all.filter(g=>['hold','review'].includes(g.forecastQuality?.level));
+ pending.sort((a,b)=>{const ah=Number(a.forecastQuality?.hoursToKickoff),bh=Number(b.forecastQuality?.hoursToKickoff);
+   const at=Number.isFinite(ah)?ah:1e9,bt=Number.isFinite(bh)?bh:1e9;
+   return at-bt||Number(b.forecastQuality.level==='hold')-Number(a.forecastQuality.level==='hold')});
+ const rows=pending.slice(0,7).map(g=>{
+   const q=g.forecastQuality,reason=(q.blockingReasons||[])[0]||(q.reviewReasons||[])[0]||'Check current QB projections and injury reports';
+   return `<button class='verify-queue-item' type='button' data-open='${escapeHTML(g.id)}'>
+     <span class='verify-queue-line'><b>${escapeHTML(g.away)} @ ${escapeHTML(g.home)}</b>${tag(q.level==='hold'?'HOLD':'REVIEW','warn')}</span>
+     <small>${escapeHTML(date(g.kickoff))} · ${escapeHTML(reason)}</small></button>`;
+ }).join('');
+ return panel('Pregame evidence queue',
+  `<div class='panel-body'><div class='verify-queue-totals'>
+   <span><b>${counts.checked}</b> checked</span><span><b>${counts.review}</b> review</span><span><b>${counts.hold}</b> hold</span></div>
+   <p class='source-meta'>Next fixtures requiring verification, ordered by kickoff. Reviewed or held predictions remain visible, but qualified value alerts are withheld.</p>
+   <div class='verify-queue-list'>${rows||'<p class="instruction">No outstanding pregame source checks for this slate.</p>'}</div>
+   ${pending.length>7?`<p class='source-meta'>Showing 7 of ${pending.length} games awaiting checks.</p>`:''}</div>`,
+   'Timestamped QB and injury evidence, not model confidence');
+}
 function overview(){const g=games(),perf=store.data?.recentPerformance||store.data?.performance||{},fp=store.data?.forwardPerformance||{};
  const values=g.map(x=>valueFor(x)).filter(Boolean);const positives=values.filter(x=>x.eligible&&x.ev>.04);
  const metrics=`<div class="summary">${metric('Upcoming matchups',g.length,'Next available NFL fixtures','lime','◇')}${metric('Model favourites',g.filter(x=>Math.max(x.homeProbability,x.awayProbability)>=.65).length,'65%+ forecast win probability','blue','◎')}${metric('Value watchlist',positives.length,`${values.length} manual prices compared`,'orange','↗')}${metric('Backtest Brier',perf.brier==null?'—':number(perf.brier,3),`${perf.count||0} sequential test games`,'','∿')}</div>`;
@@ -251,7 +272,7 @@ function overview(){const g=games(),perf=store.data?.recentPerformance||store.da
    'Not a reconstructed backtest');
  const perfPanel=panel('Model reliability',`<div class="panel-body">${perf.count?`<div class="stat-pair"><span>Correct favourite</span><strong>${pct(perf.accuracy)}</strong></div><div class="stat-pair"><span>Brier score <span title="Lower is better" class="info-icon">?</span></span><strong>${number(perf.brier,3)}</strong></div><div class="stat-pair"><span>50/50 baseline Brier</span><strong>${number(perf.baselineBrier,3)}</strong></div><div class="stat-pair"><span>Forward-tested games</span><strong>${fp.count||0}</strong></div>`:'<p class="instruction">Run the NFL data importer to calculate sequential historical test metrics.</p>'}<p class="panel-note" style="margin-top:13px">Backtests use historical records only; they are not archived real-time predictions. Betting profitability is not established.</p><button class="btn btn-sm btn-ghost" style="margin-top:10px" data-nav="performance">Explore performance →</button></div>`);
  const rankings=panel('Power ratings',`<div class="panel-body">${(store.data?.powerRankings||[]).length?(store.data.powerRankings.slice(0,6).map(rankingRow).join('')):'<p class="instruction">Ratings appear after the first data run.</p>'}</div>`,'Elo adjusted for previous games, not injuries');
- return warnBanner()+metrics+`<div class="grid-main"><div>${recordCard}${slate}${perfPanel}</div><div class="right-stack">${panel('Intelligence alerts',alertContent(),'Situational effects are applied only after the validation gate passes',tag('WATCHLIST'))}${rankings}</div></div>`}
+ return warnBanner()+metrics+`<div class="grid-main"><div>${recordCard}${slate}${perfPanel}</div><div class="right-stack">${verificationQueue()}${panel('Intelligence alerts',alertContent(),'Situational effects are applied only after the validation gate passes',tag('WATCHLIST'))}${rankings}</div></div>`}
 function matchups(){const g=games().filter(x=>(x.homeName+' '+x.awayName+' '+x.home+' '+x.away).toLowerCase().includes(store.query.toLowerCase()));
  return warnBanner()+panel('Matchup board',`<div class="panel-body"><div class="search-row"><input aria-label="Search matchups" class="input" id="searchGames" placeholder="Search a team..." value="${escapeHTML(store.query)}"/><span class="tiny">${g.length} matches · Model Elo + scoring form</span></div><div class="note-box">Probabilities start with prior results and scoring form. Overtime, rest, bounce-back and consecutive road signals are detected. Adjustments activate only if the historical research gate passes. Recent QB/injury media observations can inform an unvalidated provisional forecast; automated player props remain unconnected.</div></div><div id="gameRows">${g.length?g.map(gameRow).join(''):empty('No upcoming matchups',store.query?'Try another team name.':'Waiting for the NFL schedule feed.')}</div>`,'Select a game to view its simulation distribution, uncertainty and alternative scripts');}
 function radar(){const g=games();const rated=g.map(x=>({g:x,v:valueFor(x)})).filter(x=>x.v).sort((a,b)=>Number(b.v.eligible)-Number(a.v.eligible)||b.v.ev-a.v.ev);
@@ -586,7 +607,9 @@ function verificationPanel(g){
  <div class="evidence-gate-field"><span>Established from past starts</span><b>${escapeHTML(c.establishedQB||'Unknown')}</b></div>
  <div class="evidence-gate-field"><span>Projected QB</span><b>${escapeHTML(c.projectedQB||'Not verified')}</b></div>
  <div class="evidence-gate-field"><span>Depth-chart comparison</span><b>${escapeHTML(c.qbProjectionStatus||'Not verified')}</b></div>
- <div class="evidence-gate-field"><span>Same-week NFL injury report</span><b>${c.officialReportForWeek?'Found in nflverse mirror':'Missing / not published'}</b></div>
+ <div class="evidence-gate-field"><span>Same-week NFL injury report</span><b>${c.officialReportForWeek?'Recent dated mirror rows':'Missing / stale / not published'}</b></div>
+ <div class="evidence-gate-field"><span>Latest report observation</span><b>${escapeHTML(c.officialReportLatestAt||'No dated row available')}${Number.isFinite(c.officialReportAgeHours)?' · '+number(c.officialReportAgeHours,1)+'h old':''}</b></div>
+ <div class="evidence-gate-field"><span>QB projection recency</span><b>${c.qbSourceDatesCurrent===true?'Current dated sources':'Stale / unverified timestamps'}</b></div>
  <div class="evidence-gate-field"><span>QB game status</span><b>${injury.length?injury.map(x=>`${escapeHTML(x.name)}: ${escapeHTML(x.status||'No game designation')}`).join(' · '):'No QB designation found (NOT proof of availability)'}</b></div>
  ${c.twoOrMoreQBsUnavailable?'<p class="evidence-gate-danger">Multiple QBs reported unavailable. Starting QB remains unconfirmed.</p>':''}
  </div>`;

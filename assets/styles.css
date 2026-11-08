@@ -335,3 +335,13 @@
 .evidence-gate-field b{text-align:right;overflow-wrap:anywhere;flex:1}
 .evidence-gate-danger{font-size:11px;color:#ffb3a5;line-height:1.6}
 @media(max-width:680px){.evidence-gate{padding:12px}.evidence-gate-grid{grid-template-columns:minmax(0,1fr)}.evidence-gate-top h3{font-size:17px}}
+
+/* v3.1: evidence queue */
+.verify-queue-totals{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.verify-queue-totals span{display:flex;align-items:baseline;gap:7px;border:1px solid var(--border, #343d4e);border-radius:8px;padding:8px 10px;font-size:12px}
+.verify-queue-totals b{font-size:18px}
+.verify-queue-list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.verify-queue-item{display:block;width:100%;text-align:left;color:inherit;background:rgba(128,151,184,.045);border:1px solid rgba(135,158,189,.2);border-radius:9px;padding:11px 12px;cursor:pointer;font:inherit}
+.verify-queue-item:hover,.verify-queue-item:focus-visible{border-color:rgba(157,192,240,.6);background:rgba(128,151,184,.1)}
+.verify-queue-line{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px}
+.verify-queue-item small{display:block;margin-top:6px;line-height:1.45;opacity:.78;font-size:11px}

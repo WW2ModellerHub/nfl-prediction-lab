@@ -122,7 +122,7 @@ def evaluate(game,now):
         report_ready=bool(report.get("isWeeklyReportAvailable") and
                           official.get("status") in ("loaded","snapshot-only") and report_current)
         if not report_ready:
-            needs_review.append(f"{name}: no recent timestamped same-week NFL injury report (stale, missing or not yet published)")
+            needs_review.append(f"{name}: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)")
         if not projected:
             needs_review.append(f"{name}: starting QB is not projected by a current dated chart")
         if future and hours<=96 and not src.get("nflverseFresh") and not src.get("espnProjectedQB"):

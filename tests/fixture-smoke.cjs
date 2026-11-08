@@ -160,6 +160,8 @@ window.__SMOKE__.setData({nextGames:[evidenceHeld],generatedAt:'2026-11-08T11:00
 window.location.hash='#tab=overview';
 window.__SMOKE__.syncRoute();
 assert.match(el('appContent').innerHTML,/EVIDENCE HOLD/);
+assert.match(el('appContent').innerHTML,/Pregame evidence queue/);
+assert.match(el('appContent').innerHTML,/2 QBs designated unavailable/);
 
 window.location.hash='#game=test_fixture';
 window.__SMOKE__.syncRoute();
