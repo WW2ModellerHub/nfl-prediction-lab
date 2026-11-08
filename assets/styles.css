@@ -311,3 +311,27 @@
 .record-pending-row{grid-template-columns:1fr 1fr}
 .record-pending-row strong{grid-column:1/-1}
 }
+
+/* v3.0 — pregame verification gate and dated injury report disclosure */
+.evidence-gate{background:#172c3c;border:1px solid #627687;padding:15px 19px;margin:0 0 17px}
+.evidence-gate-hold{border-color:#c18e66;background:#342a2b}
+.evidence-gate-review{border-color:#8a7863;background:#2d2d30}
+.evidence-gate-checked{border-color:#508c7c;background:#1b3738}
+.evidence-gate-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.evidence-gate-top h3{font-size:19px;margin:0}
+.evidence-gate-intro{font-size:13px;color:#d0dee1;line-height:1.65;margin:10px 0}
+.evidence-gate-decision{font-size:11px;line-height:1.7;font-weight:750;letter-spacing:.25px;border-radius:8px;padding:11px;color:#f6e4d0;background:#473a37;margin:9px 0}
+.evidence-gate-checked .evidence-gate-decision{color:#c9eac8;background:#2b4a42}
+.evidence-gate-issues{padding:8px 11px;border-left:2px solid #d2ac86;margin:9px 0 12px;font-size:11px}
+.evidence-gate-issues b{font-weight:800}.evidence-gate-issues p{margin:7px 0;line-height:1.55;color:#e3cfc0}
+.evidence-gate-details{margin-top:10px;border-top:1px solid #667480;padding-top:11px}
+.evidence-gate-details summary{display:flex;justify-content:space-between;gap:12px;align-items:center;cursor:pointer;font-size:12px;font-weight:750;line-height:1.6}
+.evidence-gate-details summary span{font-size:11px;color:#b4c2c9;font-weight:450}
+.evidence-gate-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:13px 0}
+.evidence-gate-team{background:#172d3a;border:1px solid #586977;border-radius:9px;padding:11px;min-width:0}
+.evidence-gate-team h4{font-size:12px;color:#e2f0f0;margin:0 0 8px}
+.evidence-gate-field{display:flex;align-items:start;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid #345361;font-size:11px;line-height:1.5}
+.evidence-gate-field span{color:#b9cbd2;flex:1}
+.evidence-gate-field b{text-align:right;overflow-wrap:anywhere;flex:1}
+.evidence-gate-danger{font-size:11px;color:#ffb3a5;line-height:1.6}
+@media(max-width:680px){.evidence-gate{padding:12px}.evidence-gate-grid{grid-template-columns:minmax(0,1fr)}.evidence-gate-top h3{font-size:17px}}

@@ -1,3 +1,13 @@
+## v3.0 — 8 November 2026 — Pregame Verification Engine
+
+- Load **same-week NFL official game-status and practice-report fields from the dated nflverse injuries mirror** on both full and lightweight refreshes. Preserve each row's actual `date_modified` timestamp; undated reports and post-kickoff/future data cannot certify absences. The mirror is explicitly labelled and linked to NFL.com for direct checking.
+- Reconcile weekly QB injury designations against separately dated ESPN media observations and nflverse/ESPN projected depth-chart identities; flag disagreeing statuses, projected starters listed OUT, multiple unavailable QBs, stale/missing reports and source disagreements. An absent injury row does not establish health.
+- Issue one **Pregame Verification** decision per fixture: checked, review, or hold. Confirmed starters and game-day inactives are NEVER fabricated: no direct coach-confirmation or inactive-list feed has yet been connected.
+- Preserve the one-number forecast and historical archive. If the verification gate detects unreliable key QB evidence, **withhold automatic experimental QB probabilities** rather than adjusting from contradictions. Treat uncross-checked forecasts as *Unverified*, regardless of numerical confidence.
+- Suppress value/EV alerts and wager-like radar picks for any unverified fixture. Allow raw manual price comparisons but visibly label their EV alerts as held until verified. Show specific blocking reasons and both teams' full QB/report evidence in a compact expandable matchup panel.
+- Continue saving original predictions; add verification level, source provenance and reasons to future immutable snapshot records. Report source-coverage and gate counts in `data/full-model-audit.json`.
+- Regression tests cover official report parsing, report timestamps, double QB absences, media conflicts, missing projected starters, absent weekly reports, basic cross-checked status, and blocked QB-model calculations.
+
 ## v2.9 — 7 November 2026 — Honest live NFL prediction record
 
 - Add permanent, automatically updated `data/prediction-results.json` from existing timestamped original and revised forecasts, with one outcome per genuinely completed NFL game and explicit ungraded/pending statuses.

@@ -114,6 +114,33 @@ assert.doesNotMatch(source,/revisions:\['Prediction History'/,'Remove redundant 
 const oldForecast={...game,homeProbability:.53,awayProbability:.47};
 window.__SMOKE__.setData({nextGames:[oldForecast],generatedAt:'2026-11-05T18:00:00Z'});
 window.__SMOKE__.syncRoute();
+
+const evidenceHeld={...game,forecastQuality:{
+ level:'hold',status:'manual-verification-required',bettingEligible:false,
+ riskSummary:'Two quarterbacks out, projected starter not officially confirmed',
+ issues:['BAL: 2 QBs designated unavailable','BAL: sources disagree'],
+ teamChecks:[{team:'BAL',establishedQB:'Franchise QB',
+   projectedQB:'Third QB',qbProjectionStatus:'one-source-only',
+   officialReportForWeek:true,twoOrMoreQBsUnavailable:true,
+   officialReportQBRows:[{name:'Franchise QB',status:'OUT'},
+                         {name:'Backup QB',status:'OUT'}]},
+  {team:'JAX',projectedQB:'Jacksonville QB',qbProjectionStatus:'two-sources-agree',
+   officialReportForWeek:true,officialReportQBRows:[]}]}};
+window.__SMOKE__.setData({nextGames:[evidenceHeld],generatedAt:'2026-11-08T11:00:00Z'});
+window.location.hash='#game=test_fixture';
+window.__SMOKE__.syncRoute();
+const heldPage=el('appContent').innerHTML;
+assert.match(heldPage,/Pregame verification/);
+assert.match(heldPage,/HOLD · VERIFY QB/i);
+assert.match(heldPage,/2 QBs designated unavailable/i);
+assert.match(heldPage,/Franchise QB/);
+assert.match(heldPage,/Third QB/);
+assert.match(heldPage,/NO HIGH-CONFIDENCE OR VALUE ALERT/i);
+assert.match(heldPage,/53\.0%/,'Hold status must not invent a probability change');
+window.location.hash='#tab=overview';
+window.__SMOKE__.syncRoute();
+assert.match(el('appContent').innerHTML,/EVIDENCE HOLD/);
+
 assert.match(el('appContent').innerHTML,/LAYER AUDIT PENDING/,'Missing layer data cannot be invented');
 assert.match(el('appContent').innerHTML,/53\.0%/,'Missing attribution does not hide the published probability');
 

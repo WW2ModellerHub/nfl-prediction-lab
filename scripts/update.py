@@ -21,6 +21,8 @@ from model import simulate as forecast_simulate
 from qb_injuries import load_historical_reports
 from espn_injuries import load as load_espn_injuries
 from qb_evidence import gather as gather_qb_sources, attach as attach_qb_sources
+from official_reports import fetch as fetch_weekly_reports, from_existing as reuse_weekly_reports, attach as attach_weekly_reports
+from pregame_verification import evaluate as verify_pregame_evidence
 from weather import enrich as enrich_weather
 
 SOURCES=(
@@ -186,11 +188,25 @@ def apply_personnel_forecasts(dashboard,old_dashboard,now,source_mode,games):
         row['qbReplacement']={'status':'unavailable','affectsPrediction':False,'scenarios':[],
                               'reason':'No refreshed play-by-play / injury information'}
         if source_mode in ('full','evidence'):
+            quality=row.get('forecastQuality') or {}
             candidate=qb_efficiency_preview(row,dashboard.get('qbValidation'))
+            if quality and not quality.get('qbAutomationAllowed',False) and candidate.get('affectsPrediction'):
+                candidate={**candidate,'status':'withheld-by-pregame-evidence-gate',
+                    'candidateHomeDelta':candidate.get('homeDelta'),
+                    'affectsPrediction':False,'homeProbability':baseline,
+                    'homeDelta':0.,'marginDelta':0.,'factors':[],
+                    'reason':'Material QB evidence missing or contradictory: hold numerical QB research overlay'}
             # The statistical QB overlay and the replacement model both
             # estimate QB performance. A documented NEW replacement takes
             # precedence: never stack two overlapping QB coefficients.
             observed_replacement=assess_replacement(row,now)
+            if quality and not quality.get('qbAutomationAllowed',False) and observed_replacement.get('affectsPrediction'):
+                observed_replacement={**observed_replacement,
+                    'status':'withheld-by-pregame-evidence-gate',
+                    'candidateHomeDelta':observed_replacement.get('homeDelta'),
+                    'affectsPrediction':False,'homeProbability':baseline,
+                    'homeDelta':0.,'marginDelta':0.,'factors':[],
+                    'reason':'Official QB source disagreement or missing replacement evidence requires review'}
             if observed_replacement.get('affectsPrediction') and candidate.get('affectsPrediction'):
                 q={**candidate,'status':'withheld-overlapping-replacement-impact',
                    'affectsPrediction':False,'homeProbability':baseline,'homeDelta':0.,
@@ -291,6 +307,13 @@ def apply_personnel_forecasts(dashboard,old_dashboard,now,source_mode,games):
                 f"{row['away']} {row['predAway']:.1f}. "
                 "Estimated QB replacement and injury effects are research assumptions, "
                 "not certified player availability or calibrated prediction improvement.")
+    # Separate probability from verification. A numerical 75% does NOT become
+    # an endorsed high-confidence pick when QB reports are disputed or absent.
+    for row in dashboard.get('nextGames',[]):
+        row['modelConfidence']=row.get('confidence')
+        quality=row.get('forecastQuality') or {}
+        if not quality.get('highConfidenceEligible',False):
+            row['confidence']='Unverified'
     # One published probability, with additive, explicit contributions
     # for every weighted layer and truthful no-weight context layers.
     for row in dashboard.get('nextGames',[]):
@@ -409,6 +432,46 @@ def update(schedules_only=False,schedules_file=None):
     dashboard['generatedAt']=now.isoformat()
     for g in dashboard.get('nextGames',[]):
         attach_qb_sources(g,second,second_meta,now)
+    # NFL official WEEKLY game/practice status fields, mirrored by nflverse.
+    # Fetch on light refreshes too; the previous full-mode source was loaded
+    # during the model build and can be reused with identical date provenance.
+    if schedules_only:
+        weekly_rows,weekly_meta=fetch_weekly_reports(current,datetime.now(timezone.utc))
+    else:
+        weekly_rows,weekly_meta=reuse_weekly_reports(injuries,current,datetime.now(timezone.utc))
+    now=datetime.now(timezone.utc)
+    dashboard['generatedAt']=now.isoformat()
+    for fixture in dashboard.get('nextGames',[]):
+        attach_weekly_reports(fixture,weekly_rows,weekly_meta,now)
+        # The official weekly game-status designation is the authoritative
+        # *report* field; its timestamp is preserved. It is NOT a confirmed QB
+        # starter or final active/inactive list. ESPN media remains visible as
+        # an independent source so contradictions can be detected by the gate.
+        media=fixture.setdefault('supplementalInjuryWatch',{'status':'unavailable'})
+        for side in ('home','away'):
+            reports=(fixture.get('officialInjuryEvidence') or {}).get(side,{}).get('rows',[])
+            for rec in reports:
+                if rec.get('gameStatus') and rec.get('reportDate'):
+                    media.setdefault(side,[]).append({
+                        'name':rec.get('name'),'position':rec.get('position'),
+                        'status':rec['gameStatus'],'injury':rec.get('injury'),
+                        'reportDate':rec['reportDate'],'source':rec['source'],
+                        'officialGameStatus':False, # source is a dated MIRROR, not direct NFL.com
+                        'officialReportDerived':True,
+                        'starterConfirmed':False})
+            if reports:media['status']='loaded'
+        fixture['forecastQuality']=verify_pregame_evidence(fixture,now)
+    quality_counts={'checked':0,'review':0,'hold':0,'closed':0}
+    for fixture in dashboard.get('nextGames',[]):
+        key=fixture['forecastQuality']['level']
+        quality_counts[key]=quality_counts.get(key,0)+1
+    dashboard['pregameVerificationSource']={
+        'status':weekly_meta.get('status'),
+        'sourceType':'official-report-derived-mirror',
+        'officialReference':'https://www.nfl.com/injuries/',
+        'weeklyReports':weekly_meta,
+        'qualityCounts':quality_counts,
+        'note':'Weekly official game-status fields are accessed from nflverse mirror; no direct NFL.com starting lineup or inactive-list feed is connected. Forecasts on hold cannot trigger value alerts.'}
     dashboard['qbEvidenceSource']={**second_meta,
         'historicalQBReusedOnLightweight':reused,
         'nflverseDepthSource':dashboard.get('depthSource',{}).get('source'),
@@ -444,6 +507,8 @@ def update(schedules_only=False,schedules_file=None):
         item['personnelHomeDelta']=(row.get('personnelScenario') or {}).get('homeDelta',0)
         item['predMargin']=row.get('predMargin')
         item['overlayType']=row.get('overlayType','none')
+        item['verificationLevel']=(row.get('forecastQuality') or {}).get('level','unavailable')
+        item['verificationReasons']=(row.get('forecastQuality') or {}).get('issues',[])[:8]
     record_shadow_predictions(dashboard,games,now)
     save_forecast_revisions(dashboard,log,games,now)
     dashboard=preserve_recent_player_context(dashboard,old_dashboard,now)
@@ -496,6 +561,7 @@ def update(schedules_only=False,schedules_file=None):
         'qbReplacementResearch':dashboard.get('qbReplacementResearch'),
         'qbReplacementSource':dashboard.get('qbReplacementSource'),
         'qbEvidenceSource':dashboard.get('qbEvidenceSource'),
+        'pregameVerificationSource':dashboard.get('pregameVerificationSource'),
         'weatherSource':dashboard.get('weatherSource'),
         'chosenOverlay':dashboard.get('overlaySelection','none'),
         'tacticalSource':dashboard.get('tacticalSource'),
