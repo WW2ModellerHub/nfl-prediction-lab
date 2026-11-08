@@ -67,6 +67,28 @@ def depth_structure(payload):
                 if isinstance(v,(list,dict)):
                     stack.append((path+"["+str(i)+"]",v,level+1))
     summary["nodesVisited"]=count
+    # Target only the QB field; schema and ranking keys, never names/IDs.
+    summary["qbAthleteShapes"]=[]
+    charts=root if isinstance(root,list) else [root]
+    for formation in charts:
+        if not isinstance(formation,dict):continue
+        positions=formation.get("positions") or {}
+        if not isinstance(positions,dict):continue
+        for key,group in positions.items():
+            if str(key).casefold() not in ("qb","quarterback") or not isinstance(group,dict):continue
+            athletes=group.get("athletes") or []
+            summary["qbAthletesContainerType"]=type(athletes).__name__
+            if isinstance(athletes,list):
+                for player in athletes[:4]:
+                    if not isinstance(player,dict):
+                        summary["qbAthleteShapes"].append({"type":type(player).__name__})
+                        continue
+                    summary["qbAthleteShapes"].append({"keys":list(player)[:20],
+                        "rankFields":{k:str(v)[:55] for k,v in player.items()
+                            if any(term in k.casefold() for term in ("rank","depth","slot","order"))},
+                        "athleteType":type(player.get("athlete")).__name__,
+                        "athleteKeys":list(player.get("athlete") or {})[:15]
+                            if isinstance(player.get("athlete"),dict) else []})
     return summary
 
 def parse_depth(payload,observed_at):
