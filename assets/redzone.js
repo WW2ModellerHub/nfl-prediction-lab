@@ -243,6 +243,13 @@ function gameListForFilter(){
   if(state.gameFilter==="mine")return all.filter(function(g){return participantCounts(g).count.mine>0;});
   return all;
 }
+function gameTileChance(game){
+ var prior=findSavedNFLPrior(game);
+ if(!prior||!window.NFLGameLiveModel)return '';
+ var result=window.NFLGameLiveModel.estimate(Object.assign({},game,{fetchedAt:state.lastEspnTime}),prior.homeProbability);
+ if(result.status!=='experimental')return '';
+ return '<div class="game-tab-live-win">◉ '+esc(result.favorite)+' '+(result.winProbability*100).toFixed(1)+'% <small>LAB LIVE · EXPERIMENTAL</small></div>';
+}
 function renderGames(){
   var all=listedGames(),games=gameListForFilter(),live=all.filter(function(g){return g.state==="in";});
   $("gamesLiveCount").textContent=live.length+" LIVE";
@@ -268,7 +275,8 @@ function renderGames(){
       '<div class="game-tab-top"><span class="game-tab-status">'+(g.state==="in"?(g.isRedZone?"◆ RED ZONE":"● LIVE"):g.state==="post"?"FINAL":gameStart(g))+'</span>'+
       ((counts.mine+counts.theirs)?'<span class="fantasy-watch-count">'+(counts.mine?'<span class="count-mine">●'+counts.mine+'</span>':"")+(counts.theirs?'<span class="count-theirs">●'+counts.theirs+'</span>':"")+'</span>':"")+'</div>'+
       '<div class="game-tab-score"><span>'+teamMark(g.away,"tiny")+' '+esc(g.away)+'</span><b>'+fmtNFL(g.awayScore)+'</b></div>'+
-      '<div class="game-tab-score"><span>'+teamMark(g.home,"tiny")+' '+esc(g.home)+'</span><b>'+fmtNFL(g.homeScore)+'</b></div></button>';
+      '<div class="game-tab-score"><span>'+teamMark(g.home,"tiny")+' '+esc(g.home)+'</span><b>'+fmtNFL(g.homeScore)+'</b></div>'+
+      gameTileChance(g)+'</button>';
   }).join("");
   if($("gameStrip").innerHTML!==nextGameMarkup){
     $("gameStrip").innerHTML=nextGameMarkup;

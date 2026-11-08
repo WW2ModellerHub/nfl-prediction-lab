@@ -32,7 +32,10 @@ function render(g,live,reference,expanded){
     '<span>Position: '+h(r.possessionBasis)+'</span></div>';
   if(reference&&Number.isFinite(reference.homeProbability)&&reference.homeProbability>=0&&reference.homeProbability<=1)
     display+='<div class="livewin-reference">ESPN reference (last published play): <b>'+pct(reference.homeProbability)+' '+home+'</b>'+
-    '<small>External model, not used in the Lab estimate; could lag the scoreboard.</small></div>';
+    '<small>External model, not used in the Lab estimate; could lag the scoreboard.'+
+    (Math.abs(reference.homeProbability-r.homeProbability)>=.15?
+       ' <b>Model disagreement: '+(Math.abs(reference.homeProbability-r.homeProbability)*100).toFixed(1)+' pp — do not treat this as a reliable edge.</b>':'')+
+    '</small></div>';
   display+='<p class="livewin-disclaimer">Our provisional NFL in-play model uses the archived pregame prediction, scoreboard difference, game clock and approximate possession/field-position values. Assumed scoring-volatility and field-value coefficients have not passed independent historical validation. This is a research forecast, not a betting recommendation.</p>';
  }else{
    display+='<small class="livewin-mini">Before kickoff: '+prior+' '+home+' · '+(live.period?"Q"+h(live.period)+" "+h(live.clock):"game running")+'</small>';

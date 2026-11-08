@@ -246,3 +246,9 @@ h1 span{color:var(--lime)}h1 small{font-size:10px;letter-spacing:.17em;color:#81
   .field-matchup>b{font-size:11px}.field-stadium{height:95px}.win-gauge{width:71px;height:71px}
   .forecast-row>b{font-size:16px}.table-head,.player{grid-template-columns:minmax(0,1fr) 73px 58px}
 }
+
+/* Live winner probability in game carousel (distinct from Sleeper fantasy forecast) */
+.game-tab-live-win{margin:9px 0 1px;padding:7px 8px;border-top:1px solid #2e6b62;color:#84f6c5;font-size:11px;font-weight:850;text-align:left;font-variant-numeric:tabular-nums}
+.game-tab-live-win small{display:block;color:#9cb9bb;font-size:8px;letter-spacing:.35px;margin-top:2px}
+.redzone-nfl-live-forecast{margin:12px 0 14px}
+.redzone-nfl-live-forecast .livewin-panel{margin:0}
