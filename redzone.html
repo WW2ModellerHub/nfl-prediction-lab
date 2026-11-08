@@ -7,39 +7,33 @@
 <meta name="description" content="Sunday Funday fantasy matchup live scores and NFL red zone alerts, powered by Sleeper and ESPN.">
 <title>Fantasy Red Zone | NFL Prediction Lab</title>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/redzone.css?v=3-game-centre">
+<link rel="stylesheet" href="assets/redzone.css?v=4-broadcast">
+<link rel="stylesheet" href="assets/redzone-broadcast.css?v=4" />
 </head>
 <body>
 <div class="shell">
   <header class="top">
     <a class="back" href="./index.html">◈ NFL LAB <span>/</span> PREDICTIONS</a>
-    <div class="topright"><span id="connection" class="status"><i></i> CONNECTING</span><button id="refresh" class="small-btn">↻ Refresh</button></div>
+    <div class="topright"><span class="header-signal">◆ NFL GAME DAY</span><span id="connection" class="status"><i></i> CONNECTING</span><button id="refresh" class="small-btn">↻ Refresh</button></div>
   </header>
   <main>
     <div class="page-heading">
-      <div class="title-block"><p class="eyebrow"><span class="broadcast-dot"></span> SUNDAY FUNDAY / LIVE TRACKER</p><h1>RED<span>ZONE</span> <small>FANTASY WATCH</small></h1><p class="subtitle">Your matchup, every point, every drive.</p></div>
+      <div class="title-block"><p class="eyebrow"><span class="broadcast-dot"></span> SUNDAY FUNDAY / LIVE TRACKER</p><h1>RED<span>ZONE</span> <small>FANTASY LIVE</small></h1><p class="subtitle">Your matchup, every point, every drive.</p></div>
       <div class="tools"><button id="weekPrev" class="small-btn" title="Previous week">‹</button><b id="weekLabel">WEEK —</b><button id="weekNext" class="small-btn" title="Next week">›</button><button id="currentWeek" class="small-btn subtle">Current week</button></div>
     </div>
     <div id="error" class="error" role="alert" hidden></div>
-    <section class="scoreboard" aria-label="Your fantasy matchup scoreboard">
+    <section class="command-deck" id="matchup" aria-label="Fantasy matchup and win forecast"><div class="matchup-live"><section class="scoreboard" aria-label="Your fantasy matchup scoreboard">
       <div class="score-side mine"><div class="score-top"><span class="overline">YOUR TEAM</span><span class="fantasy-logo" id="myBadge" aria-hidden="true">TH</span></div><strong id="myName">Tall &amp; Handsome</strong><div id="myScore" class="points">—</div><span id="myDetails" class="mini">Waiting for Sleeper</span></div>
       <div class="middle"><div class="versus">VS</div><div id="margin" class="margin">—</div><div id="lastUpdate" class="stamp">Not connected</div></div>
       <div class="score-side theirs"><div class="score-top"><span class="overline">OPPONENT</span><span class="fantasy-logo" id="theirBadge" aria-hidden="true">OP</span></div><strong id="theirName">Finding opponent</strong><div id="theirScore" class="points">—</div><span id="theirDetails" class="mini">Waiting for Sleeper</span></div>
     </section>
-    <div class="score-track" aria-label="Share of points scored so far"><span class="score-track-label">POINT SHARE</span><div class="share-bar"><span id="myShareBar" class="share-me" style="width:50%"></span><span id="theirShareBar" class="share-them" style="width:50%"></span></div><span id="mySharePct" class="share-value">—</span><span class="share-divider">/</span><span id="theirSharePct" class="share-value theirs-share">—</span></div>
+    <div class="score-track" aria-label="Share of points scored so far"><span class="score-track-label">SCORED SO FAR</span><div class="share-bar"><span id="myShareBar" class="share-me" style="width:50%"></span><span id="theirShareBar" class="share-them" style="width:50%"></span></div><span id="mySharePct" class="share-value">—</span><span class="share-divider">/</span><span id="theirSharePct" class="share-value theirs-share">—</span></div>
     <div class="feedmeta"><span><i class="dot green"></i> Fantasy points: <b>Sleeper</b></span><span><i class="dot orange"></i> Drive position: <b>ESPN</b></span><span id="gameFeedStatus">NFL play feed: waiting</span></div>
 
-    <section class="game-centre panel" id="gameCentre" aria-label="Live NFL game selector">
-      <div class="panelhead game-centre-head">
-        <div><span class="eyebrow"><span class="broadcast-dot"></span> NFL LIVE TRACKER</span><h2>Game Centre <span id="gamesLiveCount" class="games-live-count">—</span></h2></div>
-        <div class="game-controls"><span id="gamesStatus">Loading fixtures…</span><button type="button" class="small-btn" id="gamePrev" aria-label="Previous NFL game">‹</button><button type="button" class="small-btn" id="gameNext" aria-label="Next NFL game">›</button></div>
-      </div>
-      <div class="game-strip" id="gameStrip" role="tablist" aria-label="Choose an NFL game"><div class="empty">Loading NFL games…</div></div>
-      <div class="game-details" id="gameDetails" role="tabpanel"><div class="empty">Choose any NFL game to view the ball on the field.</div></div>
-    </section>
+    </div>
     <section class="projections-panel panel" aria-label="Fantasy projected points and win probability">
       <div class="panelhead projection-head">
-        <div><span class="eyebrow">SLEEPER PLAYER PROJECTIONS · OUR ODDS MODEL</span><h2>Win probability <span class="model-label">ESTIMATE</span></h2></div>
+        <div><span class="eyebrow">LIVE MATCHUP FORECAST</span><h2>Win probability <span class="model-label">OUR MODEL</span></h2></div>
         <span id="projectionStamp" class="muted">Loading projections…</span>
       </div>
       <div class="projection-content">
@@ -55,22 +49,32 @@
       <div class="projection-disclaimer">Points are projected from Sleeper player forecasts under your league scoring. Win chance is <strong>our approximate model</strong>, not an official Sleeper probability.</div>
     </section>
 
+    </section>
+    <section class="game-centre panel" id="games" aria-label="Live NFL game selector">
+      <div class="panelhead game-centre-head">
+        <div><span class="eyebrow"><span class="broadcast-dot"></span> EVERY GAME · EVERY DRIVE</span><h2>Game Centre <span id="gamesLiveCount" class="games-live-count">—</span></h2></div>
+        <div class="game-controls"><span id="gamesStatus">Loading fixtures…</span><span class="swipe-hint">SWIPE TO SWITCH</span><button type="button" class="small-btn" id="gamePrev" aria-label="Previous NFL game">‹</button><button type="button" class="small-btn" id="gameNext" aria-label="Next NFL game">›</button></div>
+      </div>
+      <div class="game-strip" id="gameStrip" role="tablist" aria-label="Choose an NFL game"><div class="empty">Loading NFL games…</div></div>
+      <div class="game-details" id="gameDetails" role="tabpanel"><div class="empty">Choose any NFL game to view the ball on the field.</div></div>
+    </section>
     <section class="redzone-section">
       <div class="section-heading"><div><span class="eyebrow">SCORING THREAT RADAR</span><h2><span class="section-graphic">◎</span> Red Zone <span class="hot">LIVE</span> <span id="rzCount" class="rz-count">0</span></h2></div><span class="muted">Team scoring chances, not guaranteed individual touches</span></div>
       <div id="redzones" class="redzones"><div class="empty">Checking NFL games for Red Zone possessions…</div></div>
     </section>
-    <div class="lineup-toolbar" aria-label="Choose fantasy lineup"><div class="view-switch"><button type="button" class="active" data-view="mine" aria-pressed="true">◉ My team</button><button type="button" data-view="theirs" aria-pressed="false">◉ Opponent</button></div><span class="compact-note">Swipe-free lineup view</span></div>
+    <div id="players" class="lineup-toolbar" aria-label="Choose fantasy lineup"><div class="view-switch"><button type="button" class="active" data-view="mine" aria-pressed="true">◉ My team</button><button type="button" data-view="theirs" aria-pressed="false">◉ Opponent</button></div><span class="compact-note">Swipe-free lineup view</span></div>
     <section class="columns" id="lineups" data-view="mine">
       <div class="panel team-panel"><div class="panelhead"><h2>My lineup <span id="myCount" class="count"></span></h2><span class="side-tag yours">YOU</span></div><div class="table-head"><span>STARTING LINEUP</span><span>GAME</span><span>PTS</span></div><div id="myPlayers"><div class="empty">Loading starters…</div></div></div>
       <div class="panel opponent-panel"><div class="panelhead"><h2>Opponent lineup <span id="theirCount" class="count"></span></h2><span class="side-tag rival">THEM</span></div><div class="table-head"><span>STARTING LINEUP</span><span>GAME</span><span>PTS</span></div><div id="theirPlayers"><div class="empty">Loading starters…</div></div></div>
     </section>
     <div class="bench-actions"><label><input id="benchToggle" type="checkbox"> Show both benches (bench points do not count)</label></div>
-    <section class="panel activity-panel"><div class="panelhead"><h2><span class="section-graphic">↗</span> Points feed</h2><div class="actions"><button id="sound" class="small-btn">🔕 Sound off</button><button id="notifications" class="small-btn">Alerts</button><button id="clearActivity" class="small-btn subtle">Clear feed</button></div></div><div class="activity-help">Live changes since opening the watcher · corrections may subtract points · alerts require this tab open</div><div id="activity" class="activity"><div class="empty">Waiting for the next fantasy-points change…</div></div></section>
+    <section id="scoringSection" class="panel activity-panel"><div class="panelhead"><h2><span class="section-graphic">↗</span> Points feed</h2><div class="actions"><button id="sound" class="small-btn">🔕 Sound off</button><button id="notifications" class="small-btn">Alerts</button><button id="clearActivity" class="small-btn subtle">Clear feed</button></div></div><div class="activity-help">Live changes since opening the watcher · corrections may subtract points · alerts require this tab open</div><div id="activity" class="activity"><div class="empty">Waiting for the next fantasy-points change…</div></div></section>
     <section class="settings"><details><summary>League connection &amp; settings</summary><div class="settings-body"><p>Connected by default to Sunday Funday / Tall &amp; Handsome. You can change league and roster if you want to watch a different Sleeper matchup.</p><div class="settings-controls"><label>Sleeper league ID <input id="leagueInput" inputmode="numeric" autocomplete="off"></label><label>My roster number <input id="rosterInput" type="number" min="1" max="99"></label><button id="saveSettings" class="small-btn primary">Connect league</button></div><p class="fine">No Sleeper password or API key needed. Settings and scoring activity remain in this browser.</p></div></details></section>
     <footer>Fantasy scores and lineups are read from Sleeper. NFL play situations are read from an ESPN public scoreboard feed and may be delayed, missing or corrected. Red Zone warnings indicate the team in possession inside the 20, not a particular player getting the ball. This is a read-only personal viewer. <a href="https://docs.sleeper.com/" target="_blank" rel="noopener">Sleeper API</a> · <a href="./index.html">NFL Prediction Lab</a></footer>
   </main>
+  <nav class="mobile-dock" aria-label="Red Zone navigation"><a href="#matchup"><span aria-hidden="true">◈</span>Matchup</a><a href="#games"><span aria-hidden="true">▰</span>Games</a><a href="#players"><span aria-hidden="true">♙</span>Players</a><a href="#scoringSection"><span aria-hidden="true">↗</span>Activity</a></nav>
 </div>
-<script src="assets/redzone-core.js?v=3-game-centre" defer></script>
-<script src="assets/redzone.js?v=3-game-centre" defer></script>
+<script src="assets/redzone-core.js?v=4-broadcast" defer></script>
+<script src="assets/redzone.js?v=4-broadcast" defer></script>
 </body>
 </html>
