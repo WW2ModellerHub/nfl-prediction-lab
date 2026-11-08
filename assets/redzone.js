@@ -192,6 +192,7 @@ function renderGames(){
        games.find(function(g){return participantCounts(g).count.mine>0;})||games[0];
     state.selectedGame=relevant.id;
   }
+  var preservedScroll=$("gameStrip").scrollLeft;
   $("gameStrip").innerHTML=games.map(function(g){
     var active=state.selectedGame===g.id,counts=participantCounts(g).count;
     return '<button type="button" class="game-tab '+(active?"selected ":"")+(g.state==="in"?"playing":"")+
@@ -201,6 +202,7 @@ function renderGames(){
       '<div class="game-tab-score"><span>'+teamMark(g.away,"tiny")+' '+esc(g.away)+'</span><b>'+fmtNFL(g.awayScore)+'</b></div>'+
       '<div class="game-tab-score"><span>'+teamMark(g.home,"tiny")+' '+esc(g.home)+'</span><b>'+fmtNFL(g.homeScore)+'</b></div></button>';
   }).join("");
+  $("gameStrip").scrollLeft=preservedScroll;
   var chosen=games.find(function(g){return g.id===state.selectedGame;});
   var watchers=participantCounts(chosen).players;
   var hasBall=chosen.state==="in"&&chosen.position!==null;
@@ -441,6 +443,19 @@ function init(){
     state.selectedGame=games[(at+delta+games.length)%games.length].id;renderGames();
     var t=document.querySelector('.game-tab.selected');if(t)t.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});
   }
+  // Flick left/right over the field to move between games (vertical scrolling remains native).
+  var swipeStartX=null,swipeStartY=null;
+  $("gameDetails").addEventListener("touchstart",function(e){
+    if(!e.touches||e.touches.length!==1)return;
+    swipeStartX=e.touches[0].clientX;swipeStartY=e.touches[0].clientY;
+  },{passive:true});
+  $("gameDetails").addEventListener("touchend",function(e){
+    if(swipeStartX===null||!e.changedTouches||!e.changedTouches.length)return;
+    var dx=e.changedTouches[0].clientX-swipeStartX;
+    var dy=e.changedTouches[0].clientY-swipeStartY;
+    swipeStartX=null;swipeStartY=null;
+    if(Math.abs(dx)>48 && Math.abs(dx)>Math.abs(dy)*1.4)moveGame(dx<0?1:-1);
+  },{passive:true});
   $("gamePrev").addEventListener("click",function(){moveGame(-1);});
   $("gameNext").addEventListener("click",function(){moveGame(1);});
   $("gameStrip").addEventListener("keydown",function(e){if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();moveGame(e.key==="ArrowRight"?1:-1);}});
