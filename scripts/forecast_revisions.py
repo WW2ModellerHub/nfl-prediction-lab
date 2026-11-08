@@ -13,6 +13,7 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 from prediction_record import summarize as summarize_prediction_record
+from player_effect_scorecard import summarize as summarize_player_effects
 
 def dt(value):
     try:
@@ -36,6 +37,23 @@ def snapshot(g,stamp,kind,origin):
        'personnelStatus':personnel.get('status'),'personnelHomeDelta':personnel.get('homeDelta',0),
        'personnelMarginDelta':personnel.get('marginDelta',0),
        'personnelEvidence':personnel.get('factors',[]),
+       # Point-in-time paired control: never reconstruct a no-player forecast
+       # after the game, and never confuse it with the Elo-only baseline.
+       'prePersonnelProbability':round(g['prePersonnelProbability'],5)
+           if valid(g.get('prePersonnelProbability')) else None,
+       'provisionalPlayerApplied':bool(personnel.get('affectsPrediction') and
+           valid(g.get('prePersonnelProbability')) and
+           abs(g['homeProbability']-g['prePersonnelProbability'])>=.00001),
+       'personnelSourceMode':('cached' if 'cached' in str(personnel.get('status','')).lower()
+           else 'fresh' if personnel.get('sourceObservedAt') else 'unknown'),
+       'personnelSourceObservedAt':personnel.get('sourceObservedAt'),
+       'playerEffectDeltas':{key:round(float(personnel.get(field,0)),5)
+           for key,field in (('qb-statistical','qbStatisticalHomeDelta'),
+                             ('qb-replacement','qbReplacementHomeDelta'),
+                             ('other-injuries','injuryHomeDelta'))
+           if isinstance(personnel.get(field,0),(int,float)) and
+              not isinstance(personnel.get(field,0),bool) and
+              math.isfinite(personnel.get(field,0))},
        'personnelWarnings':personnel.get('warnings',[])[:6],
        'mediaRetrievedAt':personnel.get('sourceObservedAt'),
        'qbNames':{side:((g.get('qbIntelligence') or {}).get(side) or {}).get('qb')
@@ -221,6 +239,7 @@ def revisions(dashboard,originals,completed_games,now,path=Path('data/forecast-r
        'recentFinals':len(scored),'source':'data/forecast-revisions.json',
        'note':'Only original timestamped picks and later forecasts saved before the actual kickoff are scored. Recovered originals retain their original observation time and import provenance. Last recorded does not necessarily mean near kickoff; a separate 24-hour cohort reports true late updates. Ties excluded. No retrospective injury estimates.'}
     dashboard['forecastRevisionResults']=scored[:80]
+    dashboard['playerEffectScorecard']=summarize_player_effects(scored,by_game,dt,valid)
     record=summarize_prediction_record(scored,by_game,now,dt,valid)
     dashboard['predictionRecord']={
         key:value for key,value in record.items() if key!='allResults'

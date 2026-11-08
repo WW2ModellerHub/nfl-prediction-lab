@@ -575,6 +575,7 @@ def update(schedules_only=False,schedules_file=None):
         'forecastRevisionSummary':dashboard.get('forecastRevisionSummary'),
         'forecastRevisionResults':dashboard.get('forecastRevisionResults',[]),
         'predictionRecord':dashboard.get('predictionRecord'),
+        'playerEffectScorecard':dashboard.get('playerEffectScorecard'),
         'personnelModelStatus':'EXPERIMENTAL — reported injury/QB scenario assumptions, no validated active player coefficient',
         'forwardPredictions':dashboard.get('forwardPredictions'),
         'forwardPerformance':dashboard.get('forwardPerformance'),
