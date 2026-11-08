@@ -12,7 +12,7 @@ const money=n=>'£'+Number(n||0).toLocaleString('en-GB',{minimumFractionDigits:2
 const date=s=>s?new Date(s).toLocaleString('en-GB',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit',timeZone:'Europe/London'}):'Unknown';
 function save(key,v){try{localStorage.setItem('nfl-lab-'+key,JSON.stringify(v));return true}catch{toast('Local storage unavailable.');return false}}
 function load(key,fallback){try{return JSON.parse(localStorage.getItem('nfl-lab-'+key))??fallback}catch{return fallback}}
-let store={data:null,auditReference:window.NFL_LAB_AUDIT_REFERENCE||null,researchEvidence:window.NFL_LAB_RESEARCH_EVIDENCE||null,tab:'overview',odds:load('odds',{}),bets:load('bets',[]),query:'',week:'All',busy:false,activeGameId:null,liveScores:{}};
+let store={data:null,auditReference:window.NFL_LAB_AUDIT_REFERENCE||null,researchEvidence:window.NFL_LAB_RESEARCH_EVIDENCE||null,tab:'overview',odds:load('odds',{}),bets:load('bets',[]),query:'',week:'All',busy:false,activeGameId:null,liveScores:{},liveReferences:{}};
 let timer;
 function toast(message){const el=byId('toast');el.textContent=message;el.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>el.classList.remove('show'),2900)}
 function initials(team){return `<span class="team-bubble" style="border-color:${TEAM_COLORS[team]||'#456'}88;background:${TEAM_COLORS[team]||'#203447'}30">${escapeHTML(team)}</span>`}
@@ -26,6 +26,26 @@ function games(){return store.data?.nextGames||[]}
 function recentKickoffs(){return Array.isArray(store.data?.recentKickoffs)?store.data.recentKickoffs:[]}
 function browseGames(){return [...recentKickoffs(),...games()].filter((g,i,all)=>all.findIndex(x=>String(x.id)===String(g.id))===i)}
 function matchSearch(g){return ((g.homeName||g.home)+' '+(g.awayName||g.away)+' '+g.home+' '+g.away).toLowerCase().includes(store.query.toLowerCase())}
+function liveModelMarkup(g,expanded){
+ const source=store.liveScores?.[g.id]||null,ref=store.liveReferences?.[g.id]||null;
+ return window.NFLGameLiveUI?.render(g,source,ref,expanded)||
+   '<div class="livewin-unavailable">NFL live probability module unavailable.</div>';
+}
+let liveRefBusy=false,liveRefLastId=null,liveRefLastAt=0;
+async function refreshSelectedLiveReference(){
+ const g=recentKickoffs().find(x=>String(x.id)===String(store.activeGameId));
+ const source=g&&store.liveScores?.[g.id];
+ if(!g||source?.state!=='in'||!/^\d+$/.test(String(source.id||''))||liveRefBusy)return;
+ if(liveRefLastId===g.id && Date.now()-liveRefLastAt<35000)return;
+ liveRefLastId=g.id;liveRefLastAt=Date.now();liveRefBusy=true;
+ try{
+  const res=await fetch('https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event='+encodeURIComponent(source.id),{cache:'no-store'});
+  if(!res.ok)throw Error('ESPN summary HTTP '+res.status);
+  const reference=window.NFLGameLiveModel?.espnReference(await res.json());
+  if(reference){store.liveReferences[g.id]=reference;updateLiveDom();}
+ }catch(e){/* Optional external comparison, never block the core live model. */}
+ finally{liveRefBusy=false;}
+}
 function scoreFromESPN(g){
  const s=store.liveScores?.[g.id];
  if(!s)return {main:'KICKED OFF',detail:'Live score pending · view Red Zone'};
@@ -41,14 +61,15 @@ function recentKickoffRow(g){
  <span class="started-live" data-live-status="${escapeHTML(g.id)}">${escapeHTML(live.main)}</span>
  <span class="started-live-detail" data-live-detail="${escapeHTML(g.id)}">${escapeHTML(live.detail)}</span></div></div>
  <div class="started-prob"><strong>${escapeHTML(fav)} ${pct(p)}</strong><small>LAST SAVED PRE-KICKOFF PICK</small>
- <small>Saved ${escapeHTML(date(g.lastPregameRecordedAt))}</small></div>
+ <small>Saved ${escapeHTML(date(g.lastPregameRecordedAt))}</small>
+ <div data-live-model="${escapeHTML(g.id)}">${liveModelMarkup(g,false)}</div></div>
  <div class="started-open">VIEW ARCHIVE ›</div></div>`;
 }
 function startedSlatePanel(){
  const recent=recentKickoffs();
  if(!recent.length)return '';
  return panel('Today’s live & recently started games',
- `<div class="started-note">These fixtures stay here after kickoff. Percentages are <strong>archived pregame forecasts</strong>, not live win probabilities. Scores are from ESPN where available. <a href="./redzone.html">Open Red Zone ↗</a></div>
+ `<div class="started-note">These fixtures stay here after kickoff. Your frozen pregame forecast is shown alongside a separate <strong>experimental in-play win chance</strong> when ESPN supplies current game state. Scores are from ESPN where available. <a href="./redzone.html">Open Red Zone ↗</a></div>
  <div>${recent.map(recentKickoffRow).join('')}</div>`,
  'Kickoffs within 30 hours · frozen prediction archive · live scores separate');
 }
@@ -68,6 +89,8 @@ function archivedMatchupPage(g){
  <div class="panel-body"><strong data-live-status="${escapeHTML(g.id)}">${escapeHTML(live.main)}</strong>
  <p data-live-detail="${escapeHTML(g.id)}">${escapeHTML(live.detail)}</p>
  <p class="source-meta">ESPN scoreboard information is an independent live-display feed and may lag or be unavailable. Neither live scores nor final results are used to invent updated pregame probabilities.</p></div></section>
+ <section class="matchup-panel"><h3>Live NFL win probability · research model</h3>
+ <div class="panel-body" data-live-full="${escapeHTML(g.id)}">${liveModelMarkup(g,true)}</div></section>
  <section class="matchup-panel"><h3>Archived prediction record</h3>
  <div class="panel-body"><div class="stat-pair"><span>Original saved ${escapeHTML(date(g.originalRecordedAt))}</span><strong>${pct(g.originalHomeProbability)} ${escapeHTML(g.home)} win</strong></div>
  <div class="stat-pair"><span>Final pregame revision ${escapeHTML(date(g.lastPregameRecordedAt))}</span><strong>${pct(g.homeProbability)} ${escapeHTML(g.home)} win</strong></div>
@@ -83,6 +106,12 @@ function updateLiveDom(){
  document.querySelectorAll('[data-live-detail]').forEach(el=>{
    const game=recentKickoffs().find(g=>String(g.id)===String(el.getAttribute('data-live-detail')));
    if(game)el.textContent=scoreFromESPN(game).detail;
+ });
+ document.querySelectorAll('[data-live-model],[data-live-full]').forEach(el=>{
+   const isFull=el.hasAttribute('data-live-full');
+   const id=el.getAttribute(isFull?'data-live-full':'data-live-model');
+   const game=recentKickoffs().find(g=>String(g.id)===String(id));
+   if(game)el.innerHTML=liveModelMarkup(game,isFull);
  });
 }
 async function refreshLiveScores(){
@@ -103,13 +132,11 @@ async function refreshLiveScores(){
        norm(g.away)===norm(away.team?.abbreviation)&&
        Math.abs(new Date(g.kickoff).getTime()-new Date(event.date).getTime())<2*3600000);
      if(!matching)continue;
-     const score=t=>t.score!=null&&/^\d+$/.test(String(t.score))?Number(t.score):null;
-     scored[matching.id]={home:matching.home,away:matching.away,
-       homeScore:score(home),awayScore:score(away),
-       status:event.status?.type?.state||'pre',period:event.status?.period||0,
-       clock:event.status?.displayClock||'',fetchedAt:Date.now()};
+     const live=window.NFLGameLiveModel?.espnState(event,Date.now());
+     if(!live||live.home!==matching.home||live.away!==matching.away)continue;
+     scored[matching.id]={...live,status:live.state};
    }
-   store.liveScores=scored;updateLiveDom();
+   store.liveScores=scored;updateLiveDom();refreshSelectedLiveReference();
  }catch(e){store.liveScores={};updateLiveDom();}
 }
 function oddsFor(g){return store.odds[g.id]||null}
@@ -847,6 +874,7 @@ function openGamePage(id){
  const hash='#game='+encodeURIComponent(g.id);
  if(window.location&&window.location.hash!==hash)window.location.hash=hash;
  render();
+ if(g.archivedPregame)refreshSelectedLiveReference();
  if(window.scrollTo)window.scrollTo({top:0,behavior:'smooth'});
 }
 
