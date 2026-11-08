@@ -103,6 +103,18 @@ class OfficialReportTests(unittest.TestCase):
         self.assertEqual(rec[0]['reportDate'],H)
         self.assertEqual(meta['gameStatuses'],1)
 
+    def test_snapshot_mirror_counts_game_status_without_claiming_source_modification_time(self):
+        row={'season':2026,'week':9,'team':'BAL','name':'Franchise QB','id':'01',
+             'position':'QB','reportStatus':'Out','practiceStatus':'DNP',
+             'asOf':NOW,'timestampBasis':'download-observation','injury':'Thumb'}
+        entries,meta=from_existing([row],2026,NOW)
+        self.assertEqual(meta['status'],'snapshot-only')
+        self.assertEqual(meta['gameStatuses'],1)
+        self.assertEqual(meta['dated'],0)
+        self.assertEqual(meta['sourceTimestampedGameStatuses'],0)
+        self.assertIsNone(entries[0]['sourceUpdatedAt'])
+        self.assertEqual(entries[0]['reportDate'],NOW.isoformat())
+
     def test_game_week_and_kickoff_cannot_leak(self):
         g=merged()
         self.assertEqual(g['officialInjuryEvidence']['home']['qualifiedQBOut'][0]['name'],'Backup QB')

@@ -1,3 +1,8 @@
+### v3.0.1 production audit clarification
+
+- Treat the number of mirrored weekly game-status designations as **prospectively observed statuses**, separately from the number with genuine original `date_modified` timestamps. The first production snapshot had 2,821 current-season rows and no source publication timestamps, but did have usable current-week game-status designations when observed before kickoff.
+- Distinguish `gameStatuses` from `sourceTimestampedGameStatuses` to avoid a misleading zero in the source audit. The original report timestamp remains unknown; these observations are never backdated.
+
 ## v3.0.1 — 8 November 2026 — Treat undated weekly report rows as current observations, never hindsight
 
 - The live nflverse mirror returned 2,821 rows with **zero row-level `date_modified`** timestamps. Preserve those source facts as download-time snapshots for genuinely future games; no retrospective availability claims or changed archived original picks.

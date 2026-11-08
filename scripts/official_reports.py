@@ -139,9 +139,10 @@ def from_existing(rows,season,now):
           "officialReference":OFFICIAL_PAGE,"observedAt":now.isoformat(),
           "records":len(result),"dated":sum(x["timestampBasis"]=="row-updated" for x in result),
           "snapshotObserved":sum(x["timestampBasis"]=="download-observation" for x in result),
-          "gameStatuses":sum(bool(x["gameStatus"] and x["timestampBasis"]=="row-updated") for x in result),
+          "gameStatuses":sum(bool(x["gameStatus"]) for x in result),
+          "sourceTimestampedGameStatuses":sum(bool(x["gameStatus"]) and x["timestampBasis"]=="row-updated" for x in result),
           "teamsCovered":len({x["team"] for x in result}),
-          "note":"Historical full-refresh injury report rows reused; undated snapshot rows remain non-authoritative."}
+          "note":"Current season's full-refresh weekly report rows reused. Records lacking original date_modified are first-known at download time and usable only prospectively before kickoff, not retrospectively."}
     return result,meta
 
 def attach(game,records,meta,now):
