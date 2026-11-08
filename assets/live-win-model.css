@@ -1,0 +1,41 @@
+
+/* Shared NFL in-play winner forecast panels: independent of Sleeper fantasy probability */
+.livewin-panel{border:1px solid #325e61;border-radius:12px;background:linear-gradient(130deg,#15352f,#142330);color:#eef6f5;padding:14px;min-width:0}
+.livewin-top,.livewin-main,.livewin-labels,.livewin-factor,.livewin-inputs{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.livewin-top{margin-bottom:8px}
+.livewin-top small,.livewin-versus,.livewin-labels,.livewin-mini,.livewin-inputs,.livewin-disclaimer,.livewin-reference{color:#9eb7be;font-size:10px;line-height:1.55}
+.livewin-live{font-size:9px;font-weight:850;letter-spacing:.75px;color:#7af5c1}
+.livewin-main{align-items:flex-end}
+.livewin-main>div:first-child{display:flex;flex-direction:column;gap:2px}
+.livewin-main strong{font-size:clamp(25px,4vw,38px);letter-spacing:-.8px;font-variant-numeric:tabular-nums;line-height:1}
+.livewin-main span{font-size:12px;font-weight:750}
+.livewin-versus{text-align:right}
+.livewin-versus small,.livewin-mini{display:block}
+.livewin-prob{height:9px;border-radius:50px;background:#bd5a6e;overflow:hidden;margin:11px 0 4px}
+.livewin-prob span{display:block;height:100%;border-radius:50px;background:linear-gradient(90deg,#4dd3a6,#a1faac)}
+.livewin-labels{font-variant-numeric:tabular-nums}
+.livewin-mini{margin-top:8px}
+.livewin-attribution{margin-top:16px;border-top:1px solid #3a5b60;padding-top:13px}
+.livewin-subtitle{font-size:10px;letter-spacing:1px;color:#a6d9d0;font-weight:800;margin-bottom:7px}
+.livewin-factor{padding:7px 0;border-bottom:1px solid #334c50;font-size:11px;color:#c8dbdf}
+.livewin-factor b{font-variant-numeric:tabular-nums;color:#fff}
+.livewin-factor b.up{color:#a2f4c0}.livewin-factor b.down{color:#ffa4a8}
+.livewin-factor.final{color:#ecf9f3;border-bottom:0;font-weight:850}
+.livewin-inputs{margin-top:12px;justify-content:flex-start;flex-wrap:wrap;gap:5px 12px}
+.livewin-inputs>span{border:1px solid #395459;border-radius:5px;padding:5px 8px}
+.livewin-disclaimer{margin:13px 0 0;border-top:1px solid #395054;padding-top:11px}
+.livewin-reference{margin-top:11px;padding:10px;border:1px dashed #60738d;border-radius:8px}
+.livewin-reference small{display:block}
+.livewin-unavailable{display:flex;flex-direction:column;gap:6px;background:#11242d;border:1px solid #2e4b58;border-radius:9px;padding:12px;line-height:1.5}
+.livewin-unavailable>span{font-size:9px;color:#71ecbc;letter-spacing:.8px;font-weight:850}
+.livewin-unavailable>b{font-size:12px;color:#d0e0e8}
+.livewin-unavailable>small{font-size:10px;color:#8aa2b3}
+.started-prob .livewin-panel,.started-prob .livewin-unavailable{max-width:270px;width:100%;text-align:left}
+.started-prob .livewin-compact{padding:9px;margin-bottom:7px}
+.started-prob .livewin-compact .livewin-top small,.started-prob .livewin-compact .livewin-versus{display:none}
+.started-prob .livewin-compact .livewin-main strong{font-size:23px}
+.started-prob .livewin-compact .livewin-main span{font-size:10px}
+.started-prob .livewin-compact .livewin-prob{margin:7px 0 3px;height:6px}
+.started-prob .livewin-compact .livewin-live{font-size:8px}
+.started-prob .livewin-compact .livewin-mini{font-size:8px}
+@media(max-width:520px){.started-prob .livewin-panel{min-width:120px}.started-prob .livewin-unavailable{max-width:155px}.livewin-main strong{font-size:26px}.livewin-inputs{font-size:9px}}

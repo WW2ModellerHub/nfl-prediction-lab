@@ -513,6 +513,24 @@ def update(schedules_only=False,schedules_file=None):
     record_shadow_predictions(dashboard,games,now)
     archive=save_forecast_revisions(dashboard,log,games,now)
     dashboard['recentKickoffs']=make_recent_kickoffs(games,archive,now)
+    # Small, point-in-time pregame prior file for Red Zone. No post-kickoff
+    # revisions or inferred retrospective forecasts are ever substituted.
+    priors=[]
+    for row in dashboard.get('recentKickoffs',[]):
+        priors.append({'id':row['id'],'home':row['home'],'away':row['away'],
+           'kickoff':row['kickoff'],'homeProbability':row['homeProbability'],
+           'recordedAt':row['lastPregameRecordedAt'],'archivedPregame':True})
+    for row in dashboard.get('nextGames',[]):
+        latest=row.get('latestRecordedForecast') or {}
+        when=latest.get('recordedAt')
+        if not when:continue
+        priors.append({'id':row['id'],'home':row['home'],'away':row['away'],
+           'kickoff':row['kickoff'],'homeProbability':row['homeProbability'],
+           'recordedAt':when,'archivedPregame':True})
+    Path('data/live-priors.json').write_text(json.dumps({
+        'schemaVersion':1,'generatedAt':now.isoformat(),'games':priors,
+        'note':'Every prior comes from an archived model observation recorded before kickoff; in-play changes are separate, experimental and never overwrite pregame records.'},
+        ensure_ascii=False,indent=2)+'\n')
     dashboard=preserve_recent_player_context(dashboard,old_dashboard,now)
     # Schedules-only refresh cannot recompute historical play-by-play accuracy.
     if schedules_only:
