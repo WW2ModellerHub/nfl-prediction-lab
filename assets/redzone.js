@@ -229,43 +229,52 @@ function projLookup(id){
 }
 function renderProjections(){
   var status=$("projectionStatus"),at=$("projectionStamp");
-  if(!state.projections){
+  var unavailable=function(message){
     $("winPct").textContent="—";$("myProjected").textContent="—";$("theirProjected").textContent="—";
     $("winGauge").style.setProperty("--win","50");
     $("myForecastBar").style.width="50%";$("theirForecastBar").style.width="50%";
-    at.textContent=state.projectionError?"Feed unavailable":"Waiting for Sleeper";
-    status.textContent=state.projectionError?"Sleeper's unofficial projection endpoint is currently unavailable; no win % has been invented.":"Loading weekly player forecasts…";
+    status.textContent=message;
+  };
+  if(!state.projections){
+    at.textContent=state.projectionError?"Projection feed unavailable":"Connecting to Sleeper";
+    unavailable(state.projectionError?
+      "Sleeper player projections could not be retrieved. Current fantasy scores remain live; no win probability is fabricated.":
+      "Loading Sleeper's projected player points…");
     return;
   }
-  at.textContent="Updated "+stamp(state.projectionAt)+" UK";
-  if(!state.lastEspnTime){
-    $("winPct").textContent="—";$("myProjected").textContent="—";$("theirProjected").textContent="—";
-    status.textContent="Waiting for game status before estimating remaining points.";
+  at.textContent="Sleeper forecasts "+stamp(state.projectionAt)+" UK";
+  if(!state.pair.mine || !state.pair.theirs){
+    unavailable("Waiting for both teams' matchup scores.");
     return;
   }
   var converted={};
   Object.keys(state.projections).forEach(function(id){
-    var item=state.projections[id];
-    var info=state.players[id]||{};
-    converted[id]=Object.assign({},item,{team:Core.norm(info.team||(item.player&&item.player.team)||item.team||(/^[A-Z]{2,3}$/.test(id)?id:""))});
+    var item=state.projections[id],info=state.players[id]||{};
+    converted[id]=Object.assign({},item,{team:Core.norm(info.team||
+      (item.player&&item.player.team)||item.team||(/^[A-Z]{2,3}$/.test(id)?id:""))});
   });
-  var result=Core.estimateMatchup(state.pair,converted,state.league&&state.league.scoring_settings||{},state.games);
-  if(!result.mine||!result.theirs){
-    $("myProjected").textContent="—";$("theirProjected").textContent="—";$("winPct").textContent="—";
-    status.textContent="Waiting for both fantasy rosters and player projections.";
+  var forecast=Core.estimateMatchup(state.pair,converted,
+    state.league&&state.league.scoring_settings||{},state.games,state.players);
+  if(!forecast.mine||!forecast.theirs||forecast.win===null){
+    unavailable(forecast.reason||"Sleeper has not provided enough projected points to estimate this matchup.");
     return;
   }
-  var complete=result.win!==null;
-  $("myProjected").textContent=complete?result.mine.final.toFixed(1):"—";
-  $("theirProjected").textContent=complete?result.theirs.final.toFixed(1):"—";
-  $("winPct").textContent=complete?Math.round(result.win*100)+"%":"—";
-  $("winGauge").style.setProperty("--win",complete?String((result.win*100).toFixed(2)):"50");
-  var total=complete?Math.max(0,result.mine.final)+Math.max(0,result.theirs.final):0;
-  var share=total>0?Math.max(0,result.mine.final)/total*100:50;
-  $("myForecastBar").style.width=complete?share.toFixed(2)+"%":"50%";
-  $("theirForecastBar").style.width=complete?(100-share).toFixed(2)+"%":"50%";
-  status.textContent=complete?"Live estimate · "+result.mine.covered+" starters each side accounted for · not official Sleeper odds":
-    "Insufficient projections/game data ("+result.mine.covered+"/"+result.mine.required+" vs "+result.theirs.covered+"/"+result.theirs.required+" players). No guessed probability.";
+  var a=forecast.mine.final,b=forecast.theirs.final;
+  var pct=forecast.win*100;
+  $("myProjected").textContent=a.toFixed(1);
+  $("theirProjected").textContent=b.toFixed(1);
+  $("winPct").textContent=(pct<1?pct.toFixed(1):pct>99?pct.toFixed(1):Math.round(pct))+"%";
+  $("winGauge").style.setProperty("--win",pct.toFixed(2));
+  var share=Math.max(0,a)/(Math.max(0,a)+Math.max(0,b)||1)*100;
+  $("myForecastBar").style.width=share.toFixed(2)+"%";
+  $("theirForecastBar").style.width=(100-share).toFixed(2)+"%";
+  var gap=Math.abs(a-b).toFixed(1);
+  status.textContent=(forecast.approximate?"PROVISIONAL · ":"MODEL ESTIMATE · ")+
+    (a>b?"You projected ahead":a<b?"Opponent projected ahead":"Teams projected level")+
+    " by "+gap+" points · based on "+
+    forecast.mine.covered+"/"+forecast.mine.required+" and "+
+    forecast.theirs.covered+"/"+forecast.theirs.required+" starters"+
+    (forecast.approximate?" · some projections/game times incomplete":"");
 }
 function getProjections(){
   if(!state.week||state.projectionBusy)return Promise.resolve();
