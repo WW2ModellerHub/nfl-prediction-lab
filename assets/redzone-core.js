@@ -140,7 +140,7 @@
   function fieldSpot(text,away,home){
     var raw=String(text||"");
     if(/\bmidfield\b/i.test(raw))return 50;
-    var matches=raw.match(/(?:\bat\s+|\b)([A-Z]{2,3})\s+([0-9]{1,2})\b/i);
+    var matches=raw.match(/(?:^|\bat\s+)([A-Z]{2,3})\s+([0-9]{1,2})(?![:0-9])/i);
     if(!matches)return null;
     var side=norm(matches[1]),yard=Number(matches[2]);
     if(!Number.isFinite(yard)||yard<0||yard>50)return null;

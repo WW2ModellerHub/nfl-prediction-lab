@@ -434,7 +434,21 @@ function getESPN(){
       if(added.length)store(key()+"-feed",state.feed.slice(0,100));
     }
     state.zoneKeys=newKeys;state.games=result.games;state.zones=result.zones;
-    state.fullGames=Core.listGames(data.events||[]);state.lastEspnTime=Date.now();state.errors.espn=null;render();
+    var previousGames=state.fullGames||[];
+    state.fullGames=Core.listGames(data.events||[]);
+    // A timeout freezes the game clock. Retain the already-confirmed spot only
+    // while possession, period, down text and clock are all unchanged.
+    state.fullGames.forEach(function(g){
+      if(g.state!=="in"||g.position!==null)return;
+      var previous=previousGames.find(function(p){return p.id===g.id;});
+      if(previous&&previous.position!==null&&previous.positionSource&&
+          previous.clock===g.clock&&previous.period===g.period&&
+          previous.possession===g.possession&&previous.downDistance===g.downDistance){
+        g.position=previous.position;
+        g.positionSource=previous.positionSource;
+      }
+    });
+    state.lastEspnTime=Date.now();state.errors.espn=null;render();
     refreshGamePosition(state.selectedGame);
   }).catch(function(e){state.errors.espn=e.message||"Feed error";render();});
 }

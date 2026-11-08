@@ -75,6 +75,7 @@ assert.equal(watch.theirs.offense.length,0);
 assert.equal(watch.theirs.kickers.length,1);
 assert.equal(watch.theirs.kickers[0].name,"Brandon Aubrey");
 assert.equal(R.fieldSpot("Official Timeout at 11:45","DAL","IND"),null);
+assert.equal(R.fieldSpot("Official Timeout at IND 11:45","DAL","IND"),null);
 assert.equal(R.fieldSpot("2nd & 4 at IND 18","DAL","IND"),82);
 assert.equal(R.fieldSpot("at midfield","DAL","IND"),50);
 const timeoutGame={id:"401",state:"in",away:"DAL",home:"IND",possession:"DAL",position:null};
