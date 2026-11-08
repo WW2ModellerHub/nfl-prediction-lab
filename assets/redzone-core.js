@@ -7,11 +7,11 @@
     return ({WSH:"WAS",JAC:"JAX",LA:"LAR",SD:"LAC",STL:"LAR",OAK:"LV"})[code] || code;
   }
   function starterScore(row, id, index) {
+    var arr=row && row.starters_points;
+    if (Array.isArray(arr) && num(arr[index])!==null) return num(arr[index]);
+    if (arr && typeof arr==="object" && Object.prototype.hasOwnProperty.call(arr,id)) return num(arr[id]);
     var byId=row && (row.players_points || row.player_points);
     if (byId && Object.prototype.hasOwnProperty.call(byId,id)) return num(byId[id]);
-    var arr=row && row.starters_points;
-    if (Array.isArray(arr)) return num(arr[index]);
-    if (arr && typeof arr==="object" && Object.prototype.hasOwnProperty.call(arr,id)) return num(arr[id]);
     return null;
   }
   function benchScore(row, id) {
