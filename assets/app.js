@@ -114,8 +114,10 @@ function updateLiveDom(){
    if(game)el.innerHTML=liveModelMarkup(game,isFull);
  });
 }
+let nflLiveBusy=false,nflLiveFailures=0,nflLiveRetryAt=0;
 async function refreshLiveScores(){
- if(!recentKickoffs().length||typeof fetch!=='function')return;
+ if(!recentKickoffs().length||typeof fetch!=='function'||nflLiveBusy||Date.now()<nflLiveRetryAt)return;
+ nflLiveBusy=true;
  try{
    // NFL week scope retains every Sunday early/late game alongside Monday
    // night kickoffs. One-date queries hid earlier started games overnight.
@@ -141,8 +143,13 @@ async function refreshLiveScores(){
      if(!live||live.home!==matching.home||live.away!==matching.away)continue;
      scored[matching.id]={...live,status:live.state};
    }
+   nflLiveFailures=0;nflLiveRetryAt=0;
    store.liveScores=scored;updateLiveDom();refreshSelectedLiveReference();
- }catch(e){store.liveScores={};updateLiveDom();}
+ }catch(e){
+   nflLiveFailures++;
+   nflLiveRetryAt=Date.now()+Math.min(60000,12000*Math.pow(2,Math.min(3,nflLiveFailures)));
+   store.liveScores={};updateLiveDom();
+ }finally{nflLiveBusy=false;}
 }
 function oddsFor(g){return store.odds[g.id]||null}
 function situationFor(g){return g.situation||{home:null,away:null,signals:[],status:'Awaiting updated fixture data'}}
@@ -987,6 +994,6 @@ function start(){byId('nav').addEventListener('click',handleClick);byId('appCont
  byId('appContent').addEventListener('change',e=>{if(e.target.id==='importFile')importFile(e)});
  window.addEventListener('keydown',e=>{if(e.key==='Escape')setNavOpen(false)});
   window.addEventListener('hashchange',syncRoute);
- syncRoute();refresh();setInterval(()=>{if(!document.hidden)refreshLiveScores()},30000);}
+ syncRoute();refresh();setInterval(()=>{if(!document.hidden)refreshLiveScores()},12000);}
 window.addEventListener('DOMContentLoaded',start);
 })();

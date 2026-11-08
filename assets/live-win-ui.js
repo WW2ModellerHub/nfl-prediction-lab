@@ -29,7 +29,8 @@ function render(g,live,reference,expanded){
     '<div class="livewin-inputs"><span>Clock: Q'+h(live.period)+' '+h(live.clock)+'</span>'+
     '<span>Score: '+away+' '+h(live.awayScore)+' – '+home+' '+h(live.homeScore)+'</span>'+
     '<span>Ball: '+h(live.possession||"not verified")+'</span>'+
-    '<span>Position: '+h(r.possessionBasis)+'</span></div>';
+    '<span>Position: '+h(r.possessionBasis)+'</span>'+
+    '<span>ESPN checked: '+(live.fetchedAt?new Date(live.fetchedAt).toLocaleTimeString("en-GB",{timeZone:"Europe/London",hour:"2-digit",minute:"2-digit",second:"2-digit"}):"unknown")+' UK</span></div>';
   if(reference&&(!reference.fetchedAt||Date.now()-reference.fetchedAt<120000)&&
      Number.isFinite(reference.homeProbability)&&reference.homeProbability>=0&&reference.homeProbability<=1)
     display+='<div class="livewin-reference">ESPN reference (last published play): <b>'+pct(reference.homeProbability)+' '+home+'</b>'+
