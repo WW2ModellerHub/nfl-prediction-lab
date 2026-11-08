@@ -196,9 +196,9 @@ function renderGames(){
   var focusedId=document.activeElement&&document.activeElement.closest&&document.activeElement.closest("#gameStrip")?state.selectedGame:null;
   var nextGameMarkup=games.map(function(g){
     var active=state.selectedGame===g.id,counts=participantCounts(g).count;
-    return '<button type="button" class="game-tab '+(active?"selected ":"")+(g.state==="in"?"playing":"")+
+    return '<button type="button" class="game-tab '+(active?"selected ":"")+(g.state==="in"?"playing ":"")+(g.isRedZone?"in-the-redzone":"")+
       '" data-game="'+esc(g.id)+'" role="tab" aria-selected="'+String(active)+'" aria-label="'+esc(g.away+' at '+g.home+', '+(g.state==="in"?"live":g.state==="post"?"final":"upcoming"))+'">'+
-      '<div class="game-tab-top"><span class="game-tab-status">'+(g.state==="in"?"● LIVE":g.state==="post"?"FINAL":gameStart(g))+'</span>'+
+      '<div class="game-tab-top"><span class="game-tab-status">'+(g.state==="in"?(g.isRedZone?"◆ RED ZONE":"● LIVE"):g.state==="post"?"FINAL":gameStart(g))+'</span>'+
       ((counts.mine+counts.theirs)?'<span class="fantasy-watch-count">'+(counts.mine?'<span class="count-mine">●'+counts.mine+'</span>':"")+(counts.theirs?'<span class="count-theirs">●'+counts.theirs+'</span>':"")+'</span>':"")+'</div>'+
       '<div class="game-tab-score"><span>'+teamMark(g.away,"tiny")+' '+esc(g.away)+'</span><b>'+fmtNFL(g.awayScore)+'</b></div>'+
       '<div class="game-tab-score"><span>'+teamMark(g.home,"tiny")+' '+esc(g.home)+'</span><b>'+fmtNFL(g.homeScore)+'</b></div></button>';
