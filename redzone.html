@@ -7,7 +7,7 @@
 <meta name="description" content="Sunday Funday fantasy matchup live scores and NFL red zone alerts, powered by Sleeper and ESPN.">
 <title>Fantasy Red Zone | NFL Prediction Lab</title>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/redzone.css?v=2-mobile-broadcast">
+<link rel="stylesheet" href="assets/redzone.css?v=3-game-centre">
 </head>
 <body>
 <div class="shell">
@@ -28,6 +28,33 @@
     </section>
     <div class="score-track" aria-label="Share of points scored so far"><span class="score-track-label">POINT SHARE</span><div class="share-bar"><span id="myShareBar" class="share-me" style="width:50%"></span><span id="theirShareBar" class="share-them" style="width:50%"></span></div><span id="mySharePct" class="share-value">—</span><span class="share-divider">/</span><span id="theirSharePct" class="share-value theirs-share">—</span></div>
     <div class="feedmeta"><span><i class="dot green"></i> Fantasy points: <b>Sleeper</b></span><span><i class="dot orange"></i> Drive position: <b>ESPN</b></span><span id="gameFeedStatus">NFL play feed: waiting</span></div>
+
+    <section class="game-centre panel" id="gameCentre" aria-label="Live NFL game selector">
+      <div class="panelhead game-centre-head">
+        <div><span class="eyebrow"><span class="broadcast-dot"></span> NFL LIVE TRACKER</span><h2>Game Centre <span id="gamesLiveCount" class="games-live-count">—</span></h2></div>
+        <div class="game-controls"><span id="gamesStatus">Loading fixtures…</span><button type="button" class="small-btn" id="gamePrev" aria-label="Previous NFL game">‹</button><button type="button" class="small-btn" id="gameNext" aria-label="Next NFL game">›</button></div>
+      </div>
+      <div class="game-strip" id="gameStrip" role="tablist" aria-label="Choose an NFL game"><div class="empty">Loading NFL games…</div></div>
+      <div class="game-details" id="gameDetails" role="tabpanel"><div class="empty">Choose any NFL game to view the ball on the field.</div></div>
+    </section>
+    <section class="projections-panel panel" aria-label="Fantasy projected points and win probability">
+      <div class="panelhead projection-head">
+        <div><span class="eyebrow">SLEEPER PLAYER PROJECTIONS · OUR ODDS MODEL</span><h2>Win probability <span class="model-label">ESTIMATE</span></h2></div>
+        <span id="projectionStamp" class="muted">Loading projections…</span>
+      </div>
+      <div class="projection-content">
+        <div class="win-gauge" id="winGauge" style="--win:50">
+          <div class="win-centre"><b id="winPct">—</b><small>CHANCE TO WIN</small></div>
+        </div>
+        <div class="projection-comparison">
+          <div class="forecast-row"><span class="forecast-side me">YOU</span><b id="myProjected">—</b><span class="forecast-descriptor">Projected final</span><div class="forecast-mini"><span id="myForecastBar"></span></div></div>
+          <div class="forecast-row"><span class="forecast-side rival">OPP</span><b id="theirProjected">—</b><span class="forecast-descriptor">Projected final</span><div class="forecast-mini"><span id="theirForecastBar"></span></div></div>
+          <p id="projectionStatus" class="forecast-status">Checking Sleeper player projections and remaining game time.</p>
+        </div>
+      </div>
+      <div class="projection-disclaimer">Points are projected from Sleeper player forecasts under your league scoring. Win chance is <strong>our approximate model</strong>, not an official Sleeper probability.</div>
+    </section>
+
     <section class="redzone-section">
       <div class="section-heading"><div><span class="eyebrow">SCORING THREAT RADAR</span><h2><span class="section-graphic">◎</span> Red Zone <span class="hot">LIVE</span> <span id="rzCount" class="rz-count">0</span></h2></div><span class="muted">Team scoring chances, not guaranteed individual touches</span></div>
       <div id="redzones" class="redzones"><div class="empty">Checking NFL games for Red Zone possessions…</div></div>
@@ -43,7 +70,7 @@
     <footer>Fantasy scores and lineups are read from Sleeper. NFL play situations are read from an ESPN public scoreboard feed and may be delayed, missing or corrected. Red Zone warnings indicate the team in possession inside the 20, not a particular player getting the ball. This is a read-only personal viewer. <a href="https://docs.sleeper.com/" target="_blank" rel="noopener">Sleeper API</a> · <a href="./index.html">NFL Prediction Lab</a></footer>
   </main>
 </div>
-<script src="assets/redzone-core.js?v=1" defer></script>
-<script src="assets/redzone.js?v=2-mobile-broadcast" defer></script>
+<script src="assets/redzone-core.js?v=3-game-centre" defer></script>
+<script src="assets/redzone.js?v=3-game-centre" defer></script>
 </body>
 </html>
