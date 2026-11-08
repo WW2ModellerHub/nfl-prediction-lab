@@ -1,0 +1,475 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-08T21:49:55.270745+00:00",
+  "games": [
+    {
+      "id": "2026_09_GB_NE",
+      "home": "NE",
+      "away": "GB",
+      "kickoff": "2026-11-08T21:25:00+00:00",
+      "homeProbability": 0.62465,
+      "recordedAt": "2026-11-08T18:23:56.867051+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_09_ARI_SEA",
+      "home": "SEA",
+      "away": "ARI",
+      "kickoff": "2026-11-08T21:25:00+00:00",
+      "homeProbability": 0.7775,
+      "recordedAt": "2026-11-08T18:23:56.867051+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_09_LV_SF",
+      "home": "SF",
+      "away": "LV",
+      "kickoff": "2026-11-08T21:05:00+00:00",
+      "homeProbability": 0.76193,
+      "recordedAt": "2026-11-08T18:23:56.867051+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_09_HOU_LAC",
+      "home": "LAC",
+      "away": "HOU",
+      "kickoff": "2026-11-08T21:05:00+00:00",
+      "homeProbability": 0.44507,
+      "recordedAt": "2026-11-08T18:23:56.867051+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_09_NYJ_KC",
+      "home": "KC",
+      "away": "NYJ",
+      "kickoff": "2026-11-08T18:00:00+00:00",
+      "homeProbability": 0.76459,
+      "recordedAt": "2026-11-08T17:55:10.125782+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_09_NYG_PHI",
+      "home": "PHI",
+      "away": "NYG",
+      "kickoff": "2026-11-08T18:00:00+00:00",
+      "homeProbability": 0.5746,
+      "recordedAt": "2026-11-08T17:55:10.125782+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_09_LA_WAS",
+      "home": "WAS",
+      "away": "LA",
+      "kickoff": "2026-11-08T18:00:00+00:00",
+      "homeProbability": 0.44084,
+      "recordedAt": "2026-11-08T17:55:10.125782+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_09_DET_MIA",
+      "home": "MIA",
+      "away": "DET",
+      "kickoff": "2026-11-08T18:00:00+00:00",
+      "homeProbability": 0.38737,
+      "recordedAt": "2026-11-08T17:55:10.125782+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_09_DEN_CAR",
+      "home": "CAR",
+      "away": "DEN",
+      "kickoff": "2026-11-08T18:00:00+00:00",
+      "homeProbability": 0.34079,
+      "recordedAt": "2026-11-08T17:55:10.125782+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_09_DAL_IND",
+      "home": "IND",
+      "away": "DAL",
+      "kickoff": "2026-11-08T18:00:00+00:00",
+      "homeProbability": 0.47308,
+      "recordedAt": "2026-11-08T17:55:10.125782+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_09_CLE_NO",
+      "home": "NO",
+      "away": "CLE",
+      "kickoff": "2026-11-08T18:00:00+00:00",
+      "homeProbability": 0.53392,
+      "recordedAt": "2026-11-08T17:55:10.125782+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_09_CIN_ATL",
+      "home": "ATL",
+      "away": "CIN",
+      "kickoff": "2026-11-08T14:30:00+00:00",
+      "homeProbability": 0.39146,
+      "recordedAt": "2026-11-08T14:22:51.847603+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_09_TB_CHI",
+      "home": "CHI",
+      "away": "TB",
+      "kickoff": "2026-11-09T01:20:00+00:00",
+      "homeProbability": 0.6892,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_09_BUF_MIN",
+      "home": "MIN",
+      "away": "BUF",
+      "kickoff": "2026-11-10T01:15:00+00:00",
+      "homeProbability": 0.5167,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_10_WAS_NYG",
+      "home": "NYG",
+      "away": "WAS",
+      "kickoff": "2026-11-13T01:15:00+00:00",
+      "homeProbability": 0.60862,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_10_NE_DET",
+      "home": "DET",
+      "away": "NE",
+      "kickoff": "2026-11-15T14:30:00+00:00",
+      "homeProbability": 0.5114,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_10_BUF_NYJ",
+      "home": "NYJ",
+      "away": "BUF",
+      "kickoff": "2026-11-15T18:00:00+00:00",
+      "homeProbability": 0.24449,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_10_CAR_NO",
+      "home": "NO",
+      "away": "CAR",
+      "kickoff": "2026-11-15T18:00:00+00:00",
+      "homeProbability": 0.57447,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_10_HOU_CLE",
+      "home": "CLE",
+      "away": "HOU",
+      "kickoff": "2026-11-15T18:00:00+00:00",
+      "homeProbability": 0.4747,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_10_JAX_TEN",
+      "home": "TEN",
+      "away": "JAX",
+      "kickoff": "2026-11-15T18:00:00+00:00",
+      "homeProbability": 0.24462,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_10_KC_ATL",
+      "home": "ATL",
+      "away": "KC",
+      "kickoff": "2026-11-15T18:00:00+00:00",
+      "homeProbability": 0.42386,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_10_MIA_IND",
+      "home": "IND",
+      "away": "MIA",
+      "kickoff": "2026-11-15T18:00:00+00:00",
+      "homeProbability": 0.57342,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_10_MIN_GB",
+      "home": "GB",
+      "away": "MIN",
+      "kickoff": "2026-11-15T18:00:00+00:00",
+      "homeProbability": 0.51111,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_10_LA_ARI",
+      "home": "ARI",
+      "away": "LA",
+      "kickoff": "2026-11-15T21:05:00+00:00",
+      "homeProbability": 0.3564,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_10_SEA_LV",
+      "home": "LV",
+      "away": "SEA",
+      "kickoff": "2026-11-15T21:05:00+00:00",
+      "homeProbability": 0.36283,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_10_SF_DAL",
+      "home": "DAL",
+      "away": "SF",
+      "kickoff": "2026-11-15T21:25:00+00:00",
+      "homeProbability": 0.427,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_10_PIT_CIN",
+      "home": "CIN",
+      "away": "PIT",
+      "kickoff": "2026-11-16T01:20:00+00:00",
+      "homeProbability": 0.57834,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_10_LAC_BAL",
+      "home": "BAL",
+      "away": "LAC",
+      "kickoff": "2026-11-17T01:15:00+00:00",
+      "homeProbability": 0.63986,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_11_IND_HOU",
+      "home": "HOU",
+      "away": "IND",
+      "kickoff": "2026-11-20T01:15:00+00:00",
+      "homeProbability": 0.71115,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_11_ARI_KC",
+      "home": "KC",
+      "away": "ARI",
+      "kickoff": "2026-11-22T18:00:00+00:00",
+      "homeProbability": 0.7466,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_11_BAL_CAR",
+      "home": "CAR",
+      "away": "BAL",
+      "kickoff": "2026-11-22T18:00:00+00:00",
+      "homeProbability": 0.51849,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_11_JAX_NYG",
+      "home": "NYG",
+      "away": "JAX",
+      "kickoff": "2026-11-22T18:00:00+00:00",
+      "homeProbability": 0.39922,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_11_MIA_BUF",
+      "home": "BUF",
+      "away": "MIA",
+      "kickoff": "2026-11-22T18:00:00+00:00",
+      "homeProbability": 0.82129,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_11_NO_CHI",
+      "home": "CHI",
+      "away": "NO",
+      "kickoff": "2026-11-22T18:00:00+00:00",
+      "homeProbability": 0.74239,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_11_TB_DET",
+      "home": "DET",
+      "away": "TB",
+      "kickoff": "2026-11-22T18:00:00+00:00",
+      "homeProbability": 0.69847,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_11_TEN_DAL",
+      "home": "DAL",
+      "away": "TEN",
+      "kickoff": "2026-11-22T18:00:00+00:00",
+      "homeProbability": 0.73952,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_11_NYJ_LAC",
+      "home": "LAC",
+      "away": "NYJ",
+      "kickoff": "2026-11-22T21:05:00+00:00",
+      "homeProbability": 0.64191,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_11_LV_DEN",
+      "home": "DEN",
+      "away": "LV",
+      "kickoff": "2026-11-22T21:25:00+00:00",
+      "homeProbability": 0.78066,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_11_PIT_PHI",
+      "home": "PHI",
+      "away": "PIT",
+      "kickoff": "2026-11-22T21:25:00+00:00",
+      "homeProbability": 0.4356,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_11_MIN_SF",
+      "home": "SF",
+      "away": "MIN",
+      "kickoff": "2026-11-23T01:20:00+00:00",
+      "homeProbability": 0.50756,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_11_CIN_WAS",
+      "home": "WAS",
+      "away": "CIN",
+      "kickoff": "2026-11-24T01:15:00+00:00",
+      "homeProbability": 0.42626,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_12_GB_LA",
+      "home": "LA",
+      "away": "GB",
+      "kickoff": "2026-11-26T01:00:00+00:00",
+      "homeProbability": 0.61952,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_12_CHI_DET",
+      "home": "DET",
+      "away": "CHI",
+      "kickoff": "2026-11-26T18:00:00+00:00",
+      "homeProbability": 0.5847,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_12_PHI_DAL",
+      "home": "DAL",
+      "away": "PHI",
+      "kickoff": "2026-11-26T21:30:00+00:00",
+      "homeProbability": 0.6027,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_12_KC_BUF",
+      "home": "BUF",
+      "away": "KC",
+      "kickoff": "2026-11-27T01:20:00+00:00",
+      "homeProbability": 0.67091,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_12_DEN_PIT",
+      "home": "PIT",
+      "away": "DEN",
+      "kickoff": "2026-11-27T20:00:00+00:00",
+      "homeProbability": 0.49538,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_12_ATL_MIN",
+      "home": "MIN",
+      "away": "ATL",
+      "kickoff": "2026-11-29T18:00:00+00:00",
+      "homeProbability": 0.73855,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_12_BAL_HOU",
+      "home": "HOU",
+      "away": "BAL",
+      "kickoff": "2026-11-29T18:00:00+00:00",
+      "homeProbability": 0.62895,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_12_LV_CLE",
+      "home": "CLE",
+      "away": "LV",
+      "kickoff": "2026-11-29T18:00:00+00:00",
+      "homeProbability": 0.59732,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_12_NO_CIN",
+      "home": "CIN",
+      "away": "NO",
+      "kickoff": "2026-11-29T18:00:00+00:00",
+      "homeProbability": 0.72344,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_12_NYG_IND",
+      "home": "IND",
+      "away": "NYG",
+      "kickoff": "2026-11-29T18:00:00+00:00",
+      "homeProbability": 0.47833,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    },
+    {
+      "id": "2026_12_NYJ_MIA",
+      "home": "MIA",
+      "away": "NYJ",
+      "kickoff": "2026-11-29T18:00:00+00:00",
+      "homeProbability": 0.62152,
+      "recordedAt": "2026-11-08T21:49:55.270745+00:00",
+      "archivedPregame": true
+    }
+  ],
+  "note": "Every prior comes from an archived model observation recorded before kickoff; in-play changes are separate, experimental and never overwrite pregame records."
+}
