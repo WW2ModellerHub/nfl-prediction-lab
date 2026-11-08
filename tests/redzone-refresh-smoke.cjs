@@ -19,6 +19,6 @@ assert.match(src,/document\.addEventListener\("visibilitychange"/);
 assert.match(src,/if\(!document\.hidden\)\{tick\(\);getProjections\(\);updateStatus\(\);\}/);
 assert.match(src,/function tick\(\)\{[\s\S]*?pollScore\(\);pollNFL\(\);/);
 assert.doesNotMatch(src,/setInterval\(function\(\)\{tick\(\);\},18000\)/);
-assert.match(html,/5s scores · 8s games/);
+assert.match(html,/5s fantasy · 8s NFL/);
 assert.match(html,/id="refreshDetail"/);
 console.log("Red Zone fast-refresh cadence, independent feed polling, backoff and UI tests passed.");
