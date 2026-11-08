@@ -246,7 +246,7 @@ function verificationQueue(){
    const at=Number.isFinite(ah)?ah:1e9,bt=Number.isFinite(bh)?bh:1e9;
    return at-bt||Number(b.forecastQuality.level==='hold')-Number(a.forecastQuality.level==='hold')});
  const rows=pending.slice(0,7).map(g=>{
-   const q=g.forecastQuality,reason=(q.blockingReasons||[])[0]||(q.reviewReasons||[])[0]||'Check current QB projections and injury reports';
+   const q=g.forecastQuality,reason=(q.blockingReasons||[])[0]||(q.reviewReasons||[])[0]||(q.issues||[])[0]||'Check current QB projections and injury reports';
    return `<button class='verify-queue-item' type='button' data-open='${escapeHTML(g.id)}'>
      <span class='verify-queue-line'><b>${escapeHTML(g.away)} @ ${escapeHTML(g.home)}</b>${tag(q.level==='hold'?'HOLD':'REVIEW','warn')}</span>
      <small>${escapeHTML(date(g.kickoff))} · ${escapeHTML(reason)}</small></button>`;
