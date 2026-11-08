@@ -117,8 +117,13 @@ function updateLiveDom(){
 async function refreshLiveScores(){
  if(!recentKickoffs().length||typeof fetch!=='function')return;
  try{
-   const day=new Date(recentKickoffs()[0].kickoff).toLocaleDateString('sv-SE',{timeZone:'America/New_York'}).replace(/-/g,'');
-   const response=await fetch('https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates='+day,{cache:'no-store'});
+   // NFL week scope retains every Sunday early/late game alongside Monday
+   // night kickoffs. One-date queries hid earlier started games overnight.
+   const first=recentKickoffs()[0];
+   const season=Number(first.season),week=Number(first.week);
+   if(!Number.isInteger(season)||!Number.isInteger(week)||week<1||week>22)return;
+   const params='?week='+encodeURIComponent(week)+'&seasontype=2&dates='+encodeURIComponent(season)+'&limit=100';
+   const response=await fetch('https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard'+params,{cache:'no-store'});
    if(!response.ok)throw Error('scoreboard HTTP '+response.status);
    const payload=await response.json();if(!Array.isArray(payload.events))throw Error('scoreboard events missing');
    const norm=c=>({'WSH':'WAS','JAC':'JAX','LA':'LAR','STL':'LAR','SD':'LAC','OAK':'LV'})[String(c||'').toUpperCase()]||String(c||'').toUpperCase();
