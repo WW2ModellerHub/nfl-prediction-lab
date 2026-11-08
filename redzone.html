@@ -7,7 +7,7 @@
 <meta name="description" content="Sunday Funday fantasy matchup live scores and NFL red zone alerts, powered by Sleeper and ESPN.">
 <title>Fantasy Red Zone | NFL Prediction Lab</title>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/redzone.css?v=1">
+<link rel="stylesheet" href="assets/redzone.css?v=2-mobile-broadcast">
 </head>
 <body>
 <div class="shell">
@@ -17,31 +17,33 @@
   </header>
   <main>
     <div class="page-heading">
-      <div><p class="eyebrow">SUNDAY FUNDAY · LIVE FANTASY INTELLIGENCE</p><h1>Fantasy <em>Red Zone.</em></h1><p class="subtitle">Every point. Every swing. Every scoring opportunity.</p></div>
+      <div class="title-block"><p class="eyebrow"><span class="broadcast-dot"></span> SUNDAY FUNDAY / LIVE TRACKER</p><h1>RED<span>ZONE</span> <small>FANTASY WATCH</small></h1><p class="subtitle">Your matchup, every point, every drive.</p></div>
       <div class="tools"><button id="weekPrev" class="small-btn" title="Previous week">‹</button><b id="weekLabel">WEEK —</b><button id="weekNext" class="small-btn" title="Next week">›</button><button id="currentWeek" class="small-btn subtle">Current week</button></div>
     </div>
     <div id="error" class="error" role="alert" hidden></div>
     <section class="scoreboard" aria-label="Your fantasy matchup scoreboard">
-      <div class="score-side mine"><span class="overline">YOUR TEAM</span><strong id="myName">Tall &amp; Handsome</strong><div id="myScore" class="points">—</div><span id="myDetails" class="mini">Waiting for Sleeper</span></div>
+      <div class="score-side mine"><div class="score-top"><span class="overline">YOUR TEAM</span><span class="fantasy-logo" id="myBadge" aria-hidden="true">TH</span></div><strong id="myName">Tall &amp; Handsome</strong><div id="myScore" class="points">—</div><span id="myDetails" class="mini">Waiting for Sleeper</span></div>
       <div class="middle"><div class="versus">VS</div><div id="margin" class="margin">—</div><div id="lastUpdate" class="stamp">Not connected</div></div>
-      <div class="score-side theirs"><span class="overline">OPPONENT</span><strong id="theirName">Finding opponent</strong><div id="theirScore" class="points">—</div><span id="theirDetails" class="mini">Waiting for Sleeper</span></div>
+      <div class="score-side theirs"><div class="score-top"><span class="overline">OPPONENT</span><span class="fantasy-logo" id="theirBadge" aria-hidden="true">OP</span></div><strong id="theirName">Finding opponent</strong><div id="theirScore" class="points">—</div><span id="theirDetails" class="mini">Waiting for Sleeper</span></div>
     </section>
+    <div class="score-track" aria-label="Share of points scored so far"><span class="score-track-label">POINT SHARE</span><div class="share-bar"><span id="myShareBar" class="share-me" style="width:50%"></span><span id="theirShareBar" class="share-them" style="width:50%"></span></div><span id="mySharePct" class="share-value">—</span><span class="share-divider">/</span><span id="theirSharePct" class="share-value theirs-share">—</span></div>
     <div class="feedmeta"><span><i class="dot green"></i> Fantasy points: <b>Sleeper</b></span><span><i class="dot orange"></i> Drive position: <b>ESPN</b></span><span id="gameFeedStatus">NFL play feed: waiting</span></div>
     <section class="redzone-section">
-      <div class="section-heading"><div><span class="eyebrow">LIVE POSSESSION MONITOR</span><h2>Inside the 20 <span class="hot">●</span></h2></div><span class="muted">Team scoring chances, not guaranteed individual touches</span></div>
+      <div class="section-heading"><div><span class="eyebrow">SCORING THREAT RADAR</span><h2><span class="section-graphic">◎</span> Red Zone <span class="hot">LIVE</span> <span id="rzCount" class="rz-count">0</span></h2></div><span class="muted">Team scoring chances, not guaranteed individual touches</span></div>
       <div id="redzones" class="redzones"><div class="empty">Checking NFL games for Red Zone possessions…</div></div>
     </section>
-    <section class="columns">
-      <div class="panel"><div class="panelhead"><h2>My lineup <span id="myCount" class="count"></span></h2><span class="side-tag yours">YOU</span></div><div class="table-head"><span>PLAYER</span><span>GAME</span><span>POINTS</span></div><div id="myPlayers"><div class="empty">Loading starters…</div></div></div>
-      <div class="panel"><div class="panelhead"><h2>Opponent lineup <span id="theirCount" class="count"></span></h2><span class="side-tag rival">THEM</span></div><div class="table-head"><span>PLAYER</span><span>GAME</span><span>POINTS</span></div><div id="theirPlayers"><div class="empty">Loading starters…</div></div></div>
+    <div class="lineup-toolbar" aria-label="Choose fantasy lineup"><div class="view-switch"><button type="button" class="active" data-view="mine" aria-pressed="true">◉ My team</button><button type="button" data-view="theirs" aria-pressed="false">◉ Opponent</button></div><span class="compact-note">Swipe-free lineup view</span></div>
+    <section class="columns" id="lineups" data-view="mine">
+      <div class="panel team-panel"><div class="panelhead"><h2>My lineup <span id="myCount" class="count"></span></h2><span class="side-tag yours">YOU</span></div><div class="table-head"><span>STARTING LINEUP</span><span>GAME</span><span>PTS</span></div><div id="myPlayers"><div class="empty">Loading starters…</div></div></div>
+      <div class="panel opponent-panel"><div class="panelhead"><h2>Opponent lineup <span id="theirCount" class="count"></span></h2><span class="side-tag rival">THEM</span></div><div class="table-head"><span>STARTING LINEUP</span><span>GAME</span><span>PTS</span></div><div id="theirPlayers"><div class="empty">Loading starters…</div></div></div>
     </section>
     <div class="bench-actions"><label><input id="benchToggle" type="checkbox"> Show both benches (bench points do not count)</label></div>
-    <section class="panel activity-panel"><div class="panelhead"><h2>Scoring activity</h2><div class="actions"><button id="sound" class="small-btn">🔕 Sound off</button><button id="notifications" class="small-btn">Alerts</button><button id="clearActivity" class="small-btn subtle">Clear feed</button></div></div><div class="activity-help">Point movements after the first sync are logged on both teams. A correction can reduce points. Browser alerts work only while this page is open.</div><div id="activity" class="activity"><div class="empty">Waiting for the next fantasy-points change…</div></div></section>
+    <section class="panel activity-panel"><div class="panelhead"><h2><span class="section-graphic">↗</span> Points feed</h2><div class="actions"><button id="sound" class="small-btn">🔕 Sound off</button><button id="notifications" class="small-btn">Alerts</button><button id="clearActivity" class="small-btn subtle">Clear feed</button></div></div><div class="activity-help">Live changes since opening the watcher · corrections may subtract points · alerts require this tab open</div><div id="activity" class="activity"><div class="empty">Waiting for the next fantasy-points change…</div></div></section>
     <section class="settings"><details><summary>League connection &amp; settings</summary><div class="settings-body"><p>Connected by default to Sunday Funday / Tall &amp; Handsome. You can change league and roster if you want to watch a different Sleeper matchup.</p><div class="settings-controls"><label>Sleeper league ID <input id="leagueInput" inputmode="numeric" autocomplete="off"></label><label>My roster number <input id="rosterInput" type="number" min="1" max="99"></label><button id="saveSettings" class="small-btn primary">Connect league</button></div><p class="fine">No Sleeper password or API key needed. Settings and scoring activity remain in this browser.</p></div></details></section>
     <footer>Fantasy scores and lineups are read from Sleeper. NFL play situations are read from an ESPN public scoreboard feed and may be delayed, missing or corrected. Red Zone warnings indicate the team in possession inside the 20, not a particular player getting the ball. This is a read-only personal viewer. <a href="https://docs.sleeper.com/" target="_blank" rel="noopener">Sleeper API</a> · <a href="./index.html">NFL Prediction Lab</a></footer>
   </main>
 </div>
 <script src="assets/redzone-core.js?v=1" defer></script>
-<script src="assets/redzone.js?v=1" defer></script>
+<script src="assets/redzone.js?v=2-mobile-broadcast" defer></script>
 </body>
 </html>
