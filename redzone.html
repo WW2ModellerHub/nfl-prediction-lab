@@ -8,7 +8,7 @@
 <title>Fantasy Red Zone | NFL Prediction Lab</title>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/redzone.css?v=4-broadcast">
-<link rel="stylesheet" href="assets/redzone-broadcast.css?v=4-4" />
+<link rel="stylesheet" href="assets/redzone-broadcast.css?v=5-fast-poll" />
 </head>
 <body>
 <div class="shell">
@@ -28,7 +28,7 @@
       <div class="score-side theirs"><div class="score-top"><span class="overline">OPPONENT</span><span class="fantasy-logo" id="theirBadge" aria-hidden="true">OP</span></div><strong id="theirName">Finding opponent</strong><div id="theirScore" class="points">—</div><span id="theirDetails" class="mini">Waiting for Sleeper</span></div>
     </section>
     <div class="score-track" aria-label="Share of points scored so far"><span class="score-track-label">SCORED SO FAR</span><div class="share-bar"><span id="myShareBar" class="share-me" style="width:50%"></span><span id="theirShareBar" class="share-them" style="width:50%"></span></div><span id="mySharePct" class="share-value">—</span><span class="share-divider">/</span><span id="theirSharePct" class="share-value theirs-share">—</span></div>
-    <div class="feedmeta"><span><i class="dot green"></i> Fantasy points: <b>Sleeper</b></span><span><i class="dot orange"></i> Drive position: <b>ESPN</b></span><span id="gameFeedStatus">NFL play feed: waiting</span></div>
+    <div class="feedmeta"><span class="fast-refresh-pill"><i class="dot green"></i> FAST AUTO-REFRESH <b>5s scores · 8s games</b></span><span><i class="dot green"></i> Fantasy points: <b>Sleeper</b></span><span><i class="dot orange"></i> Drive position: <b>ESPN</b></span><span id="gameFeedStatus">NFL play feed: waiting</span><span id="refreshDetail" class="refresh-detail" aria-live="off">Checking feeds…</span></div>
 
     </div>
     <section class="projections-panel panel" aria-label="Fantasy projected points and win probability">
@@ -81,6 +81,6 @@
   <nav class="mobile-dock" aria-label="Red Zone navigation"><a href="#matchup"><span aria-hidden="true">◈</span>Matchup</a><a href="#games"><span aria-hidden="true">▰</span>Games</a><a href="#players"><span aria-hidden="true">♙</span>Players</a><a href="#scoringSection"><span aria-hidden="true">↗</span>Activity</a></nav>
 </div>
 <script src="assets/redzone-core.js?v=4-4" defer></script>
-<script src="assets/redzone.js?v=4-4" defer></script>
+<script src="assets/redzone.js?v=5-fast-poll" defer></script>
 </body>
 </html>

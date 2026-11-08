@@ -7,6 +7,7 @@ var cfg=read(KCFG)||DEF;
 cfg.leagueId=String(cfg.leagueId||DEF.leagueId).trim();cfg.rosterId=String(cfg.rosterId||DEF.rosterId).trim();
 var state={week:null,nflWeek:null,rows:[],rosters:[],users:[],league:null,players:{},games:{},zones:[],zoneKeys:null,
   pair:{mine:null,theirs:null},feed:[],before:null,loading:false,interval:null,errors:{},lastUpdated:0,
+  scoreBusy:false,espnBusy:false,scoreFailures:0,espnFailures:0,scoreRetryAt:0,espnRetryAt:0,timers:[],lastScoreFetch:0,lastESPNFetch:0,
   bench:false,sound:false,notify:false,gameFilter:"all",flashes:{},lastEspnTime:0,fullGames:[],selectedGame:null,projections:null,projectionAt:0,projectionWeek:null,projectionError:null,projectionBusy:false};
 var $=function(id){return document.getElementById(id);};
 function read(key){try{return JSON.parse(localStorage.getItem(key));}catch(e){return null;}}
@@ -20,12 +21,25 @@ function fetchJson(url,timeout){
   return fetch(url,{signal:ctl.signal,cache:"no-store"}).then(function(r){if(!r.ok)throw Error("HTTP "+r.status);return r.json();}).finally(function(){clearTimeout(timer);});
 }
 function url(path){return "https://api.sleeper.app/v1/"+path;}
+function since(value){
+  if(!value)return "waiting";
+  var secs=Math.max(0,Math.floor((Date.now()-value)/1000));
+  return secs<60?secs+"s ago":Math.floor(secs/60)+"m ago";
+}
 function updateStatus(){
-  var ok=Boolean(state.lastUpdated) && Date.now()-state.lastUpdated<90000;
-  $("connection").className="status "+(ok?"live":state.errors.sleeper?"error":"");
-  $("connection").innerHTML="<i></i>"+(ok?"SLEEPER LIVE":state.errors.sleeper?"DATA STALE":"CONNECTING");
-  $("lastUpdate").textContent=state.lastUpdated?"Updated "+stamp(state.lastUpdated)+" UK":"Not connected";
-  $("gameFeedStatus").textContent=state.errors.espn?"NFL drive feed unavailable":state.lastEspnTime?"NFL play feed: "+stamp(state.lastEspnTime)+" UK":"NFL play feed: waiting";
+  var age=Date.now()-state.lastUpdated;
+  var ok=Boolean(state.lastUpdated)&&age<45000;
+  var stale=Boolean(state.lastUpdated)&&age>=45000;
+  $("connection").className="status "+(ok?"live":state.errors.sleeper||stale?"error":"");
+  $("connection").innerHTML="<i></i>"+(ok?"SLEEPER CONNECTED":state.errors.sleeper||stale?"SCORES STALE":"CONNECTING");
+  $("lastUpdate").textContent=state.lastUpdated?"Scores checked "+since(state.lastUpdated):"Not connected";
+  $("gameFeedStatus").textContent=state.errors.espn?"NFL feed delayed · "+since(state.lastEspnTime):
+    state.lastEspnTime?"NFL checked "+since(state.lastEspnTime):"NFL feed waiting";
+  if($("refreshDetail")){
+    $("refreshDetail").textContent="Scores "+since(state.lastUpdated)+" · Games "+since(state.lastEspnTime);
+    var latest=Math.max(state.lastUpdated||0,state.lastEspnTime||0);
+    $("refreshDetail").title=latest?"Last response received "+stamp(latest)+" UK":"Waiting for first response";
+  }
   var errors=Object.keys(state.errors).filter(function(x){return state.errors[x];});
   $("error").hidden=!errors.includes("sleeper");
   $("error").textContent=state.errors.sleeper?"Unable to refresh Sleeper: "+state.errors.sleeper+". Showing the latest successful data, if any.":"";
@@ -308,7 +322,9 @@ function renderProjections(){
 function getProjections(){
   if(!state.week||state.projectionBusy)return Promise.resolve();
   var w=state.week,season=state.league&&state.league.season||new Date().getUTCFullYear();
-  if(state.projectionWeek===w&&state.projections&&Date.now()-state.projectionAt<30*60*1000)return Promise.resolve();
+  var liveGames=state.fullGames.some(function(g){return g.state==="in";});
+  var ageLimit=liveGames?3*60*1000:10*60*1000;
+  if(state.projectionWeek===w&&state.projections&&Date.now()-state.projectionAt<ageLimit)return Promise.resolve();
   state.projectionBusy=true;state.projectionError=null;
   var first="https://api.sleeper.app/v1/projections/nfl/regular/"+encodeURIComponent(season)+"/"+w;
   var alternate="https://api.sleeper.com/projections/nfl/"+encodeURIComponent(season)+"/"+w+"?season_type=regular";
@@ -399,7 +415,7 @@ function refreshGamePosition(id){
   var game=state.fullGames.find(function(g){return g.id===id;});
   if(!game||game.state!=="in"||game.position!==null)return;
   var previous=positionFetches[id]||0;
-  if(Date.now()-previous<36000)return;
+  if(Date.now()-previous<18000)return;
   positionFetches[id]=Date.now();
   fetchJson("https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event="+encodeURIComponent(id),11000)
     .then(function(summary){
@@ -414,9 +430,12 @@ function refreshGamePosition(id){
 
 function getESPN(){
   if(!state.week)return Promise.resolve();
+  var requestedWeek=state.week,requestedLeague=cfg.leagueId;
   var season=state.league && state.league.season || new Date().getUTCFullYear();
   var params="?week="+encodeURIComponent(state.week)+"&seasontype=2&dates="+encodeURIComponent(season)+"&limit=100";
-  return fetchJson("https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"+params,12000).then(function(data){
+  return fetchJson("https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"+params,9500).then(function(data){
+    if(requestedWeek!==state.week||requestedLeague!==cfg.leagueId)return;
+    state.espnFailures=0;state.espnRetryAt=0;
     var result=Core.gameData(data.events||[]);
     var newKeys=new Set(result.zones.map(function(z){return z.id;}));
     if(state.zoneKeys!==null){
@@ -450,34 +469,77 @@ function getESPN(){
     });
     state.lastEspnTime=Date.now();state.errors.espn=null;render();
     refreshGamePosition(state.selectedGame);
-  }).catch(function(e){state.errors.espn=e.message||"Feed error";render();});
+  }).catch(function(e){
+    if(requestedWeek!==state.week||requestedLeague!==cfg.leagueId)return;
+    state.errors.espn=e.message||"Feed error";
+    state.espnFailures++;
+    state.espnRetryAt=Date.now()+Math.min(60000,8000*Math.pow(2,Math.min(3,state.espnFailures)));
+    updateStatus();
+  });
 }
 function getSleeper(){
-  if(!state.week)return Promise.resolve();
-  return fetchJson(url("league/"+encodeURIComponent(cfg.leagueId)+"/matchups/"+state.week)).then(function(rows){
+  if(!state.week||state.scoreBusy||Date.now()<state.scoreRetryAt)return Promise.resolve();
+  state.scoreBusy=true;
+  var requestedWeek=state.week,requestedLeague=cfg.leagueId,requestedRoster=cfg.rosterId;
+  state.lastScoreFetch=Date.now();
+  return fetchJson(url("league/"+encodeURIComponent(requestedLeague)+"/matchups/"+requestedWeek),10000).then(function(rows){
+    if(requestedWeek!==state.week||requestedLeague!==cfg.leagueId||requestedRoster!==cfg.rosterId)return;
     if(!Array.isArray(rows))throw Error("Invalid matchup response");
-    var pair=Core.findMatchup(rows,cfg.rosterId);
-    if(!pair.mine)throw Error("Your roster was not found in Week "+state.week);
+    var pair=Core.findMatchup(rows,requestedRoster);
+    if(!pair.mine)throw Error("Your roster was not found in Week "+requestedWeek);
+    var before=JSON.stringify(Core.snapshot(state.pair));
+    var after=JSON.stringify(Core.snapshot(pair));
     state.rows=rows;state.pair=pair;pointEvents(pair);
-    state.lastUpdated=Date.now();state.errors.sleeper=null;render();
-  }).catch(function(e){state.errors.sleeper=e.message||"Could not load";render();});
+    state.lastUpdated=Date.now();state.errors.sleeper=null;
+    state.scoreFailures=0;state.scoreRetryAt=0;
+    renderScore();renderProjections();updateStatus();
+    if(before!==after){
+      renderLineup("mine","myPlayers");renderLineup("theirs","theirPlayers");
+      renderGames();renderZones();renderActivity();
+    }
+  }).catch(function(e){
+    if(requestedWeek!==state.week||requestedLeague!==cfg.leagueId)return;
+    state.errors.sleeper=e.message||"Could not load";
+    // Adaptive backoff protects upstream services and the user from request storms.
+    state.scoreFailures++;
+    var backoff=Math.min(60000,5000*Math.pow(2,Math.min(4,state.scoreFailures)));
+    state.scoreRetryAt=Date.now()+backoff;
+    updateStatus();
+  }).finally(function(){state.scoreBusy=false;});
+}
+function pollScore(){
+  if(!state.week||document.hidden)return Promise.resolve();
+  return getSleeper();
+}
+function pollNFL(){
+  if(!state.week||document.hidden||state.espnBusy||Date.now()<state.espnRetryAt)return Promise.resolve();
+  state.espnBusy=true;state.lastESPNFetch=Date.now();
+  return getESPN().finally(function(){state.espnBusy=false;});
 }
 function tick(){
-  if(state.loading||!state.week)return;
-  state.loading=true;
-  Promise.allSettled([getSleeper(),getESPN()]).finally(function(){state.loading=false;updateStatus();});
+  if(!state.week||document.hidden)return;
+  // Independent requests: a slow ESPN scoreboard must never block Sleeper.
+  pollScore();pollNFL();
 }
+
 function resetWeek(week,override){
   if(!Number.isInteger(week) || week<1 || week>18)return;
-  positionFetches={};state.week=week;state.pair={mine:null,theirs:null};state.rows=[];state.before=read(key()+"-snapshot");
+  positionFetches={};state.scoreRetryAt=0;state.espnRetryAt=0;
+  state.week=week;state.pair={mine:null,theirs:null};state.rows=[];state.before=read(key()+"-snapshot");
   state.feed=read(key()+"-feed")||[];state.flashes={};state.games={};state.zones=[];state.fullGames=[];state.selectedGame=null;state.zoneKeys=null;
   state.projections=null;state.projectionAt=0;state.projectionWeek=null;state.projectionError=null;
   cfg.weekOverride=override?week:null;store(KCFG,cfg);render();getProjections();tick();
 }
 function startTimer(){
-  if(state.interval)clearInterval(state.interval);
-  state.interval=setInterval(function(){tick();},18000);
+  state.timers.forEach(function(id){clearInterval(id);});
+  state.timers=[
+    setInterval(pollScore,5000),
+    setInterval(pollNFL,8000),
+    setInterval(function(){if(!document.hidden&&state.week)getProjections();},150000),
+    setInterval(function(){if(!document.hidden)updateStatus();},2000)
+  ];
 }
+
 function init(){
   $("leagueInput").value=cfg.leagueId;$("rosterInput").value=cfg.rosterId;
   Array.from(document.querySelectorAll(".view-switch button")).forEach(function(btn){
@@ -496,7 +558,10 @@ function init(){
     if(Notification.permission==="granted"){state.notify=!state.notify;$("notifications").textContent=state.notify?"Alerts on":"Alerts off";return;}
     Notification.requestPermission().then(function(p){state.notify=p==="granted";$("notifications").textContent=state.notify?"Alerts on":"Alerts unavailable";}).catch(function(){$("notifications").textContent="Alerts unavailable";});
   });
-  $("refresh").addEventListener("click",function(){state.projectionAt=0;getProjections();tick();});
+  $("refresh").addEventListener("click",function(){
+    state.scoreRetryAt=0;state.espnRetryAt=0;state.projectionAt=0;
+    getProjections();tick();
+  });
   Array.from(document.querySelectorAll("[data-game-filter]")).forEach(function(btn){
     btn.addEventListener("click",function(){
       state.gameFilter=btn.getAttribute("data-game-filter")||"all";
@@ -556,11 +621,13 @@ function init(){
     cfg={leagueId:league,rosterId:roster};store(KCFG,cfg);state.before=null;state.feed=[];bootstrap();
   });
   $("clearActivity").addEventListener("click",function(){state.feed=[];store(key()+"-feed",[]);renderActivity();});
-  document.addEventListener("visibilitychange",function(){if(!document.hidden)tick();});
+  document.addEventListener("visibilitychange",function(){
+    if(!document.hidden){tick();getProjections();updateStatus();}
+  });
   bootstrap();startTimer();
 }
 function bootstrap(){
-  state.lastUpdated=0;state.errors={};state.pair={mine:null,theirs:null};state.players={};state.games={};state.zones=[];state.fullGames=[];state.selectedGame=null;state.projections=null;state.projectionAt=0;state.projectionWeek=null;state.projectionError=null;
+  state.lastUpdated=0;state.scoreRetryAt=0;state.espnRetryAt=0;state.errors={};state.pair={mine:null,theirs:null};state.players={};state.games={};state.zones=[];state.fullGames=[];state.selectedGame=null;state.projections=null;state.projectionAt=0;state.projectionWeek=null;state.projectionError=null;
   state.week=null;render();
   Promise.all([
     fetchJson(url("league/"+encodeURIComponent(cfg.leagueId))),

@@ -429,3 +429,19 @@ main{padding:21px 0 40px}
  .rz-open-game{font-size:9px;padding:5px 7px}
  .field-redzone-range span{font-size:7px}
 }
+
+
+/* Fast-poll status: genuine last successful checks, not simulated live data. */
+.fast-refresh-pill{
+ display:inline-flex;align-items:center;gap:5px;
+ padding:5px 9px;border-radius:7px;
+ border:1px solid #3d907258;background:#1c4e3b68;color:#b9f6d5;
+ font-size:9px;letter-spacing:.07em;font-weight:900;
+}
+.fast-refresh-pill b{font-size:9px;color:#e3fff2;letter-spacing:0;white-space:nowrap}
+.refresh-detail{font-variant-numeric:tabular-nums;color:#a0bccd;white-space:nowrap}
+@media(max-width:480px){
+ .fast-refresh-pill{font-size:8px;padding:5px 6px}
+ .fast-refresh-pill b{font-size:8px}
+ .refresh-detail{font-size:8px}
+}
