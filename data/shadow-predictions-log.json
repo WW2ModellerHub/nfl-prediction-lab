@@ -376,5 +376,68 @@
     "baselineHomeProbability": 0.4716,
     "model": "xgboost-shadow-research-v1",
     "researchOnly": true
+  },
+  {
+    "gameId": "2026_12_GB_LA",
+    "kickoff": "2026-11-26T01:00:00+00:00",
+    "recordedAt": "2026-11-08T18:01:41.871654+00:00",
+    "homeProbability": 0.6498,
+    "baselineHomeProbability": 0.6115,
+    "model": "xgboost-shadow-research-v1",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_12_CHI_DET",
+    "kickoff": "2026-11-26T18:00:00+00:00",
+    "recordedAt": "2026-11-08T18:01:41.871654+00:00",
+    "homeProbability": 0.5126,
+    "baselineHomeProbability": 0.5704,
+    "model": "xgboost-shadow-research-v1",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_12_PHI_DAL",
+    "kickoff": "2026-11-26T21:30:00+00:00",
+    "recordedAt": "2026-11-08T18:01:41.871654+00:00",
+    "homeProbability": 0.6194,
+    "baselineHomeProbability": 0.5644,
+    "model": "xgboost-shadow-research-v1",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_12_KC_BUF",
+    "kickoff": "2026-11-27T01:20:00+00:00",
+    "recordedAt": "2026-11-08T18:01:41.871654+00:00",
+    "homeProbability": 0.7017,
+    "baselineHomeProbability": 0.684,
+    "model": "xgboost-shadow-research-v1",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_12_DEN_PIT",
+    "kickoff": "2026-11-27T20:00:00+00:00",
+    "recordedAt": "2026-11-08T18:01:41.871654+00:00",
+    "homeProbability": 0.4349,
+    "baselineHomeProbability": 0.5105,
+    "model": "xgboost-shadow-research-v1",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_12_ATL_MIN",
+    "kickoff": "2026-11-29T18:00:00+00:00",
+    "recordedAt": "2026-11-08T18:01:41.871654+00:00",
+    "homeProbability": 0.6874,
+    "baselineHomeProbability": 0.7391,
+    "model": "xgboost-shadow-research-v1",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_12_BAL_HOU",
+    "kickoff": "2026-11-29T18:00:00+00:00",
+    "recordedAt": "2026-11-08T18:01:41.871654+00:00",
+    "homeProbability": 0.6868,
+    "baselineHomeProbability": 0.614,
+    "model": "xgboost-shadow-research-v1",
+    "researchOnly": true
   }
 ]
