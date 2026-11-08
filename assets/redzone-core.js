@@ -143,39 +143,74 @@
     var parts=clock.match(/^(\d{1,2}):(\d{2})$/),sec=parts?Number(parts[1])*60+Number(parts[2]):450;
     return Math.max(0,Math.min(1,(4-period+Math.min(900,sec)/900)/4));
   }
-  function estimateMatchup(pair, projections, scoring, games){
+  /**
+   * A score share is not a win probability. Compare projected-final points
+   * against a transparent remaining-score uncertainty assumption instead.
+   */
+  function winChanceFromProjected(myFinal,theirFinal,spread){
+    var a=num(myFinal),b=num(theirFinal),sd=num(spread);
+    if(a===null||b===null)return null;
+    var d=a-b;
+    if(sd!==null && sd<0.05)return d>0?1:d<0?0:0.5;
+    sd=Math.max(6,sd===null?Math.sqrt(Math.max(0,a)+Math.max(0,b))*0.92:sd);
+    return Math.max(0.005,Math.min(0.995,1/(1+Math.exp(-1.702*d/sd))));
+  }
+  /**
+   * Current Sleeper scores are authoritative. Projection data is a forecast,
+   * not a live tally. When a game status is missing, use player's projected
+   * points minus points scored rather than inventing an NFL clock.
+   */
+  function estimateMatchup(pair,projections,scoring,games,players){
     var sides={};
     ["mine","theirs"].forEach(function(side){
-      var row=pair&&pair[side];
+      var row=pair && pair[side];
       if(!row){sides[side]=null;return;}
-      var starters=(row.starters||[]).map(String).filter(function(x){return x&&x!=="0";});
-      var total=num(row.points);if(total===null){sides[side]=null;return;}
-      var missing=0,variance=0,remaining=0,projected=0,covered=0;
-      starters.forEach(function(id){
+      var total=num(row.points);
+      if(total===null){sides[side]=null;return;}
+      var ids=(row.starters||[]).map(String).filter(function(x){return x && x!=="0";});
+      var remaining=0,variance=0,covered=0,missing=0,uncertain=0,baseline=0;
+      ids.forEach(function(id,i){
         var st=projections && projections[id];
-        var proj=projectionFor(st,scoring);
-        var game=null;
-        // projections don't carry a guaranteed team field; caller passes mapped team via projection.team
-        var team=norm(st&&((st.player&&st.player.team)||st.team||st.teamCode));
-        if(team)game=games&&games[team];
-        var left=gameRemaining(game);
-        if(left===null || proj===null){missing++;return;}
-        covered++;
-        projected+=proj;
-        remaining+=proj*left;
-        variance+=Math.pow(Math.max(3,Math.abs(proj)*0.57),2)*left;
+        var value=projectionFor(st,scoring);
+        if(value===null){missing++;return;}
+        covered++;baseline+=value;
+        var team=norm((players&&players[id]&&players[id].team) ||
+          (st&&st.player&&st.player.team)||(st&&st.team)||(/^[A-Z]{2,3}$/.test(id)?id:""));
+        var game=games&&games[team],left=gameRemaining(game);
+        var already=starterScore(row,id,i);
+        var unfinished;
+        if(left===null){
+          // Degraded mode: projections still support a score-based estimate,
+          // but it is explicitly labelled approximate and has wider variance.
+          unfinished=Math.max(0,value-Math.max(0,already||0));
+          uncertain++;
+        }else{
+          unfinished=Math.max(0,value)*left;
+          // Protect against an empty points feed double counting a completed game.
+          if(left===0)unfinished=0;
+        }
+        remaining+=unfinished;
+        var individualSD=Math.max(3.5,Math.abs(value)*0.62);
+        variance+=individualSD*individualSD*(left===null?1.25:left);
       });
-      sides[side]={current:total,final:total+remaining,remaining:remaining,variance:variance,covered:covered,required:starters.length,missing:missing,baseline:projected};
+      sides[side]={current:total,final:total+remaining,remaining:remaining,
+        variance:variance,covered:covered,required:ids.length,missing:missing,
+        uncertain:uncertain,baseline:baseline};
     });
-    var x=sides.mine,y=sides.theirs;
-    if(!x||!y || x.missing || y.missing)return {mine:x,theirs:y,win:null,reason:"Missing player projections or game status"};
-    var diff=x.final-y.final,spread=Math.sqrt(x.variance+y.variance);
-    var p=spread<0.01?(diff>0?1:diff<0?0:0.5):
-      1/(1+Math.exp(-1.702*diff/spread));
-    return {mine:x,theirs:y,win:Math.max(.005,Math.min(.995,p)),reason:null};
+    var a=sides.mine,b=sides.theirs;
+    if(!a||!b)return {mine:a,theirs:b,win:null,reason:"Waiting for both teams' scores"};
+    // Do not show artificial certainty from a single forecasted player.
+    if(a.covered===0||b.covered===0)return {mine:a,theirs:b,win:null,reason:"Sleeper projected scores unavailable"};
+    var residual=a.missing+b.missing;
+    var sd=Math.sqrt(a.variance+b.variance+residual*100);
+    var alreadyFinal=(a.remaining<0.005 && b.remaining<0.005 && !residual && !a.uncertain && !b.uncertain);
+    var chance=winChanceFromProjected(a.final,b.final,alreadyFinal?0:Math.max(6,sd));
+    var approximate=Boolean(residual||a.uncertain||b.uncertain);
+    return {mine:a,theirs:b,win:chance,approximate:approximate,
+      reason:approximate?"Partial player projections or NFL game states — lower confidence":null};
   }
 
-  var api={num:num,norm:norm,starterScore:starterScore,benchScore:benchScore,lineup:lineup,findMatchup:findMatchup,snapshot:snapshot,changes:changes,gameData:gameData,listGames:listGames,projectionFor:projectionFor,gameRemaining:gameRemaining,estimateMatchup:estimateMatchup};
+  var api={num:num,norm:norm,starterScore:starterScore,benchScore:benchScore,lineup:lineup,findMatchup:findMatchup,snapshot:snapshot,changes:changes,gameData:gameData,listGames:listGames,projectionFor:projectionFor,gameRemaining:gameRemaining,estimateMatchup:estimateMatchup,winChanceFromProjected:winChanceFromProjected};
   root.RedZoneCore=api;
   if(typeof module!=="undefined" && module.exports) module.exports=api;
 })(typeof globalThis!=="undefined"?globalThis:this);
