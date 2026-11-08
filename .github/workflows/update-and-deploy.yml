@@ -54,6 +54,8 @@ jobs:
         run: node tests/redzone-smoke.cjs
       - name: Validate live Game Centre and win probability
         run: node tests/redzone-forecast-smoke.cjs
+      - name: Validate fast live refresh and provider backoff
+        run: node tests/redzone-refresh-smoke.cjs
       - name: Refresh NFL schedule and model audit
         env:
           REFRESH_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.refresh_mode || (github.event_name == 'schedule' && github.event.schedule == '19 13,19 * * *' && 'schedules-only') || 'full' }}
