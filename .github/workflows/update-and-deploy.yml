@@ -48,6 +48,8 @@ jobs:
         run: node tests/fixture-smoke.cjs
       - name: Validate touch navigation and Red Zone link
         run: node tests/navigation-smoke.cjs
+      - name: Validate games stay visible after kickoff
+        run: node tests/started-games-smoke.cjs
       - name: Validate matchup intelligence and prediction invariance
         run: node tests/intelligence-smoke.cjs
       - name: Validate Sleeper fantasy Red Zone calculations

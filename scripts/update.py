@@ -16,6 +16,7 @@ from tactical import load_nflverse_pbp
 from personnel_adjustment import assess as assess_personnel, qb_efficiency_preview
 from qb_replacement import evaluate as assess_replacement
 from forecast_revisions import revisions as save_forecast_revisions
+from recent_kickoffs import make_recent_kickoffs
 from forecast_layers import explain as explain_forecast_layers
 from model import simulate as forecast_simulate
 from qb_injuries import load_historical_reports
@@ -510,7 +511,8 @@ def update(schedules_only=False,schedules_file=None):
         item['verificationLevel']=(row.get('forecastQuality') or {}).get('level','unavailable')
         item['verificationReasons']=(row.get('forecastQuality') or {}).get('issues',[])[:8]
     record_shadow_predictions(dashboard,games,now)
-    save_forecast_revisions(dashboard,log,games,now)
+    archive=save_forecast_revisions(dashboard,log,games,now)
+    dashboard['recentKickoffs']=make_recent_kickoffs(games,archive,now)
     dashboard=preserve_recent_player_context(dashboard,old_dashboard,now)
     # Schedules-only refresh cannot recompute historical play-by-play accuracy.
     if schedules_only:
@@ -572,6 +574,7 @@ def update(schedules_only=False,schedules_file=None):
         'playerUsageSource':dashboard.get('playerUsageSource'),
         'challengerValidation':dashboard.get('challengerValidation'),
         'shadowForwardPerformance':dashboard.get('shadowForwardPerformance'),
+        'recentKickoffsCount':len(dashboard.get('recentKickoffs',[])),
         'forecastRevisionSummary':dashboard.get('forecastRevisionSummary'),
         'forecastRevisionResults':dashboard.get('forecastRevisionResults',[]),
         'predictionRecord':dashboard.get('predictionRecord'),

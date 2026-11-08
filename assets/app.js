@@ -12,7 +12,7 @@ const money=n=>'£'+Number(n||0).toLocaleString('en-GB',{minimumFractionDigits:2
 const date=s=>s?new Date(s).toLocaleString('en-GB',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit',timeZone:'Europe/London'}):'Unknown';
 function save(key,v){try{localStorage.setItem('nfl-lab-'+key,JSON.stringify(v));return true}catch{toast('Local storage unavailable.');return false}}
 function load(key,fallback){try{return JSON.parse(localStorage.getItem('nfl-lab-'+key))??fallback}catch{return fallback}}
-let store={data:null,auditReference:window.NFL_LAB_AUDIT_REFERENCE||null,researchEvidence:window.NFL_LAB_RESEARCH_EVIDENCE||null,tab:'overview',odds:load('odds',{}),bets:load('bets',[]),query:'',week:'All',busy:false,activeGameId:null};
+let store={data:null,auditReference:window.NFL_LAB_AUDIT_REFERENCE||null,researchEvidence:window.NFL_LAB_RESEARCH_EVIDENCE||null,tab:'overview',odds:load('odds',{}),bets:load('bets',[]),query:'',week:'All',busy:false,activeGameId:null,liveScores:{}};
 let timer;
 function toast(message){const el=byId('toast');el.textContent=message;el.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>el.classList.remove('show'),2900)}
 function initials(team){return `<span class="team-bubble" style="border-color:${TEAM_COLORS[team]||'#456'}88;background:${TEAM_COLORS[team]||'#203447'}30">${escapeHTML(team)}</span>`}
@@ -23,6 +23,95 @@ function empty(title,body){return `<div class="empty"><div class="empty-symbol">
 function warnBanner(){if(store.data?.previewMode)return `<div class="data-banner"><div><strong>ARCHIVED RESEARCH PREVIEW — NOT LIVE</strong><p>Real November 2026 fixtures and a pinned independent baseline reconstruction; no tactical, injury, live or bookmaker data. Real production predictions are generated after the GitHub workflow refresh.</p></div>${tag('PINNED 3 NOV 2026','warn')}</div>`;if(store.data?.dataStatus==='ok')return `<div class="banner-plain"><strong>DATA SCOPE ·</strong> Pregame statistical model. ${escapeHTML(store.data.dataWarnings?.slice(0,4).join(' · ')||'')}.</div>`; return `<div class="data-banner"><div><strong>◉ Awaiting the first real-data refresh</strong><p>The interface is installed, but predictions are not yet published. Run <code>python scripts/update.py</code> with internet access, or trigger the GitHub Actions workflow after deployment. No simulated picks are displayed as real.</p></div>${tag('SETUP REQUIRED','warn')}</div>`}
 function latest(){if(store.data?.previewMode)return 'ARCHIVED 3 NOV 2026';if(!store.data?.generatedAt)return 'AWAITING DATA';const age=(Date.now()-new Date(store.data.generatedAt).getTime())/3600000;return age<0?'DATA TIMESTAMP CHECK':age<1?'UPDATED <1H AGO':age<24?`UPDATED ${Math.floor(age)}H AGO`:`UPDATED ${Math.floor(age/24)}D AGO`}
 function games(){return store.data?.nextGames||[]}
+function recentKickoffs(){return Array.isArray(store.data?.recentKickoffs)?store.data.recentKickoffs:[]}
+function browseGames(){return [...recentKickoffs(),...games()].filter((g,i,all)=>all.findIndex(x=>String(x.id)===String(g.id))===i)}
+function matchSearch(g){return ((g.homeName||g.home)+' '+(g.awayName||g.away)+' '+g.home+' '+g.away).toLowerCase().includes(store.query.toLowerCase())}
+function scoreFromESPN(g){
+ const s=store.liveScores?.[g.id];
+ if(!s)return {main:'KICKED OFF',detail:'Live score pending · view Red Zone'};
+ const status=s.status==='in'?'LIVE '+(s.period?'Q'+s.period:'')+(s.clock?' '+s.clock:''):s.status==='post'?'FINAL':'SCHEDULED';
+ const totals=s.awayScore==null||s.homeScore==null?'Score pending':s.away+' '+s.awayScore+' – '+s.home+' '+s.homeScore;
+ return {main:status,detail:totals,at:s.fetchedAt};
+}
+function recentKickoffRow(g){
+ const live=scoreFromESPN(g),fav=g.homeProbability>=.5?g.home:g.away,p=Math.max(g.homeProbability,1-g.homeProbability);
+ return `<div class="game-row started-game-row" data-open="${escapeHTML(g.id)}" role="button" tabindex="0">
+ <div class="game-teams">${initials(g.away)}<div class="started-game-teams"><b>${escapeHTML(g.away)} @ ${escapeHTML(g.home)}</b>
+ <small>${escapeHTML(date(g.kickoff))} · Week ${escapeHTML(g.week??'—')}</small>
+ <span class="started-live" data-live-status="${escapeHTML(g.id)}">${escapeHTML(live.main)}</span>
+ <span class="started-live-detail" data-live-detail="${escapeHTML(g.id)}">${escapeHTML(live.detail)}</span></div></div>
+ <div class="started-prob"><strong>${escapeHTML(fav)} ${pct(p)}</strong><small>LAST SAVED PRE-KICKOFF PICK</small>
+ <small>Saved ${escapeHTML(date(g.lastPregameRecordedAt))}</small></div>
+ <div class="started-open">VIEW ARCHIVE ›</div></div>`;
+}
+function startedSlatePanel(){
+ const recent=recentKickoffs();
+ if(!recent.length)return '';
+ return panel('Today’s live & recently started games',
+ `<div class="started-note">These fixtures stay here after kickoff. Percentages are <strong>archived pregame forecasts</strong>, not live win probabilities. Scores are from ESPN where available. <a href="./redzone.html">Open Red Zone ↗</a></div>
+ <div>${recent.map(recentKickoffRow).join('')}</div>`,
+ 'Kickoffs within 30 hours · frozen prediction archive · live scores separate');
+}
+function archivedMatchupPage(g){
+ const p=Number(g.homeProbability),fav=p>=.5?g.home:g.away,prob=Math.max(p,1-p),live=scoreFromESPN(g);
+ return `<div class="matchup-page"><div class="matchup-actions">
+ <button class="btn btn-secondary" data-back-matchups="1">← All fixtures</button>
+ <a class="btn btn-primary" href="./redzone.html">◉ Open Fantasy Red Zone</a></div>
+ <section class="matchup-hero">
+ <div class="eyebrow">${escapeHTML(date(g.kickoff))} · WEEK ${escapeHTML(g.week??'—')} · KICKED OFF</div>
+ <h2>${escapeHTML(g.away)} @ ${escapeHTML(g.home)}</h2>
+ <div class="one-forecast"><div class="one-forecast-label">FROZEN PRE-KICKOFF FORECAST · NOT A LIVE PROBABILITY</div>
+ <div class="one-forecast-number">${pct(prob)}</div><div class="one-forecast-winner">${escapeHTML(fav)} to win before kickoff</div>
+ <div class="one-forecast-comparison">Original forecast: ${pct(g.originalHomeProbability)} ${escapeHTML(g.home)} win · Last saved: ${pct(g.homeProbability)} ${escapeHTML(g.home)} win</div>
+ <p class="source-meta">Last saved ${escapeHTML(date(g.lastPregameRecordedAt))} · ${escapeHTML(g.model||'pregame model')} · ${escapeHTML(g.verificationLevel||'verification unavailable')} evidence. These values will not be rewritten during the game.</p></div></section>
+ <section class="matchup-panel"><h3>Match status</h3>
+ <div class="panel-body"><strong data-live-status="${escapeHTML(g.id)}">${escapeHTML(live.main)}</strong>
+ <p data-live-detail="${escapeHTML(g.id)}">${escapeHTML(live.detail)}</p>
+ <p class="source-meta">ESPN scoreboard information is an independent live-display feed and may lag or be unavailable. Neither live scores nor final results are used to invent updated pregame probabilities.</p></div></section>
+ <section class="matchup-panel"><h3>Archived prediction record</h3>
+ <div class="panel-body"><div class="stat-pair"><span>Original saved ${escapeHTML(date(g.originalRecordedAt))}</span><strong>${pct(g.originalHomeProbability)} ${escapeHTML(g.home)} win</strong></div>
+ <div class="stat-pair"><span>Final pregame revision ${escapeHTML(date(g.lastPregameRecordedAt))}</span><strong>${pct(g.homeProbability)} ${escapeHTML(g.home)} win</strong></div>
+ <div class="stat-pair"><span>Earlier saved updates</span><strong>${escapeHTML(g.revisions??0)}</strong></div></div></section>
+ </div>`;
+}
+function updateLiveDom(){
+ if(typeof document.querySelectorAll!=='function')return;
+ document.querySelectorAll('[data-live-status]').forEach(el=>{
+   const game=recentKickoffs().find(g=>String(g.id)===String(el.getAttribute('data-live-status')));
+   if(game)el.textContent=scoreFromESPN(game).main;
+ });
+ document.querySelectorAll('[data-live-detail]').forEach(el=>{
+   const game=recentKickoffs().find(g=>String(g.id)===String(el.getAttribute('data-live-detail')));
+   if(game)el.textContent=scoreFromESPN(game).detail;
+ });
+}
+async function refreshLiveScores(){
+ if(!recentKickoffs().length||typeof fetch!=='function')return;
+ try{
+   const day=new Date(recentKickoffs()[0].kickoff).toLocaleDateString('sv-SE',{timeZone:'America/New_York'}).replace(/-/g,'');
+   const response=await fetch('https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates='+day,{cache:'no-store'});
+   if(!response.ok)throw Error('scoreboard HTTP '+response.status);
+   const payload=await response.json();if(!Array.isArray(payload.events))throw Error('scoreboard events missing');
+   const norm=c=>({'WSH':'WAS','JAC':'JAX','LA':'LAR','STL':'LAR','SD':'LAC','OAK':'LV'})[String(c||'').toUpperCase()]||String(c||'').toUpperCase();
+   const scored={};
+   for(const event of payload.events){
+     const comp=event.competitions?.[0],teams=comp?.competitors||[];
+     if(teams.length!==2)continue;
+     const home=teams.find(t=>t.homeAway==='home'),away=teams.find(t=>t.homeAway==='away');
+     if(!home||!away)continue;
+     const matching=recentKickoffs().find(g=>norm(g.home)===norm(home.team?.abbreviation)&&
+       norm(g.away)===norm(away.team?.abbreviation)&&
+       Math.abs(new Date(g.kickoff).getTime()-new Date(event.date).getTime())<2*3600000);
+     if(!matching)continue;
+     const score=t=>t.score!=null&&/^\d+$/.test(String(t.score))?Number(t.score):null;
+     scored[matching.id]={home:matching.home,away:matching.away,
+       homeScore:score(home),awayScore:score(away),
+       status:event.status?.type?.state||'pre',period:event.status?.period||0,
+       clock:event.status?.displayClock||'',fetchedAt:Date.now()};
+   }
+   store.liveScores=scored;updateLiveDom();
+ }catch(e){store.liveScores={};updateLiveDom();}
+}
 function oddsFor(g){return store.odds[g.id]||null}
 function situationFor(g){return g.situation||{home:null,away:null,signals:[],status:'Awaiting updated fixture data'}}
 function situationBadge(g){const flags=situationFor(g).signals||[];return flags.length?`<span class="situation-badge">⚡ ${flags.length} situation${flags.length===1?'':'s'}</span>`:''}
@@ -272,9 +361,14 @@ function overview(){const g=games(),perf=store.data?.recentPerformance||store.da
    'Not a reconstructed backtest');
  const perfPanel=panel('Model reliability',`<div class="panel-body">${perf.count?`<div class="stat-pair"><span>Correct favourite</span><strong>${pct(perf.accuracy)}</strong></div><div class="stat-pair"><span>Brier score <span title="Lower is better" class="info-icon">?</span></span><strong>${number(perf.brier,3)}</strong></div><div class="stat-pair"><span>50/50 baseline Brier</span><strong>${number(perf.baselineBrier,3)}</strong></div><div class="stat-pair"><span>Forward-tested games</span><strong>${fp.count||0}</strong></div>`:'<p class="instruction">Run the NFL data importer to calculate sequential historical test metrics.</p>'}<p class="panel-note" style="margin-top:13px">Backtests use historical records only; they are not archived real-time predictions. Betting profitability is not established.</p><button class="btn btn-sm btn-ghost" style="margin-top:10px" data-nav="performance">Explore performance →</button></div>`);
  const rankings=panel('Power ratings',`<div class="panel-body">${(store.data?.powerRankings||[]).length?(store.data.powerRankings.slice(0,6).map(rankingRow).join('')):'<p class="instruction">Ratings appear after the first data run.</p>'}</div>`,'Elo adjusted for previous games, not injuries');
- return warnBanner()+metrics+`<div class="grid-main"><div>${recordCard}${slate}${perfPanel}</div><div class="right-stack">${verificationQueue()}${panel('Intelligence alerts',alertContent(),'Situational effects are applied only after the validation gate passes',tag('WATCHLIST'))}${rankings}</div></div>`}
-function matchups(){const g=games().filter(x=>(x.homeName+' '+x.awayName+' '+x.home+' '+x.away).toLowerCase().includes(store.query.toLowerCase()));
- return warnBanner()+panel('Matchup board',`<div class="panel-body"><div class="search-row"><input aria-label="Search matchups" class="input" id="searchGames" placeholder="Search a team..." value="${escapeHTML(store.query)}"/><span class="tiny">${g.length} matches · Model Elo + scoring form</span></div><div class="note-box">Probabilities start with prior results and scoring form. Overtime, rest, bounce-back and consecutive road signals are detected. Adjustments activate only if the historical research gate passes. Recent QB/injury media observations can inform an unvalidated provisional forecast; automated player props remain unconnected.</div></div><div id="gameRows">${g.length?g.map(gameRow).join(''):empty('No upcoming matchups',store.query?'Try another team name.':'Waiting for the NFL schedule feed.')}</div>`,'Select a game to view its simulation distribution, uncertainty and alternative scripts');}
+ return warnBanner()+metrics+startedSlatePanel()+`<div class="grid-main"><div>${recordCard}${slate}${perfPanel}</div><div class="right-stack">${verificationQueue()}${panel('Intelligence alerts',alertContent(),'Situational effects are applied only after the validation gate passes',tag('WATCHLIST'))}${rankings}</div></div>`}
+function matchups(){
+ const g=games().filter(matchSearch),started=recentKickoffs().filter(matchSearch);
+ return warnBanner()+panel('Matchup board',`<div class="panel-body"><div class="search-row"><input aria-label="Search matchups" class="input" id="searchGames" placeholder="Search a team..." value="${escapeHTML(store.query)}"/><span class="tiny">${started.length} kicked off · ${g.length} upcoming</span></div>
+ <div class="note-box">Started games retain their actual pre-kickoff forecasts; ESPN supplies live scores separately. Pregame probabilities are frozen once the game starts. Future matchups continue to show QB, injury, matchup and model evidence.</div></div>
+ <div id="gameRows">${started.length?`<div class="started-board-heading">LIVE & RECENT KICKOFFS</div>${started.map(recentKickoffRow).join('')}`:''}
+ ${g.length?`<div class="started-board-heading">UPCOMING FIXTURES</div>${g.map(gameRow).join('')}`:''}
+ ${!started.length&&!g.length?empty('No matching matchups',store.query?'Try another team name.':'Waiting for the NFL schedule feed.'):''}</div>`,'Tap any fixture to view its frozen pregame forecast or full upcoming matchup');}
 function radar(){const g=games();const rated=g.map(x=>({g:x,v:valueFor(x)})).filter(x=>x.v).sort((a,b)=>Number(b.v.eligible)-Number(a.v.eligible)||b.v.ev-a.v.ev);
  const upset=g.filter(x=>x.forecastQuality?.bettingEligible===true).map(x=>({g:x,prob:Math.min(x.homeProbability,x.awayProbability),underdog:x.homeProbability<.5?x.home:x.away})).filter(x=>x.prob>=.33).sort((a,b)=>b.prob-a.prob);
  const cols=`<div class="value-row value-head"><div>Market / Matchup</div><div>Model p</div><div>Price</div><div>Break-even</div><div>Model EV</div></div>`;
@@ -746,7 +840,7 @@ function fullMatchupPage(g){
 }
 
 function openGamePage(id){
- const g=games().find(x=>String(x.id)===String(id));
+ const g=browseGames().find(x=>String(x.id)===String(id));
  if(!g)return;
  store.activeGameId=String(g.id);
  store.tab='matchups';
@@ -780,15 +874,16 @@ function shareGameLink(id){
 }
 
 function render(){
- const t=store.tab,d=store.data,selected=store.activeGameId?games().find(g=>String(g.id)===String(store.activeGameId)):null;
+ const t=store.tab,d=store.data,selected=store.activeGameId?browseGames().find(g=>String(g.id)===String(store.activeGameId)):null;
  byId('pageTitle').innerHTML=(selected?escapeHTML(selected.away+' @ '+selected.home):escapeHTML(TABS[t][0]))+'<span class="title-dot">.</span>';
  byId('pageIntro').textContent=selected?'Detailed pregame intelligence, evidence and uncertainty for this fixture.':TABS[t][1];
  byId('breadcrumb').textContent=selected?'FULL MATCHUP':TABS[t][0].toUpperCase();
  byId('dataAge').textContent=latest();
  document.querySelectorAll('[data-tab]').forEach(btn=>{btn.classList.toggle('active',btn.dataset.tab===t);btn.setAttribute('aria-current',btn.dataset.tab===t?'page':'false')});
  byId('appContent').innerHTML=!d?'<div class="loading"><span>◈</span><p>Loading prediction dataset...</p></div>'
- :store.activeGameId?(selected?warnBanner()+fullMatchupPage(selected):warnBanner()+empty('Matchup no longer on this slate','The fixture may have already kicked off or moved out of the published forecast window.')+'<div class="matchup-actions"><button class="btn btn-primary" data-back-matchups="1">View upcoming fixtures</button></div>')
+ :store.activeGameId?(selected?warnBanner()+(selected.archivedPregame?archivedMatchupPage(selected):fullMatchupPage(selected)):warnBanner()+empty('Matchup no longer on this slate','The fixture may have already kicked off or moved out of the published forecast window.')+'<div class="matchup-actions"><button class="btn btn-primary" data-back-matchups="1">View upcoming fixtures</button></div>')
  :t==='overview'?overview():t==='matchups'?matchups():t==='tactics'?tacticalRadar():t==='players'?playerRadar():t==='impact'?playerImpactLab():t==='radar'?radar():t==='performance'?perf():t==='accuracy'?signalAccuracyLab():t==='audit'?marketAudit():t==='evidence'?researchEvidenceLab():t==='models'?models():bets();
+ updateLiveDom();
 }
 
 
@@ -817,7 +912,7 @@ function openGame(id){const g=games().find(x=>x.id===id);if(!g)return;const pHom
 function oddsDialog(gameId){const g=games().find(x=>x.id===gameId);if(!g)return;const o=store.odds[gameId]||{side:g.home,price:'',book:''};byId('oddsContent').innerHTML=`<div class="dialog-header"><div><div class="eyebrow" style="font-size:9px">MANUAL MARKET INPUT</div><h2 class="modal-title">Enter bookmaker odds</h2><div class="modal-sub">${escapeHTML(g.away)} @ ${escapeHTML(g.home)}</div></div><button type="button" class="close" data-close="oddsDialog">×</button></div><div class="dialog-content"><label class="field-label" for="marketSide">Selection (moneyline)</label><select id="marketSide" class="select" style="margin-bottom:15px"><option value="${escapeHTML(g.home)}" ${o.side===g.home?'selected':''}>${escapeHTML(g.home)} to win</option><option value="${escapeHTML(g.away)}" ${o.side===g.away?'selected':''}>${escapeHTML(g.away)} to win</option></select><div class="form-row"><label><span class="field-label">Decimal odds</span><input class="input" id="marketPrice" required type="number" min="1.01" max="1000" step="0.01" value="${escapeHTML(o.price)}" placeholder="2.10"></label><label><span class="field-label">Bookmaker</span><input class="input" id="marketBook" maxlength="50" value="${escapeHTML(o.book||'')}" placeholder="Sky Bet"></label></div><label><span class="field-label">Optional home-team handicap (e.g. -7.5 if home gives 7.5)</span><input class="input" id="marketHomeHandicap" type="number" min="-40" max="40" step="0.5" value="${escapeHTML(o.homeHandicap??'')}" placeholder="-7.5"></label><p class="instruction" style="margin-top:10px">The optional spread is for Favourite Ambush detection ONLY; spread EV and automatic market data are not supported. Negative = home favourite. Positive = away favourite.</p><div class="inline-cta"><button class="btn btn-primary" type="submit" value="save">Save odds</button><button class="btn" type="button" data-clear-odds="${escapeHTML(gameId)}">Clear</button><button class="btn" type="button" data-close="oddsDialog">Cancel</button></div></div>`;byId('oddsForm').dataset.gameId=gameId;byId('oddsDialog').showModal()}
 function downloadJson(filename,obj){const blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
 function exportLedger(){downloadJson('nfl-lab-personal-ledger.json',{exportedAt:new Date().toISOString(),format:'nfl-lab-ledger-v1',bets:store.bets,odds:store.odds});toast('Local ledger exported')}
-async function refresh(){if(store.busy)return;if(window.NFL_LAB_EMBEDDED_DATA){store.data=window.NFL_LAB_EMBEDDED_DATA;render();return;}store.busy=true;byId('dataAge').textContent='CHECKING DATA';try{try{const ar=await fetch('data/audit-reference.json?ts='+Date.now(),{cache:'no-store'});if(ar.ok)store.auditReference=await ar.json()}catch{}try{const er=await fetch('data/situational-research.json?ts='+Date.now(),{cache:'no-store'});if(er.ok)store.researchEvidence=await er.json()}catch{}const res=await fetch('data/dashboard.json?ts='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status);const d=await res.json();if(!Array.isArray(d.nextGames))throw Error('Unsupported dataset');store.data=d;render();toast(d.generatedAt?'Forecast data loaded':'Waiting for the first published NFL data run')}catch(e){store.data={dataStatus:'unavailable',nextGames:[],recentResults:[],performance:{count:0}};render();toast('Could not load dashboard data. Use a local web server or GitHub Pages.')}finally{store.busy=false}}
+async function refresh(){if(store.busy)return;if(window.NFL_LAB_EMBEDDED_DATA){store.data=window.NFL_LAB_EMBEDDED_DATA;render();return;}store.busy=true;byId('dataAge').textContent='CHECKING DATA';try{try{const ar=await fetch('data/audit-reference.json?ts='+Date.now(),{cache:'no-store'});if(ar.ok)store.auditReference=await ar.json()}catch{}try{const er=await fetch('data/situational-research.json?ts='+Date.now(),{cache:'no-store'});if(er.ok)store.researchEvidence=await er.json()}catch{}const res=await fetch('data/dashboard.json?ts='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status);const d=await res.json();if(!Array.isArray(d.nextGames))throw Error('Unsupported dataset');store.data=d;render();refreshLiveScores();toast(d.generatedAt?'Forecast data loaded':'Waiting for the first published NFL data run')}catch(e){store.data={dataStatus:'unavailable',nextGames:[],recentResults:[],performance:{count:0}};render();toast('Could not load dashboard data. Use a local web server or GitHub Pages.')}finally{store.busy=false}}
 function handleClick(e){const btn=e.target.closest('[data-model-filter],[data-tab],[data-nav],[data-open],[data-full-game],[data-back-matchups],[data-share-game],[data-odds],[data-close],[data-clear-odds],[data-deletebet],[data-export],[data-import],[data-export-audit],[data-export-evidence]');if(!btn)return;
  if(btn.dataset.modelFilter){store.modelFilter=btn.dataset.modelFilter;render();return;}
  if(btn.dataset.tab)navigate(btn.dataset.tab);
@@ -845,8 +940,11 @@ function start(){byId('nav').addEventListener('click',handleClick);byId('appCont
  byId('appContent').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-open]')){e.preventDefault();openGame(e.target.dataset.open)}});
  byId('appContent').addEventListener('input',e=>{if(e.target.id==='searchGames'){
    store.query=e.target.value;
-   const match=games().filter(x=>(x.homeName+' '+x.awayName+' '+x.home+' '+x.away).toLowerCase().includes(store.query.toLowerCase()));
-   const target=byId('gameRows');if(target)target.innerHTML=match.length?match.map(gameRow).join(''):empty('No matchups found','Try another team name.');
+   const upcoming=games().filter(matchSearch),recent=recentKickoffs().filter(matchSearch);
+   const target=byId('gameRows');if(target)target.innerHTML=(recent.length?`<div class="started-board-heading">LIVE & RECENT KICKOFFS</div>${recent.map(recentKickoffRow).join('')}`:'')+
+    (upcoming.length?`<div class="started-board-heading">UPCOMING FIXTURES</div>${upcoming.map(gameRow).join('')}`:'')||
+    empty('No matchups found','Try another team name.');
+   updateLiveDom();
  }});
  byId('appContent').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='searchGames'){store.query=e.target.value;render();byId('searchGames')?.focus()}});
  byId('refreshBtn').addEventListener('click',refresh);byId('exportBtn').addEventListener('click',exportLedger);
@@ -856,6 +954,6 @@ function start(){byId('nav').addEventListener('click',handleClick);byId('appCont
  byId('appContent').addEventListener('change',e=>{if(e.target.id==='importFile')importFile(e)});
  window.addEventListener('keydown',e=>{if(e.key==='Escape')setNavOpen(false)});
   window.addEventListener('hashchange',syncRoute);
- syncRoute();refresh();}
+ syncRoute();refresh();setInterval(()=>{if(!document.hidden)refreshLiveScores()},30000);}
 window.addEventListener('DOMContentLoaded',start);
 })();
