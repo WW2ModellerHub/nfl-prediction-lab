@@ -791,11 +791,20 @@ function render(){
  :t==='overview'?overview():t==='matchups'?matchups():t==='tactics'?tacticalRadar():t==='players'?playerRadar():t==='impact'?playerImpactLab():t==='radar'?radar():t==='performance'?perf():t==='accuracy'?signalAccuracyLab():t==='audit'?marketAudit():t==='evidence'?researchEvidenceLab():t==='models'?models():bets();
 }
 
+
+function setNavOpen(open){
+ const aside=$('.sidebar'),backdrop=byId('navBackdrop'),toggle=byId('mobileMenu');
+ aside.classList.toggle('open',Boolean(open));
+ toggle.setAttribute('aria-expanded',String(Boolean(open)));
+ toggle.setAttribute('aria-label',open?'Close navigation':'Open navigation');
+ backdrop.hidden=!open;
+ if(open)byId('nav').focus();
+ else if(document.activeElement===byId('sideClose'))toggle.focus();
+}
 function navigate(tab){
  if(!TABS[tab])return;
  store.tab=tab;store.activeGameId=null;store.query='';
- byId('mobileMenu').setAttribute('aria-expanded','false');
- $('.sidebar').classList.remove('open');
+ setNavOpen(false);
  const hash='#tab='+tab;
  if(window.location&&window.location.hash!==hash)window.location.hash=hash;
  render();
@@ -841,9 +850,11 @@ function start(){byId('nav').addEventListener('click',handleClick);byId('appCont
  }});
  byId('appContent').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='searchGames'){store.query=e.target.value;render();byId('searchGames')?.focus()}});
  byId('refreshBtn').addEventListener('click',refresh);byId('exportBtn').addEventListener('click',exportLedger);
- byId('mobileMenu').addEventListener('click',()=>{const open=$('.sidebar').classList.toggle('open');byId('mobileMenu').setAttribute('aria-expanded',String(open))});
+ byId('mobileMenu').addEventListener('click',()=>setNavOpen(!$('.sidebar').classList.contains('open')));
+ byId('sideClose').addEventListener('click',()=>setNavOpen(false));
+ byId('navBackdrop').addEventListener('click',()=>setNavOpen(false));
  byId('appContent').addEventListener('change',e=>{if(e.target.id==='importFile')importFile(e)});
- window.addEventListener('keydown',e=>{if(e.key==='Escape')$('.sidebar').classList.remove('open')});
+ window.addEventListener('keydown',e=>{if(e.key==='Escape')setNavOpen(false)});
   window.addEventListener('hashchange',syncRoute);
  syncRoute();refresh();}
 window.addEventListener('DOMContentLoaded',start);

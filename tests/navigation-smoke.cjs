@@ -1,0 +1,23 @@
+/* Navigation regression: short desktop / touch phone must be scrollable, Red Zone reachable. */
+const fs=require('node:fs');
+const assert=require('node:assert/strict');
+const html=fs.readFileSync('index.html','utf8');
+const css=fs.readFileSync('assets/styles.css','utf8');
+const app=fs.readFileSync('assets/app.js','utf8');
+const root=fs.readFileSync('redzone.html','utf8');
+assert.match(html,/<nav id="nav"[^>]*tabindex="0"/);
+assert.ok(html.indexOf('href="./redzone.html"')>html.indexOf('data-tab="overview"'));
+assert.ok(html.indexOf('href="./redzone.html"')<html.indexOf('data-tab="matchups"'),"Red Zone must be near top");
+assert.match(html,/id="mobileMenu"[^>]*aria-expanded="false"/);
+assert.match(html,/id="navBackdrop"[^>]*hidden/);
+assert.match(html,/id="sideClose"/);
+assert.match(css,/\.sidebar #nav\{[^}]*flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden/);
+assert.match(css,/\.sidebar #nav\{[^}]*-webkit-overflow-scrolling:touch/);
+assert.match(css,/@media\(max-width:820px\)\{[^}]*\.sidebar\{/);
+assert.match(app,/function setNavOpen\(open\)/);
+assert.match(app,/byId\('sideClose'\)\.addEventListener/);
+assert.match(app,/byId\('navBackdrop'\)\.addEventListener/);
+assert.match(app,/if\(e\.key==='Escape'\)setNavOpen\(false\)/);
+assert.match(root,/id="redzones"/);
+assert.match(root,/assets\/redzone\.js/);
+console.log('Short-screen sidebar navigation and Fantasy Red Zone links validated.');

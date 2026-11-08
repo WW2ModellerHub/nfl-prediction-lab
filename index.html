@@ -7,16 +7,17 @@
   <meta name="description" content="NFL Prediction Lab: transparent, evidence-led game forecasts, value comparisons and independent model tracking." />
   <title>NFL Prediction Lab — Command Centre</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="assets/styles.css?v=3-3-0-qb-source" />
+  <link rel="stylesheet" href="assets/styles.css?v=3-4-0-nav-redzone" />
   <link rel="stylesheet" href="assets/full-matchup.css" />
 </head>
 <body>
   <div class="shell">
     <aside class="sidebar">
-      <div class="brand"><span class="brand-mark">◈</span><div><strong>NFL<span class="brand-accent">LAB</span></strong><small>PREDICTION INTELLIGENCE</small></div></div>
+      <div class="brand"><span class="brand-mark">◈</span><div><strong>NFL<span class="brand-accent">LAB</span></strong><small>PREDICTION INTELLIGENCE</small></div><button id="sideClose" class="sidebar-close" type="button" aria-label="Close navigation">×</button></div>
       <div class="side-label">WORKSPACE</div>
-      <nav id="nav" aria-label="Dashboard navigation">
+      <nav id="nav" aria-label="Dashboard navigation" tabindex="0">
         <button class="nav-link active" data-tab="overview"><span>◫</span> Command Centre</button>
+        <a class="nav-link nav-redzone" href="./redzone.html"><span aria-hidden="true">◉</span> Fantasy Red Zone <small class="nav-live-tag">LIVE</small></a>
         <button class="nav-link" data-tab="matchups"><span>◇</span> Full Matchup</button>
         <button class="nav-link" data-tab="tactics"><span>⌖</span> Tactical Radar</button>
         <button class="nav-link" data-tab="players"><span>♙</span> QB & Injury Radar</button>
@@ -28,13 +29,13 @@
         <button class="nav-link" data-tab="evidence"><span>⌁</span> Situational Evidence</button>
         <button class="nav-link" data-tab="models"><span>∿</span> Model Laboratory</button>
         <button class="nav-link" data-tab="bets"><span>▤</span> My Bet Ledger</button>
-        <a class="nav-link" href="./redzone.html" style="display:block;text-decoration:none"><span>◉</span> Fantasy Red Zone <span style="color:#71ebbb;font-size:10px">LIVE</span></a>
       </nav>
-      <div class="sidebar-bottom"><span class="live-dot"></span><span>PREGAME VERIFICATION v3.1.0</span><small>FREE / PERSONAL BUILD</small></div>
+      <div class="sidebar-bottom"><span class="live-dot"></span><span>NFL LAB · RED ZONE v3.4</span><small>FREE / PERSONAL BUILD</small></div>
     </aside>
+    <button class="nav-backdrop" id="navBackdrop" aria-label="Close navigation" type="button" hidden></button>
     <div class="workspace">
       <header class="topbar">
-        <div class="topbar-left"><button id="mobileMenu" class="mobile-menu" aria-label="Toggle navigation">☰</button><div class="breadcrumb">NFL PREDICTION LAB <span>/</span> <strong id="breadcrumb">COMMAND CENTRE</strong></div></div>
+        <div class="topbar-left"><button id="mobileMenu" class="mobile-menu" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="nav">☰</button><div class="breadcrumb">NFL PREDICTION LAB <span>/</span> <strong id="breadcrumb">COMMAND CENTRE</strong></div></div>
         <div class="topbar-right"><span class="meta-chip" id="dataAge">AWAITING DATA</span><span class="avatar">NL</span></div>
       </header>
       <main class="main" id="content" tabindex="-1">
@@ -51,6 +52,6 @@
   <dialog id="oddsDialog" class="small-dialog"><form method="dialog" id="oddsForm"><div id="oddsContent"></div></form></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <script src="assets/matchup-intelligence.js?v=1-9" defer></script>
-  <script src="assets/app.js?v=3-3-0-qb-source" defer></script>
+  <script src="assets/app.js?v=3-4-0-nav-redzone" defer></script>
 </body>
 </html>

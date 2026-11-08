@@ -345,3 +345,27 @@
 .verify-queue-item:hover,.verify-queue-item:focus-visible{border-color:rgba(157,192,240,.6);background:rgba(128,151,184,.1)}
 .verify-queue-line{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px}
 .verify-queue-item small{display:block;margin-top:6px;line-height:1.45;opacity:.78;font-size:11px}
+
+
+/* v3.4 — preserve every tab: independent touch-scroll sidebar at any viewport height */
+.sidebar{height:100vh;height:100dvh;max-height:100dvh;overflow:hidden}
+.sidebar #nav{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#557082 transparent;padding:1px 5px 12px 0;scroll-padding-block:10px;outline-offset:-2px}
+.sidebar #nav>.nav-link{flex:0 0 auto}
+.sidebar .brand,.sidebar .side-label,.sidebar .sidebar-bottom{flex-shrink:0}
+.sidebar .brand{padding-bottom:25px}
+.sidebar .sidebar-bottom{margin-top:0;padding-top:14px}
+.sidebar .nav-link{text-decoration:none}
+.sidebar .nav-redzone{color:#c6f5e3;border-color:#37685c;background:#19332e;gap:10px}
+.sidebar .nav-redzone:hover,.sidebar .nav-redzone:focus-visible{background:#25473e;color:#ffffff}
+.sidebar .nav-live-tag{font-size:9px;letter-spacing:.5px;font-weight:900;color:#73efc4;margin-left:auto}
+.sidebar .sidebar-close{display:none}
+.nav-backdrop[hidden]{display:none}
+.nav-backdrop{display:none}
+@media(max-width:820px){
+ .sidebar{height:100dvh;max-height:100dvh;top:0;left:0;bottom:0;padding-bottom:max(12px,env(safe-area-inset-bottom));width:min(290px,85vw);min-width:0}
+ .sidebar #nav{padding-bottom:20px}
+ .sidebar .brand{padding-bottom:18px}
+ .sidebar .sidebar-close{display:block;margin-left:auto;flex:0 0 auto;width:34px;height:34px;background:#213446;color:#fff;border:1px solid #416072;border-radius:8px;font-size:23px;line-height:1}
+ .nav-backdrop:not([hidden]){display:block;position:fixed;inset:0;z-index:14;background:#03090bc7;border:0;width:100%;height:100dvh;cursor:pointer}
+ .sidebar.open{z-index:15}
+}
