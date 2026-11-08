@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-08T17:53:51.197549+00:00",
+  "generatedAt": "2026-11-08T17:55:10.125782+00:00",
   "status": "production-pipeline-snapshot",
   "source": {
     "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
     "latestFinalAt": "2026-11-08T14:30:00+00:00",
     "sha256": "2fc2175957bc788789d17b2110f6237ba6f8293ea62cf96ff582202ebde0acaa",
-    "downloadedAt": "2026-11-08T17:53:27.370079+00:00",
+    "downloadedAt": "2026-11-08T17:54:53.713055+00:00",
     "parsedGames": 7548,
     "status": "verified",
     "previousSourceFailures": []
@@ -14,7 +14,7 @@
   "latestResultAt": "2026-11-08T14:30:00+00:00",
   "baseline": {
     "status": "historical-score-audit",
-    "asOf": "2026-11-08T17:53:39.485345+00:00",
+    "asOf": "2026-11-08T17:55:02.497831+00:00",
     "sample": "Completed 2024+ games, excluding tied games from two-way winner metrics",
     "model": "Reconstructed Elo + scoring-form baseline only; advanced overlays not included",
     "marketDefinition": "Retrospective closing two-way American moneyline, converted to no-vig probability",
@@ -770,7 +770,7 @@
       "A qualified candidate is research-only; live forecasts, markets and player availability weights are unchanged.",
       "Coverage requires nflverse play-by-play from completed earlier games; schedules-only refreshes cannot recompute this audit."
     ],
-    "generatedAt": "2026-11-08T17:53:39.485345+00:00",
+    "generatedAt": "2026-11-08T17:55:02.497831+00:00",
     "sourceStatus": "loaded",
     "requestedSeasons": [
       2019,
@@ -930,7 +930,7 @@
   "qbEvidenceSource": {
     "status": "loaded",
     "source": "ESPN team-specific depthcharts and QB rosters (unofficial)",
-    "observationTime": "2026-11-08T17:53:49.126424+00:00",
+    "observationTime": "2026-11-08T17:55:08.303752+00:00",
     "selectedTeams": [
       "ARI",
       "BUF",
@@ -965,40 +965,6 @@
     "rosterQBCandidates": 85,
     "errors": {},
     "responseKeys": {
-      "ARI": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
-      "BUF": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
       "CAR": {
         "depth": [
           "depthchart",
@@ -1033,6 +999,23 @@
           "timestamp"
         ]
       },
+      "BUF": {
+        "depth": [
+          "depthchart",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ],
+        "roster": [
+          "athletes",
+          "coach",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ]
+      },
       "CLE": {
         "depth": [
           "depthchart",
@@ -1050,24 +1033,7 @@
           "timestamp"
         ]
       },
-      "DET": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
-      "GB": {
+      "ARI": {
         "depth": [
           "depthchart",
           "season",
@@ -1101,7 +1067,7 @@
           "timestamp"
         ]
       },
-      "HOU": {
+      "GB": {
         "depth": [
           "depthchart",
           "season",
@@ -1118,7 +1084,7 @@
           "timestamp"
         ]
       },
-      "DET": {
+      "DEN": {
         "depth": [
           "depthchart",
           "season",
@@ -1136,6 +1102,23 @@
         ]
       },
       "IND": {
+        "depth": [
+          "depthchart",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ],
+        "roster": [
+          "athletes",
+          "coach",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ]
+      },
+      "DET": {
         "depth": [
           "depthchart",
           "season",
@@ -1186,41 +1169,24 @@
           "timestamp"
         ]
       },
-      "LAC": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
-      "LV": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
       "KC": {
+        "depth": [
+          "depthchart",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ],
+        "roster": [
+          "athletes",
+          "coach",
+          "season",
+          "status",
+          "team",
+          "timestamp"
+        ]
+      },
+      "MIA": {
         "depth": [
           "depthchart",
           "season",
@@ -1288,23 +1254,6 @@
           "timestamp"
         ]
       },
-      "NO": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
       "NE": {
         "depth": [
           "depthchart",
@@ -1322,7 +1271,7 @@
           "timestamp"
         ]
       },
-      "NYG": {
+      "NO": {
         "depth": [
           "depthchart",
           "season",
@@ -1339,7 +1288,7 @@
           "timestamp"
         ]
       },
-      "MIA": {
+      "PHI": {
         "depth": [
           "depthchart",
           "season",
@@ -1356,7 +1305,7 @@
           "timestamp"
         ]
       },
-      "SF": {
+      "NYJ": {
         "depth": [
           "depthchart",
           "season",
@@ -1408,57 +1357,6 @@
         ]
       },
       "PHI": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
-      "SEA": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
-      "SF": {
-        "depth": [
-          "depthchart",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ],
-        "roster": [
-          "athletes",
-          "coach",
-          "season",
-          "status",
-          "team",
-          "timestamp"
-        ]
-      },
-      "MIN": {
         "depth": [
           "depthchart",
           "season",
@@ -1509,7 +1407,7 @@
           "timestamp"
         ]
       },
-      "PHI": {
+      "NYG": {
         "depth": [
           "depthchart",
           "season",
@@ -1944,7 +1842,7 @@
       "source": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2026.csv",
       "sourceType": "official-report-derived-mirror",
       "officialReference": "https://www.nfl.com/injuries/",
-      "observedAt": "2026-11-08T17:53:51.176744+00:00",
+      "observedAt": "2026-11-08T17:55:10.114780+00:00",
       "records": 2821,
       "dated": 0,
       "snapshotObserved": 2821,
@@ -1976,7 +1874,7 @@
     "errors": [
       "BAL00: URLError: <urlopen error _ssl.c:994: The handshake operation timed out>"
     ],
-    "asOf": "2026-11-08T17:53:51.197549+00:00"
+    "asOf": "2026-11-08T17:55:10.125782+00:00"
   },
   "chosenOverlay": "none",
   "tacticalSource": {
@@ -2019,7 +1917,7 @@
       "2025: ValueError: No timestamped report rows; undated historical records are not backdated"
     ],
     "source": "nflverse dated injuries_{season}.csv",
-    "asOf": "2026-11-08T17:53:33.238534+00:00",
+    "asOf": "2026-11-08T17:54:57.948770+00:00",
     "timestampBasis": "download-observation",
     "records": 2821
   },
@@ -2036,7 +1934,7 @@
   "additionalInjurySource": {
     "status": "loaded",
     "source": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
-    "retrievedAt": "2026-11-08T17:53:39.405139+00:00",
+    "retrievedAt": "2026-11-08T17:55:02.446900+00:00",
     "reportCount": 240,
     "teamsCovered": 32,
     "note": "Additional ESPN media injury watch; not an official NFL weekly practice report or gameday inactive list.",
@@ -2231,7 +2129,7 @@
   ],
   "predictionRecord": {
     "schemaVersion": 1,
-    "generatedAt": "2026-11-08T17:53:51.197549+00:00",
+    "generatedAt": "2026-11-08T17:55:10.125782+00:00",
     "status": "timestamped-forward-grading",
     "trackedGames": 47,
     "completed": {
@@ -2386,7 +2284,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "NO",
         "latestProbability": 0.53392,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2399,7 +2297,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "DAL",
         "latestProbability": 0.52692,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2412,7 +2310,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "DEN",
         "latestProbability": 0.65921,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2425,7 +2323,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "DET",
         "latestProbability": 0.61263,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2438,7 +2336,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "LA",
         "latestProbability": 0.55916,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2451,7 +2349,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "PHI",
         "latestProbability": 0.5746,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2464,7 +2362,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "KC",
         "latestProbability": 0.76459,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2477,7 +2375,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "HOU",
         "latestProbability": 0.5454,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2490,7 +2388,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "SF",
         "latestProbability": 0.76193,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2503,7 +2401,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "SEA",
         "latestProbability": 0.77077,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2516,7 +2414,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "NE",
         "latestProbability": 0.64252,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2529,7 +2427,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "CHI",
         "latestProbability": 0.6892,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2542,7 +2440,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "MIN",
         "latestProbability": 0.5167,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2555,7 +2453,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "NYG",
         "latestProbability": 0.57159,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2568,7 +2466,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "NE",
         "latestProbability": 0.5023,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2581,7 +2479,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "BUF",
         "latestProbability": 0.74524,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2594,7 +2492,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "NO",
         "latestProbability": 0.5523,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2607,7 +2505,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "HOU",
         "latestProbability": 0.5113,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2620,7 +2518,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "JAX",
         "latestProbability": 0.75538,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2633,7 +2531,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "KC",
         "latestProbability": 0.55901,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2646,7 +2544,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "IND",
         "latestProbability": 0.57261,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2659,7 +2557,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "GB",
         "latestProbability": 0.51111,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2672,7 +2570,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "LA",
         "latestProbability": 0.6316,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2685,7 +2583,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "SEA",
         "latestProbability": 0.63717,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2698,7 +2596,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "SF",
         "latestProbability": 0.59,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2711,7 +2609,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "CIN",
         "latestProbability": 0.57834,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2724,7 +2622,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "BAL",
         "latestProbability": 0.63986,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2737,7 +2635,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "HOU",
         "latestProbability": 0.70051,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2750,7 +2648,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "KC",
         "latestProbability": 0.7322,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2763,7 +2661,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "CAR",
         "latestProbability": 0.52818,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2776,7 +2674,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "JAX",
         "latestProbability": 0.62392,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2789,7 +2687,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "BUF",
         "latestProbability": 0.81307,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2802,7 +2700,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "CHI",
         "latestProbability": 0.75153,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2815,7 +2713,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "DET",
         "latestProbability": 0.68706,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2828,7 +2726,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "DAL",
         "latestProbability": 0.72585,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2841,7 +2739,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "LAC",
         "latestProbability": 0.62969,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2854,7 +2752,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "DEN",
         "latestProbability": 0.77437,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2867,7 +2765,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "PIT",
         "latestProbability": 0.5433,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2880,7 +2778,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "SF",
         "latestProbability": 0.50756,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 36
       },
       {
@@ -2893,7 +2791,7 @@
         "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
         "latestPick": "CIN",
         "latestProbability": 0.56022,
-        "latestRecordedAt": "2026-11-08T17:53:51.197549+00:00",
+        "latestRecordedAt": "2026-11-08T17:55:10.125782+00:00",
         "revisions": 12
       },
       {
