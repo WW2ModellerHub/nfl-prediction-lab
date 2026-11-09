@@ -191,7 +191,8 @@ function participantCounts(game){
 function findSavedNFLPrior(game){
   if(!game)return null;
   return (state.livePriors||[]).find(function(x){
-    return x.home===game.home&&x.away===game.away&&x.archivedPregame===true&&
+    return Core.norm(x.home)===Core.norm(game.home)&&
+      Core.norm(x.away)===Core.norm(game.away)&&x.archivedPregame===true&&
       x.kickoff&&game.start&&Math.abs(Date.parse(x.kickoff)-Date.parse(game.start))<7200000;
   })||null;
 }
@@ -220,7 +221,9 @@ function liveNFLWinPanel(game){
  if(!archived)return '<div class="livewin-unavailable"><span>◉ IN-PLAY GAME PREDICTION</span><b>No saved pregame baseline for this fixture.</b><small>We will not invent a win probability for a game without a timestamped pregame model pick.</small></div>';
  var stateForModel=Object.assign({},game,{fetchedAt:state.lastEspnTime||0});
  var ref=state.liveReference[game.id];
- return window.NFLGameLiveUI.render(archived,stateForModel,ref,true);
+ // Restore the scoreboard's team codes after matching LA/LAR identities.
+ var prior=Object.assign({},archived,{home:game.home,away:game.away});
+ return window.NFLGameLiveUI.render(prior,stateForModel,ref,true);
 }
 function listedGames(){
   return state.fullGames.slice().sort(function(a,b){
