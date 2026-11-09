@@ -494,9 +494,12 @@ def generate(games,now=None,previous_log=None,pbp_games=None,pbp_meta=None,
     future=[human_game(g,p) for g,p in candidates[:40]]
     for row in future:
         if row['id'] in challenger_predictions:
-            row['shadowEnsemble']={'homeProbability':challenger_predictions[row['id']],
-                'researchOnly':True,'affectsForecast':False,
-                'status':'SHADOW — not a validated betting forecast'}
+            # Explanations are from the exact same jointly fitted challenger
+            # that produces its probability, not a separate heuristic.
+            candidate=challenger_predictions[row['id']]
+            row['shadowEnsemble']={**candidate,'researchOnly':True,
+                'affectsForecast':False,'productionWeight':0,
+                'status':'JOINT RESEARCH — awaiting independent forward validation'}
     log=list(previous_log or [])
     logged_ids={x.get('gameId') for x in log}
     for g,p in candidates:

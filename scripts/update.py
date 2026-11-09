@@ -125,23 +125,31 @@ def record_shadow_predictions(dashboard,games,now,path=Path('data/shadow-predict
         entries=json.loads(path.read_text()) if path.exists() else []
         if not isinstance(entries,list):entries=[]
     except (OSError,ValueError):entries=[]
-    seen={r.get('gameId') for r in entries if isinstance(r,dict)}
+    from shadow_ensemble import VERSION as JOINT_VERSION
+    # One first-published forecast PER MODEL VERSION and game; old challenger
+    # predictions remain immutable, but never enter v2 evaluation.
+    seen={(r.get('gameId'),r.get('model','xgboost-shadow-research-v1'))
+          for r in entries if isinstance(r,dict)}
     for item in dashboard.get('nextGames',[]):
         shadow=item.get('shadowEnsemble') or {}
         p=shadow.get('homeProbability')
+        model_version=shadow.get('version') or 'xgboost-shadow-research-v1'
         if not shadow.get('researchOnly') or not isinstance(p,(float,int)):continue
         try:kickoff=datetime.fromisoformat(item['kickoff'].replace('Z','+00:00'))
         except (ValueError,KeyError,TypeError):continue
-        if kickoff.tzinfo is None or now>=kickoff or item.get('id') in seen or not 0<p<1:continue
+        key=(item.get('id'),model_version)
+        if kickoff.tzinfo is None or now>=kickoff or key in seen or not 0<p<1:continue
         entries.append({'gameId':item['id'],'kickoff':kickoff.isoformat(),
             'recordedAt':now.isoformat(),'homeProbability':float(p),
-            'baselineHomeProbability':item.get('baselineHomeProbability',item.get('homeProbability')),
-            'model':'xgboost-shadow-research-v1','researchOnly':True})
-        seen.add(item['id'])
+            'baselineHomeProbability':shadow.get('baselineHomeProbability',
+                item.get('baselineHomeProbability',item.get('homeProbability'))),
+            'model':model_version,'researchOnly':True})
+        seen.add(key)
     results={g['id']:g for g in games if g.get('home_score') is not None and
              g.get('away_score') is not None and g['kickoff']<now}
     scored=[]
     for e in entries:
+        if e.get('model','xgboost-shadow-research-v1')!=JOINT_VERSION:continue
         g=results.get(e.get('gameId'))
         if not g or g['home_score']==g['away_score']:continue
         try:
@@ -149,14 +157,25 @@ def record_shadow_predictions(dashboard,games,now,path=Path('data/shadow-predict
             kickoff=datetime.fromisoformat(e['kickoff'].replace('Z','+00:00'))
         except (ValueError,TypeError,KeyError):continue
         p=e.get('homeProbability')
+        base=e.get('baselineHomeProbability')
         if recorded.tzinfo is None or kickoff.tzinfo is None or not recorded<kickoff:continue
         if not isinstance(p,(int,float)) or not 0<p<1:continue
-        scored.append((p,int(g['home_score']>g['away_score'])))
+        if not isinstance(base,(int,float)) or not 0<base<1:continue
+        # The historic model's logged baseline is the fair matched comparison.
+        scored.append((p,base,int(g['home_score']>g['away_score'])))
+    n=len(scored)
+    brier=lambda key:round(sum((item[key]-item[2])**2 for item in scored)/n,6) if n else None
+    new_brier=brier(0);base_brier=brier(1)
+    gain=round(base_brier-new_brier,6) if n else None
     dashboard['shadowForwardPerformance']={
-        'recordedPicks':len(entries),'gradedGames':len(scored),
-        'brier':round(sum((p-y)**2 for p,y in scored)/len(scored),5) if scored else None,
-        'accuracy':round(sum(int((p>=.5)==bool(y)) for p,y in scored)/len(scored),4) if scored else None,
-        'source':'Immutable pregame XGBoost challenger picks; ties and late/backfilled entries excluded',
+        'version':JOINT_VERSION,'recordedPicks':sum(1 for e in entries if e.get('model')==JOINT_VERSION),
+        'legacyRecordedPicks':sum(1 for e in entries if e.get('model')!=JOINT_VERSION),
+        'gradedGames':n,'brier':new_brier,'baselineBrier':base_brier,
+        'pairedBrierGain':gain,
+        'accuracy':round(sum(int((p>=.5)==bool(y)) for p,base,y in scored)/n,4) if n else None,
+        'promotionEligible':bool(n>=100 and gain is not None and gain>=.001),
+        'promotionApproved':False,
+        'source':'Only immutable same-version, same-game pre-kickoff v2 research predictions. Legacy v1 results not mixed.',
         'researchOnly':True}
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(entries,ensure_ascii=False,indent=2)+'\n')
