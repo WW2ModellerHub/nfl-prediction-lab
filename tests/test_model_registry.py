@@ -19,7 +19,7 @@ class RegistryContractTests(unittest.TestCase):
 
     def test_challenger_is_shadow_only(self):
         self.assertIn("name:'XGBoost multi-factor challenger',category:'forecast',state:'SHADOW'",APP)
-        self.assertIn('0% live weighting.',APP)
+        self.assertIn('0% production weight.',APP)
         self.assertIn('Only ACTIVE components are allowed to change displayed probabilities',APP)
 
     def test_registry_uses_real_pipeline_fields(self):
