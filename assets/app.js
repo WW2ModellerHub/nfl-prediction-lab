@@ -468,7 +468,7 @@ function overview(){const g=games(),perf=store.data?.recentPerformance||store.da
    <p>${primary.gradedGames?pct(primary.provisionalAccuracy)+' correct · Brier '+number(primary.provisionalBrier,4):'No completed games graded yet.'}</p>
    <p class="source-meta">Original model (same games): ${primary.gradedGames?'Brier '+number(primary.matchedOriginalBrier,4):'recorded alongside new picks'} · no betting approval</p></div>`,
    'Separate prospective scorecard'):'';
- const recordCard=panel('Original model prediction record',
+ const recordCard=panel('Actual prediction record · original model',
    `<div class="panel-body"><div class="record-home-number">${finalPicks.wins??0}–${finalPicks.losses??0} <span>${graded?pct(finalPicks.accuracy):'—'} correct</span></div>
    <p>${graded} completed NFL game${graded===1?'':'s'} from saved pregame picks · ${graded<30?'too few to judge accuracy.':'not a backtest.'}</p>
    <p class="source-meta">First picks: ${rec.completed?.original?.wins??0}–${rec.completed?.original?.losses??0}. ${rec.upcomingCount??0} future games tracked.</p>
