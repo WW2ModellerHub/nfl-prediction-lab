@@ -475,5 +475,14 @@
     "baselineHomeProbability": 0.6284,
     "model": "xgboost-shadow-research-v1",
     "researchOnly": true
+  },
+  {
+    "gameId": "2026_12_TEN_JAX",
+    "kickoff": "2026-11-29T21:05:00+00:00",
+    "recordedAt": "2026-11-09T02:45:01.107207+00:00",
+    "homeProbability": 0.8774,
+    "baselineHomeProbability": 0.839,
+    "model": "xgboost-shadow-research-v1",
+    "researchOnly": true
   }
 ]

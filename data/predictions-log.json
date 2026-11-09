@@ -1849,5 +1849,49 @@
     "baselineHomeProbability": 0.51704,
     "adjustmentActive": false,
     "situationalProbabilityDelta": 0
+  },
+  {
+    "gameId": "2026_12_NE_LAC",
+    "recordedAt": "2026-11-09T02:45:01.107207+00:00",
+    "kickoff": "2026-11-30T01:20:00+00:00",
+    "home": "LAC",
+    "away": "NE",
+    "homeProbability": 0.39968,
+    "predMargin": -2.39,
+    "predTotal": 45.3,
+    "situationalSignals": [],
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "tacticalProbabilityDelta": 0,
+    "playerProbabilityDelta": 0,
+    "qbProbabilityDelta": 0,
+    "qbResearch": {
+      "eligible": true,
+      "features": [
+        -0.423,
+        -0.05900000000000001,
+        0
+      ],
+      "status": "eligible",
+      "reason": "Prior-game QB observations available",
+      "source": "Recorded prior starter or dated pregame depth chart, not game-day confirmation"
+    },
+    "qbObserved": {
+      "home": "00-0036355",
+      "away": "00-0039851"
+    },
+    "injuryReportAsOf": null,
+    "qbInjuryProbabilityWeight": 0,
+    "playerFeatures": null,
+    "playerImpactStatus": "informational",
+    "tacticalFeatures": [
+      -1.1989047424925905,
+      -0.24802676478283442,
+      -0.2718379358454117,
+      -0.24686130254410743
+    ],
+    "baselineHomeProbability": 0.39968,
+    "adjustmentActive": false,
+    "situationalProbabilityDelta": 0
   }
 ]
