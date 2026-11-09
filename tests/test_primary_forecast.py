@@ -56,6 +56,18 @@ class PrimaryTests(unittest.TestCase):
       d['challengerValidation']['candidateQualifiedForFurtherResearch']=True
       g['shadowEnsemble']['reconciles']=False
       self.assertEqual(publish(d,[],NOW,p)['firstRecordedPicks'],0)
+  def test_material_qb_replacement_is_not_overwritten_by_joint_model(self):
+    with tempfile.TemporaryDirectory() as t:
+      g=fixture();g['personnelScenario']={'affectsPrediction':True,'homeDelta':-.07,
+        'qbReplacementHomeDelta':-.07,'status':'reported QB replacement — PROVISIONAL'}
+      d=dash(g)
+      result=publish(d,[],NOW,Path(t)/'primary.json')
+      self.assertEqual(result['upcomingProvisional'],0)
+      self.assertEqual(g['primaryForecast']['homeProbability'],g['homeProbability'])
+      self.assertIn('QB/injury',g['primaryForecast']['reason'])
+      g['personnelScenario']={'affectsPrediction':True,'homeDelta':-.0003}
+      self.assertEqual(publish(d,[],NOW,Path(t)/'primary.json')['upcomingProvisional'],1)
+
   def test_never_backfill_after_kickoff(self):
     with tempfile.TemporaryDirectory() as t:
       g=fixture(kick=NOW-timedelta(hours=1));d=dash(g)

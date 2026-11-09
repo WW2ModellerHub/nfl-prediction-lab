@@ -31,7 +31,15 @@ def candidate(g,report,now):
     active=g.get('shadowEnsemble') or {}
     gate=g.get('forecastQuality') or {}
     kick=_dt(g.get('kickoff'))
-    accepted=(kick and now<kick and
+    personnel=g.get('personnelScenario') or {}
+    # The candidate models historical QB efficiency, not a fresh third-string
+    # starter or a newly OUT player. A material externally observed personnel
+    # repricing must not be silently overwritten by the candidate.
+    news_delta=personnel.get('homeDelta')
+    material_news=(personnel.get('affectsPrediction') is True and
+        isinstance(news_delta,(int,float)) and not isinstance(news_delta,bool) and
+        math.isfinite(news_delta) and abs(news_delta)>=.005)
+    accepted=(not material_news and kick and now<kick and
         report.get('status')=='historical-research-candidate' and
         report.get('candidateQualifiedForFurtherResearch') is True and
         active.get('version')==JOINT_VERSION and
@@ -45,7 +53,8 @@ def candidate(g,report,now):
         return {'status':'original-fallback','modelVersion':'elo-form-legacy',
                 'homeProbability':old,'awayProbability':1-old if _p(old) else None,
                 'originalHomeProbability':old,'eligibleForBetting':False,
-                'reason':'Combined candidate not available or validation gate not met',
+                'reason':('Fresh QB/injury adjustment is not represented in the combined research model'
+                    if material_news else 'Combined candidate not available or validation gate not met'),
                 'isProvisional':False}
     pick=active['homeProbability']
     return {'status':'provisional','modelVersion':PRIMARY_VERSION,
