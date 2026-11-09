@@ -65,12 +65,26 @@ function recentKickoffRow(g){
  <div data-live-model="${escapeHTML(g.id)}">${liveModelMarkup(g,false)}</div></div>
  <div class="started-open">VIEW ARCHIVE ›</div></div>`;
 }
+function splitRecentlyStarted(rows){
+ const live=[],final=[];
+ rows.forEach(g=>{
+   const state=store.liveScores?.[g.id]?.state||store.liveScores?.[g.id]?.status;
+   (state==='post'?final:live).push(g);
+ });
+ return {live,final};
+}
+function startedRowsHTML(rows){
+ const {live,final}=splitRecentlyStarted(rows);
+ return (live.length?`<div class="started-board-heading">LIVE & RECENT KICKOFFS</div>${live.map(recentKickoffRow).join('')}`:'')+
+   (final.length?`<details class="final-games-fold" data-final-fold><summary>FINAL RESULTS <b>${final.length}</b> <span>Show scores & picks</span></summary>
+   <div>${final.map(recentKickoffRow).join('')}</div></details>`:'');
+}
 function startedSlatePanel(){
  const recent=recentKickoffs();
  if(!recent.length)return '';
- return panel('Today’s live & recently started games',
- `<div class="started-note">Live estimates are <strong>experimental</strong>; pregame picks stay frozen. ESPN scores may lag. <a href="./redzone.html">Open Red Zone ↗</a></div>
- <div>${recent.map(recentKickoffRow).join('')}</div>`,
+ return panel('Game day · scores and picks',
+ `<div class="started-note">Live estimates are <strong>experimental</strong>; pregame picks stay frozen. <a href="./redzone.html">Red Zone ↗</a></div>
+ <div id="startedGameRows">${startedRowsHTML(recent)}</div>`,
  '');
 }
 function archivedMatchupPage(g){
@@ -88,7 +102,7 @@ function archivedMatchupPage(g){
  <div class="panel-body"><strong data-live-status="${escapeHTML(g.id)}">${escapeHTML(live.main)}</strong>
  <p data-live-detail="${escapeHTML(g.id)}">${escapeHTML(live.detail)}</p>
  <p class="source-meta">ESPN scores may lag.</p></div></section>
- <section class="matchup-panel"><h3>In-play win chance</h3>
+ <section class="matchup-panel"><h3 data-live-heading="${escapeHTML(g.id)}">${store.liveScores?.[g.id]?.state==='post'?'Prediction result':'In-play win chance'}</h3>
  <div class="panel-body" data-live-full="${escapeHTML(g.id)}">${liveModelMarkup(g,true)}</div></section>
  <section class="matchup-panel"><h3>Pregame history</h3>
  <div class="panel-body"><div class="stat-pair"><span>Original saved ${escapeHTML(date(g.originalRecordedAt))}</span><strong>${pct(g.originalHomeProbability)} ${escapeHTML(g.home)} win</strong></div>
@@ -96,8 +110,35 @@ function archivedMatchupPage(g){
  <div class="stat-pair"><span>Revisions</span><strong>${escapeHTML(g.revisions??0)}</strong></div></div></section>
  </div>`;
 }
+function syncStartedBoards(){
+ const recent=recentKickoffs(),current=splitRecentlyStarted(recent);
+ const stateKey=recent.map(g=>g.id+':'+(store.liveScores?.[g.id]?.state==='post'?'F':'N')).join('|');
+ const command=byId('startedGameRows');
+ if(command?.dataset && command.dataset.layoutKey!==stateKey){
+   const wasOpen=command.querySelector?.('[data-final-fold]')?.open===true;
+   command.innerHTML=startedRowsHTML(recent);
+   const fold=command.querySelector?.('[data-final-fold]');
+   if(fold)fold.open=wasOpen;
+   command.dataset.layoutKey=stateKey;
+ }
+ const board=byId('gameRows');
+ if(board?.dataset){
+   const upcoming=games().filter(matchSearch),matches=recent.filter(matchSearch);
+   const boardKey=stateKey+'|'+store.query+'|'+upcoming.map(g=>g.id).join(',');
+   if(board.dataset.layoutKey!==boardKey){
+     const wasOpen=board.querySelector?.('[data-final-fold]')?.open===true;
+     board.innerHTML=(upcoming.length?`<div class="started-board-heading">UPCOMING FIXTURES</div>${upcoming.map(gameRow).join('')}`:'')+
+       startedRowsHTML(matches)||
+       empty('No matchups found','Try another team name.');
+     const fold=board.querySelector?.('[data-final-fold]');
+     if(fold)fold.open=wasOpen;
+     board.dataset.layoutKey=boardKey;
+   }
+ }
+}
 function updateLiveDom(){
  if(typeof document.querySelectorAll!=='function')return;
+ syncStartedBoards();
  document.querySelectorAll('[data-live-status]').forEach(el=>{
    const game=recentKickoffs().find(g=>String(g.id)===String(el.getAttribute('data-live-status')));
    if(game)el.textContent=scoreFromESPN(game).main;
@@ -105,6 +146,10 @@ function updateLiveDom(){
  document.querySelectorAll('[data-live-detail]').forEach(el=>{
    const game=recentKickoffs().find(g=>String(g.id)===String(el.getAttribute('data-live-detail')));
    if(game)el.textContent=scoreFromESPN(game).detail;
+ });
+ document.querySelectorAll('[data-live-heading]').forEach(el=>{
+   const s=store.liveScores?.[el.getAttribute('data-live-heading')];
+   el.textContent=s?.state==='post'?'Prediction result':'In-play win chance';
  });
  document.querySelectorAll('[data-live-model],[data-live-full]').forEach(el=>{
    const isFull=el.hasAttribute('data-live-full');
@@ -404,8 +449,8 @@ function matchups(){
  const g=games().filter(matchSearch),started=recentKickoffs().filter(matchSearch);
  return warnBanner()+panel('Matchup board',`<div class="panel-body"><div class="search-row"><input aria-label="Search matchups" class="input" id="searchGames" placeholder="Search a team..." value="${escapeHTML(store.query)}"/><span class="tiny">${started.length} kicked off · ${g.length} upcoming</span></div>
  </div>
- <div id="gameRows">${started.length?`<div class="started-board-heading">LIVE & RECENT KICKOFFS</div>${started.map(recentKickoffRow).join('')}`:''}
- ${g.length?`<div class="started-board-heading">UPCOMING FIXTURES</div>${g.map(gameRow).join('')}`:''}
+ <div id="gameRows">${g.length?`<div class="started-board-heading">UPCOMING FIXTURES</div>${g.map(gameRow).join('')}`:''}
+ ${startedRowsHTML(started)}
  ${!started.length&&!g.length?empty('No matching matchups',store.query?'Try another team name.':'Waiting for the NFL schedule feed.'):''}</div>`,'');}
 function radar(){const g=games();const rated=g.map(x=>({g:x,v:valueFor(x)})).filter(x=>x.v).sort((a,b)=>Number(b.v.eligible)-Number(a.v.eligible)||b.v.ev-a.v.ev);
  const upset=g.filter(x=>x.forecastQuality?.bettingEligible===true).map(x=>({g:x,prob:Math.min(x.homeProbability,x.awayProbability),underdog:x.homeProbability<.5?x.home:x.away})).filter(x=>x.prob>=.33).sort((a,b)=>b.prob-a.prob);
@@ -980,9 +1025,11 @@ function start(){byId('nav').addEventListener('click',handleClick);byId('appCont
  byId('appContent').addEventListener('input',e=>{if(e.target.id==='searchGames'){
    store.query=e.target.value;
    const upcoming=games().filter(matchSearch),recent=recentKickoffs().filter(matchSearch);
-   const target=byId('gameRows');if(target)target.innerHTML=(recent.length?`<div class="started-board-heading">LIVE & RECENT KICKOFFS</div>${recent.map(recentKickoffRow).join('')}`:'')+
-    (upcoming.length?`<div class="started-board-heading">UPCOMING FIXTURES</div>${upcoming.map(gameRow).join('')}`:'')||
+   const target=byId('gameRows');if(target)target.innerHTML=
+    (upcoming.length?`<div class="started-board-heading">UPCOMING FIXTURES</div>${upcoming.map(gameRow).join('')}`:'')+
+    startedRowsHTML(recent)||
     empty('No matchups found','Try another team name.');
+   if(target?.dataset)target.dataset.layoutKey='';
    updateLiveDom();
  }});
  byId('appContent').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='searchGames'){store.query=e.target.value;render();byId('searchGames')?.focus()}});
