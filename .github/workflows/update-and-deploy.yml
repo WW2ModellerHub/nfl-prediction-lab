@@ -51,6 +51,8 @@ jobs:
         run: node tests/navigation-smoke.cjs
       - name: Validate games stay visible after kickoff
         run: node tests/started-games-smoke.cjs
+      - name: Validate completed games and ESPN team aliases
+        run: node tests/final-score-alias-smoke.cjs
       - name: Validate separate NFL in-play win-probability engine
         run: node tests/live-win-model-smoke.cjs
       - name: Validate matchup intelligence and prediction invariance
