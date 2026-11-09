@@ -51,7 +51,7 @@ def record(dashboard,now,path=Path('data/pregame-features.json')):
         # Weather source is dated only if weather was actually downloaded.
         weather_stamp=_date(weather.get('retrievedAt'))
         weather_reported=weather.get('status') in ('forecast','roof-unconfirmed') and weather_stamp is not None and weather_stamp<=stamp
-        fields=('temperature','temperature_2m','precipitation_probability','wind_speed','wind_speed_10m','wind_gusts','wind_gusts_10m','snowfall')
+        fields=('temperatureC','precipitationChancePct','windMph','gustMph','snowfallCm')
         weather_values={k:_num(weather.get(k)) for k in fields}
         weather_values={k:v for k,v in weather_values.items() if v is not None} if weather_reported else {}
         qb=g.get('qbIntelligence') or {}
@@ -77,6 +77,7 @@ def record(dashboard,now,path=Path('data/pregame-features.json')):
                 'roof':weather.get('roof'),'stadiumId':weather.get('stadiumId'),
                 'source':weather.get('source') if weather_reported else None,
                 'sourceRetrievedAt':weather_stamp.isoformat() if weather_reported else None,
+                'forecastFor':weather.get('forecastFor') if weather_reported else None,
                 'values':weather_values,
             },
             'quarterbacks':{'home':qb_side('home'),'away':qb_side('away')},

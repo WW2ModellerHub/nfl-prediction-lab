@@ -9,8 +9,8 @@ class FeatureCaptureTests(unittest.TestCase):
     def fixture(self,kick):
         return {'id':'game-1','home':'MIN','away':'BUF','season':2026,'week':9,
                 'kickoff':kick.isoformat(),'homeProbability':.53,'baselineHomeProbability':.5,
-                'weather':{'status':'forecast','retrievedAt':NOW.isoformat(),'wind_speed_10m':21,
-                           'wind_gusts_10m':31,'temperature_2m':4,'source':'Open-Meteo'},
+                'weather':{'status':'forecast','retrievedAt':NOW.isoformat(),'windMph':21,
+                           'gustMph':31,'temperatureC':4,'source':'Open-Meteo'},
                 'qbIntelligence':{'home':{'playerId':'qbH','sample':{'dropbacks':100,'epaPerDropback':.12}},
                     'away':{'playerId':'qbA','sample':{'dropbacks':200,'epaPerDropback':.2}}},
                 'injuryIntelligence':{'status':'snapshot-only','home':[{'status':'OUT'}],'away':[]},
@@ -29,7 +29,7 @@ class FeatureCaptureTests(unittest.TestCase):
                 existing=json.load(fh)['observations']
             self.assertEqual(existing[0]['publishedHomeProbability'],.53)
             self.assertFalse(existing[0]['trainingEligible'])
-            self.assertEqual(existing[0]['weather']['values']['wind_speed_10m'],21)
+            self.assertEqual(existing[0]['weather']['values']['windMph'],21)
             self.assertFalse(existing[0]['injuries']['verifiedActiveRoster'])
             self.assertEqual(record({'nextGames':[row]},NOW+timedelta(hours=4),p)['added'],1)
             self.assertEqual(record({'nextGames':[row]},kick+timedelta(minutes=2),p)['added'],0)
