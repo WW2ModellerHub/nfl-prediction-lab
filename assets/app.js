@@ -656,7 +656,7 @@ function models(){const d=store.data||{},ranking=d.powerRankings||[];
   {id:'M05',name:'Injury & practice watch',category:'player',state:'CONTEXT',what:'Dated media observations alongside distinct NFL injury-report snapshots; no absence is assumed from a blank report.',proof:'NFL report: '+String(injury.status||'unavailable')+' · ESPN: '+String(d.additionalInjurySource?.status||'unavailable')+'.'},
   {id:'M06',name:'QB-only adjustment',category:'forecast',state:qb.enabled&&overlay==='qb'?'ACTIVE':'RESEARCH',what:'Learns the incremental influence of QB efficiency, sack exposure and recent starting-QB changes.',proof:count(qb.evaluationGames||0)+' games · Brier gain '+gain(qb.brierGain)+' · '+(qb.enabled?'qualified':'below activation threshold')+'.'},
   {id:'M07',name:'Full player-impact overlay',category:'forecast',state:overlay==='player'?'ACTIVE':'GATED',what:'Pregame projected-QB data combined with reported key-player absences; strict timestamp requirements.',proof:count(player.evaluationGames||0)+' evaluated games · '+(player.enabled?'gate passed':'not enough qualified historical evidence')+'.'},
-  {id:'M08',name:'XGBoost multi-factor challenger',category:'forecast',state:'SHADOW',what:'Historical team, QB, rest and tactical features trained in a separate gradient-boosted model.',proof:count(ch.evaluationGames||0)+' evaluated games · Brier '+(ch.challengerBrier==null?'—':Number(ch.challengerBrier).toFixed(5))+' vs baseline '+(ch.baselineBrier==null?'—':Number(ch.baselineBrier).toFixed(5))+' · 0% live weighting.'},
+  {id:'M08',name:'XGBoost multi-factor challenger',category:'forecast',state:'SHADOW',what:'Jointly fits team strength, rest, overtime, dated QB and tactical evidence. Injury and weather weights remain missing without valid pregame archives.',proof:count(ch.evaluationGames||0)+' season-forward evaluated games · candidate Brier '+(ch.challengerBrier==null?'—':Number(ch.challengerBrier).toFixed(5))+' vs Elo/form '+(ch.baselineBrier==null?'—':Number(ch.baselineBrier).toFixed(5))+' · '+count(fwd.gradedGames||0)+' v2 prospective games · 0% production weight.'},
   {id:'M09',name:'Player snap participation',category:'player',state:usage.status==='loaded'?'CONTEXT':'DATA LIMITED',what:'Prior snap share distinguishes heavily used starters from limited-role or seldom-used players on injury lists.',proof:usage.status==='loaded'?count(usage.records)+' rows from nflreadpy / PFR':'Source '+String(usage.status||'unavailable')+'; upstream download may fail.'},
   {id:'M10',name:'Stadium-area weather',category:'player',state:weather.status==='loaded'?'CONTEXT':'PARTIAL',what:'Kickoff-time venue-area wind, temperature and precipitation with roof and forecast-window flags.',proof:count(weather.statuses?.forecast||0)+' outdoor forecasts · '+count(weather.statuses?.indoor||0)+' indoor/covered · no model weight.'},
   {id:'M11',name:'Closing-market benchmark',category:'validation',state:'AUDIT',what:'Measures retrospective win-probability accuracy against no-vig closing moneylines.',proof:count(d.historicalAudit?.overall?.marketCoverage||0)+' matched historical games · never a pregame model input.'},
@@ -872,6 +872,32 @@ function forecastHero(g){
   <p class="one-forecast-fine">${escapeHTML(g.model||'Elo and scoring form')} · Updated ${escapeHTML(store.data?.generatedAt?date(store.data.generatedAt):'date unavailable')}.</p>
  </div>`;
 }
+function jointResearchPanel(g){
+ const c=g.shadowEnsemble;
+ if(!c||c.researchOnly!==true||c.reconciles!==true||
+    !Number.isFinite(c.homeProbability)||!Array.isArray(c.layers))return '';
+ const home=g.home,away=g.away,cf=c.homeProbability>=.5?home:away;
+ const prob=c.homeProbability>=.5?c.homeProbability:1-c.homeProbability;
+ const bp=Number(c.baselineHomeProbability);
+ const winHome=Number(g.homeProbability)>=.5;
+ const sign=n=>Math.abs(n)<.05?'0.0':(n>0?'+':'−')+Math.abs(n).toFixed(1);
+ const layers=c.layers.filter(x=>Number.isFinite(x.deltaHomePP)).map(x=>{
+   const displayed=x.deltaHomePP*(c.homeProbability>=.5?1:-1);
+   return `<div class="joint-factor"><span>${escapeHTML(x.label)}${x.observed===false?' · data missing':''}</span><strong class="${displayed>0?'up':displayed<0?'down':''}">${sign(displayed)} pp</strong></div>`;
+ }).join('');
+ const missing=(c.missingEvidence||[]).length?`<div class="joint-coverage">Missing: ${escapeHTML(c.missingEvidence.join(' · '))}</div>`:'';
+ return `<section class="matchup-panel matchup-wide joint-model-panel" aria-label="Joint challenger research forecast">
+ <div class="joint-model-head"><span>COMBINED-FACTOR MODEL <small>RESEARCH ONLY</small></span><strong>${pct(prob)} <small>${escapeHTML(cf)} to win</small></strong></div>
+ <div class="joint-model-explain">Compared with the unadjusted Elo/form forecast: ${sign((c.homeProbability-bp)*(c.homeProbability>=.5?1:-1)*100)} pp.
+ Not yet part of the published pick.</div>
+ <details class="joint-model-details"><summary>What changed the probability? <span>Show factors</span></summary>
+ <div class="joint-factor"><span>Elo/form starting forecast</span><strong>${pct(c.homeProbability>=.5?bp:1-bp)}</strong></div>
+ ${layers}
+ <div class="joint-factor joint-total"><span>Combined research estimate</span><strong>${pct(prob)}</strong></div>
+ ${missing}
+ <p>Factors are fitted together on prior-season data. Attribution divides their joint associations, not cause-and-effect. No historical injury/weather estimate is invented.</p></details>
+ </section>`;
+}
 function forecastLayerCard(g){
  const e=g.forecastExplanation||{},homeFav=Number(g.homeProbability)>=.5,win=homeFav?g.home:g.away;
  const current=homeFav?Number(g.homeProbability):1-Number(g.homeProbability);
@@ -924,6 +950,7 @@ function fullMatchupPage(g){
  </section>
  ${verificationPanel(g)}
  ${forecastLayerCard(g)}
+ ${jointResearchPanel(g)}
  <details class="matchup-evidence" aria-label="Full supporting evidence">
   <summary>Supporting evidence <span>Expand</span></summary>
   <div class="matchup-evidence-body">
