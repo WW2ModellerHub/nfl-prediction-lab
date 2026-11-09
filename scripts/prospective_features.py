@@ -11,6 +11,7 @@ import json
 import math
 
 VERSION=1
+CAPTURE_VERSION=2  # v1 missed Open-Meteo's normalized weather keys; preserve originals
 def _date(x):
     try:
         d=x if isinstance(x,datetime) else datetime.fromisoformat(str(x).replace('Z','+00:00'))
@@ -35,7 +36,7 @@ def record(dashboard,now,path=Path('data/pregame-features.json')):
     except FileNotFoundError:
         previous={}
     entries=list(previous.get('observations') or [])
-    seen={(item.get('gameId'),item.get('window')) for item in entries if isinstance(item,dict)}
+    seen={(item.get('gameId'),item.get('window'),item.get('captureVersion',1)) for item in entries if isinstance(item,dict)}
     added=0
     for g in dashboard.get('nextGames',[]):
         if not isinstance(g,dict):continue
@@ -45,7 +46,7 @@ def record(dashboard,now,path=Path('data/pregame-features.json')):
         hours=(kick-stamp).total_seconds()/3600
         if hours>24*8:continue
         window='late' if hours<=6 else 'early'
-        key=(gid,window)
+        key=(gid,window,CAPTURE_VERSION)
         if key in seen:continue
         weather=g.get('weather') or {}
         # Weather source is dated only if weather was actually downloaded.
@@ -64,6 +65,7 @@ def record(dashboard,now,path=Path('data/pregame-features.json')):
                 'priorDropbacks':_num(sample.get('dropbacks'),0),
                 'priorEPA':_num(sample.get('epaPerDropback'),-3,3)}
         entries.append({
+            'captureVersion':CAPTURE_VERSION,
             'gameId':gid,'season':g.get('season'),'week':g.get('week'),
             'kickoff':kick.isoformat(),'recordedAt':stamp.isoformat(),'window':window,
             'home':g.get('home'),'away':g.get('away'),
@@ -96,6 +98,6 @@ def record(dashboard,now,path=Path('data/pregame-features.json')):
         path.parent.mkdir(parents=True,exist_ok=True)
         path.write_text(json.dumps({'schemaVersion':VERSION,'observations':entries},
             indent=2,ensure_ascii=False)+'\n',encoding='utf8')
-    return {'status':'recorded','observations':len(entries),'added':added,
+    return {'status':'recorded','captureVersion':CAPTURE_VERSION,'observations':len(entries),'added':added,
             'nextExpected':'First pre-kickoff snapshot per fixture per window, earlier and within six hours',
             'historicalWeatherTrainingReady':False,'historicalInjuryTrainingReady':False}
