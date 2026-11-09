@@ -36,6 +36,21 @@ class FeatureCaptureTests(unittest.TestCase):
             records=json.loads(p.read_text())['observations']
             self.assertEqual([r['window'] for r in records],['early','late'])
             self.assertEqual(records[0]['recordedAt'],NOW.isoformat())
+    def test_legacy_weather_capture_is_preserved_and_new_observation_is_separate(self):
+        with tempfile.TemporaryDirectory() as t:
+            p=Path(t)/'archive.json'
+            old={'gameId':'game-1','window':'early','recordedAt':NOW.isoformat(),
+                 'weather':{'status':'forecast','values':{}}}
+            p.write_text(json.dumps({'schemaVersion':1,'observations':[old]}))
+            g=self.fixture(NOW+timedelta(hours=10))
+            report=record({'nextGames':[g]},NOW+timedelta(minutes=5),p)
+            self.assertEqual(report['added'],1)
+            entries=json.loads(p.read_text())['observations']
+            self.assertEqual(entries[0],old,'Never rewrite an older archived observation')
+            self.assertEqual(entries[1]['captureVersion'],2)
+            self.assertEqual(entries[1]['weather']['values']['windMph'],21)
+            self.assertEqual(record({'nextGames':[g]},NOW+timedelta(minutes=10),p)['added'],0)
+
     def test_unverified_weather_not_interpreted_as_calm(self):
         with tempfile.TemporaryDirectory() as t:
             g=self.fixture(NOW+timedelta(hours=1))
