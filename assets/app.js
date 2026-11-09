@@ -71,7 +71,7 @@ function scoreFromESPN(g){
  if(!s)return {main:'SCORE PENDING',detail:'Awaiting verified result'};
  const state=s.state||s.status;
  const status=state==='in'?'LIVE '+(s.period?'Q'+s.period:'')+(s.clock?' '+s.clock:''):state==='post'?'FINAL':'SCHEDULED';
- const totals=s.awayScore==null||s.homeScore==null?'Score pending':g.away+' '+s.awayScore+' – '+g.home+' '+s.homeScore;
+ const totals=s.awayScore==null||s.homeScore==null?'Score pending':(g.away||s.away)+' '+s.awayScore+' – '+(g.home||s.home)+' '+s.homeScore;
  return {main:status,detail:totals,at:s.fetchedAt};
 }
 function recentKickoffRow(g){
