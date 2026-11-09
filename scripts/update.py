@@ -26,6 +26,7 @@ from official_reports import fetch as fetch_weekly_reports, from_existing as reu
 from pregame_verification import evaluate as verify_pregame_evidence
 from weather import enrich as enrich_weather
 from prospective_features import record as record_prospective_features
+from primary_forecast import publish as publish_provisional_primary
 
 SOURCES=(
     'https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv',
@@ -531,6 +532,9 @@ def update(schedules_only=False,schedules_file=None):
         item['verificationLevel']=(row.get('forecastQuality') or {}).get('level','unavailable')
         item['verificationReasons']=(row.get('forecastQuality') or {}).get('issues',[])[:8]
     record_shadow_predictions(dashboard,games,now)
+    # Independent headline research pick: never modify the archived official
+    # probability used by the existing forward prediction/revision ledger.
+    publish_provisional_primary(dashboard,games,now)
     archive=save_forecast_revisions(dashboard,log,games,now)
     dashboard['recentKickoffs']=make_recent_kickoffs(games,archive,now)
     # Small, point-in-time pregame prior file for Red Zone. No post-kickoff
@@ -605,6 +609,7 @@ def update(schedules_only=False,schedules_file=None):
         'pregameVerificationSource':dashboard.get('pregameVerificationSource'),
         'weatherSource':dashboard.get('weatherSource'),
         'prospectiveFeatureArchive':dashboard.get('prospectiveFeatureArchive'),
+        'primaryForecastSummary':dashboard.get('primaryForecastSummary'),
         'chosenOverlay':dashboard.get('overlaySelection','none'),
         'tacticalSource':dashboard.get('tacticalSource'),
         'qbSource':dashboard.get('qbSource'),
