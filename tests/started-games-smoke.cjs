@@ -19,7 +19,9 @@ t.setData({generatedAt:'2026-11-08T21:15:00Z',nextGames:[],
    lastPregameRecordedAt:'2026-11-08T17:15:00Z',originalRecordedAt:'2026-11-04T15:00:00Z',week:9,model:'historical model'}],
   predictionRecord:{completed:{games:0,latest:{},original:{}}},performance:{count:0},dataStatus:'ok'});
 const html=t.overview();
-assert(html.includes('Today’s live & recently started games'));
+assert(html.includes('Game day · scores and picks'));
+assert(!html.includes('live forecast closed'));
+
 assert(html.includes('DAL @ NYG'));
 assert(html.includes('FROZEN PREGAME'));
 assert(html.includes('NOT')===false || html.includes('pregame')); // show frozen labels
@@ -30,4 +32,11 @@ assert(el('appContent').innerHTML.includes('In-play win chance'));
 t.setLive({'2026_09_DAL_NYG':{status:'in',period:3,clock:'6:10',away:'DAL',home:'NYG',awayScore:17,homeScore:10}});
 assert.equal(t.live({id:'2026_09_DAL_NYG'}).main,'LIVE Q3 6:10');
 assert.equal(t.live({id:'2026_09_DAL_NYG'}).detail,'DAL 17 – NYG 10');
+t.setLive({'2026_09_DAL_NYG':{state:'post',status:'post',away:'DAL',home:'NYG',awayScore:24,homeScore:17,fetchedAt:Date.now()}});
+t.render();
+assert(el('appContent').innerHTML.includes('Prediction result'),'Finished matchup must use result heading');
+const finals=t.matchups();
+assert(finals.includes('FINAL RESULTS'),'Finished games must be in a final results group');
+assert(finals.includes('data-final-fold'),'Finished games must be collapsible');
+assert(!finals.includes('IN-PLAY · EXPERIMENTAL'),'No in-play panel on completed games');
 console.log('Started fixtures, frozen pregame archive and external live status smoke tests passed.');
