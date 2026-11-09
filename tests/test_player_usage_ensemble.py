@@ -48,8 +48,8 @@ class EnsembleTest(unittest.TestCase):
             for i in range(215):
                 p=.3+.4*(i%19)/18
                 history.append({'id':str(year)+'-'+str(i),'season':year,'p':p,
-                    'y':int(rng.random()<p),'features':[2*p-1,rng.random()-.5,0,1,0,0,0,0,0,0,0,0,0]})
-        future=[{'id':'future','p':.55,'features':[.1,0,0,1,0,0,0,0,0,0,0,0,0]}]
+                    'y':int(rng.random()<p),'features':[2*p-1,rng.random()-.5,0,1]+[0]*(len(FEATURES)-4)})
+        future=[{'id':'future','p':.55,'features':[.1,0,0,1]+[0]*(len(FEATURES)-4)}]
         report,a=run(history,future,2026)
         self.assertEqual(report['productionWeight'],0)
         self.assertTrue(report['researchOnly'])

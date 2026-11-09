@@ -29,6 +29,23 @@ class ShadowForwardTest(unittest.TestCase):
             games[0]['home_score']=35;games[0]['away_score']=17
             scored=record_shadow_predictions(data,games,kickoff+timedelta(days=1),path)
             self.assertEqual(len(scored),1)
+            self.assertEqual(data['shadowForwardPerformance']['gradedGames'],0,
+                'Legacy v1 archived picks must NOT be relabelled as v2 forward validation')
+            self.assertEqual(data['shadowForwardPerformance']['legacyRecordedPicks'],1)
+            # Only a NEW versioned pregame observation can join v2's cohort.
+            other={'id':'new_game','home_score':None,'away_score':None,
+                   'kickoff':kickoff+timedelta(days=2)}
+            data['nextGames']=[{'id':'new_game','kickoff':other['kickoff'].isoformat(),
+                'baselineHomeProbability':.50,
+                'shadowEnsemble':{'researchOnly':True,'version':'joint-xgb-v2-2026-11-09',
+                                  'homeProbability':.63,'baselineHomeProbability':.50}}]
+            next_entries=record_shadow_predictions(data,[other],now,path)
+            self.assertEqual(len(next_entries),2)
+            self.assertEqual(data['shadowForwardPerformance']['gradedGames'],0)
+            other['home_score']=35;other['away_score']=17
+            record_shadow_predictions(data,[other],other['kickoff']+timedelta(days=1),path)
             self.assertEqual(data['shadowForwardPerformance']['gradedGames'],1)
             self.assertAlmostEqual(data['shadowForwardPerformance']['brier'],(.63-1)**2,5)
+            self.assertAlmostEqual(data['shadowForwardPerformance']['baselineBrier'],(.50-1)**2,5)
+            self.assertFalse(data['shadowForwardPerformance']['promotionApproved'])
 if __name__=='__main__':unittest.main()
