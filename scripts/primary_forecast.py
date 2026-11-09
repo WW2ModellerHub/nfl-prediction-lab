@@ -14,7 +14,7 @@ from pathlib import Path
 from shadow_ensemble import VERSION as JOINT_VERSION
 import json,math
 
-PRIMARY_VERSION='primary-provisional-v1+'+JOINT_VERSION
+PRIMARY_VERSION='primary-provisional-v2+'+JOINT_VERSION
 
 def _dt(v):
     try:
@@ -124,6 +124,7 @@ def publish(dashboard,games,now,path=Path('data/primary-predictions-log.json')):
         'modelVersion':PRIMARY_VERSION,
         'upcomingProvisional':sum(g['primaryForecast']['isProvisional'] for g in dashboard.get('nextGames',[])),
         'firstRecordedPicks':sum(rec.get('modelVersion')==PRIMARY_VERSION for rec in saved),
+        'legacyVersionPicks':sum(rec.get('modelVersion')!=PRIMARY_VERSION for rec in saved),
         'newRecords':added,'gradedGames':n,
         'provisionalBrier':round(primary_brier,6) if n else None,
         'matchedOriginalBrier':round(old_brier,6) if n else None,
