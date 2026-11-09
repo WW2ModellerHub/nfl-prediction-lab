@@ -724,6 +724,820 @@
       },
       "trainingEligible": false,
       "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_09_BUF_MIN",
+      "season": 2026,
+      "week": 9,
+      "kickoff": "2026-11-10T01:15:00+00:00",
+      "recordedAt": "2026-11-09T21:58:47.063198+00:00",
+      "window": "late",
+      "home": "MIN",
+      "away": "BUF",
+      "baselineHomeProbability": 0.5167,
+      "publishedHomeProbability": 0.5167,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.443063,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "indoor",
+        "roof": "dome",
+        "stadiumId": "MIN01",
+        "source": null,
+        "sourceRetrievedAt": null,
+        "forecastFor": null,
+        "values": {}
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0035228",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 250.0,
+          "priorEPA": -0.077
+        },
+        "away": {
+          "id": "00-0034857",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 264.0,
+          "priorEPA": 0.185
+        }
+      },
+      "injuries": {
+        "status": "snapshot-only",
+        "asOf": "2026-11-09T21:58:33.254762+00:00",
+        "observedFlagCounts": {
+          "home": 5,
+          "away": 6
+        },
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_10_WAS_NYG",
+      "season": 2026,
+      "week": 10,
+      "kickoff": "2026-11-13T01:15:00+00:00",
+      "recordedAt": "2026-11-09T21:58:47.063198+00:00",
+      "window": "early",
+      "home": "NYG",
+      "away": "WAS",
+      "baselineHomeProbability": 0.6022,
+      "publishedHomeProbability": 0.60906,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.666846,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "forecast",
+        "roof": "outdoors",
+        "stadiumId": "NYC01",
+        "source": "Open-Meteo",
+        "sourceRetrievedAt": "2026-11-09T21:58:47.063198+00:00",
+        "forecastFor": "2026-11-13T01:00:00+00:00",
+        "values": {
+          "temperatureC": 10.3,
+          "precipitationChancePct": 69.0,
+          "windMph": 15.1,
+          "gustMph": 25.1,
+          "snowfallCm": 0.0
+        }
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0039923",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 189.0,
+          "priorEPA": 0.1
+        },
+        "away": {
+          "id": "00-0039910",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 242.0,
+          "priorEPA": -0.064
+        }
+      },
+      "injuries": {
+        "status": "unavailable",
+        "asOf": null,
+        "observedFlagCounts": null,
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_10_NE_DET",
+      "season": 2026,
+      "week": 10,
+      "kickoff": "2026-11-15T14:30:00+00:00",
+      "recordedAt": "2026-11-09T21:58:47.063198+00:00",
+      "window": "early",
+      "home": "DET",
+      "away": "NE",
+      "baselineHomeProbability": 0.5444,
+      "publishedHomeProbability": 0.54628,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.498092,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "indoor",
+        "roof": "dome",
+        "stadiumId": "MUN01",
+        "source": null,
+        "sourceRetrievedAt": null,
+        "forecastFor": null,
+        "values": {}
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0033106",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 292.0,
+          "priorEPA": 0.164
+        },
+        "away": {
+          "id": "00-0039851",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 256.0,
+          "priorEPA": 0.121
+        }
+      },
+      "injuries": {
+        "status": "unavailable",
+        "asOf": null,
+        "observedFlagCounts": null,
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_10_BUF_NYJ",
+      "season": 2026,
+      "week": 10,
+      "kickoff": "2026-11-15T18:00:00+00:00",
+      "recordedAt": "2026-11-09T21:58:47.063198+00:00",
+      "window": "early",
+      "home": "NYJ",
+      "away": "BUF",
+      "baselineHomeProbability": 0.2454,
+      "publishedHomeProbability": 0.24066,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.192883,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "forecast",
+        "roof": "outdoors",
+        "stadiumId": "NYC01",
+        "source": "Open-Meteo",
+        "sourceRetrievedAt": "2026-11-09T21:58:47.063198+00:00",
+        "forecastFor": "2026-11-15T18:00:00+00:00",
+        "values": {
+          "temperatureC": 9.4,
+          "precipitationChancePct": 1.0,
+          "windMph": 16.4,
+          "gustMph": 22.4,
+          "snowfallCm": 0.0
+        }
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0030565",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 277.0,
+          "priorEPA": 0.044
+        },
+        "away": {
+          "id": "00-0034857",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 264.0,
+          "priorEPA": 0.185
+        }
+      },
+      "injuries": {
+        "status": "unavailable",
+        "asOf": null,
+        "observedFlagCounts": null,
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_10_CAR_NO",
+      "season": 2026,
+      "week": 10,
+      "kickoff": "2026-11-15T18:00:00+00:00",
+      "recordedAt": "2026-11-09T21:58:47.063198+00:00",
+      "window": "early",
+      "home": "NO",
+      "away": "CAR",
+      "baselineHomeProbability": 0.5725,
+      "publishedHomeProbability": 0.57094,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.507482,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "indoor",
+        "roof": "dome",
+        "stadiumId": "NOR00",
+        "source": null,
+        "sourceRetrievedAt": null,
+        "forecastFor": null,
+        "values": {}
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0040743",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 328.0,
+          "priorEPA": -0.026
+        },
+        "away": {
+          "id": "00-0039150",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 334.0,
+          "priorEPA": 0.012
+        }
+      },
+      "injuries": {
+        "status": "unavailable",
+        "asOf": null,
+        "observedFlagCounts": null,
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_10_HOU_CLE",
+      "season": 2026,
+      "week": 10,
+      "kickoff": "2026-11-15T18:00:00+00:00",
+      "recordedAt": "2026-11-09T21:58:47.063198+00:00",
+      "window": "early",
+      "home": "CLE",
+      "away": "HOU",
+      "baselineHomeProbability": 0.461,
+      "publishedHomeProbability": 0.44269,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.381437,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "forecast",
+        "roof": "outdoors",
+        "stadiumId": "CLE00",
+        "source": "Open-Meteo",
+        "sourceRetrievedAt": "2026-11-09T21:58:47.063198+00:00",
+        "forecastFor": "2026-11-15T18:00:00+00:00",
+        "values": {
+          "temperatureC": 7.4,
+          "precipitationChancePct": 4.0,
+          "windMph": 11.1,
+          "gustMph": 12.1,
+          "snowfallCm": 0.0
+        }
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0033537",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 283.0,
+          "priorEPA": -0.06
+        },
+        "away": {
+          "id": "00-0039163",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 295.0,
+          "priorEPA": 0.23
+        }
+      },
+      "injuries": {
+        "status": "unavailable",
+        "asOf": null,
+        "observedFlagCounts": null,
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_10_JAX_TEN",
+      "season": 2026,
+      "week": 10,
+      "kickoff": "2026-11-15T18:00:00+00:00",
+      "recordedAt": "2026-11-09T21:58:47.063198+00:00",
+      "window": "early",
+      "home": "TEN",
+      "away": "JAX",
+      "baselineHomeProbability": 0.2568,
+      "publishedHomeProbability": 0.24462,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.206519,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "forecast",
+        "roof": "outdoors",
+        "stadiumId": "NAS00",
+        "source": "Open-Meteo",
+        "sourceRetrievedAt": "2026-11-09T21:58:47.063198+00:00",
+        "forecastFor": "2026-11-15T18:00:00+00:00",
+        "values": {
+          "temperatureC": 11.1,
+          "precipitationChancePct": 1.0,
+          "windMph": 2.1,
+          "gustMph": 1.3,
+          "snowfallCm": 0.0
+        }
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0040676",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 263.0,
+          "priorEPA": -0.083
+        },
+        "away": {
+          "id": "00-0036971",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 237.0,
+          "priorEPA": 0.283
+        }
+      },
+      "injuries": {
+        "status": "unavailable",
+        "asOf": null,
+        "observedFlagCounts": null,
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_10_KC_ATL",
+      "season": 2026,
+      "week": 10,
+      "kickoff": "2026-11-15T18:00:00+00:00",
+      "recordedAt": "2026-11-09T21:58:47.063198+00:00",
+      "window": "early",
+      "home": "ATL",
+      "away": "KC",
+      "baselineHomeProbability": 0.4317,
+      "publishedHomeProbability": 0.42286,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.351669,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "roof-unconfirmed",
+        "roof": "unknown",
+        "stadiumId": "ATL97",
+        "source": "Open-Meteo",
+        "sourceRetrievedAt": "2026-11-09T21:58:47.063198+00:00",
+        "forecastFor": "2026-11-15T18:00:00+00:00",
+        "values": {
+          "temperatureC": 13.3,
+          "precipitationChancePct": 0.0,
+          "windMph": 4.0,
+          "gustMph": 5.8,
+          "snowfallCm": 0.0
+        }
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0039917",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 226.0,
+          "priorEPA": -0.055
+        },
+        "away": {
+          "id": "00-0033873",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 275.0,
+          "priorEPA": 0.149
+        }
+      },
+      "injuries": {
+        "status": "unavailable",
+        "asOf": null,
+        "observedFlagCounts": null,
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_10_MIA_IND",
+      "season": 2026,
+      "week": 10,
+      "kickoff": "2026-11-15T18:00:00+00:00",
+      "recordedAt": "2026-11-09T21:58:47.063198+00:00",
+      "window": "early",
+      "home": "IND",
+      "away": "MIA",
+      "baselineHomeProbability": 0.5831,
+      "publishedHomeProbability": 0.57861,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.540632,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "roof-unconfirmed",
+        "roof": "unknown",
+        "stadiumId": "IND00",
+        "source": "Open-Meteo",
+        "sourceRetrievedAt": "2026-11-09T21:58:47.063198+00:00",
+        "forecastFor": "2026-11-15T18:00:00+00:00",
+        "values": {
+          "temperatureC": 8.7,
+          "precipitationChancePct": 0.0,
+          "windMph": 2.8,
+          "gustMph": 2.9,
+          "snowfallCm": 0.0
+        }
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0035710",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 292.0,
+          "priorEPA": -0.221
+        },
+        "away": {
+          "id": "00-0038128",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 232.0,
+          "priorEPA": -0.115
+        }
+      },
+      "injuries": {
+        "status": "unavailable",
+        "asOf": null,
+        "observedFlagCounts": null,
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_10_MIN_GB",
+      "season": 2026,
+      "week": 10,
+      "kickoff": "2026-11-15T18:00:00+00:00",
+      "recordedAt": "2026-11-09T21:58:47.063198+00:00",
+      "window": "early",
+      "home": "GB",
+      "away": "MIN",
+      "baselineHomeProbability": 0.5315,
+      "publishedHomeProbability": 0.54696,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.544138,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "forecast",
+        "roof": "outdoors",
+        "stadiumId": "GNB00",
+        "source": "Open-Meteo",
+        "sourceRetrievedAt": "2026-11-09T21:58:47.063198+00:00",
+        "forecastFor": "2026-11-15T18:00:00+00:00",
+        "values": {
+          "temperatureC": 5.3,
+          "precipitationChancePct": 1.0,
+          "windMph": 3.6,
+          "gustMph": 2.7,
+          "snowfallCm": 0.0
+        }
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0036264",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 313.0,
+          "priorEPA": 0.269
+        },
+        "away": {
+          "id": "00-0035228",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 250.0,
+          "priorEPA": -0.077
+        }
+      },
+      "injuries": {
+        "status": "unavailable",
+        "asOf": null,
+        "observedFlagCounts": null,
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_10_LA_ARI",
+      "season": 2026,
+      "week": 10,
+      "kickoff": "2026-11-15T21:05:00+00:00",
+      "recordedAt": "2026-11-09T21:58:47.063198+00:00",
+      "window": "early",
+      "home": "ARI",
+      "away": "LA",
+      "baselineHomeProbability": 0.349,
+      "publishedHomeProbability": 0.349,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.295283,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "As-of projected QB with prior statistics",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "venue-unmapped",
+        "roof": "unknown",
+        "stadiumId": "PHO00",
+        "source": null,
+        "sourceRetrievedAt": null,
+        "forecastFor": null,
+        "values": {}
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0035289",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 67.0,
+          "priorEPA": 0.015
+        },
+        "away": {
+          "id": "00-0026498",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 332.0,
+          "priorEPA": 0.049
+        }
+      },
+      "injuries": {
+        "status": "unavailable",
+        "asOf": null,
+        "observedFlagCounts": null,
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_10_SEA_LV",
+      "season": 2026,
+      "week": 10,
+      "kickoff": "2026-11-15T21:05:00+00:00",
+      "recordedAt": "2026-11-09T21:58:47.063198+00:00",
+      "window": "early",
+      "home": "LV",
+      "away": "SEA",
+      "baselineHomeProbability": 0.3315,
+      "publishedHomeProbability": 0.34166,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.369134,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "indoor",
+        "roof": "dome",
+        "stadiumId": "VEG00",
+        "source": null,
+        "sourceRetrievedAt": null,
+        "forecastFor": null,
+        "values": {}
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0029604",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 298.0,
+          "priorEPA": 0.075
+        },
+        "away": {
+          "id": "00-0034869",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 267.0,
+          "priorEPA": -0.058
+        }
+      },
+      "injuries": {
+        "status": "unavailable",
+        "asOf": null,
+        "observedFlagCounts": null,
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_10_SF_DAL",
+      "season": 2026,
+      "week": 10,
+      "kickoff": "2026-11-15T21:25:00+00:00",
+      "recordedAt": "2026-11-09T21:58:47.063198+00:00",
+      "window": "early",
+      "home": "DAL",
+      "away": "SF",
+      "baselineHomeProbability": 0.4134,
+      "publishedHomeProbability": 0.41087,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.350565,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "roof-unconfirmed",
+        "roof": "unknown",
+        "stadiumId": "DAL00",
+        "source": "Open-Meteo",
+        "sourceRetrievedAt": "2026-11-09T21:58:47.063198+00:00",
+        "forecastFor": "2026-11-15T21:00:00+00:00",
+        "values": {
+          "temperatureC": 19.0,
+          "precipitationChancePct": 11.0,
+          "windMph": 13.0,
+          "gustMph": 23.7,
+          "snowfallCm": 0.0
+        }
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0033077",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 319.0,
+          "priorEPA": 0.121
+        },
+        "away": {
+          "id": "00-0037834",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 243.0,
+          "priorEPA": 0.179
+        }
+      },
+      "injuries": {
+        "status": "unavailable",
+        "asOf": null,
+        "observedFlagCounts": null,
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_10_PIT_CIN",
+      "season": 2026,
+      "week": 10,
+      "kickoff": "2026-11-16T01:20:00+00:00",
+      "recordedAt": "2026-11-09T21:58:47.063198+00:00",
+      "window": "early",
+      "home": "CIN",
+      "away": "PIT",
+      "baselineHomeProbability": 0.564,
+      "publishedHomeProbability": 0.58173,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.593489,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "forecast",
+        "roof": "outdoors",
+        "stadiumId": "CIN00",
+        "source": "Open-Meteo",
+        "sourceRetrievedAt": "2026-11-09T21:58:47.063198+00:00",
+        "forecastFor": "2026-11-16T01:00:00+00:00",
+        "values": {
+          "temperatureC": 4.9,
+          "precipitationChancePct": 2.0,
+          "windMph": 3.6,
+          "gustMph": 5.8,
+          "snowfallCm": 0.0
+        }
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0036442",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 312.0,
+          "priorEPA": 0.318
+        },
+        "away": {
+          "id": "00-0023459",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 308.0,
+          "priorEPA": -0.088
+        }
+      },
+      "injuries": {
+        "status": "unavailable",
+        "asOf": null,
+        "observedFlagCounts": null,
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_10_LAC_BAL",
+      "season": 2026,
+      "week": 10,
+      "kickoff": "2026-11-17T01:15:00+00:00",
+      "recordedAt": "2026-11-09T21:58:47.063198+00:00",
+      "window": "early",
+      "home": "BAL",
+      "away": "LAC",
+      "baselineHomeProbability": 0.6572,
+      "publishedHomeProbability": 0.65944,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.724324,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "forecast",
+        "roof": "outdoors",
+        "stadiumId": "BAL00",
+        "source": "Open-Meteo",
+        "sourceRetrievedAt": "2026-11-09T21:58:47.063198+00:00",
+        "forecastFor": "2026-11-17T01:00:00+00:00",
+        "values": {
+          "temperatureC": 8.0,
+          "precipitationChancePct": 2.0,
+          "windMph": 7.9,
+          "gustMph": 18.1,
+          "snowfallCm": 0.0
+        }
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0033119",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 322.0,
+          "priorEPA": -0.132
+        },
+        "away": {
+          "id": "00-0036355",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 265.0,
+          "priorEPA": -0.302
+        }
+      },
+      "injuries": {
+        "status": "unavailable",
+        "asOf": null,
+        "observedFlagCounts": null,
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
     }
   ]
 }
