@@ -25,6 +25,7 @@ from qb_evidence import gather as gather_qb_sources, attach as attach_qb_sources
 from official_reports import fetch as fetch_weekly_reports, from_existing as reuse_weekly_reports, attach as attach_weekly_reports
 from pregame_verification import evaluate as verify_pregame_evidence
 from weather import enrich as enrich_weather
+from prospective_features import record as record_prospective_features
 
 SOURCES=(
     'https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv',
@@ -563,6 +564,7 @@ def update(schedules_only=False,schedules_file=None):
     # Independent, public area forecast only: never changes win percentages.
     # Every fixture records the roof status, horizon and source availability.
     dashboard['weatherSource']=enrich_weather(dashboard.get('nextGames',[]),now)
+    dashboard['prospectiveFeatureArchive']=record_prospective_features(dashboard,now)
 
     if any((r.get('personnelScenario') or {}).get('affectsPrediction') for r in dashboard.get('nextGames',[])):
         dashboard['dataWarnings'].append(
@@ -602,6 +604,7 @@ def update(schedules_only=False,schedules_file=None):
         'qbEvidenceSource':dashboard.get('qbEvidenceSource'),
         'pregameVerificationSource':dashboard.get('pregameVerificationSource'),
         'weatherSource':dashboard.get('weatherSource'),
+        'prospectiveFeatureArchive':dashboard.get('prospectiveFeatureArchive'),
         'chosenOverlay':dashboard.get('overlaySelection','none'),
         'tacticalSource':dashboard.get('tacticalSource'),
         'qbSource':dashboard.get('qbSource'),
