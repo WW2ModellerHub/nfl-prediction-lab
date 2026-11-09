@@ -8,8 +8,23 @@ function result(g,live){return root.NFLGameLiveModel.estimate(live, g&&g.homePro
 function render(g,live,reference,expanded){
  if(!g)return '<div class="livewin-empty">No archived pregame pick.</div>';
  var r=result(g,live),home=h(g.home),away=h(g.away),prior=pct(g.homeProbability);
+ if(r.status==="final"){
+   var hs=live&&live.homeScore,as=live&&live.awayScore;
+   var aligned=live&&live.home===g.home&&live.away===g.away;
+   var hasScores=aligned&&hs!==null&&hs!==undefined&&as!==null&&as!==undefined&&
+     Number.isInteger(Number(hs))&&Number.isInteger(Number(as))&&Number(hs)>=0&&Number(as)>=0;
+   if(!hasScores)return '<div class="livewin-result livewin-result-pending"><strong>FINAL</strong><small>Score awaiting confirmation</small></div>';
+   var homeScore=Number(hs),awayScore=Number(as),tied=homeScore===awayScore;
+   var favorite=Number(g.homeProbability)>=.5?g.home:g.away;
+   var winner=tied?null:(homeScore>awayScore?g.home:g.away);
+   var correct=!tied&&winner===favorite;
+   return '<div class="livewin-result '+(tied?'livewin-result-tie':correct?'livewin-result-correct':'livewin-result-wrong')+'">'+
+     '<strong>'+(tied?'— TIED GAME':correct?'✓ CORRECT PICK':'✕ WRONG PICK')+'</strong>'+
+     (expanded?'<small>Final: '+away+' '+awayScore+' – '+home+' '+homeScore+'</small>':'')+
+     '</div>';
+ }
  if(r.status!=="experimental"){
-   var desc=r.status==="final"?"Final score · live forecast closed.":
+   var desc=
      r.status==="overtime"?"Overtime · estimate unavailable.":
      r.reason||"Waiting for live score and clock.";
    return '<div class="livewin-unavailable"><span>◉ IN-PLAY</span><b>'+h(desc)+'</b>'+

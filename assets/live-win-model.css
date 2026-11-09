@@ -39,3 +39,14 @@
 .started-prob .livewin-compact .livewin-live{font-size:8px}
 .started-prob .livewin-compact .livewin-mini{font-size:8px}
 @media(max-width:520px){.started-prob .livewin-panel{min-width:120px}.started-prob .livewin-unavailable{max-width:155px}.livewin-main strong{font-size:26px}.livewin-inputs{font-size:9px}}
+
+/* Completed games show result of the frozen pick, never an in-play warning. */
+.livewin-result{display:flex;align-items:center;justify-content:space-between;gap:9px;border-radius:8px;border:1px solid #4b6070;background:#12222c;padding:11px 13px;min-width:0}
+.livewin-result strong{font-size:11px;letter-spacing:.5px;font-weight:850;line-height:1.2}
+.livewin-result small{font-size:10px;color:#aebdc9}
+.livewin-result-correct{background:#11352f;border-color:#376c58;color:#aaf1c9}
+.livewin-result-wrong{background:#34232b;border-color:#784251;color:#ffc1c6}
+.livewin-result-tie,.livewin-result-pending{color:#d3dce3}
+.started-prob .livewin-result{justify-content:flex-end;max-width:270px}
+.started-prob .livewin-result strong{font-size:10px}
+@media(max-width:520px){.started-prob .livewin-result{padding:8px 10px}}
