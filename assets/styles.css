@@ -421,3 +421,15 @@
 .joint-factor.joint-total{font-weight:850}
 .joint-coverage,.joint-model-details p{font-size:10px;line-height:1.5;color:#a0b6be;margin:9px 0}
 @media(max-width:520px){.joint-model-panel{padding:13px 12px}.joint-model-head>strong{font-size:23px}.joint-model-head>span{font-size:10px}.joint-model-head>span small{margin:3px 0 0;display:block}}
+
+/* Select exactly one probability: immutable published or research challenger. */
+.forecast-mode-switch{display:flex;gap:5px;margin:13px 0 8px;padding:4px;border:1px solid #365366;border-radius:10px;background:#0e202b}
+.forecast-mode-switch button{flex:1;cursor:pointer;border:0;border-radius:7px;background:transparent;color:#9eb2bc;padding:10px 9px;font-family:inherit;font-size:11px;font-weight:760}
+.forecast-mode-switch button small{font-size:8px;color:#e3bd75;letter-spacing:.2px;margin-left:2px}
+.forecast-mode-switch button.active{background:#315b63;color:#edf9f3;box-shadow:0 1px 5px #0002}
+.forecast-mode-switch button:focus-visible{outline:2px solid #9cecaa;outline-offset:1px}
+.joint-model-panel .joint-model-head{margin-bottom:5px}
+.joint-model-panel .joint-model-head>span{font-size:12px;letter-spacing:.25px}
+.joint-model-panel .joint-model-head>span small{font-size:9px}
+.joint-model-details{border-top:0;margin-top:4px;padding-top:4px}
+@media(max-width:520px){.forecast-mode-switch button{font-size:10px;padding:11px 6px}}
