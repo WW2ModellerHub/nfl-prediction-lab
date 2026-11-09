@@ -69,7 +69,8 @@ async function refreshSelectedLiveReference(){
 function scoreFromESPN(g){
  const s=effectiveGameState(g);
  if(!s)return {main:'SCORE PENDING',detail:'Awaiting verified result'};
- const status=s.state==='in'?'LIVE '+(s.period?'Q'+s.period:'')+(s.clock?' '+s.clock:''):s.state==='post'?'FINAL':'SCHEDULED';
+ const state=s.state||s.status;
+ const status=state==='in'?'LIVE '+(s.period?'Q'+s.period:'')+(s.clock?' '+s.clock:''):state==='post'?'FINAL':'SCHEDULED';
  const totals=s.awayScore==null||s.homeScore==null?'Score pending':g.away+' '+s.awayScore+' – '+g.home+' '+s.homeScore;
  return {main:status,detail:totals,at:s.fetchedAt};
 }
