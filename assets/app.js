@@ -12,7 +12,7 @@ const money=n=>'£'+Number(n||0).toLocaleString('en-GB',{minimumFractionDigits:2
 const date=s=>s?new Date(s).toLocaleString('en-GB',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit',timeZone:'Europe/London'}):'Unknown';
 function save(key,v){try{localStorage.setItem('nfl-lab-'+key,JSON.stringify(v));return true}catch{toast('Local storage unavailable.');return false}}
 function load(key,fallback){try{return JSON.parse(localStorage.getItem('nfl-lab-'+key))??fallback}catch{return fallback}}
-let store={data:null,auditReference:window.NFL_LAB_AUDIT_REFERENCE||null,researchEvidence:window.NFL_LAB_RESEARCH_EVIDENCE||null,tab:'overview',odds:load('odds',{}),bets:load('bets',[]),query:'',week:'All',busy:false,activeGameId:null,liveScores:{},liveReferences:{}};
+let store={data:null,auditReference:window.NFL_LAB_AUDIT_REFERENCE||null,researchEvidence:window.NFL_LAB_RESEARCH_EVIDENCE||null,tab:'overview',odds:load('odds',{}),bets:load('bets',[]),query:'',week:'All',busy:false,activeGameId:null,liveScores:{},liveReferences:{},forecastMode:'published'};
 let timer;
 function toast(message){const el=byId('toast');el.textContent=message;el.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>el.classList.remove('show'),2900)}
 function initials(team){return `<span class="team-bubble" style="border-color:${TEAM_COLORS[team]||'#456'}88;background:${TEAM_COLORS[team]||'#203447'}30">${escapeHTML(team)}</span>`}
@@ -857,24 +857,37 @@ function verificationPanel(g){
  <p class="source-meta">A QB shown first in an ESPN depth-chart list is NOT an officially confirmed starter, and matching ESPN/nflverse charts may share the same source. Game statuses are mirrored from NFL weekly injury reports by <a href="https://github.com/nflverse/nflverse-data/releases/tag/injuries" target="_blank" rel="noopener">nflverse</a>, not fetched directly from NFL.com. Check <a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">NFL.com</a> for the official version. Depth charts are projections, not certified starting QBs. Game-day inactive and coach-confirmation feeds are not yet connected; missing reports never mean healthy.</p></details>
  </section>`;
 }
+function jointActive(g){
+ const j=g?.shadowEnsemble;
+ return store.forecastMode==='research'&&j?.researchOnly===true&&j?.productionWeight===0&&j?.reconciles===true&&Number.isFinite(j.homeProbability)&&Array.isArray(j.layers);
+}
+function forecastModeSwitch(g){
+ const j=g?.shadowEnsemble;
+ if(!j||j.researchOnly!==true||!Number.isFinite(j.homeProbability)||j.reconciles!==true)return '';
+ const active=jointActive(g);
+ return `<div class="forecast-mode-switch" role="group" aria-label="Choose win probability model">
+ <button type="button" data-forecast-mode="published" class="${active?'':'active'}" aria-pressed="${!active}">Published forecast</button>
+ <button type="button" data-forecast-mode="research" class="${active?'active':''}" aria-pressed="${active}">Combined model <small>RESEARCH</small></button>
+ </div>`;
+}
 function forecastHero(g){
- const p=Number(g.homeProbability),homeFav=p>=.5;
+ const research=jointActive(g),p=Number(research?g.shadowEnsemble.homeProbability:g.homeProbability),homeFav=p>=.5;
  const fav=homeFav?(g.homeName||g.home):(g.awayName||g.away),other=homeFav?(g.awayName||g.away):(g.homeName||g.home);
  const chance=homeFav?p:1-p,otherChance=1-chance;
  const e=g.forecastExplanation||{},provisional=e.status==='provisional',quality=e.status==='partially-unverified';
  const gate=g.forecastQuality||{},badge=(gate.level==='hold'?'HOLD · VERIFY QB / INJURY':gate.level==='review'?'REVIEW · SOURCES INCOMPLETE':gate.level==='checked'?'SOURCES CHECKED':'VERIFICATION MISSING')+(provisional?' · PROVISIONAL PLAYER EFFECT':'');
  return `<div class="one-forecast">
-  <div class="one-forecast-label">PREGAME · ${escapeHTML(badge)}</div>
+  <div class="one-forecast-label">${research?"EXPERIMENTAL · NOT A PUBLISHED PICK":"PREGAME · "+escapeHTML(badge)}</div>
   <div class="one-forecast-number">${pct(chance)}</div>
   <div class="one-forecast-winner">${escapeHTML(fav)} to win</div>
-  <div class="one-forecast-comparison">${escapeHTML(other)} ${pct(otherChance)} <span aria-hidden="true">·</span> Projected score ${g.predAway==null||g.predHome==null?'unavailable':`${escapeHTML(g.away)} ${Math.round(g.predAway)} – ${escapeHTML(g.home)} ${Math.round(g.predHome)}`}</div>
+  <div class="one-forecast-comparison">${escapeHTML(other)} ${pct(otherChance)} ${research?"· Not yet validated for betting":`<span aria-hidden="true">·</span> Projected score ${g.predAway==null||g.predHome==null?'unavailable':`${escapeHTML(g.away)} ${Math.round(g.predAway)} – ${escapeHTML(g.home)} ${Math.round(g.predHome)}`}`}</div>
   <div class="matchup-prob-track"><div style="width:${Math.max(0,Math.min(100,100*chance))}%"></div></div>
-  <p class="one-forecast-fine">${escapeHTML(g.model||'Elo and scoring form')} · Updated ${escapeHTML(store.data?.generatedAt?date(store.data.generatedAt):'date unavailable')}.</p>
+  <p class="one-forecast-fine">${research?"Jointly fitted team, QB, tactical and situational evidence. Archived pick unchanged.":escapeHTML(g.model||'Elo and scoring form')+" · Updated "+escapeHTML(store.data?.generatedAt?date(store.data.generatedAt):'date unavailable')+"."}</p>
  </div>`;
 }
 function jointResearchPanel(g){
  const c=g.shadowEnsemble;
- if(!c||c.researchOnly!==true||c.reconciles!==true||
+ if(!jointActive(g)||!c||c.researchOnly!==true||c.reconciles!==true||
     !Number.isFinite(c.homeProbability)||!Array.isArray(c.layers))return '';
  const home=g.home,away=g.away,cf=c.homeProbability>=.5?home:away;
  const prob=c.homeProbability>=.5?c.homeProbability:1-c.homeProbability;
@@ -887,15 +900,15 @@ function jointResearchPanel(g){
  }).join('');
  const missing=(c.missingEvidence||[]).length?`<div class="joint-coverage">Missing: ${escapeHTML(c.missingEvidence.join(' · '))}</div>`:'';
  return `<section class="matchup-panel matchup-wide joint-model-panel" aria-label="Joint challenger research forecast">
- <div class="joint-model-head"><span>COMBINED-FACTOR MODEL <small>RESEARCH ONLY</small></span><strong>${pct(prob)} <small>${escapeHTML(cf)} to win</small></strong></div>
+ <div class="joint-model-head"><span>WHAT MOVED THE RESEARCH FORECAST <small>STATISTICAL ATTRIBUTION</small></span></div>
  <div class="joint-model-explain">Compared with the unadjusted Elo/form forecast: ${sign((c.homeProbability-bp)*(c.homeProbability>=.5?1:-1)*100)} pp.
  Not yet part of the published pick.</div>
- <details class="joint-model-details"><summary>What changed the probability? <span>Show factors</span></summary>
+ <div class="joint-model-details">
  <div class="joint-factor"><span>Elo/form starting forecast</span><strong>${pct(c.homeProbability>=.5?bp:1-bp)}</strong></div>
  ${layers}
- <div class="joint-factor joint-total"><span>Combined research estimate</span><strong>${pct(prob)}</strong></div>
+ 
  ${missing}
- <p>Factors are fitted together on prior-season data. Attribution divides their joint associations, not cause-and-effect. No historical injury/weather estimate is invented.</p></details>
+ <p>Joint historical model. Effects are statistical, not causal. Missing injury/weather history has no invented weight.</p></div>
  </section>`;
 }
 function forecastLayerCard(g){
@@ -946,11 +959,11 @@ function fullMatchupPage(g){
  <section class="matchup-hero" aria-label="Game forecast summary">
   <div class="eyebrow">WEEK ${escapeHTML(g.week??'—')} · ${escapeHTML(date(g.kickoff))} · PREGAME</div>
   <h2>${escapeHTML(g.awayName||g.away)} <span class="muted">@</span> ${escapeHTML(g.homeName||g.home)}</h2>
+  ${forecastModeSwitch(g)}
   ${forecastHero(g)}
  </section>
  ${verificationPanel(g)}
- ${forecastLayerCard(g)}
- ${jointResearchPanel(g)}
+ ${jointActive(g)?jointResearchPanel(g):forecastLayerCard(g)}
  <details class="matchup-evidence" aria-label="Full supporting evidence">
   <summary>Supporting evidence <span>Expand</span></summary>
   <div class="matchup-evidence-body">
@@ -1049,7 +1062,8 @@ function oddsDialog(gameId){const g=games().find(x=>x.id===gameId);if(!g)return;
 function downloadJson(filename,obj){const blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
 function exportLedger(){downloadJson('nfl-lab-personal-ledger.json',{exportedAt:new Date().toISOString(),format:'nfl-lab-ledger-v1',bets:store.bets,odds:store.odds});toast('Local ledger exported')}
 async function refresh(){if(store.busy)return;if(window.NFL_LAB_EMBEDDED_DATA){store.data=window.NFL_LAB_EMBEDDED_DATA;render();return;}store.busy=true;byId('dataAge').textContent='CHECKING DATA';try{try{const ar=await fetch('data/audit-reference.json?ts='+Date.now(),{cache:'no-store'});if(ar.ok)store.auditReference=await ar.json()}catch{}try{const er=await fetch('data/situational-research.json?ts='+Date.now(),{cache:'no-store'});if(er.ok)store.researchEvidence=await er.json()}catch{}const res=await fetch('data/dashboard.json?ts='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status);const d=await res.json();if(!Array.isArray(d.nextGames))throw Error('Unsupported dataset');store.data=d;render();refreshLiveScores();toast(d.generatedAt?'Forecast data loaded':'Waiting for the first published NFL data run')}catch(e){store.data={dataStatus:'unavailable',nextGames:[],recentResults:[],performance:{count:0}};render();toast('Could not load dashboard data. Use a local web server or GitHub Pages.')}finally{store.busy=false}}
-function handleClick(e){const btn=e.target.closest('[data-model-filter],[data-tab],[data-nav],[data-open],[data-full-game],[data-back-matchups],[data-share-game],[data-odds],[data-close],[data-clear-odds],[data-deletebet],[data-export],[data-import],[data-export-audit],[data-export-evidence]');if(!btn)return;
+function handleClick(e){const btn=e.target.closest('[data-forecast-mode],[data-model-filter],[data-tab],[data-nav],[data-open],[data-full-game],[data-back-matchups],[data-share-game],[data-odds],[data-close],[data-clear-odds],[data-deletebet],[data-export],[data-import],[data-export-audit],[data-export-evidence]');if(!btn)return;
+ if(btn.dataset.forecastMode){store.forecastMode=btn.dataset.forecastMode==='research'?'research':'published';render();return;}
  if(btn.dataset.modelFilter){store.modelFilter=btn.dataset.modelFilter;render();return;}
  if(btn.dataset.tab)navigate(btn.dataset.tab);
  if(btn.dataset.nav)navigate(btn.dataset.nav);
