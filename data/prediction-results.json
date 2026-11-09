@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-09T22:05:34.617779+00:00",
+  "generatedAt": "2026-11-09T22:07:15.523074+00:00",
   "status": "timestamped-forward-grading",
   "trackedGames": 57,
   "completed": {
@@ -885,7 +885,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "MIN",
       "latestProbability": 0.5167,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -898,7 +898,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "NYG",
       "latestProbability": 0.60906,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -911,7 +911,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "DET",
       "latestProbability": 0.54628,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -924,7 +924,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "BUF",
       "latestProbability": 0.75934,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -937,7 +937,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "NO",
       "latestProbability": 0.57094,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -950,7 +950,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "HOU",
       "latestProbability": 0.55731,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -963,7 +963,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "JAX",
       "latestProbability": 0.75538,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -976,7 +976,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "KC",
       "latestProbability": 0.57714,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -989,7 +989,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "IND",
       "latestProbability": 0.57861,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -1002,7 +1002,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "GB",
       "latestProbability": 0.54696,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -1015,7 +1015,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "LA",
       "latestProbability": 0.651,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -1028,7 +1028,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "SEA",
       "latestProbability": 0.65834,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -1041,7 +1041,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "SF",
       "latestProbability": 0.58913,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -1054,7 +1054,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "CIN",
       "latestProbability": 0.58173,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -1067,7 +1067,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "BAL",
       "latestProbability": 0.65944,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -1080,7 +1080,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "HOU",
       "latestProbability": 0.73702,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -1093,7 +1093,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "KC",
       "latestProbability": 0.7527,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -1106,7 +1106,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "CAR",
       "latestProbability": 0.52071,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -1119,7 +1119,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "JAX",
       "latestProbability": 0.60125,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -1132,7 +1132,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "BUF",
       "latestProbability": 0.82417,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -1145,7 +1145,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "CHI",
       "latestProbability": 0.74504,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -1158,7 +1158,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "DET",
       "latestProbability": 0.70802,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -1171,7 +1171,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "DAL",
       "latestProbability": 0.73952,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -1184,7 +1184,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "LAC",
       "latestProbability": 0.62694,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -1197,7 +1197,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "DEN",
       "latestProbability": 0.79481,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -1210,7 +1210,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "PIT",
       "latestProbability": 0.5644,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -1223,7 +1223,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "SF",
       "latestProbability": 0.52435,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 61
     },
     {
@@ -1236,7 +1236,7 @@
       "originalRecordedAt": "2026-11-04T20:34:50.252044+00:00",
       "latestPick": "CIN",
       "latestProbability": 0.57808,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 37
     },
     {
@@ -1249,7 +1249,7 @@
       "originalRecordedAt": "2026-11-05T03:34:18.100596+00:00",
       "latestPick": "LA",
       "latestProbability": 0.58497,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 25
     },
     {
@@ -1262,7 +1262,7 @@
       "originalRecordedAt": "2026-11-05T20:12:46.067700+00:00",
       "latestPick": "DET",
       "latestProbability": 0.57931,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 25
     },
     {
@@ -1275,7 +1275,7 @@
       "originalRecordedAt": "2026-11-06T03:29:46.466173+00:00",
       "latestPick": "DAL",
       "latestProbability": 0.6027,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 25
     },
     {
@@ -1288,7 +1288,7 @@
       "originalRecordedAt": "2026-11-06T03:29:46.466173+00:00",
       "latestPick": "BUF",
       "latestProbability": 0.66957,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 25
     },
     {
@@ -1301,7 +1301,7 @@
       "originalRecordedAt": "2026-11-06T22:50:13.675483+00:00",
       "latestPick": "DEN",
       "latestProbability": 0.50744,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 25
     },
     {
@@ -1314,7 +1314,7 @@
       "originalRecordedAt": "2026-11-08T18:01:41.871654+00:00",
       "latestPick": "MIN",
       "latestProbability": 0.73817,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 25
     },
     {
@@ -1327,7 +1327,7 @@
       "originalRecordedAt": "2026-11-08T18:01:41.871654+00:00",
       "latestPick": "HOU",
       "latestProbability": 0.65865,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 25
     },
     {
@@ -1340,7 +1340,7 @@
       "originalRecordedAt": "2026-11-08T18:01:41.871654+00:00",
       "latestPick": "CLE",
       "latestProbability": 0.6142,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 18
     },
     {
@@ -1353,7 +1353,7 @@
       "originalRecordedAt": "2026-11-08T18:01:41.871654+00:00",
       "latestPick": "CIN",
       "latestProbability": 0.72732,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 18
     },
     {
@@ -1366,7 +1366,7 @@
       "originalRecordedAt": "2026-11-08T18:01:41.871654+00:00",
       "latestPick": "NYG",
       "latestProbability": 0.5208,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 18
     },
     {
@@ -1379,7 +1379,7 @@
       "originalRecordedAt": "2026-11-08T18:01:41.871654+00:00",
       "latestPick": "MIA",
       "latestProbability": 0.62176,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 18
     },
     {
@@ -1392,7 +1392,7 @@
       "originalRecordedAt": "2026-11-08T21:25:50.831401+00:00",
       "latestPick": "JAX",
       "latestProbability": 0.84757,
-      "latestRecordedAt": "2026-11-09T22:05:34.617779+00:00",
+      "latestRecordedAt": "2026-11-09T22:07:15.523074+00:00",
       "revisions": 11
     },
     {
