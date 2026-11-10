@@ -1893,5 +1893,49 @@
     "baselineHomeProbability": 0.39968,
     "adjustmentActive": false,
     "situationalProbabilityDelta": 0
+  },
+  {
+    "gameId": "2026_12_CAR_TB",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kickoff": "2026-12-01T01:15:00+00:00",
+    "home": "TB",
+    "away": "CAR",
+    "homeProbability": 0.63182,
+    "predMargin": 4.7,
+    "predTotal": 44.78,
+    "situationalSignals": [],
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "tacticalProbabilityDelta": 0,
+    "playerProbabilityDelta": 0,
+    "qbProbabilityDelta": 0,
+    "qbResearch": {
+      "eligible": true,
+      "features": [
+        -0.23800000000000002,
+        -0.020000000000000004,
+        0
+      ],
+      "status": "eligible",
+      "reason": "Prior-game QB observations available",
+      "source": "Recorded prior starter or dated pregame depth chart, not game-day confirmation"
+    },
+    "qbObserved": {
+      "home": "00-0034855",
+      "away": "00-0039150"
+    },
+    "injuryReportAsOf": null,
+    "qbInjuryProbabilityWeight": 0,
+    "playerFeatures": null,
+    "playerImpactStatus": "informational",
+    "tacticalFeatures": [
+      -1.6624461180298455,
+      -0.2741017180829193,
+      0.16157170233335355,
+      -0.2030906516021976
+    ],
+    "baselineHomeProbability": 0.63182,
+    "adjustmentActive": false,
+    "situationalProbabilityDelta": 0
   }
 ]

@@ -154188,5 +154188,2711 @@
       "home": "unavailable",
       "away": "unavailable"
     }
+  },
+  {
+    "gameId": "2026_12_CAR_TB",
+    "kickoff": "2026-12-01T01:15:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "first",
+    "origin": "recovered-from-immutable-original-log",
+    "importedAt": "2026-11-10T04:41:24.957716+00:00",
+    "home": "TB",
+    "away": "CAR",
+    "homeProbability": 0.63182,
+    "baselineHomeProbability": 0.63182,
+    "predMargin": 4.7,
+    "predTotal": 44.78,
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "personnelStatus": "not-collected-in-legacy-forecast",
+    "personnelHomeDelta": 0,
+    "personnelEvidence": [],
+    "provisionalPlayerRules": false,
+    "verificationLevel": "not-collected-in-original",
+    "verificationAt": null,
+    "verificationIssues": []
+  },
+  {
+    "gameId": "2026_10_WAS_NYG",
+    "kickoff": "2026-11-13T01:15:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "NYG",
+    "away": "WAS",
+    "homeProbability": 0.60906,
+    "baselineHomeProbability": 0.6022,
+    "predHome": 24.1,
+    "predAway": 20.2,
+    "predMargin": 3.86,
+    "predTotal": 44.3,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": 0.00686,
+    "personnelMarginDelta": 0.261,
+    "personnelEvidence": [
+      {
+        "team": "NYG vs WAS",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": -0.261,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.6022,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.00686,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [
+      "NYG: Darnell Mooney questionable — NOT included as OUT",
+      "NYG: Abdul Carter questionable — NOT included as OUT",
+      "NYG: Charlie Jones questionable — NOT included as OUT",
+      "NYG: Malik Harrison questionable — NOT included as OUT",
+      "NYG: J.J. McCarthy questionable — NOT included as OUT",
+      "WAS: Chig Okonkwo questionable — NOT included as OUT"
+    ],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "J.J. McCarthy",
+      "away": "Jayden Daniels"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.0605434,
+      "form": 0.0416566,
+      "qb-statistical": 0.00686
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "NYG: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "NYG: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "WAS: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "WAS: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_10_NE_DET",
+    "kickoff": "2026-11-15T14:30:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "DET",
+    "away": "NE",
+    "homeProbability": 0.54628,
+    "baselineHomeProbability": 0.5444,
+    "predHome": 24.2,
+    "predAway": 22.7,
+    "predMargin": 1.67,
+    "predTotal": 46.9,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": 0.00188,
+    "personnelMarginDelta": 0.069,
+    "personnelEvidence": [
+      {
+        "team": "DET vs NE",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": -0.069,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.5444,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.00188,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [
+      "NE: Rhamondre Stevenson questionable — NOT included as OUT",
+      "NE: Brenden Schooler questionable — NOT included as OUT",
+      "NE: Will Campbell questionable — NOT included as OUT",
+      "NE: Carlton Davis III questionable — NOT included as OUT"
+    ],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Jared Goff",
+      "away": "Drake Maye"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.0264254,
+      "form": 0.0179746,
+      "qb-statistical": 0.00188
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "DET: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "DET: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "NE: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "NE: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_10_BUF_NYJ",
+    "kickoff": "2026-11-15T18:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "NYJ",
+    "away": "BUF",
+    "homeProbability": 0.22527,
+    "baselineHomeProbability": 0.2298,
+    "predHome": 20.5,
+    "predAway": 27.6,
+    "predMargin": -7.13,
+    "predTotal": 48.1,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": -0.00453,
+    "personnelMarginDelta": -0.234,
+    "personnelEvidence": [
+      {
+        "team": "NYJ vs BUF",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": 0.234,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.2298,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": -0.00453,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Geno Smith",
+      "away": "Josh Allen"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": -0.1940709,
+      "form": -0.0761291,
+      "qb-statistical": -0.00453
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "NYJ: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "NYJ: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "BUF: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "BUF: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_10_CAR_NO",
+    "kickoff": "2026-11-15T18:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "NO",
+    "away": "CAR",
+    "homeProbability": 0.57094,
+    "baselineHomeProbability": 0.5725,
+    "predHome": 24.9,
+    "predAway": 22.2,
+    "predMargin": 2.54,
+    "predTotal": 47.1,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": -0.00156,
+    "personnelMarginDelta": -0.058,
+    "personnelEvidence": [
+      {
+        "team": "NO vs CAR",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": 0.058,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.5725,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": -0.00156,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [
+      "NO: Erik McCoy questionable — NOT included as OUT"
+    ],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Tyler Shough",
+      "away": "Bryce Young"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.0420644,
+      "form": 0.0304356,
+      "qb-statistical": -0.00156
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "NO: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "NO: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "CAR: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "CAR: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_10_HOU_CLE",
+    "kickoff": "2026-11-15T18:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "CLE",
+    "away": "HOU",
+    "homeProbability": 0.44269,
+    "baselineHomeProbability": 0.461,
+    "predHome": 21.6,
+    "predAway": 23.1,
+    "predMargin": -1.57,
+    "predTotal": 44.8,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": -0.01831,
+    "personnelMarginDelta": -0.672,
+    "personnelEvidence": [
+      {
+        "team": "CLE vs HOU",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": 0.672,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.461,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": -0.01831,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Deshaun Watson",
+      "away": "C.J. Stroud"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": -0.0286208,
+      "form": -0.0103792,
+      "qb-statistical": -0.01831
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "CLE: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "CLE: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "HOU: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "HOU: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_10_JAX_TEN",
+    "kickoff": "2026-11-15T18:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "TEN",
+    "away": "JAX",
+    "homeProbability": 0.24462,
+    "baselineHomeProbability": 0.2568,
+    "predHome": 19.5,
+    "predAway": 26.8,
+    "predMargin": -7.29,
+    "predTotal": 46.3,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": -0.01218,
+    "personnelMarginDelta": -0.59,
+    "personnelEvidence": [
+      {
+        "team": "TEN vs JAX",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": 0.59,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.2568,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": -0.01218,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [
+      "TEN: James Williams Sr. questionable — NOT included as OUT"
+    ],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Cam Ward",
+      "away": "Trevor Lawrence"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": -0.1691344,
+      "form": -0.0740656,
+      "qb-statistical": -0.01218
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "TEN: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "TEN: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "JAX: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "JAX: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_10_KC_ATL",
+    "kickoff": "2026-11-15T18:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "ATL",
+    "away": "KC",
+    "homeProbability": 0.42286,
+    "baselineHomeProbability": 0.4317,
+    "predHome": 20.6,
+    "predAway": 22.5,
+    "predMargin": -1.83,
+    "predTotal": 43.1,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": -0.00884,
+    "personnelMarginDelta": -0.328,
+    "personnelEvidence": [
+      {
+        "team": "ATL vs KC",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": 0.328,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.4317,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": -0.00884,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [
+      "KC: Jaylon Moore questionable — NOT included as OUT",
+      "KC: Xavier Worthy questionable — NOT included as OUT",
+      "KC: Patrick Mahomes questionable — NOT included as OUT"
+    ],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Michael Penix Jr.",
+      "away": "Patrick Mahomes"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": -0.0507891,
+      "form": -0.0175109,
+      "qb-statistical": -0.00884
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "ATL: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "ATL: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "KC: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "KC: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_10_MIA_IND",
+    "kickoff": "2026-11-15T18:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "IND",
+    "away": "MIA",
+    "homeProbability": 0.57861,
+    "baselineHomeProbability": 0.5831,
+    "predHome": 23.3,
+    "predAway": 21.1,
+    "predMargin": 2.23,
+    "predTotal": 44.5,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": -0.00449,
+    "personnelMarginDelta": -0.167,
+    "personnelEvidence": [
+      {
+        "team": "IND vs MIA",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": 0.167,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.5831,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": -0.00449,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [
+      "IND: Jalen Travis questionable — NOT included as OUT",
+      "IND: Mo Alie-Cox questionable — NOT included as OUT",
+      "IND: Jaylon Carlies questionable — NOT included as OUT",
+      "MIA: Malik Willis questionable — NOT included as OUT",
+      "MIA: Will Kacmarek questionable — NOT included as OUT"
+    ],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Daniel Jones",
+      "away": "Malik Willis"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.0558997,
+      "form": 0.0272003,
+      "qb-statistical": -0.00449
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "IND: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "IND: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "MIA: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "MIA: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_10_MIN_GB",
+    "kickoff": "2026-11-15T18:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "GB",
+    "away": "MIN",
+    "homeProbability": 0.58164,
+    "baselineHomeProbability": 0.5612,
+    "predHome": 22.0,
+    "predAway": 18.6,
+    "predMargin": 3.36,
+    "predTotal": 40.6,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": 0.02044,
+    "personnelMarginDelta": 0.759,
+    "personnelEvidence": [
+      {
+        "team": "GB vs MIN",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": -0.759,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.5612,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.02044,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [
+      "GB: Bo Melton questionable — NOT included as OUT",
+      "GB: Ty'Ron Hopper questionable — NOT included as OUT",
+      "MIN: Kyle Van Noy questionable — NOT included as OUT",
+      "MIN: Theo Jackson questionable — NOT included as OUT"
+    ],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Jordan Love",
+      "away": "Kyler Murray"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.0318841,
+      "form": 0.0293159,
+      "qb-statistical": 0.02044
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "GB: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "GB: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "MIN: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "MIN: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_10_LA_ARI",
+    "kickoff": "2026-11-15T21:05:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "ARI",
+    "away": "LA",
+    "homeProbability": 0.349,
+    "baselineHomeProbability": 0.349,
+    "predHome": 20.6,
+    "predAway": 24.3,
+    "predMargin": -3.8,
+    "predTotal": 44.9,
+    "model": "Elo + form (research overlays OFF)",
+    "overlayType": "none",
+    "personnelStatus": "no-qualifying-evidence",
+    "personnelHomeDelta": 0.0,
+    "personnelMarginDelta": 0,
+    "personnelEvidence": [],
+    "prePersonnelProbability": null,
+    "provisionalPlayerApplied": false,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.0,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [
+      "ARI: changed QB projection, but direction unverified — no automatic penalty",
+      "ARI: Hjalte Froholdt questionable — NOT included as OUT",
+      "ARI: Roy Lopez questionable — NOT included as OUT",
+      "LA: Steve Avila questionable — NOT included as OUT"
+    ],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Gardner Minshew II",
+      "away": "Matthew Stafford"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": -0.1079213,
+      "form": -0.0430787
+    },
+    "layerExplanationStatus": "model-derived",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "ARI: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "ARI: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "LA: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "LA: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_10_SEA_LV",
+    "kickoff": "2026-11-15T21:05:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "LV",
+    "away": "SEA",
+    "homeProbability": 0.34166,
+    "baselineHomeProbability": 0.3315,
+    "predHome": 21.8,
+    "predAway": 25.1,
+    "predMargin": -3.19,
+    "predTotal": 46.9,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": 0.01016,
+    "personnelMarginDelta": 0.414,
+    "personnelEvidence": [
+      {
+        "team": "LV vs SEA",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": -0.414,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.3315,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.01016,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [
+      "LV: Trey Zuhn III questionable — NOT included as OUT",
+      "SEA: Drew Lock questionable — NOT included as OUT"
+    ],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Kirk Cousins",
+      "away": "Sam Darnold"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": -0.1270754,
+      "form": -0.0414246,
+      "qb-statistical": 0.01016
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "LV: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "LV: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "SEA: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "SEA: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_10_SF_DAL",
+    "kickoff": "2026-11-15T21:25:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "DAL",
+    "away": "SF",
+    "homeProbability": 0.41087,
+    "baselineHomeProbability": 0.4134,
+    "predHome": 24.1,
+    "predAway": 25.2,
+    "predMargin": -1.2,
+    "predTotal": 49.4,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": -0.00253,
+    "personnelMarginDelta": -0.095,
+    "personnelEvidence": [
+      {
+        "team": "DAL vs SF",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": 0.095,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.4134,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": -0.00253,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [
+      "DAL: Donovan Ezeiruaku questionable — NOT included as OUT",
+      "DAL: Jonathan Mingo questionable — NOT included as OUT",
+      "SF: Deommodore Lenoir questionable — NOT included as OUT",
+      "SF: Renardo Green questionable — NOT included as OUT"
+    ],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Dak Prescott",
+      "away": "Brock Purdy"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": -0.0736465,
+      "form": -0.0129535,
+      "qb-statistical": -0.00253
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "DAL: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "DAL: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "SF: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "SF: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_10_PIT_CIN",
+    "kickoff": "2026-11-16T01:20:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "CIN",
+    "away": "PIT",
+    "homeProbability": 0.58173,
+    "baselineHomeProbability": 0.564,
+    "predHome": 24.5,
+    "predAway": 21.1,
+    "predMargin": 3.46,
+    "predTotal": 45.7,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": 0.01773,
+    "personnelMarginDelta": 0.659,
+    "personnelEvidence": [
+      {
+        "team": "CIN vs PIT",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": -0.659,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.564,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.01773,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Joe Burrow",
+      "away": "Aaron Rodgers"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.0316481,
+      "form": 0.0323519,
+      "qb-statistical": 0.01773
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "CIN: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "CIN: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "PIT: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "PIT: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_10_LAC_BAL",
+    "kickoff": "2026-11-17T01:15:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "BAL",
+    "away": "LAC",
+    "homeProbability": 0.65944,
+    "baselineHomeProbability": 0.6572,
+    "predHome": 24.1,
+    "predAway": 19.9,
+    "predMargin": 4.29,
+    "predTotal": 44.0,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": 0.00224,
+    "personnelMarginDelta": 0.09,
+    "personnelEvidence": [
+      {
+        "team": "BAL vs LAC",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": -0.09,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.6572,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.00224,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [
+      "BAL: changed QB projection, but direction unverified — no automatic penalty",
+      "BAL: Kyle Hamilton questionable — NOT included as OUT",
+      "BAL: Adisa Isaac questionable — NOT included as OUT",
+      "LAC: Ladd McConkey questionable — NOT included as OUT",
+      "LAC: Justin Herbert questionable — NOT included as OUT",
+      "LAC: Isas Waxter questionable — NOT included as OUT"
+    ],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Jacoby Brissett",
+      "away": "Justin Herbert"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.1094641,
+      "form": 0.0477359,
+      "qb-statistical": 0.00224
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "BAL: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "BAL: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "LAC: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "LAC: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_11_IND_HOU",
+    "kickoff": "2026-11-20T01:15:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "HOU",
+    "away": "IND",
+    "homeProbability": 0.73702,
+    "baselineHomeProbability": 0.7211,
+    "predHome": 28.1,
+    "predAway": 20.1,
+    "predMargin": 7.93,
+    "predTotal": 48.2,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": 0.01592,
+    "personnelMarginDelta": 0.733,
+    "personnelEvidence": [
+      {
+        "team": "HOU vs IND",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": -0.733,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.7211,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.01592,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "C.J. Stroud",
+      "away": "Daniel Jones"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.1416352,
+      "form": 0.0794648,
+      "qb-statistical": 0.01592
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "HOU: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "HOU: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "IND: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "IND: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_11_ARI_KC",
+    "kickoff": "2026-11-22T18:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "KC",
+    "away": "ARI",
+    "homeProbability": 0.7527,
+    "baselineHomeProbability": 0.7527,
+    "predHome": 25.8,
+    "predAway": 18.0,
+    "predMargin": 7.8,
+    "predTotal": 43.8,
+    "model": "Elo + form (research overlays OFF)",
+    "overlayType": "none",
+    "personnelStatus": "future-week-monitor-only",
+    "personnelHomeDelta": 0.0,
+    "personnelMarginDelta": 0,
+    "personnelEvidence": [],
+    "prePersonnelProbability": null,
+    "provisionalPlayerApplied": false,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.0,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Patrick Mahomes",
+      "away": "Gardner Minshew II"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.1667843,
+      "form": 0.0859157
+    },
+    "layerExplanationStatus": "model-derived",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "KC: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "KC: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "ARI: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "ARI: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_11_BAL_CAR",
+    "kickoff": "2026-11-22T18:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "CAR",
+    "away": "BAL",
+    "homeProbability": 0.52071,
+    "baselineHomeProbability": 0.5091,
+    "predHome": 24.7,
+    "predAway": 22.2,
+    "predMargin": 2.52,
+    "predTotal": 46.8,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": 0.01161,
+    "personnelMarginDelta": 0.423,
+    "personnelEvidence": [
+      {
+        "team": "CAR vs BAL",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": -0.423,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.5091,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.01161,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Bryce Young",
+      "away": "Jacoby Brissett"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": -0.0151724,
+      "form": 0.0242724,
+      "qb-statistical": 0.01161
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "CAR: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "CAR: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "BAL: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "BAL: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_11_JAX_NYG",
+    "kickoff": "2026-11-22T18:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "NYG",
+    "away": "JAX",
+    "homeProbability": 0.39875,
+    "baselineHomeProbability": 0.4068,
+    "predHome": 21.1,
+    "predAway": 23.7,
+    "predMargin": -2.5,
+    "predTotal": 44.8,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": -0.00805,
+    "personnelMarginDelta": -0.304,
+    "personnelEvidence": [
+      {
+        "team": "NYG vs JAX",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": 0.304,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.4068,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": -0.00805,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "J.J. McCarthy",
+      "away": "Trevor Lawrence"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": -0.0674715,
+      "form": -0.0257285,
+      "qb-statistical": -0.00805
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "NYG: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "NYG: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "JAX: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "JAX: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_11_MIA_BUF",
+    "kickoff": "2026-11-22T18:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "BUF",
+    "away": "MIA",
+    "homeProbability": 0.83672,
+    "baselineHomeProbability": 0.8292,
+    "predHome": 28.3,
+    "predAway": 17.5,
+    "predMargin": 10.89,
+    "predTotal": 45.8,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": 0.00752,
+    "personnelMarginDelta": 0.491,
+    "personnelEvidence": [
+      {
+        "team": "BUF vs MIA",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": -0.491,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.8292,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.00752,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Josh Allen",
+      "away": "Malik Willis"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.2190122,
+      "form": 0.1101878,
+      "qb-statistical": 0.00752
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "BUF: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "BUF: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "MIA: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "MIA: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_11_NO_CHI",
+    "kickoff": "2026-11-22T18:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "CHI",
+    "away": "NO",
+    "homeProbability": 0.74504,
+    "baselineHomeProbability": 0.7406,
+    "predHome": 26.5,
+    "predAway": 19.9,
+    "predMargin": 6.61,
+    "predTotal": 46.4,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": 0.00444,
+    "personnelMarginDelta": 0.211,
+    "personnelEvidence": [
+      {
+        "team": "CHI vs NO",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": -0.211,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.7406,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.00444,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Caleb Williams",
+      "away": "Tyler Shough"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.1686765,
+      "form": 0.0719235,
+      "qb-statistical": 0.00444
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "CHI: no agreement between two current dated QB depth-chart observations",
+      "CHI: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "NO: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "NO: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_11_TB_DET",
+    "kickoff": "2026-11-22T18:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "DET",
+    "away": "TB",
+    "homeProbability": 0.70802,
+    "baselineHomeProbability": 0.6934,
+    "predHome": 24.2,
+    "predAway": 19.4,
+    "predMargin": 4.83,
+    "predTotal": 43.6,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": 0.01462,
+    "personnelMarginDelta": 0.634,
+    "personnelEvidence": [
+      {
+        "team": "DET vs TB",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": -0.634,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.6934,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.01462,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Jared Goff",
+      "away": "Baker Mayfield"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.145079,
+      "form": 0.048321,
+      "qb-statistical": 0.01462
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "DET: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "DET: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "TB: no agreement between two current dated QB depth-chart observations",
+      "TB: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_11_TEN_DAL",
+    "kickoff": "2026-11-22T18:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "DAL",
+    "away": "TEN",
+    "homeProbability": 0.73952,
+    "baselineHomeProbability": 0.7325,
+    "predHome": 27.9,
+    "predAway": 21.2,
+    "predMargin": 6.63,
+    "predTotal": 49.1,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": 0.00702,
+    "personnelMarginDelta": 0.328,
+    "personnelEvidence": [
+      {
+        "team": "DAL vs TEN",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": -0.328,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.7325,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.00702,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Dak Prescott",
+      "away": "Cam Ward"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.1621991,
+      "form": 0.0703009,
+      "qb-statistical": 0.00702
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "DAL: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "DAL: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "TEN: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "TEN: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_11_NYJ_LAC",
+    "kickoff": "2026-11-22T21:05:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "LAC",
+    "away": "NYJ",
+    "homeProbability": 0.62694,
+    "baselineHomeProbability": 0.6413,
+    "predHome": 23.4,
+    "predAway": 21.2,
+    "predMargin": 2.24,
+    "predTotal": 44.6,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": -0.01436,
+    "personnelMarginDelta": -0.563,
+    "personnelEvidence": [
+      {
+        "team": "LAC vs NYJ",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": 0.563,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.6413,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": -0.01436,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Justin Herbert",
+      "away": "Geno Smith"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.1091104,
+      "form": 0.0321896,
+      "qb-statistical": -0.01436
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "LAC: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "LAC: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "NYJ: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "NYJ: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_11_LV_DEN",
+    "kickoff": "2026-11-22T21:25:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "DEN",
+    "away": "LV",
+    "homeProbability": 0.79481,
+    "baselineHomeProbability": 0.7944,
+    "predHome": 28.2,
+    "predAway": 20.0,
+    "predMargin": 8.22,
+    "predTotal": 48.2,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": 0.00041,
+    "personnelMarginDelta": 0.023,
+    "personnelEvidence": [
+      {
+        "team": "DEN vs LV",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": -0.023,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.7944,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.00041,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Bo Nix",
+      "away": "Kirk Cousins"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.2049203,
+      "form": 0.0894797,
+      "qb-statistical": 0.00041
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "DEN: no agreement between two current dated QB depth-chart observations",
+      "DEN: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "LV: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "LV: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_11_PIT_PHI",
+    "kickoff": "2026-11-22T21:25:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "PHI",
+    "away": "PIT",
+    "homeProbability": 0.4356,
+    "baselineHomeProbability": 0.4356,
+    "predHome": 19.2,
+    "predAway": 21.5,
+    "predMargin": -2.3,
+    "predTotal": 40.8,
+    "model": "Elo + form (research overlays OFF)",
+    "overlayType": "none",
+    "personnelStatus": "future-week-monitor-only",
+    "personnelHomeDelta": 0.0,
+    "personnelMarginDelta": 0,
+    "personnelEvidence": [],
+    "prePersonnelProbability": null,
+    "provisionalPlayerApplied": false,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.0,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Joe Milton III",
+      "away": "Aaron Rodgers"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": -0.0379501,
+      "form": -0.0264499
+    },
+    "layerExplanationStatus": "model-derived",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "PHI: no agreement between two current dated QB depth-chart observations",
+      "PHI: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "PIT: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "PIT: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_11_MIN_SF",
+    "kickoff": "2026-11-23T01:20:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "SF",
+    "away": "MIN",
+    "homeProbability": 0.5594,
+    "baselineHomeProbability": 0.5427,
+    "predHome": 21.6,
+    "predAway": 19.7,
+    "predMargin": 1.91,
+    "predTotal": 41.3,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": 0.0167,
+    "personnelMarginDelta": 0.614,
+    "personnelEvidence": [
+      {
+        "team": "SF vs MIN",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": -0.614,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.5427,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.0167,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Brock Purdy",
+      "away": "Kyler Murray"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.0273641,
+      "form": 0.0153359,
+      "qb-statistical": 0.0167
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "SF: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "SF: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "MIN: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "MIN: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_11_CIN_WAS",
+    "kickoff": "2026-11-24T01:15:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "WAS",
+    "away": "CIN",
+    "homeProbability": 0.42192,
+    "baselineHomeProbability": 0.4387,
+    "predHome": 22.5,
+    "predAway": 24.9,
+    "predMargin": -2.32,
+    "predTotal": 47.4,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": -0.01678,
+    "personnelMarginDelta": -0.622,
+    "personnelEvidence": [
+      {
+        "team": "WAS vs CIN",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": 0.622,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.4387,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": -0.01678,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Jayden Daniels",
+      "away": "Joe Burrow"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": -0.0412438,
+      "form": -0.0200562,
+      "qb-statistical": -0.01678
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "WAS: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "WAS: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "CIN: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "CIN: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_12_GB_LA",
+    "kickoff": "2026-11-26T01:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "LA",
+    "away": "GB",
+    "homeProbability": 0.58497,
+    "baselineHomeProbability": 0.5944,
+    "predHome": 23.7,
+    "predAway": 21.4,
+    "predMargin": 2.35,
+    "predTotal": 45.1,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": -0.00943,
+    "personnelMarginDelta": -0.354,
+    "personnelEvidence": [
+      {
+        "team": "LA vs GB",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": 0.354,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.5944,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": -0.00943,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Matthew Stafford",
+      "away": "Jordan Love"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.0633955,
+      "form": 0.0310045,
+      "qb-statistical": -0.00943
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "LA: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "LA: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "GB: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "GB: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_12_CHI_DET",
+    "kickoff": "2026-11-26T18:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "DET",
+    "away": "CHI",
+    "homeProbability": 0.57931,
+    "baselineHomeProbability": 0.5768,
+    "predHome": 24.1,
+    "predAway": 22.0,
+    "predMargin": 2.19,
+    "predTotal": 46.1,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": 0.00251,
+    "personnelMarginDelta": 0.094,
+    "personnelEvidence": [
+      {
+        "team": "DET vs CHI",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": -0.094,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.5768,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.00251,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Jared Goff",
+      "away": "Caleb Williams"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.052456,
+      "form": 0.024344,
+      "qb-statistical": 0.00251
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "DET: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "DET: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "CHI: no agreement between two current dated QB depth-chart observations",
+      "CHI: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_12_PHI_DAL",
+    "kickoff": "2026-11-26T21:30:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "DAL",
+    "away": "PHI",
+    "homeProbability": 0.6027,
+    "baselineHomeProbability": 0.6027,
+    "predHome": 25.1,
+    "predAway": 20.8,
+    "predMargin": 4.4,
+    "predTotal": 45.9,
+    "model": "Elo + form (research overlays OFF)",
+    "overlayType": "none",
+    "personnelStatus": "future-week-monitor-only",
+    "personnelHomeDelta": 0.0,
+    "personnelMarginDelta": 0,
+    "personnelEvidence": [],
+    "prePersonnelProbability": null,
+    "provisionalPlayerApplied": false,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.0,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Dak Prescott",
+      "away": "Joe Milton III"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.0529241,
+      "form": 0.0497759
+    },
+    "layerExplanationStatus": "model-derived",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "DAL: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "DAL: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "PHI: no agreement between two current dated QB depth-chart observations",
+      "PHI: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_12_KC_BUF",
+    "kickoff": "2026-11-27T01:20:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "BUF",
+    "away": "KC",
+    "homeProbability": 0.68903,
+    "baselineHomeProbability": 0.6877,
+    "predHome": 25.3,
+    "predAway": 20.3,
+    "predMargin": 5.06,
+    "predTotal": 45.6,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": 0.00133,
+    "personnelMarginDelta": 0.056,
+    "personnelEvidence": [
+      {
+        "team": "BUF vs KC",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": -0.056,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.6877,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.00133,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Josh Allen",
+      "away": "Patrick Mahomes"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.1308288,
+      "form": 0.0568712,
+      "qb-statistical": 0.00133
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "BUF: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "BUF: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "KC: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "KC: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_12_DEN_PIT",
+    "kickoff": "2026-11-27T20:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "PIT",
+    "away": "DEN",
+    "homeProbability": 0.49256,
+    "baselineHomeProbability": 0.5006,
+    "predHome": 21.6,
+    "predAway": 20.4,
+    "predMargin": 1.11,
+    "predTotal": 41.9,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": -0.00804,
+    "personnelMarginDelta": -0.292,
+    "personnelEvidence": [
+      {
+        "team": "PIT vs DEN",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": 0.292,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.5006,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": -0.00804,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Aaron Rodgers",
+      "away": "Bo Nix"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": -0.0156552,
+      "form": 0.0162552,
+      "qb-statistical": -0.00804
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "PIT: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "PIT: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "DEN: no agreement between two current dated QB depth-chart observations",
+      "DEN: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_12_ATL_MIN",
+    "kickoff": "2026-11-29T18:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "MIN",
+    "away": "ATL",
+    "homeProbability": 0.70935,
+    "baselineHomeProbability": 0.7147,
+    "predHome": 22.6,
+    "predAway": 17.1,
+    "predMargin": 5.56,
+    "predTotal": 39.7,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": -0.00535,
+    "personnelMarginDelta": -0.237,
+    "personnelEvidence": [
+      {
+        "team": "MIN vs ATL",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": 0.237,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.7147,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": -0.00535,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Kyler Murray",
+      "away": "Michael Penix Jr."
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.1499674,
+      "form": 0.0647326,
+      "qb-statistical": -0.00535
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "MIN: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "MIN: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "ATL: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "ATL: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_12_BAL_HOU",
+    "kickoff": "2026-11-29T18:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "HOU",
+    "away": "BAL",
+    "homeProbability": 0.65865,
+    "baselineHomeProbability": 0.6391,
+    "predHome": 27.1,
+    "predAway": 20.5,
+    "predMargin": 6.48,
+    "predTotal": 47.6,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": 0.01955,
+    "personnelMarginDelta": 0.78,
+    "personnelEvidence": [
+      {
+        "team": "HOU vs BAL",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": -0.78,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.6391,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.01955,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "C.J. Stroud",
+      "away": "Jacoby Brissett"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.0745252,
+      "form": 0.0645748,
+      "qb-statistical": 0.01955
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "HOU: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "HOU: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "BAL: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "BAL: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_12_LV_CLE",
+    "kickoff": "2026-11-29T18:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "CLE",
+    "away": "LV",
+    "homeProbability": 0.6142,
+    "baselineHomeProbability": 0.6252,
+    "predHome": 25.0,
+    "predAway": 21.7,
+    "predMargin": 3.28,
+    "predTotal": 46.7,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": -0.011,
+    "personnelMarginDelta": -0.424,
+    "personnelEvidence": [
+      {
+        "team": "CLE vs LV",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": 0.424,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.6252,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": -0.011,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Deshaun Watson",
+      "away": "Kirk Cousins"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.0829636,
+      "form": 0.0422364,
+      "qb-statistical": -0.011
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "CLE: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "CLE: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "LV: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "LV: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_12_NO_CIN",
+    "kickoff": "2026-11-29T18:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "CIN",
+    "away": "NO",
+    "homeProbability": 0.72732,
+    "baselineHomeProbability": 0.715,
+    "predHome": 27.8,
+    "predAway": 20.6,
+    "predMargin": 7.16,
+    "predTotal": 48.4,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": 0.01232,
+    "personnelMarginDelta": 0.557,
+    "personnelEvidence": [
+      {
+        "team": "CIN vs NO",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": -0.557,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.715,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.01232,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Joe Burrow",
+      "away": "Tyler Shough"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.1418616,
+      "form": 0.0731384,
+      "qb-statistical": 0.01232
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "CIN: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "CIN: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "NO: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "NO: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_12_NYG_IND",
+    "kickoff": "2026-11-29T18:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "IND",
+    "away": "NYG",
+    "homeProbability": 0.4792,
+    "baselineHomeProbability": 0.4933,
+    "predHome": 21.9,
+    "predAway": 23.7,
+    "predMargin": -1.61,
+    "predTotal": 45.6,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": -0.0141,
+    "personnelMarginDelta": -0.513,
+    "personnelEvidence": [
+      {
+        "team": "IND vs NYG",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": 0.513,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.4933,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": -0.0141,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Daniel Jones",
+      "away": "J.J. McCarthy"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.0060579,
+      "form": -0.0127579,
+      "qb-statistical": -0.0141
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "IND: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "IND: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "NYG: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "NYG: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_12_NYJ_MIA",
+    "kickoff": "2026-11-29T18:00:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "MIA",
+    "away": "NYJ",
+    "homeProbability": 0.62176,
+    "baselineHomeProbability": 0.6284,
+    "predHome": 23.7,
+    "predAway": 20.7,
+    "predMargin": 2.94,
+    "predTotal": 44.4,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": -0.00664,
+    "personnelMarginDelta": -0.257,
+    "personnelEvidence": [
+      {
+        "team": "MIA vs NYJ",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": 0.257,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.6284,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": -0.00664,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Malik Willis",
+      "away": "Geno Smith"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.0917788,
+      "form": 0.0366212,
+      "qb-statistical": -0.00664
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "MIA: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "MIA: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "NYJ: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "NYJ: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_12_TEN_JAX",
+    "kickoff": "2026-11-29T21:05:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "JAX",
+    "away": "TEN",
+    "homeProbability": 0.84757,
+    "baselineHomeProbability": 0.839,
+    "predHome": 29.0,
+    "predAway": 17.2,
+    "predMargin": 11.79,
+    "predTotal": 46.3,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": 0.00857,
+    "personnelMarginDelta": 0.59,
+    "personnelEvidence": [
+      {
+        "team": "JAX vs TEN",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": -0.59,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.839,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.00857,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Trevor Lawrence",
+      "away": "Cam Ward"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.2226067,
+      "form": 0.1163933,
+      "qb-statistical": 0.00857
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "JAX: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "JAX: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "TEN: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "TEN: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
+  },
+  {
+    "gameId": "2026_12_SEA_SF",
+    "kickoff": "2026-11-29T21:25:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "kind": "refresh",
+    "origin": "automated-verified-source-refresh",
+    "home": "SF",
+    "away": "SEA",
+    "homeProbability": 0.58992,
+    "baselineHomeProbability": 0.5744,
+    "predHome": 23.6,
+    "predAway": 20.6,
+    "predMargin": 2.98,
+    "predTotal": 44.1,
+    "model": "Elo + form (research overlays OFF) + provisional QB/replacement and injury context",
+    "overlayType": "none",
+    "personnelStatus": "statistical QB — PROVISIONAL",
+    "personnelHomeDelta": 0.01552,
+    "personnelMarginDelta": 0.58,
+    "personnelEvidence": [
+      {
+        "team": "SF vs SEA",
+        "side": "both",
+        "kind": "qb-efficiency",
+        "player": "Historical QB matchup",
+        "status": "Pregame EPA / sack / starter-change features",
+        "pointsAgainstTeam": -0.58,
+        "evidence": "Earlier completed-season statistical QB calibration only",
+        "assumption": "Provisional research effect (not certified starter or prospectively validated)"
+      }
+    ],
+    "prePersonnelProbability": 0.5744,
+    "provisionalPlayerApplied": true,
+    "personnelSourceMode": "fresh",
+    "personnelSourceObservedAt": "2026-11-10T04:41:24.957716+00:00",
+    "playerEffectDeltas": {
+      "qb-statistical": 0.01552,
+      "qb-replacement": 0.0,
+      "other-injuries": 0.0
+    },
+    "personnelWarnings": [],
+    "mediaRetrievedAt": "2026-11-10T04:41:24.957716+00:00",
+    "qbNames": {
+      "home": "Brock Purdy",
+      "away": "Sam Darnold"
+    },
+    "provisionalPlayerRules": true,
+    "appliedLayerDeltas": {
+      "elo": 0.0468202,
+      "form": 0.0275798,
+      "qb-statistical": 0.01552
+    },
+    "layerExplanationStatus": "provisional",
+    "verificationLevel": "review",
+    "verificationAt": "2026-11-10T04:41:24.957716+00:00",
+    "verificationIssues": [
+      "SF: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "SF: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "SEA: matching ESPN-derived depth charts are not independent QB starter confirmation",
+      "SEA: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ],
+    "reportMirrorStatus": "snapshot-only",
+    "reportTimestampBasis": {
+      "home": "unavailable",
+      "away": "unavailable"
+    }
   }
 ]

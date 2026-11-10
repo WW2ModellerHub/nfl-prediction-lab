@@ -844,5 +844,14 @@
     "baselineHomeProbability": 0.838982,
     "model": "joint-xgb-v2-2026-11-09",
     "researchOnly": true
+  },
+  {
+    "gameId": "2026_12_SEA_SF",
+    "kickoff": "2026-11-29T21:25:00+00:00",
+    "recordedAt": "2026-11-10T04:41:24.957716+00:00",
+    "homeProbability": 0.631356,
+    "baselineHomeProbability": 0.574441,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
   }
 ]
