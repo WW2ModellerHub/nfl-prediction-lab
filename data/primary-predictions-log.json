@@ -898,5 +898,35 @@
     "eligibleForBetting": false,
     "evidenceLevel": "hold",
     "note": "First genuinely published provisional pick, not reconstructed"
+  },
+  {
+    "gameId": "2026_11_MIA_BUF",
+    "home": "BUF",
+    "away": "MIA",
+    "kickoff": "2026-11-22T18:00:00+00:00",
+    "recordedAt": "2026-11-11T02:52:10.844337+00:00",
+    "modelVersion": "primary-provisional-v2+joint-xgb-v2-2026-11-09",
+    "kind": "first-versioned-primary",
+    "homeProbability": 0.882704,
+    "originalHomeProbability": 0.8292,
+    "researchOnly": true,
+    "eligibleForBetting": false,
+    "evidenceLevel": "hold",
+    "note": "First genuinely published provisional pick, not reconstructed"
+  },
+  {
+    "gameId": "2026_12_NYJ_MIA",
+    "home": "MIA",
+    "away": "NYJ",
+    "kickoff": "2026-11-29T18:00:00+00:00",
+    "recordedAt": "2026-11-11T02:52:10.844337+00:00",
+    "modelVersion": "primary-provisional-v2+joint-xgb-v2-2026-11-09",
+    "kind": "first-versioned-primary",
+    "homeProbability": 0.564066,
+    "originalHomeProbability": 0.6284,
+    "researchOnly": true,
+    "eligibleForBetting": false,
+    "evidenceLevel": "hold",
+    "note": "First genuinely published provisional pick, not reconstructed"
   }
 ]
