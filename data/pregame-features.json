@@ -1594,6 +1594,64 @@
       },
       "trainingEligible": false,
       "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_10_WAS_NYG",
+      "season": 2026,
+      "week": 10,
+      "kickoff": "2026-11-13T01:15:00+00:00",
+      "recordedAt": "2026-11-12T20:53:13.907134+00:00",
+      "window": "late",
+      "home": "NYG",
+      "away": "WAS",
+      "baselineHomeProbability": 0.6022,
+      "publishedHomeProbability": 0.60906,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.669965,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "As-of projected QB with prior statistics",
+        "Historical play-by-play tactical observations",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "forecast",
+        "roof": "outdoors",
+        "stadiumId": "NYC01",
+        "source": "Open-Meteo",
+        "sourceRetrievedAt": "2026-11-12T20:53:13.907134+00:00",
+        "forecastFor": "2026-11-13T01:00:00+00:00",
+        "values": {
+          "temperatureC": 9.1,
+          "precipitationChancePct": 72.0,
+          "windMph": 13.8,
+          "gustMph": 34.2,
+          "snowfallCm": 0.0
+        }
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0039923",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 189.0,
+          "priorEPA": 0.1
+        },
+        "away": {
+          "id": "00-0039910",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 242.0,
+          "priorEPA": -0.064
+        }
+      },
+      "injuries": {
+        "status": "snapshot-cached",
+        "asOf": "2026-11-12T16:02:55.248376+00:00",
+        "observedFlagCounts": null,
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
     }
   ]
 }
