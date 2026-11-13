@@ -928,5 +928,20 @@
     "eligibleForBetting": false,
     "evidenceLevel": "hold",
     "note": "First genuinely published provisional pick, not reconstructed"
+  },
+  {
+    "gameId": "2026_12_WAS_ARI",
+    "home": "ARI",
+    "away": "WAS",
+    "kickoff": "2026-11-29T21:25:00+00:00",
+    "recordedAt": "2026-11-13T03:28:25.872968+00:00",
+    "modelVersion": "primary-provisional-v2+joint-xgb-v2-2026-11-09",
+    "kind": "first-versioned-primary",
+    "homeProbability": 0.443585,
+    "originalHomeProbability": 0.5089,
+    "researchOnly": true,
+    "eligibleForBetting": false,
+    "evidenceLevel": "review",
+    "note": "First genuinely published provisional pick, not reconstructed"
   }
 ]

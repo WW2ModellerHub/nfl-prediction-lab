@@ -1937,5 +1937,49 @@
     "baselineHomeProbability": 0.63182,
     "adjustmentActive": false,
     "situationalProbabilityDelta": 0
+  },
+  {
+    "gameId": "2026_13_KC_LA",
+    "recordedAt": "2026-11-13T03:28:25.872968+00:00",
+    "kickoff": "2026-12-04T01:15:00+00:00",
+    "home": "LA",
+    "away": "KC",
+    "homeProbability": 0.59749,
+    "predMargin": 2.72,
+    "predTotal": 42.78,
+    "situationalSignals": [],
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "tacticalProbabilityDelta": 0,
+    "playerProbabilityDelta": 0,
+    "qbProbabilityDelta": 0,
+    "qbResearch": {
+      "eligible": true,
+      "features": [
+        -0.09999999999999999,
+        0.0040000000000000036,
+        0
+      ],
+      "status": "eligible",
+      "reason": "Prior-game QB observations available",
+      "source": "Recorded prior starter or dated pregame depth chart, not game-day confirmation"
+    },
+    "qbObserved": {
+      "home": "00-0026498",
+      "away": "00-0033873"
+    },
+    "injuryReportAsOf": null,
+    "qbInjuryProbabilityWeight": 0,
+    "playerFeatures": null,
+    "playerImpactStatus": "informational",
+    "tacticalFeatures": [
+      -0.5557982635494807,
+      -0.28195274795781805,
+      0.2972234050626979,
+      -0.2280746340484195
+    ],
+    "baselineHomeProbability": 0.59749,
+    "adjustmentActive": false,
+    "situationalProbabilityDelta": 0
   }
 ]

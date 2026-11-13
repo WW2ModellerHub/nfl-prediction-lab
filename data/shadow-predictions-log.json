@@ -853,5 +853,14 @@
     "baselineHomeProbability": 0.574441,
     "model": "joint-xgb-v2-2026-11-09",
     "researchOnly": true
+  },
+  {
+    "gameId": "2026_12_WAS_ARI",
+    "kickoff": "2026-11-29T21:25:00+00:00",
+    "recordedAt": "2026-11-13T03:28:25.872968+00:00",
+    "homeProbability": 0.443585,
+    "baselineHomeProbability": 0.508898,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
   }
 ]
