@@ -943,5 +943,35 @@
     "eligibleForBetting": false,
     "evidenceLevel": "review",
     "note": "First genuinely published provisional pick, not reconstructed"
+  },
+  {
+    "gameId": "2026_10_HOU_CLE",
+    "home": "CLE",
+    "away": "HOU",
+    "kickoff": "2026-11-15T18:00:00+00:00",
+    "recordedAt": "2026-11-14T14:17:54.501451+00:00",
+    "modelVersion": "primary-provisional-v2+joint-xgb-v2-2026-11-09",
+    "kind": "first-versioned-primary",
+    "homeProbability": 0.381437,
+    "originalHomeProbability": 0.46176,
+    "researchOnly": true,
+    "eligibleForBetting": false,
+    "evidenceLevel": "review",
+    "note": "First genuinely published provisional pick, not reconstructed"
+  },
+  {
+    "gameId": "2026_10_KC_ATL",
+    "home": "ATL",
+    "away": "KC",
+    "kickoff": "2026-11-15T18:00:00+00:00",
+    "recordedAt": "2026-11-14T14:17:54.501451+00:00",
+    "modelVersion": "primary-provisional-v2+joint-xgb-v2-2026-11-09",
+    "kind": "first-versioned-primary",
+    "homeProbability": 0.351669,
+    "originalHomeProbability": 0.43228,
+    "researchOnly": true,
+    "eligibleForBetting": false,
+    "evidenceLevel": "review",
+    "note": "First genuinely published provisional pick, not reconstructed"
   }
 ]
