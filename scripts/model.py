@@ -266,6 +266,7 @@ def human_game(g,p,kind='upcoming'):
     out={'id':g['id'],'season':g['season'],'week':g['week'],'type':g['type'],'kickoff':g['kickoff'].isoformat(),
          'home':g['home'],'away':g['away'],'homeName':TEAM_NAMES[g['home']], 'awayName':TEAM_NAMES[g['away']],
          'stadium':g.get('stadium',''),'stadiumId':g.get('stadium_id',''),'roof':g.get('roof',''),
+         'neutral':bool(g.get('neutral')),'homeAdvantageElo':p.get('home_advantage',0),
          'homeProbability':round(prob,4),'awayProbability':round(1-prob,4),
          'predHome':round(p['home_points'],1),'predAway':round(p['away_points'],1),
          'predTotal':round(p['total'],1),'predMargin':round(p['margin'],1),
