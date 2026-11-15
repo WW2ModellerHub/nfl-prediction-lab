@@ -862,5 +862,14 @@
     "baselineHomeProbability": 0.508898,
     "model": "joint-xgb-v2-2026-11-09",
     "researchOnly": true
+  },
+  {
+    "gameId": "2026_12_NE_LAC",
+    "kickoff": "2026-11-30T01:20:00+00:00",
+    "recordedAt": "2026-11-15T14:51:53.132590+00:00",
+    "homeProbability": 0.326184,
+    "baselineHomeProbability": 0.399681,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
   }
 ]
