@@ -23,6 +23,7 @@ from model import simulate as forecast_simulate
 from qb_injuries import load_historical_reports
 from espn_injuries import load as load_espn_injuries
 from qb_evidence import gather as gather_qb_sources, attach as attach_qb_sources
+from sleeper_depth import fetch as fetch_sleeper_depth, attach as attach_sleeper_depth
 from official_reports import fetch as fetch_weekly_reports, from_existing as reuse_weekly_reports, attach as attach_weekly_reports
 from pregame_verification import evaluate as verify_pregame_evidence
 from weather import enrich as enrich_weather
@@ -451,10 +452,14 @@ def update(schedules_only=False,schedules_file=None):
         if qb_plays:
             for g in dashboard.get('nextGames',[]):g['qbHistoryAsOf']=now.isoformat()
     second,second_meta=gather_qb_sources(dashboard.get('nextGames',[]),datetime.now(timezone.utc))
+    # Independent QB1 cross-check from Sleeper's own depth charts (one request).
+    sleeper,sleeper_meta=fetch_sleeper_depth(datetime.now(timezone.utc))
     now=datetime.now(timezone.utc)
     dashboard['generatedAt']=now.isoformat()
     for g in dashboard.get('nextGames',[]):
         attach_qb_sources(g,second,second_meta,now)
+        attach_sleeper_depth(g,sleeper,sleeper_meta,now)
+    dashboard['sleeperDepthSource']=sleeper_meta
     # NFL official WEEKLY game/practice status fields, mirrored by nflverse.
     # Fetch on light refreshes too; the previous full-mode source was loaded
     # during the model build and can be reused with identical date provenance.

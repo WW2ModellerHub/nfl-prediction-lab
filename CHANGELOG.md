@@ -1,3 +1,11 @@
+## v3.2 — 15 November 2026 — Independent QB1 cross-check from Sleeper
+
+- Every refresh downloads Sleeper's player database once (`scripts/sleeper_depth.py`) and takes each team's QB1 from Sleeper's own depth-chart order, skipping QBs Sleeper lists as Out/IR/PUP/suspended. A tie at the top of the chart is not treated as evidence.
+- The pregame verification gate now counts a game as **independently corroborated** when Sleeper's QB1 (observed within 72 hours) matches the projected QB from a current nflverse or ESPN chart. ESPN-vs-nflverse agreement alone still does not count, because nflverse charts are ESPN-derived. With a same-week injury report also present, that game can reach **Checked**, which re-enables high-confidence labels and value alerts.
+- If Sleeper names a different QB1, or lists the projected QB as unavailable, the game stays on **Review** with the specific reason shown. Existing Hold rules (source conflicts, projected QB ruled out on the weekly report) are unchanged.
+- The matchup page shows Sleeper's QB1 in *Inspect QB and injury sources*; the data-quality panel shows the Sleeper feed status. Win probabilities are not changed by the gate.
+- Tests: `tests/test_sleeper_depth.py` (parsing, team-code mapping, unavailable/tied QB1, fetch failure, checked/review/hold outcomes); the existing "checked" gate test now supplies Sleeper evidence.
+
 ## v3.1 — 15 November 2026 — Full prediction factor sheet on every fixture
 
 - Every prediction now shows the same complete factor set, away vs home: **venue / home-away** (home field or neutral site, stadium and roof), **Elo team strength**, **scoring form**, **quarterbacks** (name, projected/confirmed basis, EPA per dropback, sack rate, change watch), **injuries & availability** (out/doubtful and questionable counts with key names, official report plus ESPN media list), **rest, travel & overtime**, **offensive EPA** with material tactical edges, and **kickoff weather** (temperature, wind, gusts, precipitation, indoor/roof status, wind/cold/rain watch flags).

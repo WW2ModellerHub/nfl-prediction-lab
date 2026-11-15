@@ -201,7 +201,8 @@ class VerificationTests(unittest.TestCase):
         for side in ('home','away'):
             g['qbSourceEvidence'][side]['nflverseAsOf']=NOW.isoformat()
             g['qbSourceEvidence'][side]['espnObservedAt']=NOW.isoformat()
-            g['qbSourceEvidence'][side]['independentConfirmation']=True
+            g['qbSourceEvidence'][side].update(independentConfirmation=True,sleeperAgrees=True,
+                sleeperObservedAt=NOW.isoformat(),sleeperProjectedQB=g['qbIntelligence'][side]['qb'])
         v=evaluate(g,NOW)
         self.assertEqual(v['level'],'checked')
         self.assertTrue(v['bettingEligible'])
