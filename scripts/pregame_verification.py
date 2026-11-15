@@ -9,6 +9,7 @@ Evidence hierarchy:
   1. NFL weekly game-status fields as mirrored by nflverse, with row timestamp
   2. ESPN dated media injury observations (independently corroborating)
   3. nflverse/ESPN dated depth ranks (PROJECTIONS, not official starter)
+  3b. Sleeper's separately maintained depth chart: the independent QB1 check
   4. previous actual starting QBs (historical observation only)
 
 Conflicting material data fails closed; source failures do not mean "healthy".
@@ -107,11 +108,23 @@ def evaluate(game,now):
         nfl_current=bool(nfl_fresh and nfl_at and timedelta(0)<=now-nfl_at<=nfl_limit)
         espn_current=bool(espn_at and timedelta(0)<=now-espn_at<=timedelta(hours=72))
         mirror_agree=bool(src.get("sourcesAgree") and nfl_current and espn_current)
-        independent_agree=bool(mirror_agree and src.get("independentConfirmation") is True)
-        if not mirror_agree:
+        # Independent corroboration: Sleeper's own depth chart (observed within
+        # 72h) names the same QB1 as at least one current ESPN/nflverse chart.
+        sleeper_at=stamp(src.get("sleeperObservedAt"))
+        sleeper_current=bool(sleeper_at and timedelta(0)<=now-sleeper_at<=timedelta(hours=72))
+        independent_agree=bool(projected and sleeper_current and src.get("sleeperAgrees") is True
+                               and src.get("independentConfirmation") is True and (nfl_current or espn_current))
+        sleeper_conflict=bool(sleeper_current and src.get("sleeperConflict"))
+        if sleeper_conflict:
+            needs_review.append(f"{name}: Sleeper depth chart lists {src.get('sleeperProjectedQB')} as QB1, other charts project {projected}")
+        elif not mirror_agree and not independent_agree:
             needs_review.append(f"{name}: no agreement between two current dated QB depth-chart observations")
         elif not independent_agree:
-            needs_review.append(f"{name}: matching ESPN-derived depth charts are not independent QB starter confirmation")
+            needs_review.append(f"{name}: matching ESPN-derived depth charts are not independent QB starter confirmation"
+                                +("" if sleeper_current else " (Sleeper depth chart unavailable)"))
+        sleeper_injury=normalized(src.get("sleeperProjectedQBInjury"))
+        if sleeper_current and projected and sleeper_injury in UNAVAILABLE|{"PUP","SUS"}:
+            needs_review.append(f"{name}: Sleeper lists projected QB {projected} as {sleeper_injury}")
         if src.get("sourcesAgree") and not (nfl_current and espn_current):
             needs_review.append(f"{name}: projected QB evidence stale or missing a source timestamp")
         # Availability flags are not evidence: require actual dated rows observed
@@ -145,6 +158,9 @@ def evaluate(game,now):
             "espnObservedAt":src.get("espnObservedAt"),
             "espnRankingBasis":src.get("espnRankingBasis"),
             "independentSourceConfirmed":independent_agree,
+            "sleeperQB":src.get("sleeperProjectedQB"),
+            "sleeperObservedAt":src.get("sleeperObservedAt"),
+            "sleeperConflict":sleeper_conflict,
             "qbSourceDatesCurrent":bool(nfl_current and espn_current),
             "officialReportLatestAt":newest_report.isoformat() if newest_report else None,
             "officialReportAgeHours":round((now-newest_report).total_seconds()/3600,1) if newest_report else None,
@@ -203,6 +219,6 @@ def evaluate(game,now):
         "notes":issues[:12],
         "issues":all_issues,
         "riskSummary":risk,
-        "starterConfirmation":"not-connected",
+        "starterConfirmation":"not-connected","independentQBSource":"Sleeper depth chart",
         "inactiveVerification":"not-connected",
-        "note":"Quality gates do not change the win probability. Independent QB verification cannot be inferred by comparing ESPN against an ESPN-derived nflverse mirror. First-listed ESPN QBs may have no explicit rank. Near kickoff, injury reports older than five days and nflverse QB charts older than seven days cannot pass. ESPN chart observations must be within 72h, and same-week injury rows must be dated. Even a checked report is not an official starter or an inactives confirmation."}
+        "note":"Quality gates do not change the win probability. Independent QB verification cannot be inferred by comparing ESPN against an ESPN-derived nflverse mirror; it requires Sleeper's separately maintained depth chart (observed within 72h) to name the same QB1. First-listed ESPN QBs may have no explicit rank. Near kickoff, injury reports older than five days and nflverse QB charts older than seven days cannot pass. ESPN chart observations must be within 72h, and same-week injury rows must be dated. Even a checked report is not an official starter or an inactives confirmation."}
