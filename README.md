@@ -124,6 +124,10 @@ The workflow also performs **schedules-only** refreshes four times daily when sc
 - On the first scheduled run, pending fixtures get immutable forward prediction entries. After results appear, those entries can be graded without changing the original pregame probability.
 - Brier score, log loss, calibration and accuracy are exposed. A fixed 50/50 baseline is also compared (not an equivalent market benchmark).
 
+### Prediction factor sheet (v3.1)
+
+Every fixture — upcoming, live or final — shows one consistent away-vs-home sheet of the metrics behind its pick: venue / home-away (or neutral site), Elo strength, scoring form, quarterbacks, injuries & availability, rest/travel/overtime, offensive EPA and kickoff weather. Each row says whether that factor moved the published percentage (*In forecast*, with its pp move) or is *Context only*, and which side it leans to. Fixture rows show compact chips (home team, QB v QB, injuries out, rest, weather). Started games reuse the factor snapshot from the last dashboard published before kickoff. Rendering lives in `assets/prediction-factors.js`; the archived snapshot in `scripts/prediction_factors.py`.
+
 ### Situational matchup intelligence (new)
 
 The data pipeline reads the `overtime` indicator and prior results from the NFL schedule CSV. For each fixture, it calculates **full intervening calendar off-days** between previous and current games, excluding both game days (Sunday-to-Sunday = **six full off-days**), using the schedule in Eastern time. Each matchup displays both teams' prior result, overtime/regulation status and recovery period, plus named flags:
@@ -169,6 +173,8 @@ python -m unittest discover -s tests -v
 index.html                        responsive static app
 assets/styles.css                dashboard visual design
 assets/app.js                    tabs, matchups, radar, odds, local bet ledger
+assets/prediction-factors.js     per-fixture factor sheet (QB, weather, venue, injuries, rest...)
+scripts/prediction_factors.py    pregame factor snapshots kept for started games
 scripts/model.py                 forecasting, simulations, sequential evaluation
 scripts/update.py                fetch / validate / produce current data
 .github/workflows/update-and-deploy.yml

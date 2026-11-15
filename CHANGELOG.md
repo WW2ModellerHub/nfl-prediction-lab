@@ -1,3 +1,12 @@
+## v3.1 — 15 November 2026 — Full prediction factor sheet on every fixture
+
+- Every prediction now shows the same complete factor set, away vs home: **venue / home-away** (home field or neutral site, stadium and roof), **Elo team strength**, **scoring form**, **quarterbacks** (name, projected/confirmed basis, EPA per dropback, sack rate, change watch), **injuries & availability** (out/doubtful and questionable counts with key names, official report plus ESPN media list), **rest, travel & overtime**, **offensive EPA** with material tactical edges, and **kickoff weather** (temperature, wind, gusts, precipitation, indoor/roof status, wind/cold/rain watch flags).
+- Each factor is labelled *In forecast* (with its signed percentage-point move where the forecast layer reports one) or *Context only*, and marks which side it leans to, with a per-game tally. Probabilities are unchanged.
+- Fixture rows on the Full Matchup board and Command Centre carry compact chips (home team, QB v QB, injuries out, rest days, weather) so the key metrics are visible without opening a game. The full sheet sits directly under the headline number on each matchup page and in the quick-view dialog.
+- Started and final games keep the factor sheet from the **last dashboard published before kickoff** (`recentKickoffs[].pregame`, see `scripts/prediction_factors.py`), carried forward across later refreshes and never taken from a post-kickoff snapshot.
+- The model output now publishes `neutral` and `homeAdvantageElo`, so neutral-site and international games are shown without a home-field edge.
+- Tests: `tests/test_prediction_factors.py` and `tests/prediction-factors-smoke.cjs` (all 40 published fixtures render all eight factors, escaping, neutral sites, indoor/missing weather, archived snapshots); the smoke test is added to the deploy workflow.
+
 ### v3.0.1 production audit clarification
 
 - Treat the number of mirrored weekly game-status designations as **prospectively observed statuses**, separately from the number with genuine original `date_modified` timestamps. The first production snapshot had 2,821 current-season rows and no source publication timestamps, but did have usable current-week game-status designations when observed before kickoff.

@@ -17,6 +17,7 @@ from personnel_adjustment import assess as assess_personnel, qb_efficiency_previ
 from qb_replacement import evaluate as assess_replacement
 from forecast_revisions import revisions as save_forecast_revisions
 from recent_kickoffs import make_recent_kickoffs
+from prediction_factors import attach_pregame_factors
 from forecast_layers import explain as explain_forecast_layers
 from model import simulate as forecast_simulate
 from qb_injuries import load_historical_reports
@@ -537,6 +538,8 @@ def update(schedules_only=False,schedules_file=None):
     publish_provisional_primary(dashboard,games,now)
     archive=save_forecast_revisions(dashboard,log,games,now)
     dashboard['recentKickoffs']=make_recent_kickoffs(games,archive,now)
+    # Keep the full pregame factor set (QB, weather, venue, injuries...) for started games.
+    attach_pregame_factors(dashboard['recentKickoffs'],old_dashboard)
     # Small, point-in-time pregame prior file for Red Zone. No post-kickoff
     # revisions or inferred retrospective forecasts are ever substituted.
     priors=[]
