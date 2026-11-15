@@ -871,5 +871,68 @@
     "baselineHomeProbability": 0.399681,
     "model": "joint-xgb-v2-2026-11-09",
     "researchOnly": true
+  },
+  {
+    "gameId": "2026_12_CAR_TB",
+    "kickoff": "2026-12-01T01:15:00+00:00",
+    "recordedAt": "2026-11-15T19:24:39.943199+00:00",
+    "homeProbability": 0.613807,
+    "baselineHomeProbability": 0.631817,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_13_KC_LA",
+    "kickoff": "2026-12-04T01:15:00+00:00",
+    "recordedAt": "2026-11-15T19:24:39.943199+00:00",
+    "homeProbability": 0.582376,
+    "baselineHomeProbability": 0.597485,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_13_CIN_CLE",
+    "kickoff": "2026-12-06T18:00:00+00:00",
+    "recordedAt": "2026-11-15T19:24:39.943199+00:00",
+    "homeProbability": 0.369433,
+    "baselineHomeProbability": 0.43885,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_13_DET_ATL",
+    "kickoff": "2026-12-06T18:00:00+00:00",
+    "recordedAt": "2026-11-15T19:24:39.943199+00:00",
+    "homeProbability": 0.318646,
+    "baselineHomeProbability": 0.373338,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_13_GB_NO",
+    "kickoff": "2026-12-06T18:00:00+00:00",
+    "recordedAt": "2026-11-15T19:24:39.943199+00:00",
+    "homeProbability": 0.343685,
+    "baselineHomeProbability": 0.41045,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_13_JAX_CHI",
+    "kickoff": "2026-12-06T18:00:00+00:00",
+    "recordedAt": "2026-11-15T19:24:39.943199+00:00",
+    "homeProbability": 0.474597,
+    "baselineHomeProbability": 0.54586,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_13_LAC_TB",
+    "kickoff": "2026-12-06T18:00:00+00:00",
+    "recordedAt": "2026-11-15T19:24:39.943199+00:00",
+    "homeProbability": 0.722485,
+    "baselineHomeProbability": 0.654993,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
   }
 ]

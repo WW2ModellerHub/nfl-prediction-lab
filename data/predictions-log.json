@@ -1981,5 +1981,305 @@
     "baselineHomeProbability": 0.59749,
     "adjustmentActive": false,
     "situationalProbabilityDelta": 0
+  },
+  {
+    "gameId": "2026_13_CIN_CLE",
+    "recordedAt": "2026-11-15T19:24:39.943199+00:00",
+    "kickoff": "2026-12-06T18:00:00+00:00",
+    "home": "CLE",
+    "away": "CIN",
+    "homeProbability": 0.4388,
+    "predMargin": -1.9,
+    "predTotal": 45.34,
+    "situationalSignals": [
+      "repeat_road"
+    ],
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "tacticalProbabilityDelta": 0,
+    "playerProbabilityDelta": 0,
+    "qbProbabilityDelta": 0,
+    "qbResearch": {
+      "eligible": false,
+      "features": null,
+      "status": "missing-observations",
+      "reason": "CLE: recent pregame QB and sufficient prior dropbacks unavailable; CIN: recent pregame QB and sufficient prior dropbacks unavailable",
+      "source": "Recorded prior starter or dated pregame depth chart, not game-day confirmation"
+    },
+    "qbObserved": {
+      "home": "00-0040668",
+      "away": "00-0036442"
+    },
+    "injuryReportAsOf": null,
+    "qbInjuryProbabilityWeight": 0,
+    "playerFeatures": null,
+    "playerImpactStatus": "informational",
+    "tacticalFeatures": null,
+    "baselineHomeProbability": 0.4388,
+    "adjustmentActive": false,
+    "situationalProbabilityDelta": 0,
+    "personnelStatus": "future-week-monitor-only",
+    "personnelHomeDelta": 0.0,
+    "verificationLevel": "review",
+    "verificationReasons": [
+      "CLE: no agreement between two current dated QB depth-chart observations",
+      "CLE: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "CLE: starting QB is not projected by a current dated chart",
+      "CIN: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ]
+  },
+  {
+    "gameId": "2026_13_DET_ATL",
+    "recordedAt": "2026-11-15T19:24:39.943199+00:00",
+    "kickoff": "2026-12-06T18:00:00+00:00",
+    "home": "ATL",
+    "away": "DET",
+    "homeProbability": 0.3733,
+    "predMargin": -3.0,
+    "predTotal": 44.79,
+    "situationalSignals": [
+      "rest_edge"
+    ],
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "tacticalProbabilityDelta": 0,
+    "playerProbabilityDelta": 0,
+    "qbProbabilityDelta": 0,
+    "qbResearch": {
+      "eligible": false,
+      "features": null,
+      "status": "missing-observations",
+      "reason": "ATL: recent pregame QB and sufficient prior dropbacks unavailable; DET: recent pregame QB and sufficient prior dropbacks unavailable",
+      "source": "Recorded prior starter or dated pregame depth chart, not game-day confirmation"
+    },
+    "qbObserved": {
+      "home": "00-0039917",
+      "away": "00-0033106"
+    },
+    "injuryReportAsOf": null,
+    "qbInjuryProbabilityWeight": 0,
+    "playerFeatures": null,
+    "playerImpactStatus": "informational",
+    "tacticalFeatures": null,
+    "baselineHomeProbability": 0.3733,
+    "adjustmentActive": false,
+    "situationalProbabilityDelta": 0,
+    "personnelStatus": "future-week-monitor-only",
+    "personnelHomeDelta": 0.0,
+    "verificationLevel": "review",
+    "verificationReasons": [
+      "ATL: no agreement between two current dated QB depth-chart observations",
+      "ATL: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "ATL: starting QB is not projected by a current dated chart",
+      "DET: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ]
+  },
+  {
+    "gameId": "2026_13_GB_NO",
+    "recordedAt": "2026-11-15T19:24:39.943199+00:00",
+    "kickoff": "2026-12-06T18:00:00+00:00",
+    "home": "NO",
+    "away": "GB",
+    "homeProbability": 0.4105,
+    "predMargin": -1.4,
+    "predTotal": 46.26,
+    "situationalSignals": [
+      "repeat_road"
+    ],
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "tacticalProbabilityDelta": 0,
+    "playerProbabilityDelta": 0,
+    "qbProbabilityDelta": 0,
+    "qbResearch": {
+      "eligible": false,
+      "features": null,
+      "status": "missing-observations",
+      "reason": "NO: recent pregame QB and sufficient prior dropbacks unavailable; GB: recent pregame QB and sufficient prior dropbacks unavailable",
+      "source": "Recorded prior starter or dated pregame depth chart, not game-day confirmation"
+    },
+    "qbObserved": {
+      "home": "00-0040743",
+      "away": "00-0036264"
+    },
+    "injuryReportAsOf": null,
+    "qbInjuryProbabilityWeight": 0,
+    "playerFeatures": null,
+    "playerImpactStatus": "informational",
+    "tacticalFeatures": null,
+    "baselineHomeProbability": 0.4105,
+    "adjustmentActive": false,
+    "situationalProbabilityDelta": 0,
+    "personnelStatus": "future-week-monitor-only",
+    "personnelHomeDelta": 0.0,
+    "verificationLevel": "review",
+    "verificationReasons": [
+      "NO: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "GB: no agreement between two current dated QB depth-chart observations",
+      "GB: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "GB: starting QB is not projected by a current dated chart"
+    ]
+  },
+  {
+    "gameId": "2026_13_JAX_CHI",
+    "recordedAt": "2026-11-15T19:24:39.943199+00:00",
+    "kickoff": "2026-12-06T18:00:00+00:00",
+    "home": "CHI",
+    "away": "JAX",
+    "homeProbability": 0.5459,
+    "predMargin": 0.3,
+    "predTotal": 45.9,
+    "situationalSignals": [
+      "rest_edge",
+      "repeat_road"
+    ],
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "tacticalProbabilityDelta": 0,
+    "playerProbabilityDelta": 0,
+    "qbProbabilityDelta": 0,
+    "qbResearch": {
+      "eligible": false,
+      "features": null,
+      "status": "missing-observations",
+      "reason": "CHI: recent pregame QB and sufficient prior dropbacks unavailable; JAX: recent pregame QB and sufficient prior dropbacks unavailable",
+      "source": "Recorded prior starter or dated pregame depth chart, not game-day confirmation"
+    },
+    "qbObserved": {
+      "home": "00-0039918",
+      "away": "00-0036971"
+    },
+    "injuryReportAsOf": null,
+    "qbInjuryProbabilityWeight": 0,
+    "playerFeatures": null,
+    "playerImpactStatus": "informational",
+    "tacticalFeatures": null,
+    "baselineHomeProbability": 0.5459,
+    "adjustmentActive": false,
+    "situationalProbabilityDelta": 0,
+    "personnelStatus": "future-week-monitor-only",
+    "personnelHomeDelta": 0.0,
+    "verificationLevel": "review",
+    "verificationReasons": [
+      "CHI: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "JAX: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ]
+  },
+  {
+    "gameId": "2026_13_LAC_TB",
+    "recordedAt": "2026-11-15T19:24:39.943199+00:00",
+    "kickoff": "2026-12-06T18:00:00+00:00",
+    "home": "TB",
+    "away": "LAC",
+    "homeProbability": 0.655,
+    "predMargin": 6.5,
+    "predTotal": 41.99,
+    "situationalSignals": [],
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "tacticalProbabilityDelta": 0,
+    "playerProbabilityDelta": 0,
+    "qbProbabilityDelta": 0,
+    "qbResearch": {
+      "eligible": false,
+      "features": null,
+      "status": "missing-observations",
+      "reason": "TB: recent pregame QB and sufficient prior dropbacks unavailable; LAC: recent pregame QB and sufficient prior dropbacks unavailable",
+      "source": "Recorded prior starter or dated pregame depth chart, not game-day confirmation"
+    },
+    "qbObserved": {
+      "home": "00-0034855",
+      "away": "00-0036355"
+    },
+    "injuryReportAsOf": null,
+    "qbInjuryProbabilityWeight": 0,
+    "playerFeatures": null,
+    "playerImpactStatus": "informational",
+    "tacticalFeatures": null,
+    "baselineHomeProbability": 0.655,
+    "adjustmentActive": false,
+    "situationalProbabilityDelta": 0,
+    "personnelStatus": "future-week-monitor-only",
+    "personnelHomeDelta": 0.0,
+    "verificationLevel": "review",
+    "verificationReasons": [
+      "TB: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)",
+      "LAC: no prospective same-week NFL injury report with current timestamps (missing, stale or not published)"
+    ]
+  },
+  {
+    "gameId": "2026_13_SF_NYG",
+    "recordedAt": "2026-11-15T19:24:39.943199+00:00",
+    "kickoff": "2026-12-06T18:00:00+00:00",
+    "home": "NYG",
+    "away": "SF",
+    "homeProbability": 0.38999,
+    "predMargin": -1.17,
+    "predTotal": 46.07,
+    "situationalSignals": [
+      "rest_edge"
+    ],
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "tacticalProbabilityDelta": 0,
+    "playerProbabilityDelta": 0,
+    "qbProbabilityDelta": 0,
+    "qbResearch": {
+      "eligible": false,
+      "features": null,
+      "status": "missing-observations",
+      "reason": "NYG: recent pregame QB and sufficient prior dropbacks unavailable; SF: recent pregame QB and sufficient prior dropbacks unavailable",
+      "source": "Recorded prior starter or dated pregame depth chart, not game-day confirmation"
+    },
+    "qbObserved": {
+      "home": "00-0039923",
+      "away": "00-0037834"
+    },
+    "injuryReportAsOf": null,
+    "qbInjuryProbabilityWeight": 0,
+    "playerFeatures": null,
+    "playerImpactStatus": "informational",
+    "tacticalFeatures": null,
+    "baselineHomeProbability": 0.38999,
+    "adjustmentActive": false,
+    "situationalProbabilityDelta": 0
+  },
+  {
+    "gameId": "2026_13_WAS_TEN",
+    "recordedAt": "2026-11-15T19:24:39.943199+00:00",
+    "kickoff": "2026-12-06T18:00:00+00:00",
+    "home": "TEN",
+    "away": "WAS",
+    "homeProbability": 0.41283,
+    "predMargin": -1.17,
+    "predTotal": 45.76,
+    "situationalSignals": [
+      "rest_edge",
+      "repeat_road"
+    ],
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "tacticalProbabilityDelta": 0,
+    "playerProbabilityDelta": 0,
+    "qbProbabilityDelta": 0,
+    "qbResearch": {
+      "eligible": false,
+      "features": null,
+      "status": "missing-observations",
+      "reason": "TEN: recent pregame QB and sufficient prior dropbacks unavailable; WAS: recent pregame QB and sufficient prior dropbacks unavailable",
+      "source": "Recorded prior starter or dated pregame depth chart, not game-day confirmation"
+    },
+    "qbObserved": {
+      "home": "00-0040676",
+      "away": "00-0039910"
+    },
+    "injuryReportAsOf": null,
+    "qbInjuryProbabilityWeight": 0,
+    "playerFeatures": null,
+    "playerImpactStatus": "informational",
+    "tacticalFeatures": null,
+    "baselineHomeProbability": 0.41283,
+    "adjustmentActive": false,
+    "situationalProbabilityDelta": 0
   }
 ]
