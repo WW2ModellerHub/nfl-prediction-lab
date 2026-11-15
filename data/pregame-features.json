@@ -2196,6 +2196,56 @@
       },
       "trainingEligible": false,
       "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_11_MIN_SF",
+      "season": 2026,
+      "week": 11,
+      "kickoff": "2026-11-23T01:20:00+00:00",
+      "recordedAt": "2026-11-15T02:49:58.151163+00:00",
+      "window": "early",
+      "home": "SF",
+      "away": "MIN",
+      "baselineHomeProbability": 0.5427,
+      "publishedHomeProbability": 0.5525,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.549695,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "venue-unmapped",
+        "roof": "outdoors",
+        "stadiumId": "MEX00",
+        "source": null,
+        "sourceRetrievedAt": null,
+        "forecastFor": null,
+        "values": {}
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0037834",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 243.0,
+          "priorEPA": 0.179
+        },
+        "away": {
+          "id": "00-0029604",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 298.0,
+          "priorEPA": 0.075
+        }
+      },
+      "injuries": {
+        "status": "unavailable",
+        "asOf": null,
+        "observedFlagCounts": null,
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
     }
   ]
 }
