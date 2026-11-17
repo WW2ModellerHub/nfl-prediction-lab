@@ -970,5 +970,14 @@
     "baselineHomeProbability": 0.482402,
     "model": "joint-xgb-v2-2026-11-09",
     "researchOnly": true
+  },
+  {
+    "gameId": "2026_13_BUF_NE",
+    "kickoff": "2026-12-06T21:25:00+00:00",
+    "recordedAt": "2026-11-17T05:08:21.400967+00:00",
+    "homeProbability": 0.328673,
+    "baselineHomeProbability": 0.400074,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
   }
 ]

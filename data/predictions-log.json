@@ -2521,5 +2521,49 @@
     "baselineHomeProbability": 0.62123,
     "adjustmentActive": false,
     "situationalProbabilityDelta": 0
+  },
+  {
+    "gameId": "2026_13_DAL_SEA",
+    "recordedAt": "2026-11-17T05:08:21.400967+00:00",
+    "kickoff": "2026-12-08T01:15:00+00:00",
+    "home": "SEA",
+    "away": "DAL",
+    "homeProbability": 0.73329,
+    "predMargin": 5.95,
+    "predTotal": 47.52,
+    "situationalSignals": [],
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "tacticalProbabilityDelta": 0,
+    "playerProbabilityDelta": 0,
+    "qbProbabilityDelta": 0,
+    "qbResearch": {
+      "eligible": true,
+      "features": [
+        -0.188,
+        -0.029999999999999992,
+        0
+      ],
+      "status": "eligible",
+      "reason": "Prior-game QB observations available",
+      "source": "Recorded prior starter or dated pregame depth chart, not game-day confirmation"
+    },
+    "qbObserved": {
+      "home": "00-0034869",
+      "away": "00-0033077"
+    },
+    "injuryReportAsOf": null,
+    "qbInjuryProbabilityWeight": 0,
+    "playerFeatures": null,
+    "playerImpactStatus": "informational",
+    "tacticalFeatures": [
+      -1.1333155333015024,
+      -0.927322103179523,
+      0.2798788839199196,
+      0.1529189738955004
+    ],
+    "baselineHomeProbability": 0.73329,
+    "adjustmentActive": false,
+    "situationalProbabilityDelta": 0
   }
 ]
