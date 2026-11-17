@@ -1168,5 +1168,35 @@
     "eligibleForBetting": false,
     "evidenceLevel": "review",
     "note": "First genuinely published provisional pick, not reconstructed"
+  },
+  {
+    "gameId": "2026_12_TEN_JAX",
+    "home": "JAX",
+    "away": "TEN",
+    "kickoff": "2026-11-29T18:00:00+00:00",
+    "recordedAt": "2026-11-17T21:48:50.619401+00:00",
+    "modelVersion": "primary-provisional-v2+joint-xgb-v2-2026-11-09",
+    "kind": "first-versioned-primary",
+    "homeProbability": 0.885213,
+    "originalHomeProbability": 0.8502,
+    "researchOnly": true,
+    "eligibleForBetting": false,
+    "evidenceLevel": "review",
+    "note": "First genuinely published provisional pick, not reconstructed"
+  },
+  {
+    "gameId": "2026_12_NE_LAC",
+    "home": "LAC",
+    "away": "NE",
+    "kickoff": "2026-11-29T21:05:00+00:00",
+    "recordedAt": "2026-11-17T21:48:50.619401+00:00",
+    "modelVersion": "primary-provisional-v2+joint-xgb-v2-2026-11-09",
+    "kind": "first-versioned-primary",
+    "homeProbability": 0.378659,
+    "originalHomeProbability": 0.451,
+    "researchOnly": true,
+    "eligibleForBetting": false,
+    "evidenceLevel": "review",
+    "note": "First genuinely published provisional pick, not reconstructed"
   }
 ]
