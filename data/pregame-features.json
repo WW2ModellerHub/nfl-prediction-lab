@@ -3082,6 +3082,58 @@
       },
       "trainingEligible": false,
       "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_12_CHI_DET",
+      "season": 2026,
+      "week": 12,
+      "kickoff": "2026-11-26T18:00:00+00:00",
+      "recordedAt": "2026-11-18T21:28:16.234773+00:00",
+      "window": "early",
+      "home": "DET",
+      "away": "CHI",
+      "baselineHomeProbability": 0.603,
+      "publishedHomeProbability": 0.60545,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.555575,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "As-of projected QB with prior statistics",
+        "Historical play-by-play tactical observations",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "indoor",
+        "roof": "dome",
+        "stadiumId": "DET00",
+        "source": null,
+        "sourceRetrievedAt": null,
+        "forecastFor": null,
+        "values": {}
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0033106",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 285.0,
+          "priorEPA": 0.164
+        },
+        "away": {
+          "id": "00-0039918",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 301.0,
+          "priorEPA": 0.096
+        }
+      },
+      "injuries": {
+        "status": "unavailable",
+        "asOf": null,
+        "observedFlagCounts": null,
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
     }
   ]
 }
