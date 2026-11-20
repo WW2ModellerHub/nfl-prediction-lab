@@ -1198,5 +1198,20 @@
     "eligibleForBetting": false,
     "evidenceLevel": "review",
     "note": "First genuinely published provisional pick, not reconstructed"
+  },
+  {
+    "gameId": "2026_13_CAR_MIN",
+    "home": "MIN",
+    "away": "CAR",
+    "kickoff": "2026-12-06T21:25:00+00:00",
+    "recordedAt": "2026-11-20T04:03:21.944165+00:00",
+    "modelVersion": "primary-provisional-v2+joint-xgb-v2-2026-11-09",
+    "kind": "first-versioned-primary",
+    "homeProbability": 0.73674,
+    "originalHomeProbability": 0.74028,
+    "researchOnly": true,
+    "eligibleForBetting": false,
+    "evidenceLevel": "review",
+    "note": "First genuinely published provisional pick, not reconstructed"
   }
 ]

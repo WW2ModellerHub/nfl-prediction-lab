@@ -2565,5 +2565,51 @@
     "baselineHomeProbability": 0.73329,
     "adjustmentActive": false,
     "situationalProbabilityDelta": 0
+  },
+  {
+    "gameId": "2026_14_MIN_NE",
+    "recordedAt": "2026-11-20T04:03:21.944165+00:00",
+    "kickoff": "2026-12-11T01:15:00+00:00",
+    "home": "NE",
+    "away": "MIN",
+    "homeProbability": 0.49118,
+    "predMargin": -0.82,
+    "predTotal": 41.55,
+    "situationalSignals": [
+      "repeat_road"
+    ],
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "tacticalProbabilityDelta": 0,
+    "playerProbabilityDelta": 0,
+    "qbProbabilityDelta": 0,
+    "qbResearch": {
+      "eligible": true,
+      "features": [
+        0.059,
+        -0.032999999999999995,
+        0
+      ],
+      "status": "eligible",
+      "reason": "Prior-game QB observations available",
+      "source": "Recorded prior starter or dated pregame depth chart, not game-day confirmation"
+    },
+    "qbObserved": {
+      "home": "00-0039851",
+      "away": "00-0029604"
+    },
+    "injuryReportAsOf": null,
+    "qbInjuryProbabilityWeight": 0,
+    "playerFeatures": null,
+    "playerImpactStatus": "informational",
+    "tacticalFeatures": [
+      1.3604279585590415,
+      0.3163941529345014,
+      -0.6056593717374745,
+      -0.26257691471528066
+    ],
+    "baselineHomeProbability": 0.49118,
+    "adjustmentActive": false,
+    "situationalProbabilityDelta": 0
   }
 ]
