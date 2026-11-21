@@ -1213,5 +1213,35 @@
     "eligibleForBetting": false,
     "evidenceLevel": "review",
     "note": "First genuinely published provisional pick, not reconstructed"
+  },
+  {
+    "gameId": "2026_11_JAX_NYG",
+    "home": "NYG",
+    "away": "JAX",
+    "kickoff": "2026-11-22T18:00:00+00:00",
+    "recordedAt": "2026-11-21T15:27:15.892538+00:00",
+    "modelVersion": "primary-provisional-v2+joint-xgb-v2-2026-11-09",
+    "kind": "first-versioned-primary",
+    "homeProbability": 0.309151,
+    "originalHomeProbability": 0.38251,
+    "researchOnly": true,
+    "eligibleForBetting": false,
+    "evidenceLevel": "checked",
+    "note": "First genuinely published provisional pick, not reconstructed"
+  },
+  {
+    "gameId": "2026_12_NYG_IND",
+    "home": "IND",
+    "away": "NYG",
+    "kickoff": "2026-11-29T18:00:00+00:00",
+    "recordedAt": "2026-11-21T15:27:15.892538+00:00",
+    "modelVersion": "primary-provisional-v2+joint-xgb-v2-2026-11-09",
+    "kind": "first-versioned-primary",
+    "homeProbability": 0.428728,
+    "originalHomeProbability": 0.5099,
+    "researchOnly": true,
+    "eligibleForBetting": false,
+    "evidenceLevel": "review",
+    "note": "First genuinely published provisional pick, not reconstructed"
   }
 ]
