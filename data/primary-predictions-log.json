@@ -1243,5 +1243,20 @@
     "eligibleForBetting": false,
     "evidenceLevel": "review",
     "note": "First genuinely published provisional pick, not reconstructed"
+  },
+  {
+    "gameId": "2026_11_CIN_WAS",
+    "home": "WAS",
+    "away": "CIN",
+    "kickoff": "2026-11-24T01:15:00+00:00",
+    "recordedAt": "2026-11-22T15:28:51.585321+00:00",
+    "modelVersion": "primary-provisional-v2+joint-xgb-v2-2026-11-09",
+    "kind": "first-versioned-primary",
+    "homeProbability": 0.358484,
+    "originalHomeProbability": 0.42908,
+    "researchOnly": true,
+    "eligibleForBetting": false,
+    "evidenceLevel": "checked",
+    "note": "First genuinely published provisional pick, not reconstructed"
   }
 ]
