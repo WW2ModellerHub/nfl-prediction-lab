@@ -36,3 +36,26 @@
  .pf-edge{grid-column:1 / -1;text-align:left;display:flex;gap:8px;align-items:baseline}
  .pf-note{grid-column:1 / -1;margin:0}
 }
+
+/* Shootout Heat panel */
+.sh-list{display:flex;flex-direction:column}
+.sh-row{display:grid;grid-template-columns:28px minmax(0,1.4fr) minmax(80px,1fr) 64px;gap:12px;align-items:center;padding:12px 21px;border-bottom:1px solid #1d2f3d;cursor:pointer;transition:.14s}
+.sh-row:hover,.sh-row:focus-visible{background:var(--panel2)}
+.sh-rank{font-size:13px;font-weight:800;color:var(--muted2);text-align:center}
+.sh-game b{display:block;font-size:13px;color:var(--white)}
+.sh-game small{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px}
+.sh-meter{height:8px;border-radius:5px;background:#1d2f3d;overflow:hidden}
+.sh-meter span{display:block;height:100%;border-radius:5px}
+.sh-meter .sh-t4{background:#e78385}.sh-meter .sh-t3{background:var(--orange)}.sh-meter .sh-t2{background:var(--blue)}.sh-meter .sh-t1{background:#4b6274}
+.sh-score{text-align:right}
+.sh-score strong{display:block;font-size:19px;line-height:1;color:var(--white)}
+.sh-score small{font-size:8.5px;font-weight:800;letter-spacing:.6px}
+.sh-score .sh-t4{color:#e78385}.sh-score .sh-t3{color:var(--orange)}.sh-score .sh-t2{color:var(--blue)}.sh-score .sh-t1{color:var(--muted2)}
+.sh-why{grid-column:2 / -1;margin:-4px 0 0;font-size:10px;color:var(--muted2)}
+.sh-foot .sh-record{font-size:11.5px;color:#c6d3dc;margin:0 0 8px}
+.sh-foot .sh-more{margin-bottom:10px}
+@media(max-width:820px){
+ .sh-row{grid-template-columns:22px minmax(0,1fr) 52px;padding:12px 15px}
+ .sh-meter{grid-column:2 / -1;grid-row:2}
+ .sh-why{grid-row:3}
+}

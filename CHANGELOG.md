@@ -1,3 +1,11 @@
+## v3.3 — 22 November 2026 — Shootout Heat: highest-scoring games of the week
+
+- New **Shootout Heat** rating (0–100) for every upcoming game, computed in the pipeline (`scripts/shootout.py`). It starts from the model's projected total and adjusts for each offence's passing EPA against the opposing defence, explosive-pass rates, and outdoor weather (wind, likely rain/snow, snowfall, severe cold; half effect where the roof is unconfirmed, none indoors). Tiers: Shootout 80+, High 60+, Average 40+, Low.
+- A ranked **"Highest-scoring games this week"** panel sits on the Command Centre (top five) and above the Full Matchup board (whole week). Each game also gets a 🔥 heat chip and a *Scoring outlook* row in its factor sheet.
+- Honest tracking: the last pre-kickoff rating for each game is saved to `data/shootout-log.json` and never revised after kickoff. Final scores are graded each week: top-3 hit rate, rank correlation with actual totals, and whether the heat adjustments beat the plain projected total. The panel shows this record.
+- In-house rating; no third-party heat ratings are used. Win probabilities are unchanged.
+- Tests: `tests/test_shootout.py` and `tests/shootout-smoke.cjs` (added to the deploy workflow).
+
 ## v3.2 — 15 November 2026 — Independent QB1 cross-check from Sleeper
 
 - Every refresh downloads Sleeper's player database once (`scripts/sleeper_depth.py`) and takes each team's QB1 from Sleeper's own depth-chart order, skipping QBs Sleeper lists as Out/IR/PUP/suspended. A tie at the top of the chart is not treated as evidence.
