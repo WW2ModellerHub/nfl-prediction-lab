@@ -862,5 +862,131 @@
     "baselineHomeProbability": 0.508898,
     "model": "joint-xgb-v2-2026-11-09",
     "researchOnly": true
+  },
+  {
+    "gameId": "2026_12_NE_LAC",
+    "kickoff": "2026-11-30T01:20:00+00:00",
+    "recordedAt": "2026-11-15T14:51:53.132590+00:00",
+    "homeProbability": 0.326184,
+    "baselineHomeProbability": 0.399681,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_12_CAR_TB",
+    "kickoff": "2026-12-01T01:15:00+00:00",
+    "recordedAt": "2026-11-15T19:24:39.943199+00:00",
+    "homeProbability": 0.613807,
+    "baselineHomeProbability": 0.631817,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_13_KC_LA",
+    "kickoff": "2026-12-04T01:15:00+00:00",
+    "recordedAt": "2026-11-15T19:24:39.943199+00:00",
+    "homeProbability": 0.582376,
+    "baselineHomeProbability": 0.597485,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_13_CIN_CLE",
+    "kickoff": "2026-12-06T18:00:00+00:00",
+    "recordedAt": "2026-11-15T19:24:39.943199+00:00",
+    "homeProbability": 0.369433,
+    "baselineHomeProbability": 0.43885,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_13_DET_ATL",
+    "kickoff": "2026-12-06T18:00:00+00:00",
+    "recordedAt": "2026-11-15T19:24:39.943199+00:00",
+    "homeProbability": 0.318646,
+    "baselineHomeProbability": 0.373338,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_13_GB_NO",
+    "kickoff": "2026-12-06T18:00:00+00:00",
+    "recordedAt": "2026-11-15T19:24:39.943199+00:00",
+    "homeProbability": 0.343685,
+    "baselineHomeProbability": 0.41045,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_13_JAX_CHI",
+    "kickoff": "2026-12-06T18:00:00+00:00",
+    "recordedAt": "2026-11-15T19:24:39.943199+00:00",
+    "homeProbability": 0.474597,
+    "baselineHomeProbability": 0.54586,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_13_LAC_TB",
+    "kickoff": "2026-12-06T18:00:00+00:00",
+    "recordedAt": "2026-11-15T19:24:39.943199+00:00",
+    "homeProbability": 0.722485,
+    "baselineHomeProbability": 0.654993,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_13_SF_NYG",
+    "kickoff": "2026-12-06T18:00:00+00:00",
+    "recordedAt": "2026-11-16T02:52:14.884636+00:00",
+    "homeProbability": 0.310794,
+    "baselineHomeProbability": 0.379238,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_13_WAS_TEN",
+    "kickoff": "2026-12-06T18:00:00+00:00",
+    "recordedAt": "2026-11-16T02:52:14.884636+00:00",
+    "homeProbability": 0.379968,
+    "baselineHomeProbability": 0.401321,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_13_MIA_DEN",
+    "kickoff": "2026-12-06T21:05:00+00:00",
+    "recordedAt": "2026-11-16T02:52:14.884636+00:00",
+    "homeProbability": 0.841064,
+    "baselineHomeProbability": 0.80284,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_13_PHI_ARI",
+    "kickoff": "2026-12-06T21:05:00+00:00",
+    "recordedAt": "2026-11-16T02:52:14.884636+00:00",
+    "homeProbability": 0.423337,
+    "baselineHomeProbability": 0.482402,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_13_BUF_NE",
+    "kickoff": "2026-12-06T21:25:00+00:00",
+    "recordedAt": "2026-11-17T05:08:21.400967+00:00",
+    "homeProbability": 0.328673,
+    "baselineHomeProbability": 0.400074,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_13_CAR_MIN",
+    "kickoff": "2026-12-06T21:25:00+00:00",
+    "recordedAt": "2026-11-20T04:03:21.944165+00:00",
+    "homeProbability": 0.73674,
+    "baselineHomeProbability": 0.736557,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
   }
 ]
