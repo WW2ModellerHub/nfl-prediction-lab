@@ -50,7 +50,7 @@
   const rec=data&&data.shootoutRecord;
   const head=`<div class="panel-head"><div><div class="panel-title">🔥 Highest-scoring games${week.length?' · Week '+esc(week[0].week):' this week'}</div><div class="panel-sub">Shootout Heat · our expected-points rating, not a betting total</div></div></div>`;
   if(!week.length)return `<article class="panel sh-panel">${head}<div class="panel-body"><p class="instruction">Shootout ratings appear after the next data refresh.</p></div></article>`;
-  const rows=week.slice(0,opts.limit||week.length).map(g=>{
+  const row=g=>{
    const s=g.shootout,c=s.components||{};
    return `<div class="sh-row" role="button" tabindex="0" data-open="${esc(g.id)}">
     <span class="sh-rank">${s.weekRank}</span>
@@ -58,10 +58,12 @@
     <div class="sh-meter" aria-hidden="true"><span class="${tierClass(s.tier)}" style="width:${Math.max(3,s.rating)}%"></span></div>
     <div class="sh-score"><strong>${s.rating}</strong><small class="${tierClass(s.tier)}">${esc(s.tier.toUpperCase())}</small></div>
     <p class="sh-why">Projected ${fx(c.projectedTotal)} · passing ${signed(c.passingMatchup)} · explosive ${signed(c.explosivePlays)} · weather ${signed(c.weather)}</p>
-   </div>`;}).join('');
-  const more=opts.limit&&week.length>opts.limit?`<button class="btn btn-sm btn-ghost sh-more" data-nav="matchups">All ${week.length} games →</button>`:'';
+   </div>`;};
+  const limit=opts.limit||week.length,rows=week.slice(0,limit).map(row).join(''),extra=week.slice(limit);
+  const fold=opts.expandable&&extra.length?`<details class="sh-fold"><summary>Show all ${week.length} games</summary>${extra.map(row).join('')}</details>`:'';
+  const more=!opts.expandable&&extra.length?`<button class="btn btn-sm btn-ghost sh-more" data-nav="matchups">All ${week.length} games →</button>`:'';
   const tail=rest.length?`<p class="sh-record">Still to play in week ${esc(rest[0].week)}: ${rest.map(g=>`${esc(g.away)} @ ${esc(g.home)} (${g.shootout.rating} ${esc(g.shootout.tier)})`).join(' · ')}.</p>`:'';
-  return `<article class="panel sh-panel">${head}<div class="sh-list">${rows}</div><div class="panel-body sh-foot">${more}${tail}${recordLine(rec)}
+  return `<article class="panel sh-panel">${head}<div class="sh-list">${rows}${fold}</div><div class="panel-body sh-foot">${more}${tail}${recordLine(rec)}
   <p class="source-meta">Heat 0–100 maps 36–56 expected combined points. Starts from the model's projected total, then adjusts for each offence's passing efficiency and explosive plays against the opposing defence (relative to this slate) and for wind, rain, snow and severe cold outdoors. Weights are heuristic, which is why every rating is saved before kickoff and graded.</p></div></article>`;
  }
  window.NFLShootout={panel,chip,factor,currentWeek};

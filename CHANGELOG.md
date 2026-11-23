@@ -1,3 +1,11 @@
+## v3.4 — 23 November 2026 — Cleaner layout and game filters
+
+- **Fixture cards rebuilt** with a proper grid: teams, win chance and projected score on one line, and every badge/factor chip on its own full-width row underneath. On phones the projected score sits beside the teams and the win-chance bar runs full width. This removes the badges that overlapped the win-chance bar. The redundant "tactical" and "Open full matchup" text is gone (the whole card opens the game), and badges are colour-coded (green checked, amber review, red hold).
+- **Filters on the Full Matchup board:** week, sort (kickoff time, biggest favourite, closest games, highest scoring) and quick toggles for high-scoring games, close games (favourite under 60%), sources checked, weather alerts and QB watch (starter change, hold, Sleeper disagreement or a projected QB listed out). A count shows how many games match; filters are remembered on this device and live-score refreshes keep them.
+- Shootout Heat on the Full Matchup tab now shows the top five, with "Show all" to expand. On Monday nights or after Thursday games it shows the next full week and lists the remaining game(s) underneath.
+- Fixed the Prediction Record tab scrolling sideways on phones (a wide table pushed its column out) and the winning-margin chart labels overlapping on small screens.
+- Checked with an automated overlap/overflow audit of every tab at 360–1440px widths: no overlaps or sideways scrolling remain.
+
 ## v3.3 — 22 November 2026 — Shootout Heat: highest-scoring games of the week
 
 - New **Shootout Heat** rating (0–100) for every upcoming game, computed in the pipeline (`scripts/shootout.py`). It starts from the model's projected total and adjusts for each offence's passing EPA against the opposing defence, explosive-pass rates, and outdoor weather (wind, likely rain/snow, snowfall, severe cold; half effect where the roof is unconfirmed, none indoors). Tiers: Shootout 80+, High 60+, Average 40+, Low.

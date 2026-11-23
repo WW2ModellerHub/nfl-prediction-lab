@@ -13,6 +13,8 @@ const date=s=>s?new Date(s).toLocaleString('en-GB',{weekday:'short',day:'numeric
 function save(key,v){try{localStorage.setItem('nfl-lab-'+key,JSON.stringify(v));return true}catch{toast('Local storage unavailable.');return false}}
 function load(key,fallback){try{return JSON.parse(localStorage.getItem('nfl-lab-'+key))??fallback}catch{return fallback}}
 let store={data:null,auditReference:window.NFL_LAB_AUDIT_REFERENCE||null,researchEvidence:window.NFL_LAB_RESEARCH_EVIDENCE||null,tab:'overview',odds:load('odds',{}),bets:load('bets',[]),query:'',week:'All',busy:false,activeGameId:null,liveScores:{},liveReferences:{},forecastMode:'primary'};
+const FILTER_DEFAULTS={week:'all',sort:'kickoff',heat:false,close:false,checked:false,weather:false,qb:false};
+store.filters=Object.assign({},FILTER_DEFAULTS,load('filters',{}));
 let timer;
 function toast(message){const el=byId('toast');el.textContent=message;el.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>el.classList.remove('show'),2900)}
 function initials(team){return `<span class="team-bubble" style="border-color:${TEAM_COLORS[team]||'#456'}88;background:${TEAM_COLORS[team]||'#203447'}30">${escapeHTML(team)}</span>`}
@@ -145,13 +147,11 @@ function syncStartedBoards(){
  }
  const board=byId('gameRows');
  if(board?.dataset){
-   const upcoming=games().filter(matchSearch),matches=recent.filter(matchSearch);
-   const boardKey=stateKey+'|'+store.query+'|'+upcoming.map(g=>g.id).join(',');
+   const upcoming=filteredUpcoming();
+   const boardKey=stateKey+'|'+store.query+'|'+JSON.stringify(store.filters)+'|'+upcoming.map(g=>g.id).join(',');
    if(board.dataset.layoutKey!==boardKey){
      const wasOpen=board.querySelector?.('[data-final-fold]')?.open===true;
-     board.innerHTML=(upcoming.length?`<div class="started-board-heading">UPCOMING FIXTURES</div>${upcoming.map(gameRow).join('')}`:'')+
-       startedRowsHTML(matches)||
-       empty('No matchups found','Try another team name.');
+     board.innerHTML=boardHTML();
      const fold=board.querySelector?.('[data-final-fold]');
      if(fold)fold.open=wasOpen;
      board.dataset.layoutKey=boardKey;
@@ -423,8 +423,19 @@ function favouriteAmbush(g){
 }
 function valueFor(g){const o=oddsFor(g);if(!o||!(o.price>1))return null;const p=o.side===g.home?g.homeProbability:g.awayProbability;
  return {side:o.side,book:o.book,price:o.price,p,ev:p*o.price-1,breakeven:1/o.price,eligible:g.forecastQuality?.bettingEligible===true&&!isProvisionalMain(g),legacyOnly:isProvisionalMain(g)}}
+function verifyBadge(g){const l=g.forecastQuality?.level;return l==='checked'?'<span class="fx-tag fx-ok">✓ Sources checked</span>':l==='hold'?'<span class="fx-tag fx-bad">Evidence hold</span>':'<span class="fx-tag fx-warn">Evidence review</span>'}
 function gameRow(g){const home=displayHomeProb(g),favored=home>=.5?g.home:g.away,prob=Math.max(home,1-home);const o=valueFor(g);
- return `<div class="game-row" tabindex="0" role="button" aria-label="Open ${escapeHTML(g.awayName)} at ${escapeHTML(g.homeName)}" data-open="${escapeHTML(g.id)}"><div><div class="game-teams">${initials(g.away)}<div style="min-width:0"><div class="team-line">${escapeHTML(g.away)} <span class="versus">@</span> ${escapeHTML(g.home)}</div><div class="game-meta">${date(g.kickoff)} · W${g.week} · Open full matchup ↗ ${situationBadge(g)}${tacticalFor(g).status==='ready'?` <span class="situation-badge">◎ tactical</span>`:''}${playerFlags(g).length?` <span class="situation-badge">♙ ${playerFlags(g).length} player watch</span>`:''}${g.personnelScenario?.affectsPrediction?' <span class="situation-badge">PROVISIONAL QB/INJURY FORECAST</span>':''} <span class="situation-badge">${g.forecastQuality?.level==='checked'?'SOURCES CHECKED':g.forecastQuality?.level==='hold'?'EVIDENCE HOLD':'EVIDENCE REVIEW'}</span></div>${(window.NFLPredictionFactors?NFLPredictionFactors.strip(g):'')}</div></div></div><div><div class="prob-head"><span>${escapeHTML(favored)} ${jointActive(g)?'· PROVISIONAL':'· ORIGINAL'}</span><b>${pct(prob)}</b></div><div class="prob-track"><div class="prob-fill" style="width:${Math.round(prob*100)}%"></div></div><div class="game-meta">${o?`<span style="color:${o.ev>0?'#bef780':'#e7ac69'}">${o.eligible?`${o.ev>0?'+':''}${pct(o.ev)} raw model EV`:'Not approved for betting'}</span>`:'Market odds not entered'}</div></div><div class="game-proj"><strong>${Math.round(g.predAway)}–${Math.round(g.predHome)}</strong><small>PROJ. SCORE</small></div></div>`}
+ const sit=(situationFor(g).signals||[]).length,watch=playerFlags(g).length;
+ const tags=verifyBadge(g)+
+  (g.personnelScenario?.affectsPrediction?'<span class="fx-tag fx-warn">Provisional QB/injury</span>':'')+
+  (sit?`<span class="fx-tag fx-warn">⚡ ${sit} situation${sit===1?'':'s'}</span>`:'')+
+  (watch?`<span class="fx-tag fx-warn">♙ ${watch} player watch</span>`:'')+
+  (window.NFLPredictionFactors?NFLPredictionFactors.strip(g):'');
+ return `<div class="game-row fx-row" tabindex="0" role="button" aria-label="Open ${escapeHTML(g.awayName)} at ${escapeHTML(g.homeName)}" data-open="${escapeHTML(g.id)}">
+ <div class="fx-teams">${initials(g.away)}<div class="fx-names"><div class="team-line">${escapeHTML(g.away)} <span class="versus">@</span> ${escapeHTML(g.home)}</div><div class="game-meta">${date(g.kickoff)} · Week ${escapeHTML(g.week)}</div></div></div>
+ <div class="fx-prob"><div class="prob-head"><span>${escapeHTML(favored)} to win</span><b>${pct(prob)}</b></div><div class="prob-track"><div class="prob-fill" style="width:${Math.round(prob*100)}%"></div></div><div class="game-meta">${jointActive(g)?'Provisional model':'Original model'} · ${o?`<span style="color:${o.ev>0?'#bef780':'#e7ac69'}">${o.eligible?`${o.ev>0?'+':''}${pct(o.ev)} raw model EV`:'Not approved for betting'}</span>`:'Market odds not entered'}</div></div>
+ <div class="game-proj"><strong>${Math.round(g.predAway)}–${Math.round(g.predHome)}</strong><small>PROJ. SCORE</small></div>
+ <div class="fx-tags">${tags}</div></div>`}
 function rankingRow(r,i){return `<div class="rank-item"><span class="pos">${i+1}.</span><div class="name">${initials(r.team)} <span style="vertical-align:middle;margin-left:5px">${escapeHTML(r.team)}</span></div><div class="rating">${r.rating}</div></div>`}
 function getAlerts(){const alerts=[];if(!store.data?.generatedAt)alerts.push({title:'First refresh required',body:'Publish real schedule data to activate forecasts.',type:'warn'});
  else{const age=(Date.now()-new Date(store.data.generatedAt))/3600000;if(age>18)alerts.push({title:'Data is ageing',body:`Last model update ${Math.floor(age)} hours ago. Check the workflow.`,type:'warn'});}
@@ -478,13 +489,40 @@ function overview(){const g=games(),perf=store.data?.recentPerformance||store.da
  const perfPanel=panel('Model reliability',`<div class="panel-body">${perf.count?`<div class="stat-pair"><span>Correct favourite</span><strong>${pct(perf.accuracy)}</strong></div><div class="stat-pair"><span>Brier score <span title="Lower is better" class="info-icon">?</span></span><strong>${number(perf.brier,3)}</strong></div><div class="stat-pair"><span>50/50 baseline Brier</span><strong>${number(perf.baselineBrier,3)}</strong></div><div class="stat-pair"><span>Forward-tested games</span><strong>${fp.count||0}</strong></div>`:'<p class="instruction">Run the NFL data importer to calculate sequential historical test metrics.</p>'}<p class="panel-note" style="margin-top:13px">Historical backtest, not live-pick performance.</p><button class="btn btn-sm btn-ghost" style="margin-top:10px" data-nav="performance">Explore performance →</button></div>`);
  const rankings=panel('Power ratings',`<div class="panel-body">${(store.data?.powerRankings||[]).length?(store.data.powerRankings.slice(0,6).map(rankingRow).join('')):'<p class="instruction">Ratings appear after the first data run.</p>'}</div>`,'Elo based on completed games');
  return warnBanner()+metrics+startedSlatePanel()+primaryCard+`<div class="grid-main"><div>${recordCard}${window.NFLShootout?NFLShootout.panel(store.data,{limit:5}):''}${slate}${perfPanel}</div><div class="right-stack">${verificationQueue()}${panel('Intelligence alerts',alertContent(),'Situational effects are applied only after the validation gate passes',tag('WATCHLIST'))}${rankings}</div></div>`}
+/* ---- Matchup board filters ---- */
+const FILTER_TOGGLES=[['heat','🔥 High scoring'],['close','Close games'],['checked','✓ Sources checked'],['weather','☁ Weather alert'],['qb','QB watch']];
+function favProb(g){const h=displayHomeProb(g);return Math.max(h,1-h)}
+function weatherAlert(g){const w=g.weather||{};if(!['forecast','roof-unconfirmed'].includes(w.status))return false;
+ return (g.shootout?.weatherReasons||[]).length>0||Number(w.windMph)>=15||Number(w.gustMph)>=25||Number(w.precipitationChancePct)>=50||Number(w.temperatureC)<=-5||Number(w.snowfallCm)>0}
+function qbWatch(g){const q=g.qbIntelligence||{};return Boolean(q.home?.starterChangeWatch||q.away?.starterChangeWatch||g.forecastQuality?.level==='hold'||
+ (g.forecastQuality?.teamChecks||[]).some(c=>c.sleeperConflict||c.projectedQBUnavailable)||g.qbReplacement?.affectsPrediction)}
+const FILTER_TESTS={heat:g=>['Shootout','High'].includes(g.shootout?.tier),close:g=>favProb(g)<.6,checked:g=>g.forecastQuality?.level==='checked',weather:weatherAlert,qb:qbWatch};
+function weekMatch(g){return store.filters.week==='all'||String(g.week)===String(store.filters.week)}
+function filtersActive(){const f=store.filters;return f.week!=='all'||f.sort!=='kickoff'||FILTER_TOGGLES.some(([k])=>f[k])}
+function filteredUpcoming(){const f=store.filters;
+ let list=games().filter(matchSearch).filter(weekMatch).filter(g=>FILTER_TOGGLES.every(([k])=>!f[k]||FILTER_TESTS[k](g)));
+ const by={fav:(a,b)=>favProb(b)-favProb(a),close:(a,b)=>favProb(a)-favProb(b),heat:(a,b)=>(b.shootout?.rating??-1)-(a.shootout?.rating??-1)}[f.sort];
+ return by?list.slice().sort(by):list}
+function boardHTML(){const up=filteredUpcoming(),rec=recentKickoffs().filter(matchSearch).filter(weekMatch),total=games().length;
+ return (up.length?`<div class="started-board-heading">UPCOMING FIXTURES · ${up.length===total?up.length:up.length+' of '+total}</div>${up.map(gameRow).join('')}`:'')+
+  startedRowsHTML(rec)||empty('No matchups match these filters',store.query||filtersActive()?'Try another team or clear the filters.':'Waiting for the NFL schedule feed.')}
+function refreshBoard(){const t=byId('gameRows');if(!t)return;t.innerHTML=boardHTML();if(t.dataset)t.dataset.layoutKey='';
+ // Rebuild the filter bar (counts/clear button) but keep keyboard focus on the same control.
+ const a=document.activeElement,key=a?.dataset?.filterToggle?'[data-filter-toggle="'+a.dataset.filterToggle+'"]':a?.dataset?.filter?'[data-filter="'+a.dataset.filter+'"]':a?.dataset?.filterClear?'[data-filter-toggle]':null;
+ const bar=byId('filterBar');if(bar)bar.outerHTML=filterBar();if(key)document.querySelector('#filterBar '+key)?.focus();updateLiveDom()}
+function filterBar(){const f=store.filters,weeks=[...new Set([...recentKickoffs(),...games()].map(g=>g.week).filter(w=>w!=null))].sort((a,b)=>a-b);
+ const opt=(v,label,cur)=>`<option value="${escapeHTML(v)}"${String(cur)===String(v)?' selected':''}>${escapeHTML(label)}</option>`;
+ return `<div class="filter-bar" id="filterBar" role="group" aria-label="Filter games">
+ <label class="filter-field"><span>Week</span><select class="select" data-filter="week">${opt('all','All weeks',f.week)}${weeks.map(w=>opt(w,'Week '+w,f.week)).join('')}</select></label>
+ <label class="filter-field"><span>Sort</span><select class="select" data-filter="sort">${opt('kickoff','Kickoff time',f.sort)}${opt('fav','Biggest favourite',f.sort)}${opt('close','Closest games',f.sort)}${opt('heat','Highest scoring',f.sort)}</select></label>
+ <div class="filter-toggles">${FILTER_TOGGLES.map(([k,label])=>`<button type="button" class="filter-chip${f[k]?' on':''}" data-filter-toggle="${k}" aria-pressed="${f[k]?'true':'false'}">${escapeHTML(label)}</button>`).join('')}
+ ${filtersActive()?'<button type="button" class="filter-clear" data-filter-clear="1">Clear filters</button>':''}</div></div>`}
+function setFilter(key,value){store.filters[key]=value;save('filters',store.filters);refreshBoard()}
 function matchups(){
- const g=games().filter(matchSearch),started=recentKickoffs().filter(matchSearch);
- return warnBanner()+(window.NFLShootout&&!store.query?NFLShootout.panel(store.data):'')+panel('Matchup board',`<div class="panel-body"><div class="search-row"><input aria-label="Search matchups" class="input" id="searchGames" placeholder="Search a team..." value="${escapeHTML(store.query)}"/><span class="tiny">${started.length} kicked off · ${g.length} upcoming</span></div>
- </div>
- <div id="gameRows">${g.length?`<div class="started-board-heading">UPCOMING FIXTURES</div>${g.map(gameRow).join('')}`:''}
- ${startedRowsHTML(started)}
- ${!started.length&&!g.length?empty('No matching matchups',store.query?'Try another team name.':'Waiting for the NFL schedule feed.'):''}</div>`,'');}
+ const started=recentKickoffs().filter(matchSearch);
+ return warnBanner()+(window.NFLShootout&&!store.query?NFLShootout.panel(store.data,{limit:5,expandable:true}):'')+panel('Matchup board',`<div class="panel-body board-controls"><div class="search-row"><input aria-label="Search matchups" class="input" id="searchGames" placeholder="Search a team..." value="${escapeHTML(store.query)}"/><span class="tiny">${started.length} kicked off · ${games().length} upcoming</span></div>
+ ${filterBar()}</div>
+ <div id="gameRows">${boardHTML()}</div>`,'');}
 function radar(){const g=games();const rated=g.map(x=>({g:x,v:valueFor(x)})).filter(x=>x.v).sort((a,b)=>Number(b.v.eligible)-Number(a.v.eligible)||b.v.ev-a.v.ev);
  const upset=g.filter(x=>x.forecastQuality?.bettingEligible===true&&!isProvisionalMain(x)).map(x=>({g:x,prob:Math.min(x.homeProbability,x.awayProbability),underdog:x.homeProbability<.5?x.home:x.away})).filter(x=>x.prob>=.33).sort((a,b)=>b.prob-a.prob);
  const cols=`<div class="value-row value-head"><div>Market / Matchup</div><div>Model p</div><div>Price</div><div>Break-even</div><div>Model EV</div></div>`;
@@ -1074,7 +1112,8 @@ function oddsDialog(gameId){const g=games().find(x=>x.id===gameId);if(!g)return;
 function downloadJson(filename,obj){const blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
 function exportLedger(){downloadJson('nfl-lab-personal-ledger.json',{exportedAt:new Date().toISOString(),format:'nfl-lab-ledger-v1',bets:store.bets,odds:store.odds});toast('Local ledger exported')}
 async function refresh(){if(store.busy)return;if(window.NFL_LAB_EMBEDDED_DATA){store.data=window.NFL_LAB_EMBEDDED_DATA;render();return;}store.busy=true;byId('dataAge').textContent='CHECKING DATA';try{try{const ar=await fetch('data/audit-reference.json?ts='+Date.now(),{cache:'no-store'});if(ar.ok)store.auditReference=await ar.json()}catch{}try{const er=await fetch('data/situational-research.json?ts='+Date.now(),{cache:'no-store'});if(er.ok)store.researchEvidence=await er.json()}catch{}const res=await fetch('data/dashboard.json?ts='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status);const d=await res.json();if(!Array.isArray(d.nextGames))throw Error('Unsupported dataset');store.data=d;render();refreshLiveScores();toast(d.generatedAt?'Forecast data loaded':'Waiting for the first published NFL data run')}catch(e){store.data={dataStatus:'unavailable',nextGames:[],recentResults:[],performance:{count:0}};render();toast('Could not load dashboard data. Use a local web server or GitHub Pages.')}finally{store.busy=false}}
-function handleClick(e){const btn=e.target.closest('[data-forecast-mode],[data-model-filter],[data-tab],[data-nav],[data-open],[data-full-game],[data-back-matchups],[data-share-game],[data-odds],[data-close],[data-clear-odds],[data-deletebet],[data-export],[data-import],[data-export-audit],[data-export-evidence]');if(!btn)return;
+function handleClick(e){const fbtn=e.target.closest('[data-filter-toggle],[data-filter-clear]');if(fbtn&&(fbtn.dataset?.filterToggle||fbtn.dataset?.filterClear)){if(fbtn.dataset.filterClear){store.filters=Object.assign({},FILTER_DEFAULTS);save('filters',store.filters);refreshBoard()}else{const k=fbtn.dataset.filterToggle;setFilter(k,!store.filters[k])}return}
+ const btn=e.target.closest('[data-forecast-mode],[data-model-filter],[data-tab],[data-nav],[data-open],[data-full-game],[data-back-matchups],[data-share-game],[data-odds],[data-close],[data-clear-odds],[data-deletebet],[data-export],[data-import],[data-export-audit],[data-export-evidence]');if(!btn)return;
  if(btn.dataset.forecastMode){store.forecastMode=btn.dataset.forecastMode==='published'?'published':'primary';render();return;}
  if(btn.dataset.modelFilter){store.modelFilter=btn.dataset.modelFilter;render();return;}
  if(btn.dataset.tab)navigate(btn.dataset.tab);
@@ -1092,7 +1131,7 @@ function handleClick(e){const btn=e.target.closest('[data-forecast-mode],[data-m
  if(btn.dataset.exportEvidence&&store.researchEvidence)downloadJson('nfl-lab-situational-research.json',store.researchEvidence);
  if(btn.dataset.import){const inp=byId('importFile');if(inp)inp.click()}
 }
-function handleChange(e){if(e.target.matches('[data-result]')){const b=store.bets.find(x=>x.id===e.target.dataset.result);if(!b)return;b.result=e.target.value;save('bets',store.bets);render();toast('Bet result updated')}}
+function handleChange(e){if(e.target.matches('[data-filter]')){setFilter(e.target.dataset.filter,e.target.value);return}if(e.target.matches('[data-result]')){const b=store.bets.find(x=>x.id===e.target.dataset.result);if(!b)return;b.result=e.target.value;save('bets',store.bets);render();toast('Bet result updated')}}
 function handleSubmit(e){if(e.target.id==='oddsForm'){e.preventDefault();const id=e.target.dataset.gameId;const price=Number(byId('marketPrice').value),side=byId('marketSide').value,book=byId('marketBook').value.trim();if(!Number.isFinite(price)||price<=1||price>1000){toast('Enter valid decimal odds above 1.00');return}const rawHandicap=byId('marketHomeHandicap').value.trim();const homeHandicap=rawHandicap===''?null:Number(rawHandicap);
  if(rawHandicap!==''&&(!Number.isFinite(homeHandicap)||Math.abs(homeHandicap)>40)){toast('Home handicap must be between -40 and +40');return}
  store.odds[id]={side,price,book,homeHandicap,enteredAt:new Date().toISOString()};save('odds',store.odds);byId('oddsDialog').close();render();toast('Bookmaker odds saved locally')}
@@ -1102,13 +1141,7 @@ function start(){byId('nav').addEventListener('click',handleClick);byId('appCont
  byId('appContent').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-open]')){e.preventDefault();openGame(e.target.dataset.open)}});
  byId('appContent').addEventListener('input',e=>{if(e.target.id==='searchGames'){
    store.query=e.target.value;
-   const upcoming=games().filter(matchSearch),recent=recentKickoffs().filter(matchSearch);
-   const target=byId('gameRows');if(target)target.innerHTML=
-    (upcoming.length?`<div class="started-board-heading">UPCOMING FIXTURES</div>${upcoming.map(gameRow).join('')}`:'')+
-    startedRowsHTML(recent)||
-    empty('No matchups found','Try another team name.');
-   if(target?.dataset)target.dataset.layoutKey='';
-   updateLiveDom();
+   refreshBoard();
  }});
  byId('appContent').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='searchGames'){store.query=e.target.value;render();byId('searchGames')?.focus()}});
  byId('refreshBtn').addEventListener('click',refresh);byId('exportBtn').addEventListener('click',exportLedger);
