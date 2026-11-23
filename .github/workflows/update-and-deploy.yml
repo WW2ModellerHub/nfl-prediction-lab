@@ -66,6 +66,8 @@ jobs:
         run: node tests/prediction-factors-smoke.cjs
       - name: Validate Shootout Heat ranking panel
         run: node tests/shootout-smoke.cjs
+      - name: Validate matchup filters and fixture card layout
+        run: node tests/filters-smoke.cjs
       - name: Validate Sleeper fantasy Red Zone calculations
         run: node tests/redzone-smoke.cjs
       - name: Validate live Game Centre and win probability

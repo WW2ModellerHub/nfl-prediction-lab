@@ -1,0 +1,65 @@
+/* Layout fixes: fixture cards, filter bar, overflow guards. Loaded after styles.css. */
+
+/* Grid children may shrink below their content (stops wide tables pushing the page sideways). */
+.grid-main>*,.right-stack,.right-stack>*{min-width:0}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+
+/* ---- Fixture card ---- */
+.game-row.fx-row{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) 86px;grid-template-areas:"teams prob proj" "tags tags tags";column-gap:18px;row-gap:11px;align-items:center}
+.fx-row .fx-teams{grid-area:teams;display:flex;align-items:center;gap:10px;min-width:0}
+.fx-row .fx-names{min-width:0}
+.fx-row .team-line{font-size:13px}
+.fx-row .fx-prob{grid-area:prob;min-width:0}
+.fx-row .prob-head span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fx-row .game-proj{grid-area:proj;display:block}
+.fx-row .fx-tags{grid-area:tags;display:flex;flex-wrap:wrap;gap:5px;min-width:0;padding-left:46px}
+.fx-tags .pf-strip{display:contents}
+.fx-tag{display:inline-block;font-size:9.5px;line-height:1.2;border-radius:5px;padding:3px 6px;white-space:nowrap;border:1px solid #2c4152;background:#1a2a38;color:#b9cad6}
+.fx-ok{color:var(--lime);background:#1d3c3133;border-color:#3d634299}
+.fx-warn{color:#f6ce83;background:#6b4f2628;border-color:#82613785}
+.fx-bad{color:#ffb3b4;background:#5a252833;border-color:#8a3e4199}
+
+@media(max-width:760px){
+ .game-row.fx-row{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"teams proj" "prob prob" "tags tags";padding:14px 15px;row-gap:10px}
+ .fx-row .fx-tags{padding-left:0}
+ .fx-row .game-proj strong{font-size:15px}
+ .fx-row .game-proj small{margin-top:2px}
+}
+
+/* Started/final rows: keep text inside its column */
+.started-game-row>*{min-width:0}
+.started-live-detail{overflow-wrap:anywhere}
+
+/* ---- Filter bar ---- */
+.board-controls{display:flex;flex-direction:column;gap:12px}
+.board-controls .search-row{margin:0}
+.filter-bar{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 12px}
+.filter-field{display:flex;flex-direction:column;gap:5px;min-width:140px}
+.filter-field span{font-size:9px;font-weight:800;letter-spacing:.7px;color:var(--muted2);text-transform:uppercase}
+.filter-field .select{min-height:38px;padding-block:7px}
+.filter-toggles{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.filter-chip{font:inherit;font-size:11px;font-weight:700;color:#b9cad6;background:#162636;border:1px solid #2c4152;border-radius:999px;padding:8px 12px;cursor:pointer;min-height:36px;transition:.12s}
+.filter-chip:hover{border-color:#47647a;color:var(--white)}
+.filter-chip.on{background:#1d3c31;border-color:#4f8a57;color:var(--lime)}
+.filter-chip:focus-visible,.filter-clear:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+.filter-clear{font:inherit;font-size:11px;font-weight:700;color:var(--orange);background:none;border:0;padding:8px 6px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:760px){
+ .filter-field{flex:1 1 140px}
+ .filter-toggles{width:100%}
+ .filter-chip{padding:7px 10px;font-size:10.5px;min-height:34px}
+}
+
+/* ---- Shootout panel fold ---- */
+.sh-fold>summary{list-style:none;cursor:pointer;padding:12px 21px;font-size:12px;font-weight:700;color:var(--lime);border-bottom:1px solid #1d2f3d}
+.sh-fold>summary::-webkit-details-marker{display:none}
+.sh-fold>summary::before{content:'＋ '}
+.sh-fold[open]>summary::before{content:'− '}
+.sh-fold[open]>summary{color:var(--muted)}
+
+/* ---- Winning-margin chart: labels wrap instead of overlapping ---- */
+@media(max-width:760px){
+ .p-bars{gap:5px}
+ .p-bar label{white-space:normal;width:100%;left:0;transform:none;text-align:center;line-height:1.2;font-size:8.5px}
+ .bar-caption{font-size:8.5px}
+ .p-chart-space{height:34px}
+}
