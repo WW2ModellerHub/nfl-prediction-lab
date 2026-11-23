@@ -13,7 +13,7 @@ const KEYS=['venue','strength','form','qb','injuries','rest','tactical','weather
 const d=JSON.parse(fs.readFileSync('data/dashboard.json','utf8'));
 for(const g of d.nextGames){
   const f=PF.factors(g);
-  assert.equal(f.map(x=>x.key).join(),KEYS.join(),g.id);
+  assert.equal(f.map(x=>x.key).filter(k=>k!=='shootout').join(),KEYS.join(),g.id);
   const panel=PF.panel(g);
   for(const label of ['Venue','Elo','Scoring form','Quarterback','Injuries','Rest','EPA','Weather'])assert.ok(panel.includes(label),g.id+' '+label);
   assert.ok(!/undefined|NaN/.test(panel),g.id+' renders no undefined/NaN');

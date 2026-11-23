@@ -28,6 +28,7 @@ from official_reports import fetch as fetch_weekly_reports, from_existing as reu
 from pregame_verification import evaluate as verify_pregame_evidence
 from weather import enrich as enrich_weather
 from prospective_features import record as record_prospective_features
+from shootout import rate_games as rate_shootouts, record as record_shootouts
 from primary_forecast import publish as publish_provisional_primary
 
 SOURCES=(
@@ -576,6 +577,9 @@ def update(schedules_only=False,schedules_file=None):
     # Independent, public area forecast only: never changes win percentages.
     # Every fixture records the roof status, horizon and source availability.
     dashboard['weatherSource']=enrich_weather(dashboard.get('nextGames',[]),now)
+    # Shootout Heat: highest-scoring-games ranking, archived pregame and graded.
+    rate_shootouts(dashboard.get('nextGames',[]))
+    dashboard['shootoutRecord']=record_shootouts(dashboard.get('nextGames',[]),games,now)
     dashboard['prospectiveFeatureArchive']=record_prospective_features(dashboard,now)
 
     if any((r.get('personnelScenario') or {}).get('affectsPrediction') for r in dashboard.get('nextGames',[])):

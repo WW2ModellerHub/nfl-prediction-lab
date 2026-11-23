@@ -36,6 +36,7 @@
   const keys=FACTOR_LAYERS[key]||[];
   const hits=layers.filter(l=>keys.includes(l.key));
   const applied=hits.filter(l=>l.applied);
+  if(key==='shootout')return {state:'context',label:'CONTEXT ONLY',delta:null};
   if(!hits.length)return {state:'unknown',label:'NOT REPORTED',delta:null};
   if(!applied.length)return {state:'context',label:'CONTEXT ONLY',delta:null};
   const delta=applied.reduce((t,l)=>t+(num(l.deltaHome)?l.deltaHome:0),0);
@@ -167,10 +168,16 @@
    chip:w.chip,warn:w.flags.length>0};
  }
 
+ function shootout(s){
+  const sh=window.NFLShootout,f=sh&&sh.factor(s),c=sh&&sh.chip(s);
+  if(!f)return null;
+  return {key:'shootout',label:'Scoring outlook',span:f.span,edge:null,note:f.note,chip:c.text,warn:c.warn};
+ }
  function factors(g){
   const s=source(g);
-  return [venue(s),strength(s),form(s),qb(s),injuries(s),rest(s),tactical(s),weather(s)]
-   .map(f=>({...f,status:layerStatus(s,f.key)}));
+  const list=[venue(s),strength(s),form(s),qb(s),injuries(s),rest(s),tactical(s),weather(s)];
+  const heat=shootout(s);if(heat)list.push(heat);
+  return list.map(f=>({...f,status:layerStatus(s,f.key)}));
  }
 
  /* ---------- rendering ---------- */
