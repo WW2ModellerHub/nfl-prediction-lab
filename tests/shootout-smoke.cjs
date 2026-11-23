@@ -25,4 +25,11 @@ const f=PF.factors(data.nextGames[1]).find(x=>x.key==='shootout');
 assert.ok(f&&f.status.label==='CONTEXT ONLY'&&/Heat 90\/100/.test(f.span));
 assert.match(PF.strip(data.nextGames[1]),/🔥 90 Shootout/);
 assert.equal(PF.factors({id:'n',home:'A',away:'B'}).some(x=>x.key==='shootout'),false);
+// Monday night only left in week 11 -> show week 12's slate, mention MNF.
+const mk=(id,week,day,r)=>g(id,week,`2026-11-${day}T18:00:00Z`,s(r,1));
+const mnf=[mk('m',11,'24',68),mk('p',12,'27',50),mk('q',12,'29',70),mk('r',12,'29',30),mk('t',12,'30',40)];
+assert.equal(SH.currentWeek(mnf).map(x=>x.week).join(),'12,12,12,12');
+const mp=SH.panel({nextGames:mnf});
+assert.match(mp,/Week 12/);assert.match(mp,/Still to play in week 11: Am @ H&lt;m \(68 High\)/);
+assert.equal(SH.currentWeek(mnf.slice(0,2)).map(x=>x.id).join(),'m','no full slate: earliest week');
 console.log('Shootout Heat panel validated.');

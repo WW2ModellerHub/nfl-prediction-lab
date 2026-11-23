@@ -11,11 +11,22 @@
  const when=s=>s?new Date(s).toLocaleString('en-GB',{weekday:'short',hour:'2-digit',minute:'2-digit',timeZone:'Europe/London'}):'';
  const tierClass=t=>({Shootout:'sh-t4',High:'sh-t3',Average:'sh-t2',Low:'sh-t1'})[t]||'sh-t2';
 
+ // The "weekend" is the earliest week that still has a real slate (4+ games
+ // to come). When only a Thursday/Monday game is left, show the next week.
+ const MIN_SLATE=4;
+ function weeks(games){
+  const rated=(games||[]).filter(g=>g&&g.shootout).sort((a,b)=>String(a.kickoff).localeCompare(String(b.kickoff)));
+  const order=[],groups={};
+  rated.forEach(g=>{const k=g.season+'-'+g.week;if(!groups[k]){groups[k]=[];order.push(k);}groups[k].push(g);});
+  return order.map(k=>groups[k].sort((a,b)=>a.shootout.weekRank-b.shootout.weekRank));
+ }
  function currentWeek(games){
-  const rated=(games||[]).filter(g=>g&&g.shootout);
-  if(!rated.length)return [];
-  const first=rated.slice().sort((a,b)=>String(a.kickoff).localeCompare(String(b.kickoff)))[0];
-  return rated.filter(g=>g.season===first.season&&g.week===first.week).sort((a,b)=>a.shootout.weekRank-b.shootout.weekRank);
+  const all=weeks(games);
+  return all.find(w=>w.length>=MIN_SLATE)||all[0]||[];
+ }
+ function leftover(games,week){
+  const first=weeks(games)[0]||[];
+  return week.length&&first.length&&first[0].week!==week[0].week?first:[];
  }
  function chip(g){
   const s=g&&g.shootout;if(!s)return null;
@@ -35,8 +46,9 @@
  }
  function panel(data,opts={}){
   const week=currentWeek(data&&data.nextGames);
+  const rest=leftover(data&&data.nextGames,week);
   const rec=data&&data.shootoutRecord;
-  const head=`<div class="panel-head"><div><div class="panel-title">🔥 Highest-scoring games this week</div><div class="panel-sub">Shootout Heat · our expected-points rating, not a betting total</div></div></div>`;
+  const head=`<div class="panel-head"><div><div class="panel-title">🔥 Highest-scoring games${week.length?' · Week '+esc(week[0].week):' this week'}</div><div class="panel-sub">Shootout Heat · our expected-points rating, not a betting total</div></div></div>`;
   if(!week.length)return `<article class="panel sh-panel">${head}<div class="panel-body"><p class="instruction">Shootout ratings appear after the next data refresh.</p></div></article>`;
   const rows=week.slice(0,opts.limit||week.length).map(g=>{
    const s=g.shootout,c=s.components||{};
@@ -48,7 +60,8 @@
     <p class="sh-why">Projected ${fx(c.projectedTotal)} · passing ${signed(c.passingMatchup)} · explosive ${signed(c.explosivePlays)} · weather ${signed(c.weather)}</p>
    </div>`;}).join('');
   const more=opts.limit&&week.length>opts.limit?`<button class="btn btn-sm btn-ghost sh-more" data-nav="matchups">All ${week.length} games →</button>`:'';
-  return `<article class="panel sh-panel">${head}<div class="sh-list">${rows}</div><div class="panel-body sh-foot">${more}${recordLine(rec)}
+  const tail=rest.length?`<p class="sh-record">Still to play in week ${esc(rest[0].week)}: ${rest.map(g=>`${esc(g.away)} @ ${esc(g.home)} (${g.shootout.rating} ${esc(g.shootout.tier)})`).join(' · ')}.</p>`:'';
+  return `<article class="panel sh-panel">${head}<div class="sh-list">${rows}</div><div class="panel-body sh-foot">${more}${tail}${recordLine(rec)}
   <p class="source-meta">Heat 0–100 maps 36–56 expected combined points. Starts from the model's projected total, then adjusts for each offence's passing efficiency and explosive plays against the opposing defence (relative to this slate) and for wind, rain, snow and severe cold outdoors. Weights are heuristic, which is why every rating is saved before kickoff and graded.</p></div></article>`;
  }
  window.NFLShootout={panel,chip,factor,currentWeek};
