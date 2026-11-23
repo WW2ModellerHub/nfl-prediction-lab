@@ -4523,6 +4523,62 @@
       },
       "trainingEligible": false,
       "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_12_CAR_TB",
+      "season": 2026,
+      "week": 12,
+      "kickoff": "2026-12-01T01:15:00+00:00",
+      "recordedAt": "2026-11-23T03:48:00.482298+00:00",
+      "window": "early",
+      "home": "TB",
+      "away": "CAR",
+      "baselineHomeProbability": 0.586,
+      "publishedHomeProbability": 0.583,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.517301,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "forecast",
+        "roof": "outdoors",
+        "stadiumId": "TAM00",
+        "source": "Open-Meteo",
+        "sourceRetrievedAt": "2026-11-23T03:48:00.482298+00:00",
+        "forecastFor": "2026-12-01T01:00:00+00:00",
+        "values": {
+          "temperatureC": 18.7,
+          "precipitationChancePct": 5.0,
+          "windMph": 8.1,
+          "gustMph": 20.6,
+          "snowfallCm": 0.0
+        }
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0034855",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 220.0,
+          "priorEPA": -0.099
+        },
+        "away": {
+          "id": "00-0039150",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 323.0,
+          "priorEPA": -0.022
+        }
+      },
+      "injuries": {
+        "status": "unavailable",
+        "asOf": null,
+        "observedFlagCounts": null,
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
     }
   ]
 }
