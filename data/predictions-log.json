@@ -3162,5 +3162,51 @@
     "baselineHomeProbability": 0.40615,
     "adjustmentActive": false,
     "situationalProbabilityDelta": 0
+  },
+  {
+    "gameId": "2026_14_PIT_JAX",
+    "recordedAt": "2026-11-24T07:00:04.178105+00:00",
+    "kickoff": "2026-12-15T01:15:00+00:00",
+    "home": "JAX",
+    "away": "PIT",
+    "homeProbability": 0.64807,
+    "predMargin": 5.43,
+    "predTotal": 44.36,
+    "situationalSignals": [
+      "repeat_road"
+    ],
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "tacticalProbabilityDelta": 0,
+    "playerProbabilityDelta": 0,
+    "qbProbabilityDelta": 0,
+    "qbResearch": {
+      "eligible": true,
+      "features": [
+        0.179,
+        0.036000000000000004,
+        0
+      ],
+      "status": "eligible",
+      "reason": "Prior-game QB observations available",
+      "source": "Recorded prior starter or dated pregame depth chart, not game-day confirmation"
+    },
+    "qbObserved": {
+      "home": "00-0036971",
+      "away": "00-0023459"
+    },
+    "injuryReportAsOf": null,
+    "qbInjuryProbabilityWeight": 0,
+    "playerFeatures": null,
+    "playerImpactStatus": "informational",
+    "tacticalFeatures": [
+      0.051897618475269525,
+      -0.46154160973774205,
+      -0.10930381621497565,
+      0.49825627125624683
+    ],
+    "baselineHomeProbability": 0.64807,
+    "adjustmentActive": false,
+    "situationalProbabilityDelta": 0
   }
 ]

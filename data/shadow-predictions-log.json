@@ -1087,5 +1087,14 @@
     "baselineHomeProbability": 0.856973,
     "model": "joint-xgb-v2-2026-11-09",
     "researchOnly": true
+  },
+  {
+    "gameId": "2026_14_LAC_LV",
+    "kickoff": "2026-12-13T21:05:00+00:00",
+    "recordedAt": "2026-11-24T07:00:04.178105+00:00",
+    "homeProbability": 0.541779,
+    "baselineHomeProbability": 0.540388,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
   }
 ]

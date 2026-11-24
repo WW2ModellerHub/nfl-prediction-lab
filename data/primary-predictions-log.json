@@ -1423,5 +1423,20 @@
     "eligibleForBetting": false,
     "evidenceLevel": "review",
     "note": "First genuinely published provisional pick, not reconstructed"
+  },
+  {
+    "gameId": "2026_14_LAC_LV",
+    "home": "LV",
+    "away": "LAC",
+    "kickoff": "2026-12-13T21:05:00+00:00",
+    "recordedAt": "2026-11-24T07:00:04.178105+00:00",
+    "modelVersion": "primary-provisional-v2+joint-xgb-v2-2026-11-09",
+    "kind": "first-versioned-primary",
+    "homeProbability": 0.541779,
+    "originalHomeProbability": 0.54384,
+    "researchOnly": true,
+    "eligibleForBetting": false,
+    "evidenceLevel": "review",
+    "note": "First genuinely published provisional pick, not reconstructed"
   }
 ]
