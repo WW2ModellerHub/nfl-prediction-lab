@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-23T21:17:19.095789+00:00",
+  "generatedAt": "2026-11-24T00:57:51.164510+00:00",
   "games": [
     {
       "id": "2026_11_MIN_SF",
@@ -39,66 +39,12 @@
       "archivedPregame": true
     },
     {
-      "id": "2026_11_TEN_DAL",
-      "home": "DAL",
-      "away": "TEN",
-      "kickoff": "2026-11-22T18:00:00+00:00",
-      "homeProbability": 0.72243,
-      "recordedAt": "2026-11-22T15:28:51.585321+00:00",
-      "archivedPregame": true
-    },
-    {
-      "id": "2026_11_TB_DET",
-      "home": "DET",
-      "away": "TB",
-      "kickoff": "2026-11-22T18:00:00+00:00",
-      "homeProbability": 0.7346,
-      "recordedAt": "2026-11-22T15:28:51.585321+00:00",
-      "archivedPregame": true
-    },
-    {
-      "id": "2026_11_NO_CHI",
-      "home": "CHI",
-      "away": "NO",
-      "kickoff": "2026-11-22T18:00:00+00:00",
-      "homeProbability": 0.77657,
-      "recordedAt": "2026-11-22T15:28:51.585321+00:00",
-      "archivedPregame": true
-    },
-    {
-      "id": "2026_11_MIA_BUF",
-      "home": "BUF",
-      "away": "MIA",
-      "kickoff": "2026-11-22T18:00:00+00:00",
-      "homeProbability": 0.83585,
-      "recordedAt": "2026-11-22T15:28:51.585321+00:00",
-      "archivedPregame": true
-    },
-    {
-      "id": "2026_11_BAL_CAR",
-      "home": "CAR",
-      "away": "BAL",
-      "kickoff": "2026-11-22T18:00:00+00:00",
-      "homeProbability": 0.55165,
-      "recordedAt": "2026-11-22T15:28:51.585321+00:00",
-      "archivedPregame": true
-    },
-    {
-      "id": "2026_11_ARI_KC",
-      "home": "KC",
-      "away": "ARI",
-      "kickoff": "2026-11-22T18:00:00+00:00",
-      "homeProbability": 0.77182,
-      "recordedAt": "2026-11-22T15:28:51.585321+00:00",
-      "archivedPregame": true
-    },
-    {
       "id": "2026_11_CIN_WAS",
       "home": "WAS",
       "away": "CIN",
       "kickoff": "2026-11-24T01:15:00+00:00",
-      "homeProbability": 0.42908,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "homeProbability": 0.41968,
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -107,7 +53,7 @@
       "away": "GB",
       "kickoff": "2026-11-26T01:00:00+00:00",
       "homeProbability": 0.64319,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -116,7 +62,7 @@
       "away": "CHI",
       "kickoff": "2026-11-26T18:00:00+00:00",
       "homeProbability": 0.60938,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -125,7 +71,7 @@
       "away": "PHI",
       "kickoff": "2026-11-26T21:30:00+00:00",
       "homeProbability": 0.5875,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -134,7 +80,7 @@
       "away": "KC",
       "kickoff": "2026-11-27T01:20:00+00:00",
       "homeProbability": 0.65976,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -143,7 +89,7 @@
       "away": "DEN",
       "kickoff": "2026-11-27T20:00:00+00:00",
       "homeProbability": 0.44432,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -152,7 +98,7 @@
       "away": "ATL",
       "kickoff": "2026-11-29T18:00:00+00:00",
       "homeProbability": 0.73664,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -161,7 +107,7 @@
       "away": "BAL",
       "kickoff": "2026-11-29T18:00:00+00:00",
       "homeProbability": 0.67442,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -170,7 +116,7 @@
       "away": "NO",
       "kickoff": "2026-11-29T18:00:00+00:00",
       "homeProbability": 0.76565,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -179,7 +125,7 @@
       "away": "NYG",
       "kickoff": "2026-11-29T18:00:00+00:00",
       "homeProbability": 0.4893,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -188,7 +134,7 @@
       "away": "NYJ",
       "kickoff": "2026-11-29T18:00:00+00:00",
       "homeProbability": 0.5985,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -197,7 +143,7 @@
       "away": "TEN",
       "kickoff": "2026-11-29T18:00:00+00:00",
       "homeProbability": 0.84855,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -206,7 +152,7 @@
       "away": "NE",
       "kickoff": "2026-11-29T21:05:00+00:00",
       "homeProbability": 0.4347,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -215,7 +161,7 @@
       "away": "SEA",
       "kickoff": "2026-11-29T21:25:00+00:00",
       "homeProbability": 0.61738,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -224,7 +170,7 @@
       "away": "WAS",
       "kickoff": "2026-11-29T21:25:00+00:00",
       "homeProbability": 0.4572,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -233,7 +179,7 @@
       "away": "LV",
       "kickoff": "2026-11-30T01:20:00+00:00",
       "homeProbability": 0.65953,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -242,7 +188,7 @@
       "away": "CAR",
       "kickoff": "2026-12-01T01:15:00+00:00",
       "homeProbability": 0.58307,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -251,7 +197,7 @@
       "away": "KC",
       "kickoff": "2026-12-04T01:15:00+00:00",
       "homeProbability": 0.5743,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -260,7 +206,7 @@
       "away": "CIN",
       "kickoff": "2026-12-06T18:00:00+00:00",
       "homeProbability": 0.41914,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -269,7 +215,7 @@
       "away": "DET",
       "kickoff": "2026-12-06T18:00:00+00:00",
       "homeProbability": 0.33054,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -278,7 +224,7 @@
       "away": "GB",
       "kickoff": "2026-12-06T18:00:00+00:00",
       "homeProbability": 0.40612,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -287,7 +233,7 @@
       "away": "JAX",
       "kickoff": "2026-12-06T18:00:00+00:00",
       "homeProbability": 0.5681,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -296,7 +242,7 @@
       "away": "LAC",
       "kickoff": "2026-12-06T18:00:00+00:00",
       "homeProbability": 0.63835,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -305,7 +251,7 @@
       "away": "SF",
       "kickoff": "2026-12-06T18:00:00+00:00",
       "homeProbability": 0.36213,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -314,7 +260,7 @@
       "away": "WAS",
       "kickoff": "2026-12-06T18:00:00+00:00",
       "homeProbability": 0.38548,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -323,7 +269,7 @@
       "away": "MIA",
       "kickoff": "2026-12-06T21:05:00+00:00",
       "homeProbability": 0.8141,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -332,7 +278,7 @@
       "away": "PHI",
       "kickoff": "2026-12-06T21:05:00+00:00",
       "homeProbability": 0.4498,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -341,7 +287,7 @@
       "away": "BUF",
       "kickoff": "2026-12-06T21:25:00+00:00",
       "homeProbability": 0.3943,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -350,7 +296,7 @@
       "away": "CAR",
       "kickoff": "2026-12-06T21:25:00+00:00",
       "homeProbability": 0.70014,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -359,7 +305,7 @@
       "away": "HOU",
       "kickoff": "2026-12-07T01:20:00+00:00",
       "homeProbability": 0.55183,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -368,7 +314,7 @@
       "away": "DAL",
       "kickoff": "2026-12-08T01:15:00+00:00",
       "homeProbability": 0.71058,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -377,7 +323,7 @@
       "away": "MIN",
       "kickoff": "2026-12-11T01:15:00+00:00",
       "homeProbability": 0.5219,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -386,7 +332,7 @@
       "away": "ATL",
       "kickoff": "2026-12-13T18:00:00+00:00",
       "homeProbability": 0.62007,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -395,7 +341,7 @@
       "away": "CHI",
       "kickoff": "2026-12-13T18:00:00+00:00",
       "homeProbability": 0.3278,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -404,7 +350,7 @@
       "away": "DEN",
       "kickoff": "2026-12-13T18:00:00+00:00",
       "homeProbability": 0.26983,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -413,7 +359,7 @@
       "away": "HOU",
       "kickoff": "2026-12-13T18:00:00+00:00",
       "homeProbability": 0.4693,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -422,7 +368,7 @@
       "away": "IND",
       "kickoff": "2026-12-13T18:00:00+00:00",
       "homeProbability": 0.6471,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -431,7 +377,7 @@
       "away": "NO",
       "kickoff": "2026-12-13T18:00:00+00:00",
       "homeProbability": 0.6329,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -440,7 +386,7 @@
       "away": "TB",
       "kickoff": "2026-12-13T18:00:00+00:00",
       "homeProbability": 0.56394,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     },
     {
@@ -449,7 +395,7 @@
       "away": "TEN",
       "kickoff": "2026-12-13T18:00:00+00:00",
       "homeProbability": 0.86169,
-      "recordedAt": "2026-11-23T21:17:19.095789+00:00",
+      "recordedAt": "2026-11-24T00:57:51.164510+00:00",
       "archivedPregame": true
     }
   ],
