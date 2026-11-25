@@ -4638,6 +4638,58 @@
       },
       "trainingEligible": false,
       "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_12_GB_LA",
+      "season": 2026,
+      "week": 12,
+      "kickoff": "2026-11-26T01:00:00+00:00",
+      "recordedAt": "2026-11-25T22:36:44.497916+00:00",
+      "window": "late",
+      "home": "LA",
+      "away": "GB",
+      "baselineHomeProbability": 0.6441,
+      "publishedHomeProbability": 0.64322,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.705072,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "As-of projected QB with prior statistics",
+        "Historical play-by-play tactical observations",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "indoor",
+        "roof": "dome",
+        "stadiumId": "LAX01",
+        "source": null,
+        "sourceRetrievedAt": null,
+        "forecastFor": null,
+        "values": {}
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0026498",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 329.0,
+          "priorEPA": 0.114
+        },
+        "away": {
+          "id": "00-0036264",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 316.0,
+          "priorEPA": 0.143
+        }
+      },
+      "injuries": {
+        "status": "snapshot-cached",
+        "asOf": "2026-11-25T18:02:21.909229+00:00",
+        "observedFlagCounts": null,
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
     }
   ]
 }
