@@ -1438,5 +1438,20 @@
     "eligibleForBetting": false,
     "evidenceLevel": "review",
     "note": "First genuinely published provisional pick, not reconstructed"
+  },
+  {
+    "gameId": "2026_14_KC_CIN",
+    "home": "CIN",
+    "away": "KC",
+    "kickoff": "2026-12-13T21:25:00+00:00",
+    "recordedAt": "2026-11-26T05:11:23.937300+00:00",
+    "modelVersion": "primary-provisional-v2+joint-xgb-v2-2026-11-09",
+    "kind": "first-versioned-primary",
+    "homeProbability": 0.538109,
+    "originalHomeProbability": 0.53195,
+    "researchOnly": true,
+    "eligibleForBetting": false,
+    "evidenceLevel": "review",
+    "note": "First genuinely published provisional pick, not reconstructed"
   }
 ]

@@ -4690,6 +4690,56 @@
       },
       "trainingEligible": false,
       "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_13_KC_LA",
+      "season": 2026,
+      "week": 13,
+      "kickoff": "2026-12-04T01:15:00+00:00",
+      "recordedAt": "2026-11-26T05:11:23.937300+00:00",
+      "window": "early",
+      "home": "LA",
+      "away": "KC",
+      "baselineHomeProbability": 0.5933,
+      "publishedHomeProbability": 0.58819,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.511906,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "indoor",
+        "roof": "dome",
+        "stadiumId": "LAX01",
+        "source": null,
+        "sourceRetrievedAt": null,
+        "forecastFor": null,
+        "values": {}
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0026498",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 329.0,
+          "priorEPA": 0.114
+        },
+        "away": {
+          "id": "00-0033873",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 272.0,
+          "priorEPA": 0.252
+        }
+      },
+      "injuries": {
+        "status": "unavailable",
+        "asOf": null,
+        "observedFlagCounts": null,
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
     }
   ]
 }
