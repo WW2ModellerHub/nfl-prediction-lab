@@ -1105,5 +1105,23 @@
     "baselineHomeProbability": 0.529487,
     "model": "joint-xgb-v2-2026-11-09",
     "researchOnly": true
+  },
+  {
+    "gameId": "2026_14_LA_SF",
+    "kickoff": "2026-12-13T21:25:00+00:00",
+    "recordedAt": "2026-11-26T22:24:10.411872+00:00",
+    "homeProbability": 0.608833,
+    "baselineHomeProbability": 0.607023,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
+  },
+  {
+    "gameId": "2026_14_NYG_SEA",
+    "kickoff": "2026-12-13T21:25:00+00:00",
+    "recordedAt": "2026-11-26T22:24:10.411872+00:00",
+    "homeProbability": 0.705757,
+    "baselineHomeProbability": 0.725314,
+    "model": "joint-xgb-v2-2026-11-09",
+    "researchOnly": true
   }
 ]
