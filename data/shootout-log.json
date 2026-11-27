@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-27T05:09:31.166013+00:00",
+  "updatedAt": "2026-11-27T17:32:32.448911+00:00",
   "entries": {
     "2026_11_CIN_WAS": {
       "season": 2026,
@@ -28,7 +28,7 @@
       "home": "MIN",
       "away": "ATL",
       "kickoff": "2026-11-29T18:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 16,
       "tier": "Low",
       "shootoutTotal": 39.2,
@@ -36,7 +36,7 @@
       "components": {
         "projectedTotal": 41.1,
         "passingMatchup": -1.89,
-        "explosivePlays": 0.02,
+        "explosivePlays": 0.01,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
@@ -47,16 +47,16 @@
       "home": "HOU",
       "away": "BAL",
       "kickoff": "2026-11-29T18:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
-      "rating": 51,
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
+      "rating": 50,
       "tier": "Average",
-      "shootoutTotal": 46.3,
+      "shootoutTotal": 46.0,
       "projectedTotal": 47.1,
       "components": {
         "projectedTotal": 47.1,
         "passingMatchup": 0.15,
-        "explosivePlays": 0.25,
-        "weather": -1.2
+        "explosivePlays": 0.24,
+        "weather": -1.46
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
     },
@@ -66,7 +66,7 @@
       "home": "TB",
       "away": "CAR",
       "kickoff": "2026-12-01T01:15:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 40,
       "tier": "Average",
       "shootoutTotal": 44.0,
@@ -74,7 +74,7 @@
       "components": {
         "projectedTotal": 46.3,
         "passingMatchup": -1.58,
-        "explosivePlays": -0.7,
+        "explosivePlays": -0.71,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
@@ -105,7 +105,7 @@
       "home": "PIT",
       "away": "DEN",
       "kickoff": "2026-11-27T20:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 33,
       "tier": "Low",
       "shootoutTotal": 42.6,
@@ -113,7 +113,7 @@
       "components": {
         "projectedTotal": 44.1,
         "passingMatchup": 0.24,
-        "explosivePlays": -0.36,
+        "explosivePlays": -0.37,
         "weather": -1.4
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
@@ -164,16 +164,16 @@
       "home": "CLE",
       "away": "LV",
       "kickoff": "2026-11-30T01:20:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
-      "rating": 49,
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
+      "rating": 44,
       "tier": "Average",
-      "shootoutTotal": 45.8,
+      "shootoutTotal": 44.8,
       "projectedTotal": 46.8,
       "components": {
         "projectedTotal": 46.8,
         "passingMatchup": 0.43,
-        "explosivePlays": 0.12,
-        "weather": -1.5
+        "explosivePlays": 0.11,
+        "weather": -2.58
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
     },
@@ -183,7 +183,7 @@
       "home": "LAC",
       "away": "NE",
       "kickoff": "2026-11-29T21:05:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 56,
       "tier": "Average",
       "shootoutTotal": 47.2,
@@ -202,16 +202,16 @@
       "home": "CIN",
       "away": "NO",
       "kickoff": "2026-11-29T18:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
-      "rating": 55,
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
+      "rating": 50,
       "tier": "Average",
-      "shootoutTotal": 47.0,
+      "shootoutTotal": 46.0,
       "projectedTotal": 46.6,
       "components": {
         "projectedTotal": 46.6,
         "passingMatchup": 1.87,
-        "explosivePlays": 0.02,
-        "weather": -1.5
+        "explosivePlays": 0.01,
+        "weather": -2.5
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
     },
@@ -221,7 +221,7 @@
       "home": "IND",
       "away": "NYG",
       "kickoff": "2026-11-29T18:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 24,
       "tier": "Low",
       "shootoutTotal": 40.7,
@@ -229,7 +229,7 @@
       "components": {
         "projectedTotal": 44.0,
         "passingMatchup": -2.77,
-        "explosivePlays": 0.19,
+        "explosivePlays": 0.18,
         "weather": -0.75
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
@@ -240,7 +240,7 @@
       "home": "MIA",
       "away": "NYJ",
       "kickoff": "2026-11-29T18:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 38,
       "tier": "Low",
       "shootoutTotal": 43.6,
@@ -279,15 +279,15 @@
       "home": "SF",
       "away": "SEA",
       "kickoff": "2026-11-29T21:25:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 46,
       "tier": "Average",
       "shootoutTotal": 45.3,
       "projectedTotal": 45.6,
       "components": {
         "projectedTotal": 45.6,
-        "passingMatchup": 1.3,
-        "explosivePlays": -0.06,
+        "passingMatchup": 1.31,
+        "explosivePlays": -0.07,
         "weather": -1.5
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
@@ -298,7 +298,7 @@
       "home": "JAX",
       "away": "TEN",
       "kickoff": "2026-11-29T18:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 78,
       "tier": "High",
       "shootoutTotal": 51.6,
@@ -306,7 +306,7 @@
       "components": {
         "projectedTotal": 50.0,
         "passingMatchup": 1.44,
-        "explosivePlays": 0.21,
+        "explosivePlays": 0.2,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
@@ -317,15 +317,15 @@
       "home": "ARI",
       "away": "WAS",
       "kickoff": "2026-11-29T21:25:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 46,
       "tier": "Average",
       "shootoutTotal": 45.1,
       "projectedTotal": 44.1,
       "components": {
         "projectedTotal": 44.1,
-        "passingMatchup": 0.83,
-        "explosivePlays": 0.13,
+        "passingMatchup": 0.84,
+        "explosivePlays": 0.12,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
@@ -336,16 +336,16 @@
       "home": "NE",
       "away": "BUF",
       "kickoff": "2026-12-06T21:25:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
-      "rating": 49,
-      "tier": "Average",
-      "shootoutTotal": 45.7,
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
+      "rating": 36,
+      "tier": "Low",
+      "shootoutTotal": 43.1,
       "projectedTotal": 45.5,
       "components": {
         "projectedTotal": 45.5,
-        "passingMatchup": 0.46,
-        "explosivePlays": 0.77,
-        "weather": -1.04
+        "passingMatchup": 0.06,
+        "explosivePlays": 0.55,
+        "weather": -3.0
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
     },
@@ -355,7 +355,7 @@
       "home": "MIN",
       "away": "CAR",
       "kickoff": "2026-12-06T21:25:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 27,
       "tier": "Low",
       "shootoutTotal": 41.4,
@@ -374,16 +374,16 @@
       "home": "CLE",
       "away": "CIN",
       "kickoff": "2026-12-06T18:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
-      "rating": 57,
-      "tier": "Average",
-      "shootoutTotal": 47.5,
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
+      "rating": 32,
+      "tier": "Low",
+      "shootoutTotal": 42.5,
       "projectedTotal": 45.7,
       "components": {
         "projectedTotal": 45.7,
         "passingMatchup": 1.6,
-        "explosivePlays": 0.17,
-        "weather": 0.0
+        "explosivePlays": 0.16,
+        "weather": -5.0
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
     },
@@ -393,16 +393,16 @@
       "home": "SEA",
       "away": "DAL",
       "kickoff": "2026-12-08T01:15:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
-      "rating": 69,
-      "tier": "High",
-      "shootoutTotal": 49.7,
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
+      "rating": 80,
+      "tier": "Shootout",
+      "shootoutTotal": 51.9,
       "projectedTotal": 50.1,
       "components": {
         "projectedTotal": 50.1,
-        "passingMatchup": 1.42,
-        "explosivePlays": -0.03,
-        "weather": -1.76
+        "passingMatchup": 1.64,
+        "explosivePlays": 0.19,
+        "weather": 0.0
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
     },
@@ -412,7 +412,7 @@
       "home": "ATL",
       "away": "DET",
       "kickoff": "2026-12-06T18:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 61,
       "tier": "High",
       "shootoutTotal": 48.3,
@@ -420,7 +420,7 @@
       "components": {
         "projectedTotal": 47.4,
         "passingMatchup": 0.67,
-        "explosivePlays": 0.23,
+        "explosivePlays": 0.22,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
@@ -431,7 +431,7 @@
       "home": "NO",
       "away": "GB",
       "kickoff": "2026-12-06T18:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 38,
       "tier": "Low",
       "shootoutTotal": 43.5,
@@ -439,7 +439,7 @@
       "components": {
         "projectedTotal": 44.1,
         "passingMatchup": -0.65,
-        "explosivePlays": 0.06,
+        "explosivePlays": 0.05,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
@@ -450,7 +450,7 @@
       "home": "PIT",
       "away": "HOU",
       "kickoff": "2026-12-07T01:20:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 44,
       "tier": "Average",
       "shootoutTotal": 44.7,
@@ -458,7 +458,7 @@
       "components": {
         "projectedTotal": 44.2,
         "passingMatchup": 0.37,
-        "explosivePlays": 0.15,
+        "explosivePlays": 0.14,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
@@ -469,7 +469,7 @@
       "home": "CHI",
       "away": "JAX",
       "kickoff": "2026-12-06T18:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 54,
       "tier": "Average",
       "shootoutTotal": 46.9,
@@ -488,15 +488,15 @@
       "home": "LA",
       "away": "KC",
       "kickoff": "2026-12-04T01:15:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
-      "rating": 24,
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
+      "rating": 19,
       "tier": "Low",
-      "shootoutTotal": 40.9,
+      "shootoutTotal": 39.9,
       "projectedTotal": 41.4,
       "components": {
         "projectedTotal": 41.4,
-        "passingMatchup": -0.44,
-        "explosivePlays": -0.09,
+        "passingMatchup": -1.27,
+        "explosivePlays": -0.27,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
@@ -507,7 +507,7 @@
       "home": "TB",
       "away": "LAC",
       "kickoff": "2026-12-06T18:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 22,
       "tier": "Low",
       "shootoutTotal": 40.4,
@@ -515,7 +515,7 @@
       "components": {
         "projectedTotal": 43.4,
         "passingMatchup": -2.33,
-        "explosivePlays": -0.69,
+        "explosivePlays": -0.7,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
@@ -526,7 +526,7 @@
       "home": "DEN",
       "away": "MIA",
       "kickoff": "2026-12-06T21:05:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 32,
       "tier": "Low",
       "shootoutTotal": 42.5,
@@ -545,15 +545,15 @@
       "home": "ARI",
       "away": "PHI",
       "kickoff": "2026-12-06T21:05:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
-      "rating": 40,
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
+      "rating": 48,
       "tier": "Average",
-      "shootoutTotal": 44.0,
+      "shootoutTotal": 45.5,
       "projectedTotal": 45.0,
       "components": {
         "projectedTotal": 45.0,
-        "passingMatchup": -0.48,
-        "explosivePlays": -0.48,
+        "passingMatchup": 0.62,
+        "explosivePlays": -0.07,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
@@ -564,16 +564,16 @@
       "home": "NYG",
       "away": "SF",
       "kickoff": "2026-12-06T18:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
-      "rating": 60,
-      "tier": "High",
-      "shootoutTotal": 48.0,
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
+      "rating": 52,
+      "tier": "Average",
+      "shootoutTotal": 46.4,
       "projectedTotal": 47.9,
       "components": {
         "projectedTotal": 47.9,
         "passingMatchup": 1.45,
-        "explosivePlays": 0.33,
-        "weather": -1.64
+        "explosivePlays": 0.32,
+        "weather": -3.24
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
     },
@@ -583,7 +583,7 @@
       "home": "TEN",
       "away": "WAS",
       "kickoff": "2026-12-06T18:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 74,
       "tier": "High",
       "shootoutTotal": 50.9,
@@ -591,7 +591,7 @@
       "components": {
         "projectedTotal": 48.7,
         "passingMatchup": 1.74,
-        "explosivePlays": 0.42,
+        "explosivePlays": 0.41,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
@@ -602,7 +602,7 @@
       "home": "CLE",
       "away": "ATL",
       "kickoff": "2026-12-13T18:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 33,
       "tier": "Low",
       "shootoutTotal": 42.6,
@@ -621,15 +621,15 @@
       "home": "GB",
       "away": "BUF",
       "kickoff": "2026-12-14T01:20:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
-      "rating": 35,
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
+      "rating": 32,
       "tier": "Low",
-      "shootoutTotal": 43.0,
+      "shootoutTotal": 42.4,
       "projectedTotal": 44.0,
       "components": {
         "projectedTotal": 44.0,
-        "passingMatchup": -1.42,
-        "explosivePlays": 0.4,
+        "passingMatchup": -1.82,
+        "explosivePlays": 0.18,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-27T05:09:31.166013+00:00"
@@ -640,15 +640,15 @@
       "home": "MIA",
       "away": "CHI",
       "kickoff": "2026-12-13T18:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
-      "rating": 36,
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
+      "rating": 35,
       "tier": "Low",
-      "shootoutTotal": 43.1,
+      "shootoutTotal": 43.0,
       "projectedTotal": 45.0,
       "components": {
         "projectedTotal": 45.0,
         "passingMatchup": -1.8,
-        "explosivePlays": -0.15,
+        "explosivePlays": -0.16,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
@@ -659,7 +659,7 @@
       "home": "NYJ",
       "away": "DEN",
       "kickoff": "2026-12-13T18:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 59,
       "tier": "Average",
       "shootoutTotal": 47.8,
@@ -667,7 +667,7 @@
       "components": {
         "projectedTotal": 46.5,
         "passingMatchup": 1.66,
-        "explosivePlays": -0.34,
+        "explosivePlays": -0.35,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
@@ -678,15 +678,15 @@
       "home": "WAS",
       "away": "HOU",
       "kickoff": "2026-12-13T18:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
-      "rating": 52,
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
+      "rating": 51,
       "tier": "Average",
-      "shootoutTotal": 46.4,
+      "shootoutTotal": 46.3,
       "projectedTotal": 45.1,
       "components": {
         "projectedTotal": 45.1,
         "passingMatchup": 0.77,
-        "explosivePlays": 0.48,
+        "explosivePlays": 0.47,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
@@ -697,15 +697,15 @@
       "home": "PHI",
       "away": "IND",
       "kickoff": "2026-12-13T18:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
-      "rating": 25,
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
+      "rating": 32,
       "tier": "Low",
-      "shootoutTotal": 41.0,
+      "shootoutTotal": 42.5,
       "projectedTotal": 44.7,
       "components": {
         "projectedTotal": 44.7,
-        "passingMatchup": -3.42,
-        "explosivePlays": -0.32,
+        "passingMatchup": -2.32,
+        "explosivePlays": 0.1,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
@@ -716,15 +716,15 @@
       "home": "CIN",
       "away": "KC",
       "kickoff": "2026-12-13T21:25:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
-      "rating": 60,
-      "tier": "High",
-      "shootoutTotal": 47.9,
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
+      "rating": 54,
+      "tier": "Average",
+      "shootoutTotal": 46.9,
       "projectedTotal": 45.0,
       "components": {
         "projectedTotal": 45.0,
-        "passingMatchup": 2.65,
-        "explosivePlays": 0.28,
+        "passingMatchup": 1.82,
+        "explosivePlays": 0.09,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-26T05:11:23.937300+00:00"
@@ -735,7 +735,7 @@
       "home": "LV",
       "away": "LAC",
       "kickoff": "2026-12-13T21:05:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 61,
       "tier": "High",
       "shootoutTotal": 48.3,
@@ -754,7 +754,7 @@
       "home": "SF",
       "away": "LA",
       "kickoff": "2026-12-13T21:25:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 61,
       "tier": "High",
       "shootoutTotal": 48.3,
@@ -762,7 +762,7 @@
       "components": {
         "projectedTotal": 47.1,
         "passingMatchup": 1.17,
-        "explosivePlays": 0.07,
+        "explosivePlays": 0.06,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-26T22:24:10.411872+00:00"
@@ -773,16 +773,16 @@
       "home": "NE",
       "away": "MIN",
       "kickoff": "2026-12-11T01:15:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
-      "rating": 34,
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
+      "rating": 20,
       "tier": "Low",
-      "shootoutTotal": 42.8,
+      "shootoutTotal": 40.0,
       "projectedTotal": 42.4,
       "components": {
         "projectedTotal": 42.4,
         "passingMatchup": 0.01,
-        "explosivePlays": 0.4,
-        "weather": 0.0
+        "explosivePlays": 0.39,
+        "weather": -2.8
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
     },
@@ -792,7 +792,7 @@
       "home": "CAR",
       "away": "NO",
       "kickoff": "2026-12-13T18:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 49,
       "tier": "Average",
       "shootoutTotal": 45.9,
@@ -800,7 +800,7 @@
       "components": {
         "projectedTotal": 46.5,
         "passingMatchup": -0.16,
-        "explosivePlays": -0.43,
+        "explosivePlays": -0.44,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
@@ -811,7 +811,7 @@
       "home": "SEA",
       "away": "NYG",
       "kickoff": "2026-12-13T21:25:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 22,
       "tier": "Low",
       "shootoutTotal": 40.5,
@@ -819,7 +819,7 @@
       "components": {
         "projectedTotal": 41.9,
         "passingMatchup": -1.26,
-        "explosivePlays": -0.16,
+        "explosivePlays": -0.17,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-26T22:24:10.411872+00:00"
@@ -830,7 +830,7 @@
       "home": "BAL",
       "away": "TB",
       "kickoff": "2026-12-13T18:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
       "rating": 34,
       "tier": "Low",
       "shootoutTotal": 42.7,
@@ -838,7 +838,7 @@
       "components": {
         "projectedTotal": 45.5,
         "passingMatchup": -2.31,
-        "explosivePlays": -0.48,
+        "explosivePlays": -0.49,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"
@@ -849,15 +849,15 @@
       "home": "DET",
       "away": "TEN",
       "kickoff": "2026-12-13T18:00:00+00:00",
-      "recordedAt": "2026-11-27T05:09:31.166013+00:00",
-      "rating": 92,
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
+      "rating": 91,
       "tier": "Shootout",
-      "shootoutTotal": 54.4,
+      "shootoutTotal": 54.3,
       "projectedTotal": 51.6,
       "components": {
         "projectedTotal": 51.6,
         "passingMatchup": 2.59,
-        "explosivePlays": 0.17,
+        "explosivePlays": 0.16,
         "weather": 0.0
       },
       "firstRecordedAt": "2026-11-23T20:30:38.249499+00:00"

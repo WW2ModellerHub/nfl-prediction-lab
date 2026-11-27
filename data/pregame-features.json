@@ -4907,6 +4907,66 @@
       },
       "trainingEligible": false,
       "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
+    },
+    {
+      "captureVersion": 2,
+      "gameId": "2026_12_DEN_PIT",
+      "season": 2026,
+      "week": 12,
+      "kickoff": "2026-11-27T20:00:00+00:00",
+      "recordedAt": "2026-11-27T17:32:32.448911+00:00",
+      "window": "late",
+      "home": "PIT",
+      "away": "DEN",
+      "baselineHomeProbability": 0.4481,
+      "publishedHomeProbability": 0.4481,
+      "jointVersion": "joint-xgb-v2-2026-11-09",
+      "jointHomeProbability": 0.369688,
+      "jointMissingEvidence": [
+        "Timestamped historical injury archive",
+        "As-of projected QB with prior statistics",
+        "Archived pregame weather (no trained coefficient)"
+      ],
+      "weather": {
+        "status": "forecast",
+        "roof": "outdoors",
+        "stadiumId": "PIT00",
+        "source": "Open-Meteo",
+        "sourceRetrievedAt": "2026-11-27T17:32:32.448911+00:00",
+        "forecastFor": "2026-11-27T20:00:00+00:00",
+        "values": {
+          "temperatureC": 3.1,
+          "precipitationChancePct": 40.0,
+          "windMph": 13.5,
+          "gustMph": 30.4,
+          "snowfallCm": 0.0
+        }
+      },
+      "quarterbacks": {
+        "home": {
+          "id": "00-0034771",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 59.0,
+          "priorEPA": -0.131
+        },
+        "away": {
+          "id": "00-0039732",
+          "status": "Depth-chart QB (not a confirmed starter)",
+          "priorDropbacks": 275.0,
+          "priorEPA": 0.071
+        }
+      },
+      "injuries": {
+        "status": "snapshot-only",
+        "asOf": "2026-11-27T17:32:14.370711+00:00",
+        "observedFlagCounts": {
+          "home": 4,
+          "away": 4
+        },
+        "verifiedActiveRoster": false
+      },
+      "trainingEligible": false,
+      "source": "Live pre-kickoff pipeline capture, never a postgame reconstruction"
     }
   ]
 }
