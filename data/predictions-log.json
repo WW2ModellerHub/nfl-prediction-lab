@@ -3208,5 +3208,49 @@
     "baselineHomeProbability": 0.64807,
     "adjustmentActive": false,
     "situationalProbabilityDelta": 0
+  },
+  {
+    "gameId": "2026_15_SF_LAC",
+    "recordedAt": "2026-11-27T05:09:31.166013+00:00",
+    "kickoff": "2026-12-18T01:15:00+00:00",
+    "home": "LAC",
+    "away": "SF",
+    "homeProbability": 0.30915,
+    "predMargin": -5.17,
+    "predTotal": 47.68,
+    "situationalSignals": [],
+    "model": "elo-form-v1-overlays-validated-v1.5",
+    "overlayType": "none",
+    "tacticalProbabilityDelta": 0,
+    "playerProbabilityDelta": 0,
+    "qbProbabilityDelta": 0,
+    "qbResearch": {
+      "eligible": true,
+      "features": [
+        -0.494,
+        -0.08199999999999999,
+        0
+      ],
+      "status": "eligible",
+      "reason": "Prior-game QB observations available",
+      "source": "Recorded prior starter or dated pregame depth chart, not game-day confirmation"
+    },
+    "qbObserved": {
+      "home": "00-0036355",
+      "away": "00-0037834"
+    },
+    "injuryReportAsOf": null,
+    "qbInjuryProbabilityWeight": 0,
+    "playerFeatures": null,
+    "playerImpactStatus": "informational",
+    "tacticalFeatures": [
+      -0.9559263691276694,
+      -0.10245801747727032,
+      -0.4346046071602109,
+      -0.3145329599737179
+    ],
+    "baselineHomeProbability": 0.30915,
+    "adjustmentActive": false,
+    "situationalProbabilityDelta": 0
   }
 ]
